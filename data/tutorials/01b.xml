@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 01b - Virtual Hosting Setup
+-->
+<lesson>
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial will walk you through setting up virtual
+            hosting in XAMPP, for testing webapps.</p>
+        <p>The first time may be a challenge, but you will find
+            that it is easy to setup a new virtual host for
+            any webapp you want to work on!</p>
+    </slide>
+
+    <slide title="Virtual Hosting" layout="normal">
+        <p>Apache supports name-based hosting, with multiple domains
+            served from the same Apache instance, and each domain
+            mapped to its own document root.</p>
+        <p>
+            We can exploit this by defining our own "local only" domains,
+            one for each project we are working on, and have Apache
+            treat these as free-standing webapps.
+        </p>
+    </slide>
+
+    <slide title="Define Local Domain Names" layout="normal">
+        <div class="left">
+            <p>Local domain names are defined in the "hosts" file on
+                your platform. On Linux, this is found in "/etc/hosts".
+                On Windows, this will be found in 
+                "%SystemRoot%\system32\drivers\etc\hosts", shown right.
+            </p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Add Your Domains" layout="normal">
+        <div class="left">
+            <p>You can add domains to the main “home” line there, or you can add 
+                separate lines for each domain. These will look like</p>
+            <p class="code">
+                127.0.0.1 localhost<br/>
+                127.0.0.1 comp4711.local project.local
+            </p>
+            <p>Make sure that you add the "comp4711.local" domain, 
+                as we will use that for labs. 
+                The example above also adds “project.local”, 
+                a domain that might be used for your assignments.</p> 
+        </div>
+        <div class="right">
+            <img class="scale" width="890" height="600" src="/data/tutorials/pix/1b-3.png"/>
+        </div>
+    </slide>
+
+    <slide title="Test Your Domain Name" layout="normal">
+        <div class="left">
+            <p>In a command prompt, ping a "bad" domain, and then ping one 
+                that you added to your "hosts". The results should look
+                something like the screen to the right.</p>
+            <p>In my case, I have a "jimsjoint.local" defined on the
+                same line as "comp4711.local", but the result is still
+                "localhost" or "127.0.0.1"</p>
+            <p>Using “.local” as part of the domain name will serve as a reminder
+                that you are in development mode.
+            </p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Windows Note" layout="normal">
+        <p>Depending on your configuration, you may find that your
+            "system" files are opened as "read-only" when you try to edit them.</p>
+        <p>In such a case, you will have to run your
+            text editor with elevated privileges, so you can save 
+            any changes.</p>
+    </slide>
+
+    <slide title="Apache Configuration - httpd.conf" layout="normal">
+        <div class="left">
+            <p>The main Apache configuration file is "httpd.conf".</p>
+            <p>Request its editing by clicking on the "Config"
+                button in your XAMPP control panel, and selecting
+                the appropriate entry.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-5.png"/>
+        </div>
+    </slide>
+
+    <slide title="Enable Virtual Hosting" layout="normal">
+        <div class="left">
+            <p>Apache's virtual hosting is disabled by default.</p>
+            <p>Enable it by uncommenting the "include" directive below
+                the "# Virtual hosts" comment, about line 490 in "httpd.conf".</p>
+            <p>The Apache configuration files are inside "C:\XAMPP\Apache\conf" on 
+                Windows, and inside "/opt/lampp/etc" on Linux, if you want 
+                to open them directly.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-4.png"/>
+        </div>
+    </slide>
+
+    <slide title="Virtual Host Configuration" layout="normal">
+        <div class="left">
+            <p>We need to define the virtual host mappings for Apache. 
+                Edit the configuration file for this, 
+                eg  "conf/extras/httpd-vhosts.conf"</p>
+            <p>This might be accessible from the XAMPP control
+                panel, but it is usually easier to open it for
+                editing from your file manager.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-6.png"/>
+        </div>
+    </slide>
+
+    <slide title="Define Virtual Host Mappings" layout="normal">
+        <div class="left">
+            <p>Each virtual host needs to be mapped to its document
+                root. Two example mappings are in the default installation.</p>
+            <p>You want a "default" mapping, as well as one for each of your 
+                virtual hosts. The default mapping is simply the first one
+                in the configuration file, and it should use the ServerName
+                "localhost".
+            </p>
+        </div>
+        <div class="right">
+            <pre><code>
+&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot "c:/xampp/htdocs"
+    ServerName localhost
+    ErrorLog "logs/localhost-error_log"
+    CustomLog "logs/localhost-access_log" common
+&lt;/VirtualHost&gt;
+            </code></pre>
+        </div>
+    </slide>
+
+    <slide title="Virtual Host Mapping Settings" layout="normal">
+        <div class="left">
+            <p>ServerAdmin is a bogus email address, for our purposes.</p>
+            <p>DocumentRoot says where our webapp will be served from.
+                Keep this inside your XAMPP folder to make life simple.
+                Note the Unix style folder separators.</p>
+            <p>ServerName is the local domain name.</p>
+            <p>The log file directives let you collect
+                error and access messages for each webapp.</p>
+        </div>
+        <div class="right">
+            <pre><code>
+&lt;VirtualHost *:80&gt;
+    ServerAdmin webmaster@dummy-host.example.com
+    DocumentRoot "c:/xampp/htdocs"
+    ServerName localhost
+    ErrorLog "logs/localhost-error_log"
+    CustomLog "logs/localhost-access_log" common
+&lt;/VirtualHost&gt;
+            </code></pre>
+        </div>
+    </slide>
+
+    <slide title="Virtual Host Mappings" layout="normal">
+        <div class="left">
+            <p>Add a VirtualHost element for each of the
+                local domain names you setup earlier.</p>
+            <p>If you defined two local domains, then
+                your httpd-vhosts.conf will contain
+                three mappings: one for the "default"
+                and one for each of yours, as shown to the
+                right.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-7.png"/>
+        </div>
+    </slide>
+    
+    <slide title="Document Root Notes" layout="normal">
+
+        <p>A webapp's document root is the location
+            of the folder containing its homepage, eg.
+            "index.html" or "index.php".</p>
+        <p>Note the Unix-style folder separators whenever
+            filename paths are specified - follow this convention.</p>            
+        <p>It is <emphasis>possible</emphasis> to have your document root anywhere
+            in your file system, but you will save a lot of grief
+            at this point by putting all of yours inside
+            your XAMPP folder.</p>
+
+    </slide>
+
+    <slide title="Apache Restart" layout="normal">
+        <p>Apache only reads its configuration files when
+            first started.</p>
+        <p>Any time you make a configuration change (for
+            instance virtual hosting settings), you need
+            to restart Apache.</p>
+        <p>This can be done through your XAMPP control panel,
+            or from the command line ("xampp restart").</p>     
+        <p>Why not do this now, before you forget!</p>       
+    </slide>
+
+    <slide title="Test Your Virtual Host Mapping" layout="normal">
+        <p>We want to make sure we got it right.</p>           
+        <p>We are going to create a simple "Hello World"
+            project, in the proper place, and make sure that
+            we get the expected results when we use our
+            local domain name as the browser location.</p>
+        <p>In the last few pages of this tutorial, we use
+            the NetBeans IDE. It isn't the only one, or even
+            necessarily the best one, but it is the one we have settled 
+            on, and which we use for <strong>marking</strong> (hmmm).</p>
+    </slide>
+
+
+    <slide title="Start a New Project" layout="normal">
+        <div class="left">
+            <p>Start a new PHP project in NetBeans - a PHP Application.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-11.png"/>
+        </div>
+    </slide>
+
+    <slide title="Project Name" layout="normal">
+        <div class="left">
+            <p>Your project name will also be the document root for your
+                "webapp". I suggest that the project name be the same as the
+                folder you specified as a document root in your
+                virtual host configuration for "comp4711.local".</p>           
+            <p>I also suggest choosing PHP 5.3 as the PHP Version -
+                a "safe" middle-of-the-road choice.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-12.png"/>
+        </div>
+    </slide>
+
+    <slide title="Project Run Configuration" layout="normal">
+        <div class="left">
+            <p>Your project will be run locally, using XAMPP.</p>
+            <p>Your project URL should read "http://comp4711.local",
+                namely the same as the virtual mapping you setup.</p>           
+            <p>If you changed the Apache server port when you initially
+                setup XAMPP, remember to add that to your URL 
+                (eg http://comp4711.local:4711).
+            </p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-13.png"/>
+        </div>
+    </slide>
+
+    <slide title="Supplementary Frameworks?" layout="normal">
+        <div class="left">
+            <p>Do NOT select any of the supplementary frameworks.
+                We want to keep our project as simple as possible.</p>                       
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-14.png"/>
+        </div>
+    </slide>
+
+    <slide title="Complete the Wizard" layout="normal">
+        <div class="left">
+            <p>Click the "Finish" button for the New Project wizard,
+                and we have our Hello World ready to go.
+            </p>
+            <p>You will get a dummy "index.php" inside your project, 
+                which is all we need for now. It will be automatically 
+                opened in the editing panel of NetBeans.
+            </p>           
+            <p>Add a "hello world" echo statement to it, 
+                so you can recognize your "app" when it is run.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-15.png"/>
+        </div>
+    </slide>
+
+    <slide title="Are We There Yet?" layout="normal">
+        <div class="left">
+            <p>Click the green "Run" button in NetBeans, and your browser
+                should be opened, with the ultra-elegant homepage of your
+                app displayed :-/</p>           
+            <p>The same result could be achieved by entering your URL
+                (http://comp4711.local) directly into your browser's location field.</p>
+            <p>Remember the server port #, if changed (eg http://comp4711.local:4711).
+            </p>
+
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1b-8.png"/>
+        </div>
+    </slide>
+
+</lesson>

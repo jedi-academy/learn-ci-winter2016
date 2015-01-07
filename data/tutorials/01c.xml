@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 01c - PHP Sidetrip
+-->
+<lesson>
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial is not so much a walkthrough as a comparison
+            between PHP and Java/C, for those unfamiliar with PHP
+            and intimidated by the thought of learning a new
+            programming language.</p>
+        <p>If you are familiar with PHP, skip this tutorial.</p>
+        <p>If you are unfamiliar with PHP, I suggest a quick run through
+            the tutorial, and remember it is here for reference
+            if you get hung up on PHP syntax or constructs later
+            in the course!</p>
+    </slide>
+
+    <slide title="Basic PHP syntax" layout="normal">
+        <p>PHP can be used for “merely” scripting (snippets of logic 
+            embedded in an HTML document and interpreted server-side), 
+            or it can be used for full-fledged O-O programming. 
+            Confusingly, it can be used for both at the same time :(</p>
+        <p>
+            PHP documents have a .php extension, and can contain HTML 
+            with PHP embedded inside appropriate tags<br/>
+	&lt;?php yadayadayada ?&gt;<br/>
+            or it can have an opening PHP tag and then contain 
+            class and function definitions as well as scripting, 
+            but would not then contain a closing tag.
+        </p>
+        <p>PHP statement syntax is very similar to Java and C, 
+            for assignment statements, unqualified method calls, 
+            block structure, and so on.</p>
+    </slide>
+
+    <slide title="PHP Variables and Data Types" layout="normal">
+        <p>Variables in PHP have conventional names, but start with a 
+            dollar sign ($name). They are variably typed, i.e.
+            According to the last type of data assigned to them, 
+            and they do not have to be declared in advance.
+        </p>
+        <p>Built-in data types include the "standards" 
+            (integer, float, string, boolean), as well as 
+            object, array, resource and null. 
+            These last will be discussed separately.</p>
+        <p>PHP has a number of built-in variables, 
+            such as $DOCUMENT_ROOT, $SERVER array, 
+            $_POST for HTTP post parameters, and so on.</p>
+    </slide>
+
+    <slide title="PHP Strings" layout="normal">
+        <p>Strings can be delimited by either single or double quotes. </p>
+        <p>
+            If double quotes, additional escape sequences are 
+            enabled (\n, \r, \t, \\, \$). </p>
+        <p>
+            You can escape the delimiter itself inside a string (\' or \").</p>
+
+    </slide>
+
+    <slide title="PHP Operators" layout="normal">
+        <p>The same arithmetics operators are found in PHP as in Java ... 
+            +, -, *, /, %.<br/>
+            It supports increment and decrement, 
+            both pre and postfix notation.<br/>
+            It has the same comparison operators, ==, !=, &lt;, 
+&gt;, &lt;=, &gt;=. It also has ===, which tests if 
+            the two sides have the same data type as well as
+            values considered equal.</p>
+        <p>PHP has logical operators, !, &amp;&amp;, ||, AND and OR. <br/>
+            The &amp;&amp; and || do short-circuit evaluation, as in Java.</p>
+        <p>PHP supports the ternary operator too:<br/>
+            $answer = (some test) ? Value if true : value if false;</p>
+        <p>The only string operator is the dot ('.') for concatenation.
+        </p>
+    </slide>
+
+    <slide title="PHP Expressions" layout="normal">
+        <p>Same as Java ... the result of an expression can be assigned to a variable.</p>
+        <p>
+            The variable takes on the data type of the expression.</p>
+        <p>
+            Force the data typing through casting, same as in Java.</p>
+    </slide>
+
+    <slide title="PHP Objects" layout="normal">
+        <p>Objects in PHP are entities with properties and functions.<br/>
+            They support inheritance and over-riding, but not over-loading.<br/>
+            The properties of an object are referenced with the "-&gt;" notation.<br/>
+            Java:	customer.name<br/>
+            PHP: $customer-&gt;name</p>
+        <p>Functions are referenced similarly<br/>
+            Java: customer.distance("Chicago")<br/>
+            PHP: $customer-&gt;distance('Chicago')</p>
+        <p>Objects can be made on the fly, without a formal class definition.<br/>
+            Example 1:	$object = new stdClass();<br/>
+            Example 2:	$object-&gt;something = 1234;</p>
+            
+    </slide>
+
+    <slide title="PHP Object Serialization" layout="normal">
+        <p>Objects can be serialized, as either arrays or JSON, 
+            and there are a multitude of functions to convert 
+            between them. The easiest way is to cast...<br/>
+            Examples: <br/>
+            $object_representation = (array) $object; or<br/>
+            $object_representation = (json) $object;</p>
+        <p>You can go the other way too :)<br/>
+            Examples:  <br/>
+            $object = (object) $an_array;<br/>
+            $object = (object) $some_json_string;</p>
+        <p>If using a formal class definition, make sure it is 
+            interpreted (included, for instance) before you
+            instantiate one of them.</p>
+    </slide>
+
+    <slide title="PHP Arrays" layout="normal">
+        <div class="left">
+            <p>Arrays in PHP are simultaneously arrays as we think of 
+                them in Java, as well as java.util.Map kind of things.<br/>
+                Examples:<br/>
+                $grades [4] = 123;<br/>
+                $grades['fall'] = 123;<br/>
+                $grades[] = 123;	// adds to the end</p>
+            <p>If using the associative array technique, 
+                the keys are strings.</p>
+        </div>
+        <div class="right">
+            <p>Arrays do not have to hold the same data type.<br/>
+                Example:<br/>
+                $grades[4] = 123;<br/>
+                $grades['fall'] = 'fail';</p>
+        </div>
+    </slide>
+
+    <slide title="PHP Array Declaration" layout="normal">
+        <p>Arrays can be declared ahead of time, but don't have to be...<br/>
+            $grades = array();</p>
+        <p>Arrays can be declared and initialized at the same time...<br/>
+            $grades = array(50, 40, 123, 50);<br/>
+            with a special syntax for key/value pairs...<br/>
+            $grades = array('first' =&gt; 50, 'second' ==&gt; 40, 
+            'last' ==&gt; 'passed!');</p>
+    </slide>
+
+    <slide title="PHP Resources" layout="normal">
+        <p>"Resources" in PHP, are native implementations of something, 
+            that can be referenced like a variable. 
+            Examples include streams and XML documents.</p>
+        <p>Resources cannot be serialized the same way as 
+            regular variables. <br/>
+            Specifically, you cannot store them inside a session :(
+
+        </p>
+    </slide>
+
+    <slide title="PHP Scope" layout="normal">
+        <p>PHP has blocks, denoted by braces, as in Java.</p>
+        <p>Variables defined inside a block are only in scope inside that block.</p>
+    </slide>
+
+    <slide title="PHP Selection" layout="normal">
+        <p>PHP has similar conditional structures to Java...</p>
+        <p class="code">if (logical expression) {<br/>
+            block to execute if true<br/>
+            } else {<br/>
+            block to execute if false<br/>
+            }</p>
+        <p class="code">
+            switch (name) {<br/>
+            case 'Jim': $answer = 'great'; break;<br/>
+            case 'George': $answer = 'unknown'; break;<br/>
+            default: $answer = 'unknown';<br/>
+            }
+        </p>
+    </slide>
+    
+
+    <slide title="PHP Iteration" layout="normal">
+
+        <p>PHP has the same iteration constructs as in Java.</p>
+        <p class="code">for ($i=0; $i &lt; size($array); $i)) {<br/>
+            do something useful<br/>
+            }</p>            
+        <p class="code">while (condition) {<br/>
+            do something<br/>
+            }</p>
+        <p class="code">do {<br/>
+            do something useful<br/>
+            } while (condition);</p>
+
+    </slide>
+
+    <slide title="PHP for-each" layout="normal">
+        <p>The for-each construct has slightly different syntax..</p>
+        <p class="code">foreach ($arr as $value) {<br/>
+            ... do something with each value in the array<br/>
+            }</p>
+        <p class="code">foreach ($arr as $kery => $value) {<br/>
+            ... same thing, except that we have access to the keys too<br/>
+            }
+        </p>       
+    </slide>
+
+    <slide title="PHP vs Java" layout="normal">
+        <p>There is loads more, but this is a good start.</p>           
+        <p>The biggest differences, in my opinion, are the variable 
+            naming (dollar signs) and qualifying (-&gt;), 
+            as well as the array treatment.
+        </p>
+        <p>Pay careful attention to the arrays, as that is how we
+            will be passing parameters around, 
+            between controllers and views, for instance.</p>
+        <p>We haven't talked about exceptions, error handling, 
+            class loaders, or the hundreds of packages built-in. 
+            Hmm – one thing different from Java: 
+            the packages contain both class definitions 
+            as well as "global" functions. You'll see!</p>
+    </slide>
+
+
+    <slide title="PHP Comments" layout="normal">
+        <p>I am sad to report that PHP supports comments, just like Java.</p>
+        <p>In fact, PHP can even use Javadoc style comments 
+            (there is a tool corresponding to javadoc) 
+            and implementation comments.</p>
+        <p>
+            <strong>Unfortunately, that means that I will expect you 
+                to comment your code, so that you understand what 
+                you did when you come back to something, and to 
+                give me a warm fuzzy feeling that you know
+                what you are doing, for marks!</strong>
+        </p>
+    </slide>
+
+    <slide title="PHP Conventions" layout="normal">
+        <p>There are lots of conflicting naming and brace conventions
+            in the PHP world, and lots of PHP developers adamant that
+            "their" convention is the only right one and that everyone
+            else is wrong.</p>
+        <p>Similar battles have raged for years with
+            other programming languages too; PHP is not unique.</p>           
+        <p>You will need to understand the class, method
+            and source file naming conventions used by a
+            framework, to succeed with it.</p>
+        <p>I am going to attempt to defer that as long as possible :)</p>
+
+    </slide>
+
+    <slide title="PHP Case Enforcement" layout="normal">
+        <p>
+            <strong>Huge caution:</strong>
+        </p>
+        <p>You can get away with naming convention violations on Windows, 
+            because it is forgiving with case enforcement. 
+            Unix and Linux tend to be extremely case-sensitive.</p>           
+        <p>Translation: playing loose with naming conventions
+            may find your webapp breaking when you deploy it.  Ohoh!
+        </p>
+        <p>Moral of this caution: test your webapp on both Windows and
+            Linux before considering it "done".
+            If I get a PHP error because something can't be found on my
+            platform, you get "fired"!</p>
+    </slide>
+
+    <slide title="Further Reading" layout="normal">
+        <p>We have only scratched the surface of PHP ... there
+            is tons more that can or will need to be learned,
+            but we can defer that for the moment.</p>                       
+        <p>Where can you find out more? Here are a few suggestions:</p>
+        <ul>
+            <li>
+                <a href="http://www.tizag.com/phpT/">tizag.com</a> 
+                has a reasonable comprehensive PHP tutorial, though light on O-O.</li>
+            <li>
+                <a href="http://ca.php.net/manual/en/index.php">Php.net </a>
+                is the official home, and has the most comprehensive 
+                documentation.</li>
+            <li>Even <a href="http://www.w3schools.com/php/default.asp">w3schools</a> 
+                gets in on the act.</li>
+        </ul>
+    </slide>
+
+</lesson>
