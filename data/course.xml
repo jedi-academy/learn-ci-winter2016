@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Course metadata for Comp4711
+-->
+<course>
+    <!-- Course metadata -->
+    <code>comp4711</code>
+    <title>Webapp Development Using CodeIgniter</title>
+    <subtitle>COMP4711</subtitle>
+    <author>James L. Parry</author>
+    <email>jim_parry@bcit.ca</email>
+    <outline>http://www.bcit.ca/study/outlines/20151047992</outline>
+    <session>Winter 2015</session>
+    <school>B.C. Institute of Technology</school>
+    <site>http://www.bcit.ca/cas/computing/</site>
+    <license>MIT License</license>
+    
+    <!-- An introduction, shown at the top of the course homepage -->
+    <intro>
+        This webapp is an experiment to leverage the course materials for 
+        COMP4711 at BCIT, making them easier for my dayschool students to
+        access, and making them more broadly accessible, for instance
+        to the CodeIgniter community.<br/>
+        Concurrently with my dayschool course this Winter 2015 term,
+        I am running a pilot with up to four remote learners from
+        around the world. The remote students will have access to the same 
+        resources as the dayschool ones, and will be expected to complete
+        labs and assignments. I will give them feedback and grades for their 
+        work, but they will not receive academic credit for participating.<br/>
+        Something I will be asking all of the students to do is, to provide
+        brief feedback for each component of the course!!
+    </intro>
+    <resources>
+        <resource>
+            <name>NetBeans 8</name>
+            <link>https://netbeans.org/downloads/</link>
+            <desc>Your programming IDE</desc>
+        </resource>
+        <resource>
+            <name>XAMPP</name>
+            <link>https://www.apachefriends.org/index.html</link>
+            <desc>Your development server environment (Apache + MySQL + PHP)</desc>
+        </resource>
+        <resource>
+            <name>CodeIgniter 3</name>
+            <link>http://www.codeigniter.com/download</link>
+            <desc>The webapp framework we will use</desc>
+        </resource>
+        <resource>
+            <name>GIT</name>
+            <link>http://git-scm.com/downloads</link>
+            <desc>Your GIT client and/or plugin</desc>
+        </resource>
+    </resources>
+</course>

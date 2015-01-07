@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+These are the kinds of materials or resources provided as part of this course.
+Elminiate any not needed.
+-->
+<materials>
+    <group name="Lessons">
+        <item type="lesson">
+            Lessons explain concepts.
+            They are used as presentations in an instructor-led class.
+        </item>        
+        <item type="video">
+            If any presentations are captured on video, this icon will link to the playback for it.
+        </item>
+    </group>
+    <group name="Examples">
+        <item type="download">
+            Examples are zipped source code files that demonstrate a concept or technique.
+        </item>
+        <item type="github">
+            Some examples are provided through Github repositories.
+        </item>
+    </group>
+
+    <group name="Tutorials">
+        <item type="tutorial">
+            Tutorials are presentations that walk the learner through a set of related tasks.
+        </item>
+        <item type="github">
+            Many tutorials will have a related Github repository, linked to inside the tutorial.
+        </item>
+    </group>
+
+    <group name="Labs">
+        <item type="lab">
+            Labs are exercises to apply what you learned in a tutorial.
+        </item>
+        <item type="dropbox">
+            Registered students will submit their completed labs to a Desire2Learn 
+            dropbox for feedback and grading.
+        </item>
+    </group>
+
+    <group name="Assignments">
+        <item type="assignment">
+            Assignments are team projects, building a webapp using the techniques 
+            from this course, in 3 stages.
+        </item>
+        <item type="dropbox">
+            Registered students will submit their completed assignments to a 
+            Desire2Learn dropbox for feedback and grading.
+        </item>
+    </group>
+
+    <group name="Exams">
+        <item type="exam">
+            Registered students will write a midterm and final exam, on campus.
+        </item>
+        <item type="quiz">
+            Quizzes may be made available online, for immediate learner feedback.
+        </item>
+    </group>
+    
+</materials>
