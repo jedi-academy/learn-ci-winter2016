@@ -41,18 +41,6 @@ Some of the programming design decisions reflected:
     webapp can be used for other courses. XML was chosen over an RDB
     because of the rich data structures it can support.
 
-*******
-Sitemap
-*******
-
-The site has a simple structure ... basically two-level 
-(homepage and then content pages). 
-There are a couple of additional pages, one for IRC for the visitors 
-who do not have a suitable client, and
-one for related but subordinate information, accessible from the footer navbar.
-
-Appropriate comments are found in each of the controllers.
-
 ***************
 Project Folders
 ***************
