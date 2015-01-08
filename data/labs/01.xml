@@ -4,16 +4,11 @@ Lab 01 - Development Setup
 -->
 <lab>
     <!-- Activity metadata ... override anything from the course or organizer -->
-    <slide title="Work in Progress!" layout="normal">
-        <p>This is a work in progress!!</p>
-        <p>It still needs polish!!</p>
-    </slide>
-
-  
+    
     <!-- The meat of the presentation -->
     <slide title="Lab Goals" layout="normal">
         <p>The purpose of this lab is to introduce you to
-            your development environment</p>
+            your development environment.</p>
         <p>There are three tutorials to complete, and then this lab
             exercise to apply them.</p>
         <p>This lab will also introduce you to github. That might be a
@@ -402,19 +397,11 @@ Lab 01 - Development Setup
 
     </slide>
 
-    <slide title="Looking Good?" layout="normal">
-    </slide>
-
-    <slide title="Update the Docs" layout="normal">
-    </slide>
-
     <slide title="Are We There Yet?" layout="normal">
+        <p>Although not expected, you are welcome to play
+        with the output produced, so it looks better :)</p>
+        <p>I shouldn't have to remind you to comment your code,
+        right? We're all professionals or aspiring ones!</p>
     </slide>
-
-    <slide title="Gimme More!" layout="normal">
-    </slide>
-
-
-
 
 </lab>

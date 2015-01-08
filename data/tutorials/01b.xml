@@ -146,9 +146,9 @@ Tutorial 01b - Virtual Hosting Setup
 
     <slide title="Virtual Host Mapping Settings" layout="normal">
         <div class="left">
-            <p>ServerAdmin is a bogus email address, for our purposes.</p>
-            <p>DocumentRoot says where our webapp will be served from.
-                Keep this inside your XAMPP folder to make life simple.
+            <p>ServerAdmin is bogus for our purposes.</p>
+            <p>DocumentRoot identifies our webapp folder.
+                Keep this inside your XAMPP/htdocs.
                 Note the Unix style folder separators.</p>
             <p>ServerName is the local domain name.</p>
             <p>The log file directives let you collect
@@ -235,8 +235,8 @@ Tutorial 01b - Virtual Hosting Setup
                 "webapp". I suggest that the project name be the same as the
                 folder you specified as a document root in your
                 virtual host configuration for "comp4711.local".</p>           
-            <p>I also suggest choosing PHP 5.3 as the PHP Version -
-                a "safe" middle-of-the-road choice.</p>
+            <p>PHP version: your choice, but be aware that CodeIgniter
+                does not use namespaces.</p>
         </div>
         <div class="right">
             <img src="/data/tutorials/pix/1b-12.png"/>

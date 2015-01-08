@@ -142,8 +142,8 @@ Tutorial 01c - PHP Sidetrip
         <p>Arrays can be declared and initialized at the same time...<br/>
             $grades = array(50, 40, 123, 50);<br/>
             with a special syntax for key/value pairs...<br/>
-            $grades = array('first' =&gt; 50, 'second' ==&gt; 40, 
-            'last' ==&gt; 'passed!');</p>
+            $grades = array('first' =&gt; 50, 'second' =&gt; 40, 
+            'last' =&gt; 'passed!');</p>
     </slide>
 
     <slide title="PHP Resources" layout="normal">
