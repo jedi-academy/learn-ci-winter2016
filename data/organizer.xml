@@ -11,7 +11,7 @@ Course organizer for Comp4711
         <tutorial type="tutorial" name="tutorial01b">Virtual Hosting Setup</tutorial>
         <tutorial type="tutorial" name="tutorial01c">PHP Crash Course</tutorial>
         <lab type="lab" name="lab01" duedate="2015.01.11 17:30">Development Setup</lab>
-        <assignment type="assignment" name="assignment01" duedate="2015.01.31 21:30">Basic Webapp</assignment>
+        <assignment type="assignment" name="assignment1" duedate="2015.01.31 21:30">Basic Webapp</assignment>
     </week>
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
@@ -26,7 +26,7 @@ Course organizer for Comp4711
     <week num="4">
         <topic>Models &amp; ORM</topic>
         <lesson type="lesson" name="lesson04">Models</lesson>
-        <assignment type="assignment" name="assignment02" duedate="2015.03.07 21:30">Functional Webapp</assignment>
+        <assignment type="assignment" name="assignment2" duedate="2015.03.07 21:30">Functional Webapp</assignment>
     </week>
     <week num="5">
         <topic>Views &amp; Templating</topic>
@@ -50,7 +50,7 @@ Course organizer for Comp4711
     <week num="9">
         <topic>XML Constraints &amp; Processing</topic>
         <lesson type="lesson" name="lesson08">XML Processing</lesson>
-        <assignment type="assignment" name="assignment03" duedate="2015.04.11 21:30">Completed Webapp</assignment>
+        <assignment type="assignment" name="assignment3" duedate="2015.04.11 21:30">Completed Webapp</assignment>
     </week>
     <week num="10">
         <topic>XML-RPC</topic>

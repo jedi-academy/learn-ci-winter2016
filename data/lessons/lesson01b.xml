@@ -112,7 +112,7 @@ Lesson 01b - Golden Rules
             <li>Goal: unaware of data source, no PHP</li>
             <li>To get fired...
                 <ul>
-                    <li>Reference model!</li>
+                    <li>Reference a model from inside your view!</li>
                     <li>Not well-formed</li>
                 </ul>
             </li>
