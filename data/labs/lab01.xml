@@ -316,9 +316,12 @@ Lab 01 - Development Setup
     </slide>
 
     <slide title="Works? Update the Repo" layout="normal">
-        <p>That should do for a start. You might have to fix it a bit :-/</p>
-        <br/>
-        <img class="scale" src="/data/labs/pix/1-38.png"/>
+        <div class="left">
+            <p>That should do for a start. You might have to fix it a bit :-/</p>
+        </div>
+        <div class="right">
+            <img class="scale" src="/data/labs/pix/1-38.png"/>
+        </div>
     </slide>
 
     <slide title="Back to the Homepage" layout="normal">
@@ -374,7 +377,9 @@ Lab 01 - Development Setup
     </slide>
 
     <slide title="Works? Update Your Repo" layout="normal">
-       
+        <p>Are you getting the expected result?</p>
+        <p>If so, update your repo.</p>
+        <p>If not, fix it! You should only commit and update your repo with working code.</p>
     </slide>
 
     <slide title="Improve The Student Order" layout="normal">

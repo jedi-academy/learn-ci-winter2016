@@ -37,7 +37,7 @@ Course Suggestions
 - Lab 1: more detail about git with NetBeans
 - Lesson 1a (all?) - provide a screencast to expand on ideas
 - Provide examples of sites using CI
-- Lessons 1a slides very dry; need supporing talk; maybe intro/explanatory point
+- Lessons 1a slides very dry; need supporting talk; maybe intro/explanatory point
 - lesson 1a: slide 4 mentions DTD?
 - Lesson 1: mention PHP before CI?
 - lesson 1: slide 14 before 13?
