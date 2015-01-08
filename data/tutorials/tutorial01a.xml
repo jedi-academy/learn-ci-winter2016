@@ -15,11 +15,13 @@ Tutorial 01a - XAMPP installation
             port conflicts. Once you have done this a few times, it will
             be no big deal to setup a fresh installation of XAMPP
             on whatever computer you have available to work on!</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
     </slide>
 
     <slide title="Do you Need XAMPP?" layout="normal">
         <p>AMP = Apache + MYSQL + PHP (&amp; perl)</p>
-        <p>IFF you are already familiar with AMP,<br/>
+        <p>IF you are already familiar with AMP,<br/>
             AND you have a working AMP stack on your machine,<br/>
             AND you know how to configure and manage it, specifically virtual hosts,<br/>
             AND you plan to have with you in lab a machine with this or access to it,<br/>
@@ -29,7 +31,8 @@ Tutorial 01a - XAMPP installation
 
     <slide title="Download XAMPP" layout="normal">
         <div class="left">
-            <p>Get AMP from the <a href="http://www.apachefriends.org/en/xampp.html">Apache Friends</a> website.</p>
+            <p>Get AMP from the <a href="http://www.apachefriends.org/en/xampp.html" target="_blank">
+                Apache Friends</a> website.</p>
             <p>I strongly recommend using XAMPP instead of other apparently suitable
                 packages, such as WAMPP or MAMPP. The other packages (and even some of
                 the AMP stacks built into Linux) often have less than intuitive folder and
@@ -270,7 +273,7 @@ Listen 80
     <slide title="Are We There Yet?" layout="normal">
         <div class="left">
             <p>In your browser, open the location "localhost". You should
-                see the XAMPP splash scree, right.</p>           
+                see the XAMPP splash screen, right.</p>           
             <p>If you changed the port in order to get Apache to start,
                 remember to specify that in the URL too, eg. "localhost:4711"</p>
             <p>Some browsers may still require that you specify the protocol

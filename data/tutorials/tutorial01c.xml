@@ -16,6 +16,8 @@ Tutorial 01c - PHP Sidetrip
             the tutorial, and remember it is here for reference
             if you get hung up on PHP syntax or constructs later
             in the course!</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
     </slide>
 
     <slide title="Basic PHP syntax" layout="normal">
@@ -142,8 +144,8 @@ Tutorial 01c - PHP Sidetrip
         <p>Arrays can be declared and initialized at the same time...<br/>
             $grades = array(50, 40, 123, 50);<br/>
             with a special syntax for key/value pairs...<br/>
-            $grades = array('first' =&gt; 50, 'second' ==&gt; 40, 
-            'last' ==&gt; 'passed!');</p>
+            $grades = array('first' =&gt; 50, 'second' =&gt; 40, 
+            'last' =&gt; 'passed!');</p>
     </slide>
 
     <slide title="PHP Resources" layout="normal">
@@ -273,13 +275,13 @@ Tutorial 01c - PHP Sidetrip
         <p>Where can you find out more? Here are a few suggestions:</p>
         <ul>
             <li>
-                <a href="http://www.tizag.com/phpT/">tizag.com</a> 
+                <a href="http://www.tizag.com/phpT/" target="_blank">tizag.com</a> 
                 has a reasonable comprehensive PHP tutorial, though light on O-O.</li>
             <li>
-                <a href="http://ca.php.net/manual/en/index.php">Php.net </a>
+                <a href="http://ca.php.net/manual/en/index.php" target="_blank">Php.net </a>
                 is the official home, and has the most comprehensive 
                 documentation.</li>
-            <li>Even <a href="http://www.w3schools.com/php/default.asp">w3schools</a> 
+            <li>Even <a href="http://www.w3schools.com/php/default.asp" target="_blank">w3schools</a> 
                 gets in on the act.</li>
         </ul>
     </slide>

@@ -4,20 +4,17 @@ Lab 01 - Development Setup
 -->
 <lab>
     <!-- Activity metadata ... override anything from the course or organizer -->
-    <slide title="Work in Progress!" layout="normal">
-        <p>This is a work in progress!!</p>
-        <p>It still needs polish!!</p>
-    </slide>
-
-  
+    
     <!-- The meat of the presentation -->
     <slide title="Lab Goals" layout="normal">
         <p>The purpose of this lab is to introduce you to
-            your development environment</p>
+            your development environment.</p>
         <p>There are three tutorials to complete, and then this lab
             exercise to apply them.</p>
         <p>This lab will also introduce you to github. That might be a
             separate tutorial in the future :-/</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
     </slide>
 
     <slide title="Lab Submission" layout="normal">
@@ -47,11 +44,11 @@ Lab 01 - Development Setup
             environment. Please make sure you have completed them.</p>
         <ul>
             <li>
-                <a href="/show/tutorial/01a">Tutorial 01a</a> XAMPP Installation</li>
+                <a href="/show/tutorial/01a" target="_blank">Tutorial 01a</a> XAMPP Installation</li>
             <li>
-                <a href="/show/tutorial/01b">Tutorial 01b</a> Virtual Hosting Setup</li>
+                <a href="/show/tutorial/01b" target="_blank">Tutorial 01b</a> Virtual Hosting Setup</li>
             <li>
-                <a href="/show/tutorial/01c">Tutorial 01c</a> PHP Crash Course </li>
+                <a href="/show/tutorial/01c" target="_blank">Tutorial 01c</a> PHP Crash Course </li>
         </ul>
 
     </slide>
@@ -64,13 +61,24 @@ Lab 01 - Development Setup
 
     <slide title="Install Git" layout="normal">
         Make sure that you have Git installed on your system,
-        from the <a href="http://git-scm.com/downloads">git-scm</a> site.
+        from the <a href="http://git-scm.com/downloads" target="_blank">git-scm</a> site.
         <br/>
         <img class="scale" src="/data/labs/pix/1-1b.png"/>
     </slide>
 
-    <slide title="Create Your Github Account" layout="normal">
-        If you do not already have one, create a <a href="http://githib.com">github</a>
+    <slide title="Install Git Toolbar" layout="normal">
+        <div class="left">
+            Also install the Git toolbar for NetBeans.
+            It will make things easier :)<br/>
+         <img class="scale" src="/data/labs/pix/1-1d.png"/>
+       </div>
+        <div class="right">           
+            <img class="scale" src="/data/labs/pix/1-1c.png"/>
+        </div>
+    </slide>
+
+   <slide title="Create Your Github Account" layout="normal">
+        If you do not already have one, create a <a href="http://githib.com" target="_blank">github</a>
         account for yourself.
         <br/>
         <img class="scale" src="/data/labs/pix/1-0.png"/>
@@ -103,33 +111,38 @@ Lab 01 - Development Setup
 
     <slide title="Clone Your Repository Locally" layout="normal">
         <div class="left">
-            <img class="scale " src="/data/labs/pix/1-4.png"/>
+            <img class="scale " src="/data/labs/pix/1-1e.png"/>
         </div>
         <div class="right">
-            <img class="scale " src="/data/labs/pix/1-5.png"/>
+            <img class="scale " src="/data/labs/pix/1-4.png"/>
         </div>
     </slide>
 
     <slide title="Local clone - Part 2" layout="normal">
         <div class="left">
-            <img class="scale " src="/data/labs/pix/1-6.png"/>
+            <img class="scale " src="/data/labs/pix/1-5.png"/>
         </div>
         <div class="right">
-            <img class="scale " src="/data/labs/pix/1-7.png"/>
+            <img class="scale " src="/data/labs/pix/1-6.png"/>
         </div>
     </slide>
 
     <slide title="Local clone - Part 3" layout="normal">
         <div class="left">
-            <img class="scale " src="/data/labs/pix/1-9.png"/>
+            <img class="scale " src="/data/labs/pix/1-7.png"/>
         </div>
         <div class="right">
-            <img class="scale " src="/data/labs/pix/1-10.png"/>
+            <img class="scale " src="/data/labs/pix/1-9.png"/>
         </div>
     </slide>
 
     <slide title="Local clone - Part 4" layout="normal">
-        <img class="scale " src="/data/labs/pix/1-11.png"/>
+        <div class="left">
+            <img class="scale " src="/data/labs/pix/1-10.png"/>
+        </div>
+        <div class="right">
+            <img class="scale " src="/data/labs/pix/1-11.png"/>
+        </div>
     </slide>
 
 
@@ -402,19 +415,11 @@ Lab 01 - Development Setup
 
     </slide>
 
-    <slide title="Looking Good?" layout="normal">
-    </slide>
-
-    <slide title="Update the Docs" layout="normal">
-    </slide>
-
     <slide title="Are We There Yet?" layout="normal">
+        <p>Although not expected, you are welcome to play
+        with the output produced, so it looks better :)</p>
+        <p>I shouldn't have to remind you to comment your code,
+        right? We're all professionals or aspiring ones!</p>
     </slide>
-
-    <slide title="Gimme More!" layout="normal">
-    </slide>
-
-
-
 
 </lab>
