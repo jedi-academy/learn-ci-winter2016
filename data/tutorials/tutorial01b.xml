@@ -12,6 +12,8 @@ Tutorial 01b - Virtual Hosting Setup
         <p>The first time may be a challenge, but you will find
             that it is easy to setup a new virtual host for
             any webapp you want to work on!</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
     </slide>
 
     <slide title="Virtual Hosting" layout="normal">
@@ -23,6 +25,14 @@ Tutorial 01b - Virtual Hosting Setup
             one for each project we are working on, and have Apache
             treat these as free-standing webapps.
         </p>
+    </slide>
+
+    <slide title="Windows Note" layout="normal">
+        <p>Depending on your configuration, you may find that your
+            "system" files are opened as "read-only" when you try to edit them.</p>
+        <p>In such a case, on the following slides, you will have to run your
+            text editor with elevated privileges, so you can save 
+            any changes.</p>
     </slide>
 
     <slide title="Define Local Domain Names" layout="normal">
@@ -71,14 +81,6 @@ Tutorial 01b - Virtual Hosting Setup
         <div class="right">
             <img src="/data/tutorials/pix/1b-2.png"/>
         </div>
-    </slide>
-
-    <slide title="Windows Note" layout="normal">
-        <p>Depending on your configuration, you may find that your
-            "system" files are opened as "read-only" when you try to edit them.</p>
-        <p>In such a case, you will have to run your
-            text editor with elevated privileges, so you can save 
-            any changes.</p>
     </slide>
 
     <slide title="Apache Configuration - httpd.conf" layout="normal">

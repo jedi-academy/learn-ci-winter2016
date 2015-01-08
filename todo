@@ -24,20 +24,15 @@ Course Issues
 
 - Need Mac OSX instructions
 - Need assignment 1
-- Links should open in new window/tab
 - Need an easier way to drag/copy text for pasting, without advancing to the next slide
 - lesson 1a: cheesburger reference lost
 - tutorial 1a: The directory that windows installs httpd.conf to is C:\xampp\apache\conf, as far as i could see you didn't have a slide that explicitly listed this (I only saw a slide for linux: /etc/httpd/conf)
-- tutorial 1b ...
-  Slide 3 regarding the modification with the hosts file should have the warning on the same slide instead of 3 slides later. Although the warning did not help me, I thought I might add a suggestion to add to help others in the future. If even running notepad as an admin and changing permissions doesn't work (an error of read-only file), right click the file, select properties, and uncheck "read-only" has solved my problem.
-- lesson filenames need to be more relevant
 - need a way to identify and navigate between slides
 
 ******************
 Course Suggestions
 ******************
 
-- Drop the fade animaiton
 - Format the HTML better?
 - Lab 1: more detail about git with NetBeans
 - Lesson 1a (all?) - provide a screencast to expand on ideas
@@ -49,5 +44,4 @@ Course Suggestions
 - lesson 1b: link to deeper content
 - lesson 1b: reference model?
 - Back to home link on last page of all slide decks
-- tutorials: Include a suggestion at the beginning to remind people to quickly read through the whole tutorial before attempting install.  Something I should have done anyway without prompting but was lazy and forgot.
 

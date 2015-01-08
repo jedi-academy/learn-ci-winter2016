@@ -5,43 +5,43 @@ Course organizer for Comp4711
 <organizer>
     <week num="1">
         <topic>Introduction to MVC Webapps</topic>
-        <lesson type="lesson" name="01a">Introduction</lesson>
-        <lesson type="lesson" name="01b">Golden Rules</lesson>
-        <tutorial type="tutorial" name="01a">XAMPP Installation</tutorial>
-        <tutorial type="tutorial" name="01b">Virtual Hosting Setup</tutorial>
-        <tutorial type="tutorial" name="01c">PHP Crash Course</tutorial>
-        <lab type="lab" name="01" duedate="2015.01.11 17:30">Development Setup</lab>
-        <assignment type="assignment" name="01" duedate="2015.01.31 21:30">Basic Webapp</assignment>
+        <lesson type="lesson" name="lesson01a">Introduction</lesson>
+        <lesson type="lesson" name="lesson01b">Golden Rules</lesson>
+        <tutorial type="tutorial" name="tutorial01a">XAMPP Installation</tutorial>
+        <tutorial type="tutorial" name="tutorial01b">Virtual Hosting Setup</tutorial>
+        <tutorial type="tutorial" name="tutorial01c">PHP Crash Course</tutorial>
+        <lab type="lab" name="lab01" duedate="2015.01.11 17:30">Development Setup</lab>
+        <assignment type="assignment" name="assignment01" duedate="2015.01.31 21:30">Basic Webapp</assignment>
     </week>
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
-        <lesson type="lesson" name="02">CodeIgniter Introduction</lesson>
-        <lab type="lab" name="02" duedate="2015.01.18 17:30">CodeIgniter Intro</lab>
+        <lesson type="lesson" name="lesson02">CodeIgniter Introduction</lesson>
+        <lab type="lab" name="lab02" duedate="2015.01.18 17:30">CodeIgniter Intro</lab>
     </week>
     <week num="3">
         <topic>Controllers &amp; Routing</topic>
-        <lesson type="lesson" name="03">Controllers</lesson>
-        <lab type="lab" name="03" duedate="2015.01.25 17:30">Controllers</lab>
+        <lesson type="lesson" name="lesson03">Controllers</lesson>
+        <lab type="lab" name="lab03" duedate="2015.01.25 17:30">Controllers</lab>
     </week>
     <week num="4">
         <topic>Models &amp; ORM</topic>
-        <lesson type="lesson" name="04">Models</lesson>
-        <assignment type="assignment" name="02" duedate="2015.03.07 21:30">Functional Webapp</assignment>
+        <lesson type="lesson" name="lesson04">Models</lesson>
+        <assignment type="assignment" name="assignment02" duedate="2015.03.07 21:30">Functional Webapp</assignment>
     </week>
     <week num="5">
         <topic>Views &amp; Templating</topic>
-        <lesson type="lesson" name="05">Views</lesson>
-        <lab type="lab" name="04" duedate="2015.02.08 17:30">Models</lab>
+        <lesson type="lesson" name="lesson05">Views</lesson>
+        <lab type="lab" name="lab04" duedate="2015.02.08 17:30">Models</lab>
     </week>
     <week num="6">
         <topic>Helpers &amp; CSS / Javascript Integration</topic>
-        <lesson type="lesson" name="06">Helpers and Addons</lesson>
-        <lab type="lab" name="05" duedate="2015.02.15 17:30">Views</lab>
+        <lesson type="lesson" name="lesson06">Helpers and Addons</lesson>
+        <lab type="lab" name="lab05" duedate="2015.02.15 17:30">Views</lab>
     </week>
     <week num="7">
         <topic>XML Introduction &amp; Structure</topic>
-        <lesson type="lesson" name="07">XML Basics</lesson>
-        <lab type="lab" name="06" duedate="2015.02.22 17:30">Best Practices</lab>
+        <lesson type="lesson" name="lesson07">XML Basics</lesson>
+        <lab type="lab" name="lab06" duedate="2015.02.22 17:30">Best Practices</lab>
     </week>
     <week num="8">
         <topic>Midterm exam</topic>
@@ -49,33 +49,33 @@ Course organizer for Comp4711
     </week>
     <week num="9">
         <topic>XML Constraints &amp; Processing</topic>
-        <lesson type="lesson" name="08">XML Processing</lesson>
-        <assignment type="assignment" name="03" duedate="2015.04.11 21:30">Completed Webapp</assignment>
+        <lesson type="lesson" name="lesson08">XML Processing</lesson>
+        <assignment type="assignment" name="assignment03" duedate="2015.04.11 21:30">Completed Webapp</assignment>
     </week>
     <week num="10">
         <topic>XML-RPC</topic>
-        <lesson type="lesson" name="09">XML-RPC</lesson>
-        <lab type="lab" name="07" duedate="2015.03.22 17:30">XML</lab>
+        <lesson type="lesson" name="lesson09">XML-RPC</lesson>
+        <lab type="lab" name="lab07" duedate="2015.03.22 17:30">XML</lab>
     </week>
     <week num="11">
         <topic>REST &amp; JSON</topic>
-        <lesson type="lesson" name="10a">JSON and AJAX</lesson>
-        <lesson type="lesson" name="10b">REST</lesson>
-        <lab type="lab" name="08" duedate="2015.03.29 17:30">XML-RPC &amp; REST</lab>
+        <lesson type="lesson" name="lesson10a">JSON and AJAX</lesson>
+        <lesson type="lesson" name="lesson10b">REST</lesson>
+        <lab type="lab" name="lab08" duedate="2015.03.29 17:30">XML-RPC &amp; REST</lab>
     </week>
     <week num="12">
         <topic>Authentication</topic>
-        <lesson type="lesson" name="11">Authentication</lesson>
-        <lab type="lab" name="09" duedate="2015.04.05 17:30">Authentication</lab>
+        <lesson type="lesson" name="lesson11">Authentication</lesson>
+        <lab type="lab" name="lab09" duedate="2015.04.05 17:30">Authentication</lab>
     </week>
     <week num="13">
         <topic>Social Networking Integration</topic>
-        <lesson type="lesson" name="12a">Social Networking</lesson>
-        <lesson type="lesson" name="12b">Social Integration</lesson>
+        <lesson type="lesson" name="lesson12a">Social Networking</lesson>
+        <lesson type="lesson" name="lesson12b">Social Integration</lesson>
     </week>
     <week num="14">
         <topic>Final Exam Week</topic>
-        <lesson type="lesson" name="13a">Exam Review</lesson>
-        <lesson type="lesson" name="13b">Crystal Ball</lesson>
+        <lesson type="lesson" name="lesson13a">Exam Review</lesson>
+        <lesson type="lesson" name="lesson13b">Crystal Ball</lesson>
     </week>
 </organizer>

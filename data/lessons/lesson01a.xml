@@ -19,11 +19,11 @@ Lesson 01a - Introduction
     </slide>
 
     <slide title="You ..." layout="normal">
-        <p>Per the dayschool <a href="http://www.bcit.ca/study/outlines/20151047992">course outline</a>:</p>
+        <p>Per the dayschool <a href="http://www.bcit.ca/study/outlines/20151047992" target="_blank">course outline</a>:</p>
         <ul>            
             <li>Required proficiency: programming, Java (COMP2526) or C (COMP2510)</li>
         </ul>
-        <p>Per the dayschool <a href="http://www.bcit.ca/study/programs/550rdiplt#courses">program matrix</a>:</p>
+        <p>Per the dayschool <a href="http://www.bcit.ca/study/programs/550rdiplt#courses" target="_blank">program matrix</a>:</p>
         <ul>
             <li>Somewhat proficient: O-O programming, O-O analysis and design (patterns!)</li>
             <li>Assumed: English, computer literacy, basic math, basic relational database, 
@@ -98,7 +98,7 @@ Lesson 01a - Introduction
     <slide title="Course Context" layout="normal">
         <ul>
             <li>
-                <a href="http://www.bcit.ca/study/outlines/20151047992">Course outline</a> on BCIT site</li>
+                <a href="http://www.bcit.ca/study/outlines/20151047992" target="_blank">Course outline</a> on BCIT site</li>
             <li>Organizer, lectures, tutorials, examples, labs &amp; assignments all on this site</li>
             <li>Labs done individually, on github; readme (with link) to D2L dropbox</li>
             <li>Assignments done in teams, on github; readme (with links) to D2L dropbox</li>

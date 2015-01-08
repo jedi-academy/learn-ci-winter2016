@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta name="defaultView" content="slideshow" />
         <meta name="controlVis" content="hidden" />
 	<!-- configuration extensions -->
-	<meta name="tranSitions" content="true" />
+	<meta name="tranSitions" content="false" />
 	<meta name="fadeDuration" content="500" />
 	<meta name="incrDuration" content="250" />
 	<!-- configuration autoplay extension -->
