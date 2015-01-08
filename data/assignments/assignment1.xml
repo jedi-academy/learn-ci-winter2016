@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Assignment 1 - Basic Webapp
+-->
+<lab>
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Assignment Goals" layout="normal">
+        <p>The purpose of the assignments, collectively, is to let you
+            apply the techniques from the lessons,
+            tutorials and labs.</p>
+        <p>In teams of up to four, you will be building a small but complete 
+            webapp, in three stages, with specific expectations for
+            each stage. Each stage will be a separate assignment.</p> 
+        <p>The framework and a number of supporting technologies 
+            have been pre-decided. The techniques for applying these 
+            will be the subject of upcoming lessons and labs. </p>
+    </slide>
+
+    <slide title="Revisions?" layout="normal">
+        <p>If assignment details need clarifying, such changes will
+            be made in this slide deck, and a note added to this page.</p>  
+        <p>THIS WRITEUP IS INCOMPLETE. DO NOT START ON THE ASSIGNMENT UNTIL
+            THIS NOTICE HAS BEEN REMOVED!</p>      
+    </slide>
+
+    <slide title="Your Webapp" layout="normal">
+        <p>Each team will propose a webapp to build for their assignments.
+            It doesn't have to be "world-class" or even necessarily "real",
+            but it needs sufficient complexity to be dynamic, personalized
+            and scaleable/integrated.</p>
+    </slide>
+
+    <slide title="Your Data" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Your Presentation" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Your Usecases" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Your Team" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Webapp Stages" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Your Design" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Process" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Submission" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Evaluation" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Your Code" layout="normal">
+        <p></p>
+    </slide>
+
+    <slide title="Cautions" layout="normal">
+        <p></p>
+    </slide>
+
+</lab>
