@@ -22,7 +22,6 @@ Course Issues
 *************
 
 - Need assignment 1
-- Need lesson 2
 - Need tutorial 2a
 - Need tutorial 2b
 - Need lab 2
