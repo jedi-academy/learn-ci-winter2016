@@ -13,9 +13,19 @@ Webapp Changes
 Course Changes
 **************
 
+2015.01.09
+- more corrections
+- added links to end of activity "congrats" page
+- determined next activity in sequence, and added link to it on the congrats page
+- removed lolcats references in lesson 1a
+- split lesson 1a into in-class only (00) and online lessons (01a)
+- revamped the CI slide in lesson 1a, to make the intent clearer
+- added better explanation in tutorial 1a for configuration folders
+- added linking ability between slides (eg for agenda)
+- started lesson 2 for testing this
+
 2015.01.08
 - corrections to lab 1
-- added links out of slideshow to the "congrats" page
 
 2015.01.07
 - Lab 1: added Git cloning help, first Git commit help (JLP)

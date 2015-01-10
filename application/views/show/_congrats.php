@@ -9,10 +9,12 @@
     <p>If you would take a minute to 
 	<a href="/feedback/survey/{category}/{name}">provide some feedback</a>,
 	we would appreciate it!</p>
-    <p>You can use the browser's back button to take you out of this lesson,
-	or jump directly to the Course 
-	<a href="/">home page</a>,
-	<a href="/organizer">organizer</a>, or
-	<a href="/reference">reference</a>
+    <p>The next activity in sequence is: {followup}</p>
+    <p>You can use your browser's back button to return to the page you
+	were on before starting this activity, or 
+	you can jump directly to the course <a href="/">homepage</a>,
+	<a href="/organizer">organizer</a>, or  
+	<a href="/reference">reference</a> page.
     </p>
+
 </div>

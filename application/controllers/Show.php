@@ -165,15 +165,25 @@ class Show extends Application {
     /**
      * Render an activity XML document as a slideshow
      */
+    //TODO XML stuff should be in model
     private function slideshow($activity)
     {
 	$course = $this->course->metadata();
 	$this->data = array_merge($this->data, (array) $course);
 	$this->data = array_merge($this->data, (array) $activity);
+	$this->data = array_merge($this->data, $this->course->tags($activity));
 
+	// figure out the followup
+	$following = $this->course->followup($activity);
+	if ($following == null)
+	    $this->data['followup'] = 'There is nothing further in this course';
+	else
+	    $this->data['followup'] = $this->parser->parse('show/_activity', (array) $following, true);
+
+	// start this slideshow with a title slide
 	$this->data['intro_slide'] = $this->parser->parse('show/_title_slide', $this->data, true);
 
-	// Now through the slides
+	// Now generate the "real" slides
 	$result = '';
 
 	$filename = DATAPATH . $activity->category . 's/' . $activity->name . '.xml';
@@ -182,10 +192,14 @@ class Show extends Application {
 	    $xml = simplexml_load_file($filename);
 	    foreach ($xml->slide as $slide)
 	    {
+		// pre-parsing
+		$body = $this->parser->parse_string((string) $slide->asXML(), $this->data, true);
+		
+		// slide parsing
 		$parms = array(
 		    'title' => (string) $slide['title'],
 		    'layout' => (string) $slide['layout'],
-		    'body' => (string) $slide->asXML(),
+		    'body' => $body,
 		);
 		$result .= $this->parser->parse('show/_slide', $parms, true);
 	    }

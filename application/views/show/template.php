@@ -93,4 +93,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="/assets/ui/advanced_gfx/slides.js"></script>
     </body>
 </html>
-
