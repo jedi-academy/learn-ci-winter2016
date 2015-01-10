@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 02 - MVC Framework Introduction
+-->
+<lesson>
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <!-- Agenda -->
+    <slide title="Agenda" layout="normal">
+        <ol>
+            <li>
+                <a href="#{tag1}">Frameworks</a>
+            </li>
+            <li>
+                <a href="#{tag2}">Models</a>
+            </li>
+            <li>
+                <a href="#{tag3}">Controllers</a>
+            </li>
+            <li>
+                <a href="#{tag4}">Views</a>
+            </li>
+            <li>
+                <a href="#{tag5}">Support Components</a>
+            </li>
+            <li>
+                <a href="#{tag6}">Your CI Webapp!</a>
+            </li>
+        </ol>
+    </slide>
+
+
+    <!-- Normal slides -->
+
+    <slide title="Frameworks" layout="normal" tag="tag1">
+        <h1>Frameworks</h1>
+        <p>An MVC framework is one with conventions
+            and pre-built components that encourage or enforce
+            good programming practices.</p>
+        <p>CodeIgniter is one such framework.</p>
+    </slide>
+
+    <slide title="Design Pattern Driven!" layout="normal">
+        <div class="left">
+            <p>Model-View-Controller is a design pattern.</p>
+            <p>It is an "industry-accepted best practice",
+                that says that it is good to keep separate concerns
+                apart from each other.</p>
+            <p>CodeIgniter has base classes for models and controllers,
+                and it has components to build presentation content
+                separate from these. This is not conventional PHP scripting!</p>
+        </div>
+        <div class="right">
+            <p>A typical MVC framework incorporates many other 
+                <a href="http://en.wikipedia.org/wiki/Software_design_pattern" target="_blank">
+                    design patterns</a>:</p>
+            <ul>
+                <li>DAO (DB access)</li>
+                <li>Business delegate (framework itself)</li>
+                <li>Session facade (session library)</li>
+                <li>Front controller (index.php)</li>
+                <li>Intercepting filter (hooks)</li>
+                <li>Active record (model)</li>
+            </ul>
+
+        </div>
+    </slide>
+
+    <slide title="Models" layout="normal" tag="tag2">
+        <h1>Models</h1>
+        <p>Models encapsulate data sources or entities.</p>
+    </slide>
+
+    <slide title="Controllers" layout="normal" tag="tag3">
+        <h1>Controllers</h1>
+        <p>Controllers handle incoming requests.</p>
+    </slide>
+
+    <slide title="Views" layout="normal" tag="tag4">
+        <h1>Views</h1>
+        <p>Views are the components that deal with presentation,
+            typically for a web browser.</p>
+    </slide>
+
+    <slide title="Support Components" layout="normal" tag="tag5">
+        <h1>Support Components</h1>
+        <p>An MVC framework comes with a number of pre-built 
+            classes or scripts to make your webapp development
+            easier and more consistent.</p>
+        <p>These are collectively referred to as support components</p>
+    </slide>
+
+    <slide title="Your CodeIgniter Webapp!" layout="normal" tag="tag6">
+        <h1>Your CodeIgniter Webapp!</h1>
+        <p>This is a simplified look at where stuff goes inside
+            your webapp, and the general steps you would follow
+            to build a simple CodeIgniter webapp.</p>
+    </slide>
+
+
+</lesson>

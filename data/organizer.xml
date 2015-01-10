@@ -5,18 +5,19 @@ Course organizer for Comp4711
 <organizer>
     <week num="1">
         <topic>Introduction to MVC Webapps</topic>
+        <lesson type="lesson" name="lesson00">In-class OnlyIntroduction</lesson>
         <lesson type="lesson" name="lesson01a">Introduction</lesson>
         <lesson type="lesson" name="lesson01b">Golden Rules</lesson>
         <tutorial type="tutorial" name="tutorial01a">XAMPP Installation</tutorial>
         <tutorial type="tutorial" name="tutorial01b">Virtual Hosting Setup</tutorial>
         <tutorial type="tutorial" name="tutorial01c">PHP Crash Course</tutorial>
         <lab type="lab" name="lab01" duedate="2015.01.11 17:30">Development Setup</lab>
-        <assignment type="assignment" name="assignment1" duedate="2015.01.31 21:30">Basic Webapp</assignment>
     </week>
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
-        <lesson type="lesson" name="lesson02">CodeIgniter Introduction</lesson>
+        <lesson type="lesson" name="lesson02">MVC Framework Introduction</lesson>
         <lab type="lab" name="lab02" duedate="2015.01.18 17:30">CodeIgniter Intro</lab>
+        <assignment type="assignment" name="assignment1" duedate="2015.01.31 21:30">Basic Webapp</assignment>
     </week>
     <week num="3">
         <topic>Controllers &amp; Routing</topic>

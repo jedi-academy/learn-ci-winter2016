@@ -4,36 +4,19 @@ Lesson 01a - Introduction
 -->
 <lesson>
     <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <slide title="Introduction" layout="normal">
+        <p>This course will help you learn how to develop webapps
+            using CodeIgniter.</p>
+        <p>It presents a course of skills, but not all of CI!</p>
+        <p>It shows "best practices", but not the only way to
+            use the framework.</p>
+        <p>The course assumes you know O-O programming and PHP,
+            and that you have some familiarity with HTML.</p>
+    </slide>
+
     
-    <!-- The meat of the presentation -->
-    <slide title="Your Instructor" layout="normal">
-        <ul>
-            <li>Jim Parry</li>
-            <li>Day job: BCIT instructor</li>
-            <li>Off campus: webapp developer</li>
-            <li>Full-time: CI geek, Java not so much any more</li>
-            <li>Project Lead, CodeIgniter</li>
-            <li>Office &amp; phone: SW2-124, email instead</li>
-            <li>Email: jim_parry@bcit.ca</li>
-        </ul>
-    </slide>
-
-    <slide title="You ..." layout="normal">
-        <p>Per the dayschool <a href="http://www.bcit.ca/study/outlines/20151047992" target="_blank">course outline</a>:</p>
-        <ul>            
-            <li>Required proficiency: programming, Java (COMP2526) or C (COMP2510)</li>
-        </ul>
-        <p>Per the dayschool <a href="http://www.bcit.ca/study/programs/550rdiplt#courses" target="_blank">program matrix</a>:</p>
-        <ul>
-            <li>Somewhat proficient: O-O programming, O-O analysis and design (patterns!)</li>
-            <li>Assumed: English, computer literacy, basic math, basic relational database, 
-                basic networks, basic algorithms, basic HTML/CSS</li>
-            <li>Motivated, committed</li>
-            <li>Bonus: PHP, github, FOSS</li>
-        </ul>
-    </slide>
-
-    <slide title="We Can Haz Cheeseburgers?" layout="normal">
+    <slide title="What Makes a Good Webapp?" layout="normal">
         <br/>
         <div class="left">
             "Good" content:
@@ -53,81 +36,31 @@ Lesson 01a - Introduction
         </div>
     </slide>
 
-    <slide title="We Gun Haz Cheesburgers!" layout="normal">
-        <div class="left">
-            <ul>
-                <li>Frameworks &amp; Object Models
-                    <ul>
-                        <li>HTTP &amp; web server</li>
-                        <li>Distributed systems &amp; deployment</li>
-                        <li>Server-side &amp; client-side logic</li>
-                    </ul>
-                </li>
-                <li>Conventions
-                    <ul>
-                        <li>HTML, XML, CSS</li>
-                    </ul>
-                </li>
-                <li>Tools for convenience &amp; productivity
-                    <ul>
-                        <li>IDE (NetBeans)</li>
-                        <li>XAMPP</li>
-                        <li>Unit testing, RDBMS</li>
-                        <li>Github, gitflow, CI -> devops</li>
-                    </ul>
-                </li>
-                <li>Software ... MVC pattern-driven</li>
-            </ul>
-        </div>
-        <div class="right center">
-            <img class="scale" width="450" height="600" src="/data/lessons/pix/5617652.jpg"/>
-        </div>
-    </slide>
-
-    <slide title="Course Outcomes" layout="normal">
+    <slide title="How Does a Developer Make a Good Webapp?" layout="normal">
         <ul>
-            <li>
-                <strong>Construct an MVC web application using a suitable framework</strong> (CodeIgniter)</li>
-            <li>Construct a valid and well-formed XML document, and constrain it with a DTD</li>
-            <li>Process XML data using DOM</li>
-            <li>Integrate distributed system components using XML-RPC and REST</li>
-            <li>Integrate a webapp with social networking services</li>
+            <li>Frameworks &amp; Object Models
+                <ul>
+                    <li>HTTP &amp; web server</li>
+                    <li>Distributed systems &amp; deployment</li>
+                    <li>Server-side &amp; client-side logic</li>
+                </ul>
+            </li>
+            <li>Conventions
+                <ul>
+                    <li>HTML, XML, CSS</li>
+                </ul>
+            </li>
+            <li>Tools for convenience &amp; productivity
+                <ul>
+                    <li>IDE (NetBeans)</li>
+                    <li>XAMPP</li>
+                    <li>Unit testing, RDBMS</li>
+                    <li>Github, gitflow, CI -> devops</li>
+                </ul>
+            </li>
+            <li>Software ... MVC pattern-driven</li>
         </ul>
-    </slide>
 
-    <slide title="Course Context" layout="normal">
-        <ul>
-            <li>
-                <a href="http://www.bcit.ca/study/outlines/20151047992" target="_blank">Course outline</a> on BCIT site</li>
-            <li>Organizer, lectures, tutorials, examples, labs &amp; assignments all on this site</li>
-            <li>Labs done individually, on github; readme (with link) to D2L dropbox</li>
-            <li>Assignments done in teams, on github; readme (with links) to D2L dropbox</li>
-            <li>Labs start: this week</li>
-        </ul>
-        <p>
-            <i>Distance learners: lab and assignment readme submissions by email.</i>
-        </p>
-    </slide>
-
-    <slide title="Grading" layout="normal">
-        <ul>
-            <li>25%: 3 assignments, building on each other, in teams of up to 4</li>
-            <li>30%: 9 labs, individual</li>
-            <li>20%: Midterm exam, weeks 1-7</li>
-            <li>25%: Final exam, comprehensive</li>
-            <li>Dayschool: attendance expected, missing more than 2 labs => U</li>
-            <li>Distance: weekly checkin expected, missing more than 2 => uninvited</li>
-            <li>Labs and assignments may have a complexity adjustment ... up to 20%</li>
-        </ul>
-        <p>
-            <strong>Help:</strong> office hours, CI forum, CI IRC, github issues, trello board(s)
-        </p>
-    </slide>
-
-    <slide title="Underlying Concepts" layout="normal">
-        <p>Enough about the course ... </p>
-        <p>let's take a look at some of the 
-            underlying concepts for webapps</p>
     </slide>
 
     <slide title="Websites" layout="normal">
@@ -208,10 +141,16 @@ Lesson 01a - Introduction
         </div>
     </slide>
 
-    <slide title="CodeIgniter Framework" layout="normal">
-        <div class="center">
-            <img src="/data/lessons/pix/1-5.png"/>
-            <br/>
+    <slide title="CodeIgniter Architecture" layout="normal">
+        <div class="left">
+            <p>CodeIgniter routing involves request lifecycle "hooks", 
+                with security rules, before identifying the right controller.</p>
+            <p> The controller then uses other components, like helpers, 
+                models, libraries, etc, to build what is passed to a view.</p>
+            <p>Many such components are built into CI, and the webapp
+                developer would normally build their own on top of these.</p>
+        </div>
+        <div class="right">
             <img class="scale" width="697" height="205" src="/data/lessons/pix/1-6.png"/>
         </div>
     </slide>

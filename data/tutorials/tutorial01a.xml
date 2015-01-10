@@ -132,6 +132,27 @@ Tutorial 01a - XAMPP installation
         </div>
     </slide>
 
+    <slide title="XAMPP Configuration..." layout="normal">
+        <div class="left">
+            <p>On Windows, Apache configuration settings files
+            are found in the "apache/conf" folder inside your
+            XAMPP installation directory.</p>
+            <p>These can be edited through the XAMPP
+            control panel, or directly from your file
+            manager. You may need administrator
+            privileges to save changes!</p>            
+        </div>
+        <div class="right">
+            <p>On Linux, Apache configuration settings files
+            are found in the "etc" folder inside your
+            XAMPP installation directory.</p>
+            <p>These can be edited through the XAMPP
+            control panel, or directly from your file
+            manager. You may need root
+            privileges to save changes!</p>            
+        </div>
+    </slide>
+
     <slide title="Optional Components" layout="normal">
         <div class="left">
             <p>Bitnami, the sponsor of the XAMPP installer, then
