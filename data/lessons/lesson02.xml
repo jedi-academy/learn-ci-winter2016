@@ -108,11 +108,180 @@ Lesson 02 - MVC Framework Introduction
         </table>
     </slide>
 
-    <slide title="Models" layout="normal" tag="tag2">
-        <h1>Models</h1>
-        <p>Models encapsulate data sources or entities.</p>
+    <slide title="Project Files" layout="normal">
+        <div class="left">
+            <p>A CodeIgniter project contains application logic and 
+                support files.</p>
+            <p>"index.php", in the document root, *is* the
+                front controller, i.e. entry point.</p>
+            <p>".htaccess" is an Aoache configuration file, to
+                eliminate the need to explicitly have "index.php" in
+                URLs.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="270" height="256" src="/data/lessons/pix/2-2.png"/>
+        </div>
     </slide>
 
+    <slide title="Folder Structures" layout="normal">
+        <p>Other frameworks follow similar conventions.</p>
+        <div class="left">
+            <p>
+                <i>Fat-Free</i>
+            </p>
+            <img class="scale" width="358" height="315" src="/data/lessons/pix/2-4.png"/>
+        </div>
+        <div class="right">
+            <p>
+                <i>FuelPHP</i>
+            </p>
+            <img class="scale" width="256" height="576" src="/data/lessons/pix/2-5.jpg"/>
+        </div>
+    </slide>
+
+    <slide title="Class Loader" layout="normal">
+        <p>CodeIgniter has its own class loader.</p>
+        <p>It uses the folder structure to locate classes (per MVC)</p>
+        <code>
+            $this->load->model('customers');<br/>
+            $this->customers->get(...);
+        </code>
+        <p>It enforces naming conventions too.</p>
+    </slide>
+
+    <slide title="Routing" layout="normal">
+        <p>CodeIgniter normally routes requests to controllers by
+            convention, i.e. using the URI segment and looking in the controllers
+            folder.</p>
+        <p>Other frameworks often handle routing a bit differently.</p>
+        <div class="left">
+            <p>
+                <i>Kohana</i>
+            </p>
+            <code>
+                Route::set(‘default’, ‘(&lt;controller&gt;(/&lt;action&gt;(/&lt;id&gt;)))’)
+                         ->defaults(array(‘controller’ =&gt; ‘welcome’, ‘action’=&gt;‘index’, ))
+            </code>
+        </div>
+        <div class="right">
+            <p>
+                <i>Laravel</i>
+            </p>
+            <code>
+                //Basic POST Route
+                Route::post(‘/’, function()
+                {
+                     	return ‘example content’;
+                });
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Models" layout="normal" tag="tag2">
+        <div class="left">
+            <p>Models encapsulate data sources or entities.</p>
+            <p>Each model is a class that wraps a data source.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="228" height="316" src="/data/lessons/pix/2-6.png"/>
+        </div>
+    </slide>
+
+    <slide title="Active Record" layout="normal">
+        <div class="left">
+            <p>CodeIgniter encourages the Active Record design
+                patterm which says you build CRUD methods into models.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="267" height="176" src="/data/lessons/pix/2-7.png"/>
+        </div>
+    </slide>
+
+    <slide title="Query Builder" layout="normal">
+        <div class="left">
+            <p>CodeIgniter comes with a QueryBuilder library,
+                to make it easier to access your databases.</p>
+        </div>
+        <div class="right">
+            <code>
+                $this-&gt;db-&gt;select('*')-&gt;from('my_table')
+                -&gt;group_start()
+                -&gt;where('a', 'a')
+                -&gt;or_group_start()
+                -&gt;where('b', 'b')
+                -&gt;where('c', 'c')
+                -&gt;group_end()
+                -&gt;group_end()
+                -&gt;where('d', 'd')
+                -&gt;get();                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Model Classes" layout="normal">
+        <div class="left">
+            <p>In CodeIgniter, models are classes that extend CI_Model.</p>
+            <p>Each data source, eg. RDB table, has its own model.</p>
+        </div>
+        <div class="right">
+            <code>
+                public class Orders extends CI_Model {
+                public function add_item($code, $quantity) {...}
+                public function calc_total() {...}
+                }
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Model Methods" layout="normal">
+        <p>CRUD</p>
+        <p>Some business logic</p>
+        <p>Work with objects or associative arrays</p>
+        <p>* not * beans, i.e. entity models</p>
+        <p>Do not generate views, but generate or provide data
+            to be passed to views</p>
+        <p>Usage: $this->load->model('goodies');</p>
+    </slide>
+
+    <slide title="Base Model" layout="normal">
+        <p>You can provide your own base model, MY_Model, with
+            common methods.</p>
+        <p>This could be used to provide a simple object-relational map.</p>
+        <p>Sample properties: $_tableName, $_keyField</p>
+        <p>Sample methods: create() get($key), add($record), 
+            update($record), delete($key), exists($key)</p>
+    </slide>
+
+    <slide title="Other Model Examples" layout="normal">
+        <p>Other frameworks have similar functionality.</p>
+        <div class="left">
+            <p>
+                <i>Fat-Free</i>
+            </p>
+            <code>
+                $db = new DB\SQL('mysql:host=localhost';port=3306;dbname=mystuff',
+                'myuserid','mypassword');
+                $user = new DB\SQL|Mapper($db,'users');
+                $user-&gt;load('id=1');
+                $user-&gt;name='Pointy haired boss';
+                $user-&gt;save();                 
+            </code>
+        </div>
+        <div class="right">
+            <p>
+                <i>CakePHP</i>
+            </p>
+            <code>
+                App::uses(’AppModel’, ’Model’);// ensures model is loaded when needed
+                class Ingredient extends AppModel {
+                public $name = ’Ingredient’;
+                }                
+            </code>
+        </div>
+    </slide>
     <slide title="Controllers" layout="normal" tag="tag3">
         <h1>Controllers</h1>
         <p>Controllers handle incoming requests.</p>
