@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    </div>
             <div id="footer">
                 <h1>{subtitle}</h1>
-                <h2>{category} #{name}</h2>
+                <h2>{status} {name}</h2>
             </div>
         </div>
 

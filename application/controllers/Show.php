@@ -172,6 +172,7 @@ class Show extends Application {
 	$this->data = array_merge($this->data, (array) $course);
 	$this->data = array_merge($this->data, (array) $activity);
 	$this->data = array_merge($this->data, $this->course->tags($activity));
+	$this->data['status'] = '?';	// questionable status to begin
 
 	// figure out the followup
 	$following = $this->course->followup($activity);
@@ -190,6 +191,8 @@ class Show extends Application {
 	if (file_exists($filename))
 	{
 	    $xml = simplexml_load_file($filename);
+	    $this->data['status'] = (string) $xml['status'];	// update if there
+	    
 	    foreach ($xml->slide as $slide)
 	    {
 		// pre-parsing
