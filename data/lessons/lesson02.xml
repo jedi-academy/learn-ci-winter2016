@@ -281,12 +281,102 @@ Lesson 02 - MVC Framework Introduction
                 }                
             </code>
         </div>
-    </slide>
-    <slide title="Controllers" layout="normal" tag="tag3">
-        <h1>Controllers</h1>
-        <p>Controllers handle incoming requests.</p>
+    
     </slide>
 
+    <slide title="Controllers" layout="normal" tag="tag3">
+        <div class="left">
+            <p>Controllers handle incoming requests.</p>
+            <p>A Controller serves as an intermediary between the Model, 
+                the View, and any other resources needed to process an 
+                HTTP request and generate a web page.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="225" height="148" src="/data/lessons/pix/2-8.png"/>
+        </div>
+    </slide>
+
+    <slide title="CI Controllers" layout="normal">
+        <div class="left">
+            <p>In CI, controllers are classes that extend CI_Controller or your base controller</p>
+            <p>Our base controller implements view templating, through render()</p>
+            <p>See application/core/MY_Controller.php</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="240" height="174" src="/data/lessons/pix/2-9.png"/>
+        </div>
+    </slide>
+
+    <slide title="App Controllers" layout="normal">
+        <p>Each of your webapp controllers builds on your base controller</p>
+        <p>Normally, each usecase has its own controller</p>
+        <p>Additionally, controllers or subcontrollers are used for services</p>
+        <p>See application/controllers/welcome.php</p>
+    </slide>
+
+    <slide title="Controller Methods" layout="normal">
+        <p>URLs are segment based</p>
+        <p>example.com/class/function/parm1/parm2</p>
+        <p>index() is the default handler function</p>
+        <p>Other functions are treated as sub-controllers</p>
+        <p>Parameters are passed positionally</p>
+        <p>Confusion is possible ...
+            Application/controllers/business/work</p>
+    </slide>
+
+    <slide title="Example Base Controller" layout="normal">
+        <p>core/MY_Controller.php</p>
+        <code>
+class Application extends CI_Controller {
+
+// fields
+
+    function __construct() {
+        		parent::__construct();
+        // make sure we play the game nicely
+        $this-&gt;load-&gt;helper('common');
+        $this-&gt;load-&gt;helper('url');
+    }
+
+function render() {...}
+}            
+        </code>
+    </slide>
+
+    <slide title="Other Framework Examples" layout="normal">
+         <div class="left">
+            <p>
+                <i>FuekPHP</i>
+            </p>
+            <code>
+ class Controller_Example extends Controller {
+
+    public function action_index() {
+        $data['css'] = Asset::css(array('reset.css','960.css','main.css'));
+        return Response::forge(View::forge('welcome/index'));
+    }
+}
+            </code>
+        </div>
+        <div class="right">
+            <p>
+                <i>Laravel</i>
+            </p>
+            <code>
+ class Controller extends BaseController {
+      	public function home() {
+                	return View::make(‘home’);
+      	}
+}                
+...                
+Route::get(‘/’, ‘Controller@home’)                
+            </code>
+        </div>
+    
+    </slide>
+    
     <slide title="Views" layout="normal" tag="tag4">
         <h1>Views</h1>
         <p>Views are the components that deal with presentation,
