@@ -65,12 +65,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<li>T will toggle between slideshow and outline view</li>
 	<li>C will show/hide the slideshow controls</li>
     </ul>
-    Clicking in the browser window,
-    outside of the control area or any embedded object,
-    will also take you to the next slide.</div>
+    <p>Clicking in the browser window,
+	outside of the control area or any embedded object,
+	will also take you to the next slide.</p>
+    <p>Note: text is easier to copy to the clipboard if using the "outline" view.
+	In "slideshow" view, when you highlight a block of text to copy it,
+	clicking the right button on your mouse usually takes you to the next
+	slide, instead of giving you a context menu :(</p>
+</div>
 <h2>Course Materials Icons Legend</h2>
 <div>The following kinds of course materials may be provided.</div>
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     {materials}
 </div>
-
