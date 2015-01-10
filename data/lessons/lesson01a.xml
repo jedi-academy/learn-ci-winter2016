@@ -2,7 +2,7 @@
 <!--
 Lesson 01a - Introduction
 -->
-<lesson>
+<lesson status="beta">
     <!-- Activity metadata ... override anything from the course or organizer -->
 
     <slide title="Introduction" layout="normal">

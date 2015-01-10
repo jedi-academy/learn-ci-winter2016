@@ -4,7 +4,7 @@ Tutorial 01a - XAMPP installation
 //TODO Mention changing ports in virtual hosts too
 //TODO config vs services option in XAMPP CP
 -->
-<lesson>
+<lesson status="beta">
     <!-- Activity metadata ... override anything from the course or organizer -->
     
     <!-- The meat of the presentation -->

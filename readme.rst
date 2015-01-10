@@ -14,9 +14,6 @@ main CodeIgniter site.
 Programming Style
 *****************
 
-The website exhibits "good" programming style, although definitely not
-the only way to do things. 
-
 Some of the programming design decisions reflected:
 
 -   The architecture adheres more to the "model-view-adapter" convention,
