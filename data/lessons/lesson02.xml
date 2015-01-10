@@ -482,8 +482,8 @@ fuel/app/views/head.php
         </div>
     </slide>
 
-    <slide title="Example Library: Product" layout="normal" tag="tag5">
-        <h1>libraries/Product.php</h1>
+    <slide title="Example Library: Product" layout="normal">
+        <p>libraries/Product.php</p>
         <p>Use for object model for entities stored in an XML 
             document or RDB table</p>
         <p>"models/products" would be the aggregation of these</p>
@@ -585,7 +585,7 @@ $ php oil g scaffold monkey name:string description:text
         </div>
     </slide>
 
-    <slide title="Configuration Practices" layout="normal" tag="tag5">
+    <slide title="Configuration Practices" layout="normal">
         <p>index.php points to your system folder</p>
         <p>application/config/ contains...</p>
         <ul>
@@ -640,11 +640,50 @@ Kohana::modules(array(
             to build a simple CodeIgniter webapp.</p>
     </slide>
 
-    <slide title="Your CodeIgniter Webapp!" layout="normal" tag="tag6">
-        <h1>Your CodeIgniter Webapp!</h1>
-        <p>This is a simplified look at where stuff goes inside
-            your webapp, and the general steps you would follow
-            to build a simple CodeIgniter webapp.</p>
+    <slide title="Your Folder Structure" layout="normal">
+        <p>CI system → /xampp/htdocs/system3</p>
+        <p>CI user guide → desktop?</p>
+        <p>CI starter → copy to /xampp/htdocs and tailor for a new webapp</p>
+        <p>NOTE: the starter project differs from the official CI download 
+            in several ways: 
+            base controller with templating,
+            simple "ORM: model,
+            standard config for Apache</p>
+    </slide>
+
+    <slide title="Setup Your Webapp" layout="normal">
+        <p>Copy/extract the starter to a folder in htdocs</p>
+        <p>Open it with NB &amp; rename (proj &amp; folder)</p>
+        <p>Ensure virtual host mapping</p>
+        <p>Modify NB project run config?</p>
+        <p>Create RDB if needed</p>
+    </slide>
+
+    <slide title="Configure Your Webapp" layout="normal">
+        <p>config/constants.php – adjust as needed</p>
+        <p>config/config.php – define menu navbar</p>
+    </slide>
+
+   <slide title="Setup Your View Template" layout="normal">
+        <p>Make a wireframe model for the website.</p>
+        <p>Tailor views/_template.php to match it</p>
+        <p>This template contains only the common page elements for the site, 
+            with substitutable fields for the menu and content.</p>
+    </slide>
+
+   <slide title="Tailor Your Webapp" layout="normal">
+        <p>controllers/?.php – controller per navbar item, 
+            bound to corresponding view</p>
+        <p>models/?.php – model per RDB table</p>
+        <p>vews/welcome.php – tailor your homepage</p>
+        <p>views/?.php – view per controller</p>
+    </slide>
+
+   <slide title="Manage Your Assets" layout="normal">
+        <p>assets/css/style.css – your CSS</p>
+        <p>assets/images/ - your webapp images</p>
+        <p>assets/css/ - any imported CSS frameworks</p>
+        <p>assets/js/ - any imported JS frameworks</p>
     </slide>
 
 
