@@ -66,6 +66,48 @@ Lesson 02 - MVC Framework Introduction
         </div>
     </slide>
 
+    <slide title="Categorizing MVC Frameworks" layout="normal">
+        <p>Frameworks come in all sizes.</p>
+        <p>They differ in philosophy, scope, management tools
+        &amp; included plugins.</p>
+        <table style="width:90%; font-size:80%;text-align:left">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Adds</th>
+                    <th>Size</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="width:20%">Micro</td>
+                    <td style="width:40%">MVC, plugins, routing, instance</td>
+                    <td style="width:20%">0.3MB</td>
+                    <td style="width:20%">Fat-Free</td>
+                </tr>
+                <tr>
+                    <td>Lean</td>
+                    <td>Config, templates</td>
+                    <td>2MB</td>
+                    <td>CodeIgniter</td>
+                </tr>
+                <tr>
+                    <td>Normal</td>
+                    <td>Scaffolding, auth, ORM, CLI, IDE plugin</td>
+                    <td>10MB</td>
+                    <td>CakePHP</td>
+                </tr>
+                <tr>
+                    <td>Enterprise</td>
+                    <td>Engines (templating, ORM), included plugins, installer, starter, generators</td>
+                    <td>24MB+</td>
+                    <td>Symfony2</td>
+                </tr>
+            </tbody>
+        </table>
+    </slide>
+
     <slide title="Models" layout="normal" tag="tag2">
         <h1>Models</h1>
         <p>Models encapsulate data sources or entities.</p>

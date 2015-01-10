@@ -55,10 +55,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </head>
     <body>
 
-        <div class="layout">
-            <div id="controls"><!-- DO NOT EDIT --></div>
-            <div id="currentSlide"><!-- DO NOT EDIT --></div>
-            <div id="header">
+	<div class="layout">
+	    <div id="controls"><!-- DO NOT EDIT --></div>
+	    <div id="currentSlide"><!-- DO NOT EDIT --></div>
+	    <div id="header">
 		<img class="scale logo" width="89" height="89" 
 		     src="/assets/images/tl-ci.png" alt="CodeIgniter" title="CodeIgniter" />
 		<object type="application/x-shockwave-flash" 
@@ -72,17 +72,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    <param name="bgcolor" value="#000000" />
 		</object>
 	    </div>
-            <div id="footer">
-                <h1>{subtitle}</h1>
-                <h2>{status} {name}</h2>
-            </div>
-        </div>
+	    <div id="footer">
+		<h1>{subtitle}</h1>
+		<h2>{status} {name}</h2>
+	    </div>
+	</div>
 
 	<div class="presentation">
 	    {intro_slide}
 	    {slides}
 	    {congrats}
-        </div>
+	</div>
 
 	<div class="handout">
 	</div>
@@ -90,6 +90,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="notes">
 	</div>
 
-        <script src="/assets/ui/advanced_gfx/slides.js"></script>
+	<script src="/assets/ui/advanced_gfx/slides.js"></script>
     </body>
 </html>
