@@ -2,7 +2,7 @@
 <!--
 Lesson 02 - MVC Framework Introduction
 -->
-<lesson status="alpha">
+<lesson status="beta">
     <!-- Activity metadata ... override anything from the course or organizer -->
 
     <!-- Agenda -->
@@ -124,7 +124,7 @@ Lesson 02 - MVC Framework Introduction
                 support files.</p>
             <p>"index.php", in the document root, *is* the
                 front controller, i.e. entry point.</p>
-            <p>".htaccess" is an Aoache configuration file, to
+            <p>".htaccess" is an Apache configuration file, to
                 eliminate the need to explicitly have "index.php" in
                 URLs.</p>
         </div>
@@ -153,38 +153,42 @@ Lesson 02 - MVC Framework Introduction
     <slide title="Class Loader" layout="normal">
         <p>CodeIgniter has its own class loader.</p>
         <p>It uses the folder structure to locate classes (per MVC)</p>
-        <code>
-            $this->load->model('customers');<br/>
-            $this->customers->get(...);
-        </code>
+        <pre>
+            <code>
+$this->load->model('customers');
+$this->customers->get(...);
+            </code>
+        </pre>
         <p>It enforces naming conventions too.</p>
     </slide>
 
     <slide title="Routing" layout="normal">
         <p>CodeIgniter normally routes requests to controllers by
             convention, i.e. using the URI segment and looking in the controllers
-            folder.</p>
-        <p>Other frameworks often handle routing a bit differently.</p>
+            folder.Other frameworks often handle routing a bit differently.</p>
         <div class="left">
-            <p>
                 <i>Kohana</i>
-            </p>
-            <code>
-                Route::set(‘default’, ‘(&lt;controller&gt;(/&lt;action&gt;(/&lt;id&gt;)))’)
-                         ->defaults(array(‘controller’ =&gt; ‘welcome’, ‘action’=&gt;‘index’, ))
-            </code>
+            <pre>
+                <code>
+Route::set(‘default’, 
+    ‘(&lt;controller&gt;(/&lt;action&gt;(/&lt;id&gt;)))’)
+    ->defaults(array(
+        ‘controller’ =&gt; ‘welcome’, 
+        ‘action’=&gt;‘index’, ))
+                </code>
+            </pre>
         </div>
         <div class="right">
-            <p>
                 <i>Laravel</i>
-            </p>
-            <code>
-                //Basic POST Route
-                Route::post(‘/’, function()
-                {
-                     	return ‘example content’;
-                });
-            </code>
+            <pre>
+                <code>
+//Basic POST Route
+Route::post(‘/’, function()
+{
+     	return ‘example content’;
+});
+                </code>
+            </pre>
         </div>
     </slide>
 
@@ -195,7 +199,7 @@ Lesson 02 - MVC Framework Introduction
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="228" height="316" src="/data/lessons/pix/2-6.png"/>
+            <img class="scale" width="279" height="386" src="/data/lessons/pix/2-6.png"/>
         </div>
     </slide>
 
@@ -216,18 +220,20 @@ Lesson 02 - MVC Framework Introduction
                 to make it easier to access your databases.</p>
         </div>
         <div class="right">
-            <code>
-                $this-&gt;db-&gt;select('*')-&gt;from('my_table')
-                -&gt;group_start()
-                -&gt;where('a', 'a')
-                -&gt;or_group_start()
-                -&gt;where('b', 'b')
-                -&gt;where('c', 'c')
-                -&gt;group_end()
-                -&gt;group_end()
-                -&gt;where('d', 'd')
-                -&gt;get();                
-            </code>
+            <pre>
+                <code>
+$this-&gt;db-&gt;select('*')-&gt;from('my_table')
+    -&gt;group_start()
+    -&gt;where('a', 'a')
+    -&gt;or_group_start()
+    -&gt;where('b', 'b')
+    -&gt;where('c', 'c')
+    -&gt;group_end()
+    -&gt;group_end()
+    -&gt;where('d', 'd')
+    -&gt;get();                
+</code>
+            </pre>
         </div>
     </slide>
 
@@ -237,12 +243,14 @@ Lesson 02 - MVC Framework Introduction
             <p>Each data source, eg. RDB table, has its own model.</p>
         </div>
         <div class="right">
-            <code>
-                public class Orders extends CI_Model {
-                public function add_item($code, $quantity) {...}
-                public function calc_total() {...}
-                }
-            </code>
+            <pre>
+                <code>
+public class Orders extends CI_Model {
+    public function add_item($code, $quantity) {...}
+    public function calc_total() {...}
+}
+                </code>
+            </pre>
         </div>
     </slide>
 
@@ -258,7 +266,7 @@ Lesson 02 - MVC Framework Introduction
 
     <slide title="Base Model" layout="normal">
         <p>You can provide your own base model, MY_Model, with
-            common methods.</p>
+            common methods. See core/MY_Model in the example webapp.</p>
         <p>This could be used to provide a simple object-relational map.</p>
         <p>Sample properties: $_tableName, $_keyField</p>
         <p>Sample methods: create() get($key), add($record), 
@@ -268,28 +276,29 @@ Lesson 02 - MVC Framework Introduction
     <slide title="Other Model Examples" layout="normal">
         <p>Other frameworks have similar functionality.</p>
         <div class="left">
-            <p>
                 <i>Fat-Free</i>
-            </p>
-            <code>
-                $db = new DB\SQL('mysql:host=localhost';port=3306;dbname=mystuff',
-                'myuserid','mypassword');
-                $user = new DB\SQL|Mapper($db,'users');
-                $user-&gt;load('id=1');
-                $user-&gt;name='Pointy haired boss';
-                $user-&gt;save();                 
-            </code>
+            <pre>
+                <code>
+$db = new DB\SQL('mysql:host=localhost';
+    port=3306;dbname=mystuff',
+    'myuserid','mypassword');
+$user = new DB\SQL|Mapper($db,'users');
+$user-&gt;load('id=1');
+$user-&gt;name='Pointy haired boss';
+$user-&gt;save();                 
+                </code>
+            </pre>
         </div>
         <div class="right">
-            <p>
                 <i>CakePHP</i>
-            </p>
-            <code>
-                App::uses(’AppModel’, ’Model’);// ensures model is loaded when needed
-                class Ingredient extends AppModel {
-                public $name = ’Ingredient’;
-                }                
-            </code>
+            <pre>
+                <code>
+App::uses(’AppModel’, ’Model’);
+class Ingredient extends AppModel {
+    public $name = ’Ingredient’;
+}                
+                </code>
+            </pre>
         </div>
     
     </slide>
@@ -323,7 +332,7 @@ Lesson 02 - MVC Framework Introduction
         <p>Each of your webapp controllers builds on your base controller</p>
         <p>Normally, each usecase has its own controller</p>
         <p>Additionally, controllers or subcontrollers are used for services</p>
-        <p>See application/controllers/welcome.php</p>
+        <p>See application/controllers/Welcome.php</p>
     </slide>
 
     <slide title="Controller Methods" layout="normal">
@@ -333,56 +342,58 @@ Lesson 02 - MVC Framework Introduction
         <p>Other functions are treated as sub-controllers</p>
         <p>Parameters are passed positionally</p>
         <p>Confusion is possible ...
-            Application/controllers/business/work</p>
+            application/controllers/business/work</p>
     </slide>
 
     <slide title="Example Base Controller" layout="normal">
         <p>core/MY_Controller.php</p>
-        <code>
-            class Application extends CI_Controller {
+        <pre>
+            <code>
+class Application extends CI_Controller {
+// fields
 
-            // fields
+function __construct() {
+    parent::__construct();
+    // make sure we play the game nicely
+    $this-&gt;load-&gt;helper('common');
+    $this-&gt;load-&gt;helper('url');
+}
 
-            function __construct() {
-            parent::__construct();
-            // make sure we play the game nicely
-            $this-&gt;load-&gt;helper('common');
-            $this-&gt;load-&gt;helper('url');
-            }
-
-            function render() {...}
-            }            
-        </code>
+function render() {...}
+}            
+            </code>
+        </pre>
     </slide>
 
     <slide title="Other Framework Examples" layout="normal">
         <div class="left">
-            <p>
                 <i>FuelPHP</i>
-            </p>
-            <code>
-                class Controller_Example extends Controller {
+            <pre>
+                <code>
+class Controller_Example extends Controller {
 
-                public function action_index() {
-                $data['css'] = Asset::css(array('reset.css','960.css','main.css'));
-                return Response::forge(View::forge('welcome/index'));
-                }
-                }
-            </code>
+    public function action_index() {
+        $data['css'] = Asset::css(array
+            ('reset.css','960.css','main.css'));
+        return Response::forge(View::forge('welcome/index'));
+    }
+}
+                </code>
+            </pre>
         </div>
         <div class="right">
-            <p>
                 <i>Laravel</i>
-            </p>
-            <code>
-                class Controller extends BaseController {
-                      	public function home() {
-                                	return View::make(‘home’);
-                      	}
-                }                
-                ...                
-                Route::get(‘/’, ‘Controller@home’)                
-            </code>
+            <pre>
+                <code>
+class Controller extends BaseController {
+    public function home() {
+        return View::make(‘home’);
+    }
+}                
+...                
+Route::get(‘/’, ‘Controller@home’)                
+                </code>
+            </pre>
         </div>
     
     </slide>
@@ -428,26 +439,25 @@ Lesson 02 - MVC Framework Introduction
     <slide title="View Examples From Other Frameworks" layout="normal">
         <p>Other frameworks have similar functionality.</p>
         <div class="left">
-            <p>
                 <i>Fat-Free</i>
-            </p>
-            <code>
-                $f3-&gt;set('name','Jim');
-                $f3-&gt;set('title','Sir');
-                ...
-                $view = new Template;
-                echo $view-&gt;render('template.html');
+            <pre>
+                <code>
+$f3-&gt;set('name','Jim');
+$f3-&gt;set('title','Sir');
+...
+$view = new Template;
+echo $view-&gt;render('template.html');
 
-                where the HTML fragment includes
-                ... &lt;p&gt;Hello {{ @title }} {{ @name }}&lt;/p&gt;
-            </code>
+where the HTML fragment includes
+... &lt;p&gt;Hello {{ @title }} {{ @name }}&lt;/p&gt;
+                </code>
+            </pre>
         </div>
         <div class="right">
-            <p>
                 <i>FuelPHP</i>
-            </p>
-            <code>
-                fuel/app/views/layout.php 
+            <pre>
+                <code>
+fuel/app/views/layout.php ...
 &lt;html&gt;
     &lt;head&gt;
         &lt;?php echo $head; ?&gt;
@@ -458,11 +468,8 @@ Lesson 02 - MVC Framework Introduction
         &lt;?php echo $footer; ?&gt;
     &lt;/body&gt;
 &lt;/html&gt;
-
-                fuel/app/views/head.php
-&lt;title&gt;&lt;?php echo $title; ?&gt;&lt;/title&gt;
-
-            </code>
+                </code>
+            </pre>
         </div>
     </slide>
     
@@ -488,7 +495,7 @@ Lesson 02 - MVC Framework Introduction
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="183" height="517" src="/data/lessons/pix/2-11.png"/>
+            <img class="scale" width="264" height="600" src="/data/lessons/pix/2-11.png"/>
         </div>
     </slide>
 
@@ -541,7 +548,7 @@ Lesson 02 - MVC Framework Introduction
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="163" height="401" src="/data/lessons/pix/2-13.png"/>
+            <img class="scale" width="336" height="592" src="/data/lessons/pix/2-13.png"/>
         </div>
     </slide>
 
@@ -561,29 +568,25 @@ Lesson 02 - MVC Framework Introduction
     <slide title="Utilities Examples" layout="normal" >
         <p>Many frameworks come with bundled utilities.</p>
         <div class="left">
-            <p>
                 <i>Yii</i>
-            </p>
             <br/>
             <img class="scale" width="337" height="268" src="/data/lessons/pix/2-15.png"/>
         </div>
         <div class="right">
-            <p>
                 <i>FuelPHP</i>
-            </p>
             <p>
                 <pre>
                     <code>
-                        $ php oil g scaffold monkey name:string description:text
+$ php oil g scaffold monkey name:string description:text
 
-                        Created model: APPPATH/classes/model/monkey.php
-                        Created migration: APPPATH/migrations/003_create_monkeys.php
-                        Created controller: APPPATH/classes/controller/monkeys.php
-                        Created view: APPPATH/views/monkeys/index.php
-                        Created view: APPPATH/views/monkeys/view.php
-                        Created view: APPPATH/views/monkeys/create.php
-                        Created view: APPPATH/views/monkeys/edit.php
-                        Created view: APPPATH/views/monkeys/_form.php                    
+Created model: APPPATH/classes/model/monkey.php
+Created migration: APPPATH/migrations/003_create_monkeys.php
+Created controller: APPPATH/classes/controller/monkeys.php
+Created view: APPPATH/views/monkeys/index.php
+Created view: APPPATH/views/monkeys/view.php
+Created view: APPPATH/views/monkeys/create.php
+Created view: APPPATH/views/monkeys/edit.php
+Created view: APPPATH/views/monkeys/_form.php                    
                     </code>
                 </pre>
             </p>
@@ -614,45 +617,38 @@ Lesson 02 - MVC Framework Introduction
 
     <slide title="Configuration Examples From Other Frameworks" layout="normal" >
         <div class="left">
-            <p>
                 <i>Laravel</i>
-            </p>
-            <p>
                 <pre>
                     <code>
-                        composer create-project laravel/laravel project_name --prefer-dist
-                        Composer.json:
-                        "require": {
-                        "laravel/framework": "4.1.*",
-                        "intervention/image": "1.*"
-                        }
+composer create-project laravel/laravel project_name --prefer-dist
+Composer.json:
+"require": {
+    "laravel/framework": "4.1.*",
+    "intervention/image": "1.*"
+}
 
-                        Composer update                </code>
-                </pre>
-            </p>
-        </div>
-        <div class="right">
-            <p>
-                <i>Kohana</i>
-            </p>
-            <p>
-                <pre>
-                    <code>
-                        Kohana::modules(array(
-                           'auth'   	=&gt; MODPATH.'auth',   	// Basic authentication
-                           'cache'  	=&gt; MODPATH.'cache',  	// Caching with multiple backends
-                           'codebench'  =&gt; MODPATH.'codebench',  // Benchmarking tool
-                           'database'   =&gt; MODPATH.'database',   // Database access
-                           'image'  	=&gt; MODPATH.'image',  	// Image manipulation
-                           'orm'    	=&gt; MODPATH.'orm',    	// Object Relationship Mapping
-                           'oauth'  	=&gt; MODPATH.'oauth',  	// OAuth authentication
-                           'pagination' =&gt; MODPATH.'pagination', // Paging of results
-                           'unittest'   =&gt; MODPATH.'unittest',   // Unit testing
-                           'userguide'  =&gt; MODPATH.'userguide',  // User guide and API documentation
-                           ));
+Composer update
                     </code>
                 </pre>
-            </p>
+        </div>
+        <div class="right">
+                <i>Kohana</i>
+                <pre>
+                    <code>
+Kohana::modules(array(
+   'auth'   	=&gt; MODPATH.'auth',   	// Basic authentication
+   'cache'  	=&gt; MODPATH.'cache',  	// Caching with multiple backends
+   'codebench'  =&gt; MODPATH.'codebench',  // Benchmarking tool
+   'database'   =&gt; MODPATH.'database',   // Database access
+   'image'  	=&gt; MODPATH.'image',  	// Image manipulation
+   'orm'    	=&gt; MODPATH.'orm',    	// Object Relationship Mapping
+   'oauth'  	=&gt; MODPATH.'oauth',  	// OAuth authentication
+   'pagination' =&gt; MODPATH.'pagination', // Paging of results
+   'unittest'   =&gt; MODPATH.'unittest',   // Unit testing
+   'userguide'  =&gt; MODPATH.'userguide',  // User guide and API documentation
+   ));
+                    </code>
+                </pre>
         </div>
     </slide>
 
@@ -698,7 +694,7 @@ Lesson 02 - MVC Framework Introduction
         <p>controllers/?.php – controller per navbar item, 
             bound to corresponding view</p>
         <p>models/?.php – model per RDB table</p>
-        <p>vews/welcome.php – tailor your homepage</p>
+        <p>views/welcome.php – tailor your homepage</p>
         <p>views/?.php – view per controller</p>
     </slide>
 
