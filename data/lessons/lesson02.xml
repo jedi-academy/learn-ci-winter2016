@@ -32,6 +32,16 @@ Lesson 02 - MVC Framework Introduction
 
     <!-- Normal slides -->
 
+    <slide title="Setup" layout="normal">
+        <h1>Setup</h1>
+        <p>This lesson mentions source code files from
+            the <a href="https://github.com/comp4711/example-contacts" target="_blank">
+                Example Contacts
+            </a> demo webapp. Please download that project first, and extract
+            it locally, so that you can refer to the source files during the lesson.
+        </p>
+    </slide>
+
     <slide title="Frameworks" layout="normal" tag="tag1">
         <h1>Frameworks</h1>
         <p>An MVC framework is one with conventions
@@ -329,35 +339,35 @@ Lesson 02 - MVC Framework Introduction
     <slide title="Example Base Controller" layout="normal">
         <p>core/MY_Controller.php</p>
         <code>
-class Application extends CI_Controller {
+            class Application extends CI_Controller {
 
-// fields
+            // fields
 
-    function __construct() {
-        		parent::__construct();
-        // make sure we play the game nicely
-        $this-&gt;load-&gt;helper('common');
-        $this-&gt;load-&gt;helper('url');
-    }
+            function __construct() {
+            parent::__construct();
+            // make sure we play the game nicely
+            $this-&gt;load-&gt;helper('common');
+            $this-&gt;load-&gt;helper('url');
+            }
 
-function render() {...}
-}            
+            function render() {...}
+            }            
         </code>
     </slide>
 
     <slide title="Other Framework Examples" layout="normal">
-         <div class="left">
+        <div class="left">
             <p>
                 <i>FuelPHP</i>
             </p>
             <code>
- class Controller_Example extends Controller {
+                class Controller_Example extends Controller {
 
-    public function action_index() {
-        $data['css'] = Asset::css(array('reset.css','960.css','main.css'));
-        return Response::forge(View::forge('welcome/index'));
-    }
-}
+                public function action_index() {
+                $data['css'] = Asset::css(array('reset.css','960.css','main.css'));
+                return Response::forge(View::forge('welcome/index'));
+                }
+                }
             </code>
         </div>
         <div class="right">
@@ -365,13 +375,13 @@ function render() {...}
                 <i>Laravel</i>
             </p>
             <code>
- class Controller extends BaseController {
-      	public function home() {
-                	return View::make(‘home’);
-      	}
-}                
-...                
-Route::get(‘/’, ‘Controller@home’)                
+                class Controller extends BaseController {
+                      	public function home() {
+                                	return View::make(‘home’);
+                      	}
+                }                
+                ...                
+                Route::get(‘/’, ‘Controller@home’)                
             </code>
         </div>
     
@@ -412,24 +422,24 @@ Route::get(‘/’, ‘Controller@home’)
         <p>Do use CSS to control the appearance</p>
         <p>Usage: $this-&gt;load-&gt;view('showoff',$data); or 
             $this-&gt;parser-&gt;load('showoff',$data);</p>;
-            <p>Spoiler: JS/CSS integration coming  :)</p>
+        <p>Spoiler: JS/CSS integration coming  :)</p>
     </slide>
 
-   <slide title="View Examples From Other Frameworks" layout="normal">
+    <slide title="View Examples From Other Frameworks" layout="normal">
         <p>Other frameworks have similar functionality.</p>
         <div class="left">
             <p>
                 <i>Fat-Free</i>
             </p>
             <code>
-$f3-&gt;set('name','Jim');
-$f3-&gt;set('title','Sir');
-...
-$view = new Template;
-echo $view-&gt;render('template.html');
+                $f3-&gt;set('name','Jim');
+                $f3-&gt;set('title','Sir');
+                ...
+                $view = new Template;
+                echo $view-&gt;render('template.html');
 
-where the HTML fragment includes
-... &lt;p&gt;Hello {{ @title }} {{ @name }}&lt;/p&gt;
+                where the HTML fragment includes
+                ... &lt;p&gt;Hello {{ @title }} {{ @name }}&lt;/p&gt;
             </code>
         </div>
         <div class="right">
@@ -437,7 +447,7 @@ where the HTML fragment includes
                 <i>FuelPHP</i>
             </p>
             <code>
-fuel/app/views/layout.php 
+                fuel/app/views/layout.php 
 &lt;html&gt;
     &lt;head&gt;
         &lt;?php echo $head; ?&gt;
@@ -449,14 +459,14 @@ fuel/app/views/layout.php
     &lt;/body&gt;
 &lt;/html&gt;
 
-fuel/app/views/head.php
+                fuel/app/views/head.php
 &lt;title&gt;&lt;?php echo $title; ?&gt;&lt;/title&gt;
 
             </code>
         </div>
     </slide>
     
-     <slide title="View Methods" layout="normal">
+    <slide title="View Methods" layout="normal">
         <p>Seriously?</p>
         <p>If you need functionality, use helpers</p>
     </slide>
@@ -536,40 +546,46 @@ fuel/app/views/head.php
     </slide>
 
     <slide title="Example Helper: common_helper" layout="normal" >
-            <p>Form field handling, using associative array as data 
-                transfer object/buffer</p>
-            <p>fieldExtract($source,$target,$fields)<br/>
--$source – assoc array from form<br/>
--$target – corresponding object<br/>
--$fields – names of fields in this form</p>
-            <p>fieldInject($source,$target,$fields)<br/>
--$source – original data object<br/>
--$target – assoc array for parameters to view<br/>
--$fields – names of fields in this form</p>
+        <p>Form field handling, using associative array as data 
+            transfer object/buffer</p>
+        <p>fieldExtract($source,$target,$fields)<br/>
+            -$source – assoc array from form<br/>
+            -$target – corresponding object<br/>
+            -$fields – names of fields in this form</p>
+        <p>fieldInject($source,$target,$fields)<br/>
+            -$source – original data object<br/>
+            -$target – assoc array for parameters to view<br/>
+            -$fields – names of fields in this form</p>
     </slide>
 
     <slide title="Utilities Examples" layout="normal" >
         <p>Many frameworks come with bundled utilities.</p>
         <div class="left">
-            <p><i>Yii</i></p>
+            <p>
+                <i>Yii</i>
+            </p>
             <br/>
             <img class="scale" width="337" height="268" src="/data/lessons/pix/2-15.png"/>
         </div>
         <div class="right">
-            <p><i>FuelPHP</i></p>
             <p>
-                <pre><code>
-$ php oil g scaffold monkey name:string description:text
+                <i>FuelPHP</i>
+            </p>
+            <p>
+                <pre>
+                    <code>
+                        $ php oil g scaffold monkey name:string description:text
 
-    Created model: APPPATH/classes/model/monkey.php
-    Created migration: APPPATH/migrations/003_create_monkeys.php
-    Created controller: APPPATH/classes/controller/monkeys.php
-    Created view: APPPATH/views/monkeys/index.php
-    Created view: APPPATH/views/monkeys/view.php
-    Created view: APPPATH/views/monkeys/create.php
-    Created view: APPPATH/views/monkeys/edit.php
-    Created view: APPPATH/views/monkeys/_form.php                    
-                </code></pre>
+                        Created model: APPPATH/classes/model/monkey.php
+                        Created migration: APPPATH/migrations/003_create_monkeys.php
+                        Created controller: APPPATH/classes/controller/monkeys.php
+                        Created view: APPPATH/views/monkeys/index.php
+                        Created view: APPPATH/views/monkeys/view.php
+                        Created view: APPPATH/views/monkeys/create.php
+                        Created view: APPPATH/views/monkeys/edit.php
+                        Created view: APPPATH/views/monkeys/_form.php                    
+                    </code>
+                </pre>
             </p>
         </div>
     </slide>
@@ -597,37 +613,44 @@ $ php oil g scaffold monkey name:string description:text
     </slide>
 
     <slide title="Configuration Examples From Other Frameworks" layout="normal" >
-         <div class="left">
-            <p><i>Laravel</i></p>
+        <div class="left">
             <p>
-                <pre><code>
-composer create-project laravel/laravel project_name --prefer-dist
-Composer.json:
-"require": {
-"laravel/framework": "4.1.*",
-"intervention/image": "1.*"
-}
+                <i>Laravel</i>
+            </p>
+            <p>
+                <pre>
+                    <code>
+                        composer create-project laravel/laravel project_name --prefer-dist
+                        Composer.json:
+                        "require": {
+                        "laravel/framework": "4.1.*",
+                        "intervention/image": "1.*"
+                        }
 
-Composer update                </code></pre>
+                        Composer update                </code>
+                </pre>
             </p>
         </div>
         <div class="right">
-            <p><i>Kohana</i></p>
             <p>
-                <pre><code>
-Kohana::modules(array(
-   'auth'   	=&gt; MODPATH.'auth',   	// Basic authentication
-   'cache'  	=&gt; MODPATH.'cache',  	// Caching with multiple backends
-   'codebench'  =&gt; MODPATH.'codebench',  // Benchmarking tool
-   'database'   =&gt; MODPATH.'database',   // Database access
-   'image'  	=&gt; MODPATH.'image',  	// Image manipulation
-   'orm'    	=&gt; MODPATH.'orm',    	// Object Relationship Mapping
-   'oauth'  	=&gt; MODPATH.'oauth',  	// OAuth authentication
-   'pagination' =&gt; MODPATH.'pagination', // Paging of results
-   'unittest'   =&gt; MODPATH.'unittest',   // Unit testing
-   'userguide'  =&gt; MODPATH.'userguide',  // User guide and API documentation
-   ));
-                </code>
+                <i>Kohana</i>
+            </p>
+            <p>
+                <pre>
+                    <code>
+                        Kohana::modules(array(
+                           'auth'   	=&gt; MODPATH.'auth',   	// Basic authentication
+                           'cache'  	=&gt; MODPATH.'cache',  	// Caching with multiple backends
+                           'codebench'  =&gt; MODPATH.'codebench',  // Benchmarking tool
+                           'database'   =&gt; MODPATH.'database',   // Database access
+                           'image'  	=&gt; MODPATH.'image',  	// Image manipulation
+                           'orm'    	=&gt; MODPATH.'orm',    	// Object Relationship Mapping
+                           'oauth'  	=&gt; MODPATH.'oauth',  	// OAuth authentication
+                           'pagination' =&gt; MODPATH.'pagination', // Paging of results
+                           'unittest'   =&gt; MODPATH.'unittest',   // Unit testing
+                           'userguide'  =&gt; MODPATH.'userguide',  // User guide and API documentation
+                           ));
+                    </code>
                 </pre>
             </p>
         </div>
@@ -664,14 +687,14 @@ Kohana::modules(array(
         <p>config/config.php – define menu navbar</p>
     </slide>
 
-   <slide title="Setup Your View Template" layout="normal">
+    <slide title="Setup Your View Template" layout="normal">
         <p>Make a wireframe model for the website.</p>
         <p>Tailor views/_template.php to match it</p>
         <p>This template contains only the common page elements for the site, 
             with substitutable fields for the menu and content.</p>
     </slide>
 
-   <slide title="Tailor Your Webapp" layout="normal">
+    <slide title="Tailor Your Webapp" layout="normal">
         <p>controllers/?.php – controller per navbar item, 
             bound to corresponding view</p>
         <p>models/?.php – model per RDB table</p>
@@ -679,7 +702,7 @@ Kohana::modules(array(
         <p>views/?.php – view per controller</p>
     </slide>
 
-   <slide title="Manage Your Assets" layout="normal">
+    <slide title="Manage Your Assets" layout="normal">
         <p>assets/css/style.css – your CSS</p>
         <p>assets/images/ - your webapp images</p>
         <p>assets/css/ - any imported CSS frameworks</p>
