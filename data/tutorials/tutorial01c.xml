@@ -20,7 +20,7 @@ Tutorial 01c - PHP Sidetrip
             before working your way through it.</p>
     </slide>
 
-    <slide title="Basic PHP syntax" layout="normal">
+    <slide title="PHP Scripts" layout="normal">
         <p>PHP can be used for “merely” scripting (snippets of logic 
             embedded in an HTML document and interpreted server-side), 
             or it can be used for full-fledged O-O programming. 
@@ -33,10 +33,14 @@ Tutorial 01c - PHP Sidetrip
             class and function definitions as well as scripting, 
             but would not then contain a closing tag.
         </p>
-        <p>PHP statement syntax is very similar to Java and C, 
-            for assignment statements, unqualified method calls, 
-            block structure, and so on.</p>
-    </slide>
+     </slide>
+
+     <slide title="Basic PHP syntax" layout="normal">
+         <p>PHP statement syntax is very similar to Java and C, 
+             for assignment statements, unqualified method calls, 
+             block structure, and so on.</p>
+         <p>Read on, and you shall see :)</p>
+     </slide>
 
     <slide title="PHP Variables and Data Types" layout="normal">
         <p>Variables in PHP have conventional names, but start with a 

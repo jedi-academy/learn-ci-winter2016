@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Example - contacts webapp
+-->
+<example status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Contacts webapp" layout="normal">
+        <p>The "contacts" webapp is meant to be an example of a simple
+            CodeIgniter webapp.
+            It reflects design decisions that not everyone would agree with,
+            but it suits the intended use, as an example
+            for lesson 2.</p>
+        <p>Do download the zip for this project from github before reading
+            lesson 2, as there are numerous places in that lesson
+            which refer to the example.</p>
+        <p>Make sure you read the project readme file before trying to run it on your system!</p>
+    </slide>
+
+</example>
