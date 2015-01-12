@@ -16,7 +16,7 @@ Course organizer for Comp4711
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
         <lesson type="lesson" name="lesson02">MVC Framework Introduction</lesson>
-        <example type="github" link="https://github.com/comp4711/example-contacts">Example webapp - contacts</example>
+        <example type="github" name="contacts" link="https://github.com/comp4711/example-contacts">Example webapp - contacts</example>
         <tutorial type="tutorial" name="tutorial02a">Working With a Shared Repository</tutorial>
         <tutorial type="tutorial" name="tutorial02b">Convert Static Site to CodeIgniter</tutorial>
         <lab type="lab" name="lab02" duedate="2015.01.18 17:30">CodeIgniter Intro</lab>
