@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 02b - Devops Workflow
+-->
+<lesson status="alpha">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <!-- Agenda -->
+
+    <!-- Normal slides -->
+    <slide title="Lesson Goals" layout="normal">
+        <p>This short lesson introduces some project workflow techniques.</p>
+        <p>
+            <a href="https://www.atlassian.com/git/tutorials/comparing-workflows" target="_blank">
+                Atlassian</a> has some great tutorials,
+            and I am using some of their images here.
+        </p>
+        <p>Github itself has some handy guides, on the  
+            <a href="https://guides.github.com/introduction/flow/index.htm" target="_blank">
+                GitHub Flow</a>, for instance, and on  
+            <a href="https://guides.github.com/activities/forking/" target="_blank">
+                forking projects</a>.
+        </p>
+    </slide>
+
+    <slide title="Centralized Workflow" layout="normal" tag="tag1">
+        <div class="left">
+            <p>With a centralized workflow, all the developers on a project
+                share a central repository.</p>
+            <p>They clone the repository locally, but they all publish
+                changes to the shared repository.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="800" height="406" src="/data/lessons/pix/2-21.png"/>
+        </div>
+    </slide>
+
+    <slide title="Branching Workflow" layout="normal">
+        <div class="left">
+            <p>Following a branching workflow means that all feature development
+                takes place in dedicated branches, other than "master".</p>
+            <p>Once a feature is complete, its branch would then be merged
+                into the "master" branch.</p>
+            <p>Fixing an issue is considered a mini-feature, and would 
+                be handled in its own (short-lived) branch.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="800" height="219" src="/data/lessons/pix/2-22.png"/>
+        </div>
+    </slide>
+
+    <slide title="Gitflow Workflow" layout="normal">
+        <div class="left">
+            <p>Gitflow workflow is a strict branching model convention.</p>
+            <p>You have two main branches, "master" and "develop".
+                The "master" branch is always release-ready, and is usually tagged
+                with a release version number.</p>
+            <p>All development is done on the "develop" branch, which is merged
+                into the "master" branch to form a new release.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="800" height="323" src="/data/lessons/pix/2-23.png"/>
+        </div>
+    </slide>
+
+    <slide title="Forking Workflow" layout="normal">
+        <div class="left">
+            <p>With the forking workflow, there is a main repository,
+                and each developer "forks" it to make their
+                own server-side repository, which is then cloned locally.</p>
+            <p>Developers push code changes to their own repository,
+                and trigger a pull request when they are ready to merge
+                their changes into the official repository.</p>
+            <p>Only the maintainer of the official repository can update it.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="800" height="444" src="/data/lessons/pix/2-24.png"/>
+        </div>
+    </slide>
+
+    <slide title="Github Workflow" layout="normal">
+        <div class="left">
+            <ol>
+                <li>Fork a github project</li>
+                <li>Clone your fork locally</li>
+                <li>Create a topic branch</li>
+                <li>Commit changes to your branch</li>
+                <li>Push your changes to your fork</li>
+                <li>Send a pull request to the original project</li>
+            </ol>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="1197" height="399" src="/data/lessons/pix/2-25.png"/>
+        </div>
+    </slide>
+
+
+
+</lesson>

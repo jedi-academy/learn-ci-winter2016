@@ -115,6 +115,14 @@ class Show extends Application {
     }
 
     /**
+     * Entry point for a repo
+     */
+    public function github($which)
+    {
+	$this->work('github', $which);
+    }
+
+    /**
      * Entry point for a tutorial
      */
     public function tutorial($which)
