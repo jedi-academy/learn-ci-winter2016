@@ -2,7 +2,7 @@
 <!--
 Assignment 1 - Basic Webapp
 -->
-<lab status="alpha">
+<lab status="beta">
     <!-- Activity metadata ... override anything from the course or organizer -->
     
     <!-- The meat of the presentation -->
@@ -21,11 +21,24 @@ Assignment 1 - Basic Webapp
     <slide title="Revisions?" layout="normal">
         <p>If assignment details need clarifying, such changes will
             be made in this slide deck, and a note added to this page.</p>  
-        <p>THIS WRITEUP IS INCOMPLETE. DO NOT START ON THE ASSIGNMENT UNTIL
-            THIS NOTICE HAS BEEN REMOVED!</p>      
+        <ul>
+            <li>
+                <a href="#{tag1}">Planning</a>
+            </li>
+            <li>
+                <a href="#{tag2}">Design</a>
+            </li>
+            <li>
+                <a href="#{tag3}">Process</a>
+            </li>
+            <li>
+                <a href="#{tag4}">FAQ</a>
+            </li>
+        </ul>
+
     </slide>
 
-    <slide title="Goals for This Assignment" layout="normal">
+    <slide title="Goals for This Assignment" layout="normal" tag="tag1">
         <p>The purpose of this assignment 1 is to get your webapp proposal 
             together and approved, and then to get the basic pieces in the 
             correct places expected for a CodeIgniter webapp.</p>
@@ -98,7 +111,7 @@ Assignment 1 - Basic Webapp
             data.</p>
     </slide>
 
-    <slide title="Your Data" layout="normal">
+    <slide title="Your Data" layout="normal" tag="tag2">
         <p>Whatever you choose to build for a webapp, you want to make sure that
             the data you plan is reasonable for the webapp, and reasonable
             for your team.</p>
@@ -169,7 +182,7 @@ Assignment 1 - Basic Webapp
         </div>
     </slide>
 
-    <slide title="Webapp Stages" layout="normal">
+    <slide title="Webapp Stages" layout="normal" tag="tag3">
         <p>Your webapp will be built in three stages, each corresponding
             to an assignment.</p>
         <p>Stage 1: basic webapp. The pieces will be there, in the right place,
@@ -249,5 +262,10 @@ Assignment 1 - Basic Webapp
             project. It is a vehicle to learn how to use CodeIgniter to
             build a simple webapp, incorporating good practices.</p>
     </slide>
+
+    <slide title="F.A.Q." layout="normal" tag="tag4">
+        <p>There are no questions yet, but I am sure there will be!</p>
+    </slide>
+
 
 </lab>
