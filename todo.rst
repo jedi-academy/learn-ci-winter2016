@@ -21,11 +21,7 @@ Webapp Suggestions
 Course Issues
 *************
 
-- Need assignment 1
-- Need tutorial 2a
-- Need tutorial 2b
-- Need lab 2
-- Need Mac OSX instructions
+- Need to incorporate Mac OSX instructions from Don
 
 ******************
 Course Suggestions
