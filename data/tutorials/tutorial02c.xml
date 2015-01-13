@@ -15,108 +15,244 @@ Tutorial 02c - Convert static site into CI webapp
 
     <slide title="Get The Starter" layout="normal">
         <div class="left">
-            <p>Download CodeIgniter 3 from the project's 
-                <a href="http://www.codeigniter.com/download" target="_blank">download page</a>
+            <p>Fork the 
+                <a href="https://github.com/comp4711/winter2015-lab02" target="_blank">lab starter</a>
+                project, and clone it to your local system.
             </p>
-            <p>There may be two versions of CodeIgniter 3: the "stable" one and the 
-                "develop" branch. If so, the stable one will have the user guide
-                pre-built, while the develop one will have the source for the user
-                guide (build it yourself) and unit tests.</p>
+            <p>You can clone it to any folder inside your htdocs, as long as
+                you have a virtual host mapping to it for testing.
+                I will assume "comp4711.local" for this writeup.</p>
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="600" height="319" src="/data/tutorials/pix/2-31.png"/>
+            <img class="scale" width="600" height="382" src="/data/tutorials/pix/2-31.png"/>
         </div>
     </slide>
 
     <slide title="What Do You Have?" layout="normal">
         <div class="left">
-            <p>The folder view to the right shows the results of extracting
-                the downloaded CodeIgniter3 "develop" archive.</p>
-            <p>The "system" folder contains the framework itself, while
-                the "application" folder contains a starter webapp, used
-                in conjunction with the "index.php" front controller.</p>
-            <p>The "license.txt" file is included with all distributions,
-                but the other files and folders are only needed for development
-                of the framework itself.</p>
+            <p>I cloned mine to a "my-lab02" project/folder on my system.
+                Substitute you choices whenever I refer to my folder.</p>
+            <p>You should see a "public" folder, which contains an entire
+                static website.</p>            
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="600" height="372" src="/data/tutorials/pix/2-32.png"/>
+            <img class="scale" width="332" height="262" src="/data/tutorials/pix/2-32.png"/>
         </div>
     </slide>
 
-    <slide title="CodeIgniter User Guide" layout="normal">
+    <slide title="What Does It Look Like?" layout="normal">
         <div class="left">
-            <p>The User Guide for CodeIgniter 3 contains "how to"
-                articles, as well as component API references.</p>
-            <p>The <a href="http://www.codeigniter.com/userguide3/" target="_blank">User Guide</a> 
-                can be found online too, or 
-                <a href="http://www.codeigniter.com/data/CodeIgniter3-dev-userguide.zip">
-                    downloaded</a> separately.</p>
-            <p>If you downloaded the "release" version of CodeIgniter 3,
-                I susgest moving the user guide subfolder into a convenient
-                location on your system, for instance your desktop.</p>
+            <p>Assuming that your new project is mapped to "comp4711.local",
+                then the URL "comp4711.local/public" should give you the
+                homepage of the static site, shown right.</p>            
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="600" height="579" src="/data/tutorials/pix/2-33.png"/>
+            <img class="scale" width="600" height="306" src="/data/tutorials/pix/2-33.png"/>
         </div>
     </slide>
 
-    <slide title="Store the Framework" layout="normal">
+    <slide title="How Do We Make This Into a Webapp?" layout="normal">
         <div class="left">
-            <p>It is a good idea to keep the framework itself outside of 
-                your webapp.</p>
-            <p>This is more secure, and it makes it easy to share
-                the framework, and any updates, across multiple webapps.</p>
-            <p>Move the "system" folder into your htdocs folder,
-                and rename it "system3". That will make it easy to work with
-                different versions of the framework for different webapps.</p>
+            <p>The basic steps we will follow are shown to the right.
+            </p>
+            <p>This isn't the only way to do this job, but is one
+                that makes sense. After each stage of the conversion,
+                we should still have a working site.</p>
+            <p>Er, it will behave like it is working, even though
+                it won't be a proper webapp until we are done.</p>
         </div>
         <div class="right">
-            <img class="scale" width="600" height="211" src="/data/tutorials/pix/2-34.png"/>
+            <ol>
+                <li>Copy our CI starter into our project</li>
+                <li>Do a trivial conversion</li>
+                <li>Setup base controller and view template</li>                    
+                <li>Fix the pages to use these</li>
+                <li>Add a model</li>
+                <li>Revisit the pages</li>
+            </ol>
         </div>
     </slide>
 
-    <slide title="Your Webapp Starter" layout="normal">
+    <slide title="Copy Our CI Starter" layout="normal">
         <div class="left">
-            <p>If you eliminate the "develop"-only files and fodlers, what 
-                you are left with is an application starter:
-                index.php and the application folder.</p>
-            <p>The subfolders inside "application" give you a pretty good
-                idea of what goes where.</p>
+            <p>Copy the contents of your CodeIgniter starter project (from
+                tutorial 2B) into your project folder.</p>
+            <p>Now, asking for comp4711.local in your browser should
+                give you the "Welcome to CodeIgniter!" page.</p>
         </div>
         <div class="right">
-            <img class="scale" width="600" height="435" src="/data/tutorials/pix/2-35.png"/>
+            <img class="scale" width="256" height="342" src="/data/tutorials/pix/2-34.png"/>
         </div>
     </slide>
 
-    <slide title="Configure Your Starter" layout="normal">
+    <slide title="Create Trivial Controllers" layout="normal">
         <div class="left">
-            <p>Tailor the index.php setting that tells CodeIgniter
-                where to find the framework files.</p>
-            <p>I suggest renaming the folder you are left with, for instance
-                to codeigniter3-starter. You will use it to start any new
-                CodeIgniter webapp.</p>
+            <p>Our static site has 3 pages, index.html, gallery.html
+                and about.html.</p>
+            <p>We can make trivial controllers for each of these,
+                which simply load the corresponding "view".</p>
+            <p>Fix application/controllers/Welcome.php (your homepage)
+                to load the "welcome" view.</p>
+            <p>Create similar controllers Gallery.php and About.php,
+                which load the "gallery" and "about" views, respectively.</p>
         </div>
         <div class="right">
-            <img class="scale" width="564" height="181" src="/data/tutorials/pix/2-36.png"/>
+            <img class="scale" width="416" height="182" src="/data/tutorials/pix/2-35.png"/>
+        </div>
+    </slide>
+    
+    <slide title="Create Trivial Views" layout="normal">
+        <div class="left">
+            <p>We can make trivial views for each of the static pages,
+                by copying the static html files to our application/views
+                folder, and renaming them to have a ".php" extension.
+                Note that index.html would become welcome.php.</p>     
+            <p>You may have to rename these using your file manager,
+                if your IDE won't let you change the extension.</p>      
+            <p>We no longer need the views/welcome_message.php.</p>     
+        </div>
+        <div class="right">
+            <img class="scale" width="318" height="478" src="/data/tutorials/pix/2-36.png"/>
         </div>
     </slide>
 
-    <slide title="Are We Done Yet?" layout="normal">
+    <slide title="We Now Have a Trivial Site" layout="normal">
+        <div class="left">
+            <p>Checkout your site now, using the comp4711.local URL.</p> 
+            <p>Oops, our image links are broken!</p>               
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="386" src="/data/tutorials/pix/2-37.png"/>
+        </div>
+    </slide>
+
+    <slide title="Fix Our Image Links" layout="normal">
+        <div class="left">
+            <p>Examining views/welcome.php, you can see that the image 
+                references no longer work. 
+                We can solve this by copying/moving those folders up
+                one level, alongside "applications".</p>
+            <p>A better practice is to keep your "assets" (like these)
+                in a separate folder, which could be called "public" or
+                "assets". We can address 
+                the better practice in a later refactoring.</p>
+            <p>For now, let's copy the folders up one level. </p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="295" src="/data/tutorials/pix/2-38.png"/>
+        </div>
+    </slide>
+
+    <slide title="Fix Our Menu" layout="normal">
+        <div class="left">
+            <p>Yay, our site *looks* better, but what about the menu? It still
+                refers to the original HTML files. Fix this by changing the menu links to refer to our CI controllers
+                instead. Apply this change to each of our three views.</p>
+            <p>Notice that the homepage is referred to as just "/", and that
+                each of the other references start with a slash.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="505" height="108" src="/data/tutorials/pix/2-39.png"/>
+        </div>
+    </slide>
+
+    <slide title="Build a Master View Template" layout="normal">
+        <div class="left">
+            <p>We can eliminate duplicate code in our views by extracting
+                the common opening and closing HTML into a views/template.php.</p>
+            <p>Let's do that, and add a placeholder, "{content}", which will
+                get substituted appropriately in our next tutorial step.
+                Add another placeholder, "{pagetitle}", for the page title.</p>
+            <p>I would do this by copying the about view, renaming it
+                to "template.php", and then zapping its middle.</p>            
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="432" src="/data/tutorials/pix/2-40.png"/>
+        </div>
+    </slide>
+
+    <slide title="Simplify Our Views" layout="normal">
+        <div class="left">
+            <p>We can now eliminate the common opening and closing HTML
+                from our three original views, leaving just the "meat".</p>
+                <p>Our revised views/welcome.php is shown to the right.</p>
+            <p>The site still "works", but looks funny without the 
+            proper styling :-/</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="285" src="/data/tutorials/pix/2-41.png"/>
+        </div>
+    </slide>
+
+    <slide title="Is This Better?" layout="normal">
+        <div class="left">
+            <p>The site still "works", but looks funny without the 
+            proper styling :-/</p>
+            <p>We will fix that next!</p>
+                
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="295" src="/data/tutorials/pix/2-42.png"/>
+        </div>
+    </slide>
+
+    <slide title="Build a base controller" layout="normal">
         <div class="left">
             <p>Let's see. Replace the contents of the folder you have 
                 comp4711.local mapped to, with the contents of the
                 starter folder you just made.</p>
-            <p>Open the homepage for that in your browser.</p>            
-            <p>You should see the same as this :)</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
+        </div>
+    </slide>
+ 
+    <slide title="Add a model" layout="normal">
+        <div class="left">
+            <p>Let's see. Replace the contents of the folder you have 
+                comp4711.local mapped to, with the contents of the
+                starter folder you just made.</p>
         </div>
         <div class="right">
             <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
         </div>
     </slide>
 
+    <slide title="Revisit the gallery page" layout="normal">
+        <div class="left">
+            <p>Let's see. Replace the contents of the folder you have 
+                comp4711.local mapped to, with the contents of the
+                starter folder you just made.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
+        </div>
+    </slide>
 
+    <slide title="Revisit the homepage" layout="normal">
+        <div class="left">
+            <p>Let's see. Replace the contents of the folder you have 
+                comp4711.local mapped to, with the contents of the
+                starter folder you just made.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
+        </div>
+    </slide>
+
+    <slide title="Are We There Yet?" layout="normal">
+        <div class="left">
+            <p>Let's see. Replace the contents of the folder you have 
+                comp4711.local mapped to, with the contents of the
+                starter folder you just made.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
+        </div>
+    </slide>
+
+   
 </tutorial>
