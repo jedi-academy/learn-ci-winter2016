@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 02c - Convert static site into CI webapp
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial will walk you through converting a static HTML
+            website into a CodeIgniter webapp.</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
+    </slide>
+
+    <slide title="Get The Starter" layout="normal">
+        <div class="left">
+            <p>Download CodeIgniter 3 from the project's 
+                <a href="http://www.codeigniter.com/download" target="_blank">download page</a>
+            </p>
+            <p>There may be two versions of CodeIgniter 3: the "stable" one and the 
+                "develop" branch. If so, the stable one will have the user guide
+                pre-built, while the develop one will have the source for the user
+                guide (build it yourself) and unit tests.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="319" src="/data/tutorials/pix/2-31.png"/>
+        </div>
+    </slide>
+
+    <slide title="What Do You Have?" layout="normal">
+        <div class="left">
+            <p>The folder view to the right shows the results of extracting
+                the downloaded CodeIgniter3 "develop" archive.</p>
+            <p>The "system" folder contains the framework itself, while
+                the "application" folder contains a starter webapp, used
+                in conjunction with the "index.php" front controller.</p>
+            <p>The "license.txt" file is included with all distributions,
+                but the other files and folders are only needed for development
+                of the framework itself.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="372" src="/data/tutorials/pix/2-32.png"/>
+        </div>
+    </slide>
+
+    <slide title="CodeIgniter User Guide" layout="normal">
+        <div class="left">
+            <p>The User Guide for CodeIgniter 3 contains "how to"
+                articles, as well as component API references.</p>
+            <p>The <a href="http://www.codeigniter.com/userguide3/" target="_blank">User Guide</a> 
+                can be found online too, or 
+                <a href="http://www.codeigniter.com/data/CodeIgniter3-dev-userguide.zip">
+                    downloaded</a> separately.</p>
+            <p>If you downloaded the "release" version of CodeIgniter 3,
+                I susgest moving the user guide subfolder into a convenient
+                location on your system, for instance your desktop.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="579" src="/data/tutorials/pix/2-33.png"/>
+        </div>
+    </slide>
+
+    <slide title="Store the Framework" layout="normal">
+        <div class="left">
+            <p>It is a good idea to keep the framework itself outside of 
+                your webapp.</p>
+            <p>This is more secure, and it makes it easy to share
+                the framework, and any updates, across multiple webapps.</p>
+            <p>Move the "system" folder into your htdocs folder,
+                and rename it "system3". That will make it easy to work with
+                different versions of the framework for different webapps.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="211" src="/data/tutorials/pix/2-34.png"/>
+        </div>
+    </slide>
+
+    <slide title="Your Webapp Starter" layout="normal">
+        <div class="left">
+            <p>If you eliminate the "develop"-only files and fodlers, what 
+                you are left with is an application starter:
+                index.php and the application folder.</p>
+            <p>The subfolders inside "application" give you a pretty good
+                idea of what goes where.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="435" src="/data/tutorials/pix/2-35.png"/>
+        </div>
+    </slide>
+
+    <slide title="Configure Your Starter" layout="normal">
+        <div class="left">
+            <p>Tailor the index.php setting that tells CodeIgniter
+                where to find the framework files.</p>
+            <p>I suggest renaming the folder you are left with, for instance
+                to codeigniter3-starter. You will use it to start any new
+                CodeIgniter webapp.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="564" height="181" src="/data/tutorials/pix/2-36.png"/>
+        </div>
+    </slide>
+
+    <slide title="Are We Done Yet?" layout="normal">
+        <div class="left">
+            <p>Let's see. Replace the contents of the folder you have 
+                comp4711.local mapped to, with the contents of the
+                starter folder you just made.</p>
+            <p>Open the homepage for that in your browser.</p>            
+            <p>You should see the same as this :)</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
+        </div>
+    </slide>
+
+
+</tutorial>
