@@ -76,7 +76,7 @@ Tutorial 02c - Convert static site into CI webapp
         </div>
     </slide>
 
-    <slide title="Copy our CI starter into our project" layout="normal">
+    <slide title="Copy Our CI Starter" layout="normal">
         <div class="left">
             <p>Copy the contents of your CodeIgniter starter project (from
                 tutorial 2B) into your project folder.</p>
@@ -88,7 +88,7 @@ Tutorial 02c - Convert static site into CI webapp
         </div>
     </slide>
 
-    <slide title="Create trivial controllers" layout="normal">
+    <slide title="Create Trivial Controllers" layout="normal">
         <div class="left">
             <p>Our static site has 3 pages, index.html, gallery.html
                 and about.html.</p>
@@ -104,7 +104,7 @@ Tutorial 02c - Convert static site into CI webapp
         </div>
     </slide>
     
-    <slide title="Create trivial views" layout="normal">
+    <slide title="Create Trivial Views" layout="normal">
         <div class="left">
             <p>We can make trivial views for each of the static pages,
                 by copying the static html files to our application/views
@@ -129,49 +129,73 @@ Tutorial 02c - Convert static site into CI webapp
         </div>
     </slide>
 
-    <slide title="Fix our image links" layout="normal">
+    <slide title="Fix Our Image Links" layout="normal">
         <div class="left">
-            <p>Examining views/welcome.php, you can see that the CSS, javascript
-                and image references are to locations which used to be
-                at the same folder level as the HTML files, but which are
-                now inside the "public" folder.</p>
-            <p>We can solve this by copying/moving those folders up
+            <p>Examining views/welcome.php, you can see that the image 
+                references no longer work. 
+                We can solve this by copying/moving those folders up
                 one level, alongside "applications".</p>
             <p>A better practice is to keep your "assets" (like these)
                 in a separate folder, which could be called "public" or
-                "assets".</p>
-            <p>For now, let's copy the folders up one level. We can address 
+                "assets". We can address 
                 the better practice in a later refactoring.</p>
+            <p>For now, let's copy the folders up one level. </p>
         </div>
         <div class="right">
             <img class="scale" width="600" height="295" src="/data/tutorials/pix/2-38.png"/>
         </div>
     </slide>
 
-    <slide title="Fix our menu" layout="normal">
+    <slide title="Fix Our Menu" layout="normal">
         <div class="left">
             <p>Yay, our site *looks* better, but what about the menu? It still
-                refers to the original HTML files.</p>
-            <p>Fix this by changing the menu links to refer to our CI controllers
+                refers to the original HTML files. Fix this by changing the menu links to refer to our CI controllers
                 instead. Apply this change to each of our three views.</p>
-            <p>There will be noticeable visible change in the site, but the menu
-                should now work as expected :)</p>
             <p>Notice that the homepage is referred to as just "/", and that
                 each of the other references start with a slash.</p>
         </div>
         <div class="right">
-            <img class="scale" width="564" height="181" src="/data/tutorials/pix/2-39.png"/>
+            <img class="scale" width="505" height="108" src="/data/tutorials/pix/2-39.png"/>
         </div>
     </slide>
 
-    <slide title="Build a master view template" layout="normal">
+    <slide title="Build a Master View Template" layout="normal">
         <div class="left">
-            <p>Let's see. Replace the contents of the folder you have 
-                comp4711.local mapped to, with the contents of the
-                starter folder you just made.</p>
+            <p>We can eliminate duplicate code in our views by extracting
+                the common opening and closing HTML into a views/template.php.</p>
+            <p>Let's do that, and add a placeholder, "{content}", which will
+                get substituted appropriately in our next tutorial step.
+                Add another placeholder, "{pagetitle}", for the page title.</p>
+            <p>I would do this by copying the about view, renaming it
+                to "template.php", and then zapping its middle.</p>            
         </div>
         <div class="right">
-            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
+            <img class="scale" width="600" height="432" src="/data/tutorials/pix/2-40.png"/>
+        </div>
+    </slide>
+
+    <slide title="Simplify Our Views" layout="normal">
+        <div class="left">
+            <p>We can now eliminate the common opening and closing HTML
+                from our three original views, leaving just the "meat".</p>
+                <p>Our revised views/welcome.php is shown to the right.</p>
+            <p>The site still "works", but looks funny without the 
+            proper styling :-/</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="285" src="/data/tutorials/pix/2-41.png"/>
+        </div>
+    </slide>
+
+    <slide title="Is This Better?" layout="normal">
+        <div class="left">
+            <p>The site still "works", but looks funny without the 
+            proper styling :-/</p>
+            <p>We will fix that next!</p>
+                
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="295" src="/data/tutorials/pix/2-42.png"/>
         </div>
     </slide>
 
@@ -186,39 +210,6 @@ Tutorial 02c - Convert static site into CI webapp
         </div>
     </slide>
  
-    <slide title="Fix the homepage" layout="normal">
-        <div class="left">
-            <p>Let's see. Replace the contents of the folder you have 
-                comp4711.local mapped to, with the contents of the
-                starter folder you just made.</p>
-        </div>
-        <div class="right">
-            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
-        </div>
-    </slide>
-
-    <slide title="Fix the gallery page" layout="normal">
-        <div class="left">
-            <p>Let's see. Replace the contents of the folder you have 
-                comp4711.local mapped to, with the contents of the
-                starter folder you just made.</p>
-        </div>
-        <div class="right">
-            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
-        </div>
-    </slide>
-
-    <slide title="Fix the about page" layout="normal">
-        <div class="left">
-            <p>Let's see. Replace the contents of the folder you have 
-                comp4711.local mapped to, with the contents of the
-                starter folder you just made.</p>
-        </div>
-        <div class="right">
-            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
-        </div>
-    </slide>
-
     <slide title="Add a model" layout="normal">
         <div class="left">
             <p>Let's see. Replace the contents of the folder you have 
