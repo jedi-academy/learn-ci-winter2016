@@ -91,12 +91,10 @@ Tutorial 02c - Convert static site into CI webapp
     <slide title="Create Trivial Controllers" layout="normal">
         <div class="left">
             <p>Our static site has 3 pages, index.html, gallery.html
-                and about.html.</p>
-            <p>We can make trivial controllers for each of these,
+                and about.html. We can make trivial controllers for each of these,
                 which simply load the corresponding "view".</p>
             <p>Fix application/controllers/Welcome.php (your homepage)
-                to load the "welcome" view.</p>
-            <p>Create similar controllers Gallery.php and About.php,
+                to load the "welcome" view. Create similar controllers Gallery.php and About.php,
                 which load the "gallery" and "about" views, respectively.</p>
         </div>
         <div class="right">
@@ -161,8 +159,8 @@ Tutorial 02c - Convert static site into CI webapp
 
     <slide title="Build a Master View Template" layout="normal">
         <div class="left">
-            <p>We can eliminate duplicate code in our views by extracting
-                the common opening and closing HTML into a views/template.php.</p>
+            <p>Eliminate duplicate code in our views by extracting
+                the common opening and closing HTML into views/template.php.</p>
             <p>Let's do that, and add a placeholder, "{content}", which will
                 get substituted appropriately in our next tutorial step.
                 Add another placeholder, "{pagetitle}", for the page title.</p>
@@ -178,9 +176,7 @@ Tutorial 02c - Convert static site into CI webapp
         <div class="left">
             <p>We can now eliminate the common opening and closing HTML
                 from our three original views, leaving just the "meat".</p>
-                <p>Our revised views/welcome.php is shown to the right.</p>
-            <p>The site still "works", but looks funny without the 
-            proper styling :-/</p>
+            <p>Our revised views/welcome.php is shown to the right.</p>
         </div>
         <div class="right">
             <img class="scale" width="600" height="285" src="/data/tutorials/pix/2-41.png"/>
@@ -190,9 +186,8 @@ Tutorial 02c - Convert static site into CI webapp
     <slide title="Is This Better?" layout="normal">
         <div class="left">
             <p>The site still "works", but looks funny without the 
-            proper styling :-/</p>
-            <p>We will fix that next!</p>
-                
+                proper styling :-/</p>
+            <p>We will fix that next!</p>                
         </div>
         <div class="right">
             <img class="scale" width="600" height="295" src="/data/tutorials/pix/2-42.png"/>
@@ -201,20 +196,56 @@ Tutorial 02c - Convert static site into CI webapp
 
     <slide title="Build a base controller" layout="normal">
         <div class="left">
-            <p>Let's see. Replace the contents of the folder you have 
-                comp4711.local mapped to, with the contents of the
-                starter folder you just made.</p>
+            <p>We will make a base controller to pull the view pieces
+                together consistently, using our template.</p>
+            <p>This will be similar to the one referenced in lesson 2,
+                from the contacts sample webapp.
+                Copy yours from the contacts project to core/MY_Controller.php
+                inside your lab 2 project.</p>
+            <p>Fix the menu to suit our app, and change the ['title']
+                reference to ['pagetitle'], to match what we already setup in 
+                our template.</p>
         </div>
         <div class="right">
-            <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
+            <img class="scale" width="600" height="556" src="/data/tutorials/pix/2-43.png"/>
+        </div>
+    </slide>
+ 
+    <slide title="Apply our base controller" layout="normal">
+        <div class="left">
+            <p>Modify our three controllers to extend our base controller,
+                Application, instead of CI_Controller. </p>
+            <p>In these controllers, instead of $this-&gt;load->view('x')
+                we should set a view parameter instead, and invoke the
+                render method of the base controller.</p>
+            <p>$this-&gt;data['pagebody'] = 'x'; $this-&gt;render();</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="389" height="240" src="/data/tutorials/pix/2-44.png"/>
+        </div>
+    </slide>
+ 
+    <slide title="What Do You Think Now?" layout="normal">
+        <div class="left">
+            <p>We also need to copy the common_helper
+                from the contacts starter, so we can use its build_menu function.</p>
+            <p>We should autoload the common and url helpers, and the parser library,
+                since they are used in Application.
+            </p>
+            <p>Looking better, although the
+                image references are still hard-coded.
+                We'll fix that next.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="285" src="/data/tutorials/pix/2-45.png"/>
         </div>
     </slide>
  
     <slide title="Add a model" layout="normal">
         <div class="left">
-            <p>Let's see. Replace the contents of the folder you have 
-                comp4711.local mapped to, with the contents of the
-                starter folder you just made.</p>
+            <p>We already have a SQL script in the data/setup folder of our starter.
+            How convenient! It's like someone planned to use a database eventually :-/</p>
+            <p></p>
         </div>
         <div class="right">
             <img class="scale" width="600" height="283" src="/data/tutorials/pix/2-37.png"/>
