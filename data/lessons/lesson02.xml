@@ -206,7 +206,7 @@ Route::post(‘/’, function()
     <slide title="Active Record" layout="normal">
         <div class="left">
             <p>CodeIgniter encourages the Active Record design
-                patterm which says you build CRUD methods into models.</p>
+                pattern which says you build CRUD methods into models.</p>
         </div>
         <div class="right">
             <br/>
@@ -282,7 +282,7 @@ public class Orders extends CI_Model {
 $db = new DB\SQL('mysql:host=localhost';
     port=3306;dbname=mystuff',
     'myuserid','mypassword');
-$user = new DB\SQL|Mapper($db,'users');
+$user = new DB\SQL\Mapper($db,'users');
 $user-&gt;load('id=1');
 $user-&gt;name='Pointy haired boss';
 $user-&gt;save();                 
