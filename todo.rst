@@ -36,6 +36,10 @@ General:
     Sometimes my wireless connection sucks so I can't see the slides. 
     I want to download it onto my desktop or something...
 
+------
+Week 1
+------
+
 Lesson 1a:
 - provide a screencast to expand on ideas
 
@@ -103,6 +107,10 @@ Tutorial 1b:
     number specified for Apache if you've changed it for XAMPP 
     (e.g. "Listen 4711"), you should probably mention that in your slides.
 
+------
+Week 2
+------
+
 Lesson 2:
 - the /views/errors/... folder needs to be included if you just want them to
     drop the application folder in a project
@@ -112,7 +120,26 @@ Lesson 2:
 
 Example webapp - contacts:
 
+Lesson 2:
+- Slide 9 Could you indicate that Kohana and Laravel are PHP frameworks, or 
+    mention them as examples on slide 8?  
+- Slide 9 Probably worth a side note to let people know the :: represents the 
+    mechanism for accessing static methods and properties of a class 
+    (Route in this case) as this is the first time this has been used  
+- Slide 15 Can you clarify if MY_Model and MY_Controller are classes you 
+    have created or example classes that are supplied with the CI framework?  
+- Slide 24&25 Not clear about the contents on these slides. 
+    Can you provide examples?   
+- Slide 39 First line of code listing for Laravel overlaps Kohana listing  
+- Slide 40-46 Forgot I was doing a lesson and not a tutorial and so tried 
+    to follow the steps! I think you might be better replacing these slides 
+    with a single slide explaining what the tutorial this week will cover at a high level
+
 Lesson 2b:
+- Slide 4 Diagram appears to have got a bit corrupted compared to the original 
+    atlassian one  
+- slide 6 Not clear what the diagram is telling me as it doesn't appear to be
+     related to the text on the slide
 
 Tutorial 2a:
 - i found it a little confusing about why i was doing some of these things, 
@@ -139,6 +166,36 @@ Tutorial 2a:
     a few images of say screenshots of switching branches from update/myname 
     to master, then pressing the check out, then pressing the pull from 
     upstream then say another image for switching to the origin/master and pushing.
+- The tutorial was easy to follow, but it's lacking explanations as for
+     why I'm doing what I'm doing. Even though I could complete the tutorial 
+    pretty easily, I don't understand what I actually did. 
+    What does forking do exactly? What is the purpose of creating a new branch? 
+    Why do I need to create a branch and merge it back? etc.
+- Some of the steps for not explained properly...
+- Slide 4 It would be good to indicate what is the command line equivalent to 
+    checking the "Add Signed-off-by line to commit message" box is  
+- Slide 5 I assume you have covered what forking is and how to do this in 
+    previous courses? For the newbies, it would be good to add a reminder here  
+- Slide 7 Stupid question, but should the branch name be myname or are 
+    students supposed to replace "myname" with their name. I assume the former.  
+- Slide 8 & 9 Need to edit this as it is referring to ReadMe.rst instead of 
+    ClassList.rst and TeamList.rst  
+- Slide 10 I think I need to do some reading up on git here as I'm not 
+    clear if the instructions on this slide are a summary of the subsequent 
+    slides or a pre-requisite to the steps described in later slides! 
+    Up to this point, I have forked the repository (copying it to another 
+    repository, but still held remotely), cloned it (whch copies it to 
+    my local drive), created a branch, edited the file in that branch and 
+    committed to that branch. So not clear why I am checking out the master branch   
+- Slide 11 What should the Update Local References dialog box be set to?  
+- Slide 13 Interesting that the comparison doesn't simply show the additional 
+    line but shows everything as deleted and inserted. Is this normal for Git 
+    as it would surely be a nightmare to determine what has changed?
+- I wouldn't say that this tutorial is long now that i know how to do it. 
+    I said that this tutorial is long because I had to restart so many times. 
+    A lot of things can go wrong with this tutorial and when they did I had no 
+    idea what the problem was so I deleted everything and started over until 
+    it worked. It's like going through a maze blind and it's very frustrating.
 
 
 Tutorial 2b:
@@ -146,9 +203,143 @@ Tutorial 2b:
     split into two folders: the "system3" folder and the "codeigniter3-starter" 
     starter folder.\nPlease use screenshots that show the exact final 
     placements of the folders/content
+- Slide 2 Should that say "There may be two versions of CodeIgniter" instead of 
+    "...CodeIgniter 3
+- Slide 6 Are you suggesting we should actually delete the develop files? 
+    Slide 7 would suggest that is what you mean. If so  might be better to say 
+    delete rather than eliminate
+- Slide 8 Interesting behaviour in windows 7 as it will not allow you to 
+    create the file .htaccess in some cases e.g. you cannot rename a file 
+    to this as you get an error. Instead you need to save from notepad as 
+    type All Files. Alternatively you need to use the AccessFileName 
+    directive in Apache to tell it the filename is call something like ht.acl 
+    as well as .htaccess
+    although when I looked in the httpd.conf file	 
+    this parameter did not exist in the file &#40	not even commented out&#41
+
 
 Tutorial 2c:
 - A lot of the instructions were unclear such as setting up the database. 
     In the end, I did not feel like I learned much, as it was mostly just copy 
     and paste. I think if this tutorial was broken down more and had portions 
     explaining more in depth to our actions, it would greatly improve the quality.
+
+- The tutorial has several bugs and badly presented elements within it. 
+    The only reason I was able to complete the tutorial without have complete 
+    stand still problems was because I already had previous framework experience. 
+    For those new to frameworks they would have no hope. 
+    I have had to help numerous people with the same bugs that I ran into but 
+    they could not fix. I listed the bugs below:  
+- 1) From the documentation for codeigniter, when making your own controllers, 
+    they have to be pre-fixed with "MY_". Using the naming of "Application" in 
+    some cases (specifically ubuntu linux) causes it unable to find the controller, 
+    which is no surprise since codeigniter documentation says it will fail. 
+    Nowhere in the tutorial specifies controller naming conventions and the 
+    tutorial should not be teaching something that potentially may not work 
+    ESPECIALLY since its documented 
+- 2) When parsing the welcome view in the welcome controller, the view you 
+    want to call is the index.php file. Either the controller needs to be 
+    edited to call "index" or the file needs to be renamed to be "welcome.php". 
+    Tutorial does not state this issue 
+- 3) There is a typo/inconsistency when 
+    creating the custom "Application" controller. The copied over data tries 
+    to load the page elements into the template file, but in the copied text 
+    the controller is looking for "_template.php" when your instructions say 
+    to name the file "template.php". This causes a serious bug that would be 
+    very challenging if not impossible for a new programmer to php frameworks 
+    to detect as the cause 
+- 4) It is not clear in the tutorial as to where the common_helper and parser 
+    libraries are located. Especially since the parser library is supplied 
+    and just needs to be activated in the autoload, but the common_helper 
+    file is not. Loading a number of these libraries is also all squished 
+    into one big wall of text, when previous slides have shown images guiding 
+    the reader where to look. These libraries should be a bit more explained 
+    and have images to help look for them    
+
+- In my opinion, this tutorial, like most of the previous ones, is lacking 
+    explanations. Why are we doing what we are doing? What is the purpose 
+    of the parser? I have already worked with CodeIgniter in the past, so 
+    it's less confusing for me, but people who haven't worked with a MVC 
+    framework before seem to get pretty lost.  
+    In addition to that, this tutorial seems rather incomplete. 
+    For example, in MY_Controller we use the build_menu_bar function, 
+    but there's no mention anywhere that we should also replace the hard-coded 
+    menubar in the template by {menubar}. Moreover, even if you do this, 
+    the build_menu_bar function is actually not working properly. 
+    The line:   $result .= '<li>' . anchor($link, $name) . '</ul>';  
+    in common_helper.php should read as:  $result .= '<li>' . anchor($link, $name) . '</li>';  
+    But even after fixing this, it still won't work, because the anchor 
+    function will create links such as: mydomain/index.php/features instead of 
+    mydomain/features. In config.php, you need to set $config['index_page'] = ''; 
+    (which is by default set to index.php).  
+    Also, the tutorial directs us to call the template "template.php
+
+- I had this issue where my links would add an "index.php" into the url, 
+    which broke the image and css and js links...unless i modified them 
+    by prepending an "../" in front of each one...  I learned a lot in this 
+    tutorial, however it was a little long, and i had to take some extra 
+    steps...i mean taking extra steps and figuring things out for myself 
+    isnt a bad thing, but i can imagine some students being very frustrated and lost. 
+-  here are some of the extra steps that i had to take that weren't mentioned 
+    in the tutorial i think:     
+- the views/template.php file should be named views/_template.php. in 
+    slide "build a master view template" we are told to name it "template.php
+ - we never actually used the {menubar} in the views/_template.php file on 
+    slide "build a master view template".		
+ - the menuloader function had a little bug	 it didn't properly close the <li> tag	
+ - when making the simple controllers	 we're nt told to add the 
+    "pagetitle" parameter to the "data" array	
+ - i didn't know how to create a database	 and import the images	 
+    but i figured it out. pretty cool!
+ - had to configure the database.php	 but that wasnt mentioned in the tutorial	
+
+- The directions were very frustrating!! There was no indication of how to 
+    change the view gallery.php to include all the dynamically generated content. 
+    I didn't figure it out until slide 25, where you say to do what we 
+    did before, and include a small illustration of what to do at that point.
+- There are many missing parts and unclear instructions.  
+    Having alot of problems getting things setup.
+
+- On page 2 or 3, please state where in the Netbeans IDE we can change the 
+    name of the folder we clone the project into. This wasn't mentioned in 
+    previous tutorials.  
+- On page 7, when you say similar controllers, do we put in public function 
+    index() into all the controllers?  
+- On page 8, why is it still showing index.html when welcome.php 
+    is already there? Which index.html are we supposed to change anyway?  
+- On page 12, the webapp won't load unless the file is named _template.php,
+     NOT template.php.  
+- On page 17, where do we put the line of code for autoload? 
+- And I only see a build_menu_bar and not a build_menu function in common_helper.  
+- On page 18, how do we set up the database?
+
+- Overall, found the tutorial confusing and hard to follow 
+- many of the steps explained "what
+ - didn't like the over	reliance on screenshots vs. written instructions
+
+Specifics: 			
+- The step to define the template.php file refers to "zap the middle" 	 
+    it's not clear what "the middle" is. 	
+- The same step asks you to name the file template.php. Later on in the tutorial 
+    it is discovered that it should have been _template.php	 
+    as another script refers to it with an underscore. 	
+- Step where the autoloader file is modified is not clear enough as to where 
+    to find the file and what to change. 		
+- The database setup step is not clear enough that the user needs to actually 
+    create a database using mysql	 access	 or myphpadmin. "
+
+- PLS make the instruction simple and easy to follow. 
+    Use verb + none instead of sentences. 
+    And I wish all the instructions could be tested first and then public 
+    to us in order to avoid misunderstanding parts!
+
+------
+Week 3
+------
+
+Lesson 3:
+
+Tutorial 3:
+
+Lab 3:
+

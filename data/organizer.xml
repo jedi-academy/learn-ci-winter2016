@@ -27,7 +27,8 @@ Course organizer for Comp4711
     <week num="3">
         <topic>Controllers &amp; Routing</topic>
         <lesson type="lesson" name="lesson03">Controllers</lesson>
-        <lab type="lab" name="lab03" duedate="2015.01.25 17:30">Controllers</lab>
+        <tutorial type="tutorial" name="tutorial03">CodeIgniter Controllers</tutorial>
+        <lab type="lab" name="lab03" duedate="2015.01.25 17:30">Woreking With Controllers</lab>
     </week>
     <week num="4">
         <topic>Models &amp; ORM</topic>

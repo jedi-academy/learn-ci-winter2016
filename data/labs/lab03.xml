@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lab 02 - CodeIgniter Intro
+-->
+<lab status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Lab Goals" layout="normal">
+        <p>The purpose of this lab is to introduce you to
+            CodeIgniter and the workflow for working with
+            webapps.</p>
+        <p>There are three tutorials to complete, for a passing grade, and then 
+            this optional lab exercise to complete for potentially full
+            marks.</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
+    </slide>
+
+    <slide title="Lab Submission" layout="normal">
+        <p>Your lab will be completed in a github repository.
+        If you are just doing the tutorial part of the lab, this
+        will be your (forked) tutorial 2c repo. If you are doing the optional
+        part of the lab, this will be your (non-forked) converted
+            static site repo.</p>
+        <p>Dayschool students: submit a readme to the lab dropbox. 
+            This readme should have a link to your github repository.</p>
+        <p>Distance students: send me an email with a link to your github repository.</p>
+        <p>Due: Sunday, Jan 18, 17:30 PST</p>
+    </slide>
+
+    <slide title="Lab Marking Guideline" layout="normal">
+        <p>This lab will be marked out of 10, as follows:</p>
+        <ul>
+            <li>Tutorial 02a: add your name to the student list (2)</li>
+            <li>Tutorial 02c: convert the image gallery to a CodeIgniter
+            webapp (5)</li>
+            <li>(Optional) Convert one of the designated static websites to a
+            CodeIgniter webapp (3)</li>
+        </ul>
+        <p>Tutorial 2b is not for any marks.</p>
+    </slide>
+
+    <slide title="Lab Preparation" layout="normal">
+        <p>Three tutorials have been provided, to setup your development
+            environment. Please make sure you have completed them.</p>
+        <ul>
+            <li>
+                <a href="/show/tutorial/02a" target="_blank">Tutorial 02a</a>
+            Working With a Shared Repository</li>
+            <li>
+                <a href="/show/tutorial/02b" target="_blank">Tutorial 02b</a>
+            Setup CodeIgniter</li>
+            <li>
+                <a href="/show/tutorial/02c" target="_blank">Tutorial 02c</a>
+            Convert Static Site to CodeIgniter</li>
+        </ul>
+
+    </slide>
+
+    <slide title="Disclaimer" layout="normal">
+        <p>We will not necessarily be following "best practices" throughout this lab.</p>
+        <p>Our focus is on "baby steps", that will lead to best practices over the
+            next few labs.</p>
+    </slide>
+
+    <slide title="Post Tutorial Notes" layout="normal">
+        <p>If you have completed the week 2 tutorials, you have a "system3" folder
+        inside "XAMPP_PATH/htdocs", and you have an idea how to convert a static
+        website into a CodeIgniter webapp.</p>
+        <p>If you are happy with a passing grade, or if you are out of time, 
+        submit your tutorial 2c repo link. If you are shooting for the highest
+        possible grade, or if you want to practice the conversion process,
+        then continue with this lab.</p>
+        <p>Note: You can always submit a link to the tutorial repo once you 
+            complete it, and then override your submission if you complete
+            the optional part of this lab!</p>
+    </slide>
+
+    <slide title="Eligible Static Sites" layout="normal">
+        <p>Here are six free sample websites from 
+            <a href="http://www.freewebsitetemplates.com/">Free Website 
+                Templates</a> that suit our purposes.
+        </p>
+        <ul>
+            <li><a href="http://www.freewebsitetemplates.com/download/hairstylesalon/">Hairstyle Salon</a></li>
+            <li><a href="http://www.freewebsitetemplates.com/download/lawfirm/">Law Firm Office</a></li>
+            <li><a href="http://www.freewebsitetemplates.com/download/beachresort/">Beach Resort</a></li>
+            <li><a href="http://www.freewebsitetemplates.com/download/gardenwalkthrough/">Garden Walkthrough</a></li>
+            <li><a href="http://www.freewebsitetemplates.com/download/woodworkingwebsitetemplate/">Wood Working</a></li>
+            <li><a href="http://www.freewebsitetemplates.com/download/zerotype/">Zerotype</a></li>
+        </ul>
+    </slide>
+
+   <slide title="Conversion Process" layout="normal">
+       <p>Pick one of the designated sites from the previous slide, and
+       make it into a CodeIgniter webapp.</p>
+       <p>I suggest following the lead of the CodeIgniter conversion
+       project, used in Tutorial 2c.</p>
+       <p>Create a new project for your webapp, extract the free website 
+           into the "public" folder inside your lab 2 project, and
+           then perform the same activites that you did for 
+           tutorial 2c :)</p>
+    </slide>
+
+    <slide title="Are We There Yet?" layout="normal">
+        <p>When you are done, you will submit either the link to your
+        tutorial 2c repository, *or* the link to your converted
+        free website template.</p>
+        <p>In either case, working through the tutorial or converting
+        one of the other static sites, please ask questions
+        if you get stuck!</p>
+    </slide>
+
+</lab>
