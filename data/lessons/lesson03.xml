@@ -38,675 +38,517 @@ Lesson 03 - Controllers
 
     <!-- Normal slides -->
 
-    <slide title="Setup" layout="normal">
-        <h1>Setup</h1>
-        <p>This lesson mentions source code files from
-            the <a href="https://github.com/comp4711/example-contacts" target="_blank">
-                Example Contacts
-            </a> demo webapp. Please download that project first, and extract
-            it locally, so that you can refer to the source files during the lesson.
+    <slide title="Overview" layout="normal" tag="tag1">
+        <div class="left">
+            <p>Controllers are a key component of the MVC design pattern.</p>
+            <p>CodeIgniter controllers are found in the 
+                <code>application/controllers</code> folder.</p>
+            <p>If your webapp is extending the built-in controller with your own,
+                it will be found in 
+                <code>application/core/MY_Controller.php</code>, as you
+                saw in the example-contacts project in lesson 2.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="276" height="290" src="/data/lessons/pix/3-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Types of Controllers" layout="normal">
+        <div class="left">
+            <p>There are three common types of controllers:</p>
+            <ul>
+                <li>A <b>normal</b> controller is expected to return a webpage
+                    to the browser.</li>
+                <li>A <b>utility</b> controller is expected to return a file 
+                    or perhaps a specially formatted data structure.</li>
+                <li>A <b>service</b> controller is expected to implement the
+                    server side of some distributed system protocol (eg. REST).</li>
+            </ul>
+            <p>This week's tutorial will address the first two types, while 
+                service controllers will be addressed in the last third of the course.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="445" height="330" src="/data/lessons/pix/3-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Controller Basics" layout="normal" tag="tag2">
+        <div class="left">
+            <p>Controllers are found in the <code>application/controllers</code> folder</p>
+            <p>Controllers can also be in nested subfolders underneath that.</p>
+            <p>There is a default controller, <code>Welcome</code>, in any folder.
+                This default can be changed, if you like.
+                See the User Guide pages on <a href="http://www.codeigniter.com/userguide3/general/controllers.html" 
+                                               target="_blank">Controllers</a> 
+                and on <a href="http://www.codeigniter.com/userguide3/general/routing.html" 
+                          target="_blank">Routing</a>.</p>
+        </div>
+        <div class="right">
+            <p>A controller is referenced by its lower-case name.
+                The URL <code>comp4711.local/product</code> is a reference
+                to the <code>Product</code> controller.</p>
+            <p>If that same controller were in a subfolder, 
+                <code>application/controllers/inventory</code>, then
+                it would referenced in a URL as <code>comp4711.local/inventory/product</code>.
+            </p>
+            <p>If "orders" was a subfolder, then the URL 
+                <code>comp4711.local/orders</code> would be a reference
+                to the <code>application/orders/Welcome</code> controller.
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Segment Based Naming" layout="normal">
+        <div class="left">
+            <p>URLs are segment based.</p>
+            <p>For instance, the URL <code>example.com/class/function/parm1/parm2</code>
+                is meant to be interpreted as a reference to the <code>function</code>
+                method inside the <code>class</code> controller, with two positional
+                parameters, <code>parm1</code> and <code>parm2</code>,
+                passed to the method invocation.</p>
+            <p>You can't normally pass parameters to a controller's <code>index</code>
+                method. It is *possible* to do so, with some clever routing rules,
+                but that is beyond our scope.</p>
+        </div>
+        <div class="right">
+            <p>You need to be careful with your selection of controller class
+                and method names, or the handling of a request by CodeIgniter
+                might not be what you expect!</p>
+            <p>For example, the URL <code>/apple/banana/pear</code> *could*
+                be resolved by any of the following:
+                <ul>
+                    <li>
+                        <code>Apple::banana(pear)</code> or</li>
+                    <li>
+                        <code>apple/Banana::pear()</code> or</li>
+                    <li>
+                        <code>apple/banana/Pear::index()</code> or</li>
+                    <li>
+                        <code>apple/banana/pear/Welcome::index()</code> 
+                    </li>
+                </ul>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Getting Input" layout="normal" tag="tag3">
+        <p>Your controller normally gets data passed as positional
+            parameters in the URL.</p>
+        <p>For instance, if your method looks like...<br/>
+            <code>function order($item,$quantity) {...}</code>
+            <br/>
+            then the URL <br/>
+            <code>.../order/apple/1</code>
+            <br/>
+            will result in <code>$item</code> having the value 
+            <code>"apple"</code> and 
+            <code>$quantity</code> having the value <code>1</code>
+            inside your method.
         </p>
     </slide>
 
-    <slide title="Overview" layout="normal" tag="tag1">
-        <p>Controllers are a key component of the MVC design pattern.</p>
+    <slide title="Getting Input From a Form" layout="normal">
+        <p>If you are processing an HTML form, then the
+            form fields are accessed inside your handling method
+            by using the <a href="http://www.codeigniter.com/userguide3/libraries/input.html"
+                            target="_blank">Input class</a>.
+        </p>
+        <p>Retrieve field values from the submission using
+            <code>$this-&gt;input-&gt;post(fieldname)</code>.
+        </p>
+        <p>For instance,<br/>
+            <code>$item_code = $this-&gt;input-&gt;post('item');</code>
             <br/>
-            <img class="scale" width="270" height="256" src="/data/lessons/pix/3-1.png"/>
+            will assign the submitted value of the form field with the name attribute
+            "item" to the local variable <code>$item_code</code>.</p>
+        <p>Note that fields are referenced according to their "name" 
+            attribute, and not their "id" attribute.</p>
+            
     </slide>
 
-    <slide title="Design Pattern Driven!" layout="normal">
-        <div class="left">
-            <p>Model-View-Controller is a design pattern.</p>
-            <p>It is an "industry-accepted best practice",
-                that says that it is good to keep separate concerns
-                apart from each other.</p>
-            <p>CodeIgniter has base classes for models and controllers,
-                and it has components to build presentation content
-                separate from these. This is not conventional PHP scripting!</p>
-        </div>
-        <div class="right">
-            <p>A typical MVC framework incorporates many other 
-                <a href="http://en.wikipedia.org/wiki/Software_design_pattern" target="_blank">
-                    design patterns</a>:</p>
-            <ul>
-                <li>DAO (DB access)</li>
-                <li>Business delegate (framework itself)</li>
-                <li>Session facade (session library)</li>
-                <li>Front controller (index.php)</li>
-                <li>Intercepting filter (hooks)</li>
-                <li>Active record (model)</li>
-            </ul>
-
-        </div>
+    <slide title="Getting Input Other Ways" layout="normal">
+        <p>It is *possible* to enable query strings, so that
+            input could be passed in the URL as query parameters
+            (<code>controller?a=...&amp;b=...</code>), but
+            strongly discouraged.</p>
+        <p>It is also possible to access the PHP superglobals
+            (<code>$_POST</code> or <code>$_GET</code>) directly, 
+            but you are then responsible
+            for checking for paremeter existence, and doing your
+            own data cleansing on the values.</p>
+        <p>CodeIgniter has a 
+            <a href="http://www.codeigniter.com/userguide3/libraries/file_uploading.html"
+               target="_blank">File uploading class
+            </a>. We will address this topic in lesson 5</p>
     </slide>
 
-    <slide title="Categorizing MVC Frameworks" layout="normal">
-        <p>Frameworks come in all sizes.</p>
-        <p>They differ in philosophy, scope, management tools
-        &amp; included plugins.</p>
-        <table style="width:90%; font-size:80%;text-align:left">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Adds</th>
-                    <th>Size</th>
-                    <th>Example</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="width:20%">Micro</td>
-                    <td style="width:40%">MVC, plugins, routing, instance</td>
-                    <td style="width:20%">0.3MB</td>
-                    <td style="width:20%">Fat-Free</td>
-                </tr>
-                <tr>
-                    <td>Lean</td>
-                    <td>Config, templates</td>
-                    <td>2MB</td>
-                    <td>CodeIgniter</td>
-                </tr>
-                <tr>
-                    <td>Normal</td>
-                    <td>Scaffolding, auth, ORM, CLI, IDE plugin</td>
-                    <td>10MB</td>
-                    <td>CakePHP</td>
-                </tr>
-                <tr>
-                    <td>Enterprise</td>
-                    <td>Engines (templating, ORM), included plugins, installer, starter, generators</td>
-                    <td>24MB+</td>
-                    <td>Symfony2</td>
-                </tr>
-            </tbody>
-        </table>
+    <slide title="Using Stuff" layout="normal" tag="tag4">
+        <p>"Stuff" is a highly technical term, in this context meaning
+            any support component that comes with CodeIgniter or that you created.</p>
+        <p>Stuff includes models, libraries, helpers, drivers,
+            and configuration settings.</p>
+        <p>A slide for each of these follows, with a simple introduction.
+            Each of the kinds of support component is addressed, in more
+            detail, in upcoming lessons.</p>
     </slide>
 
-    <slide title="Project Files" layout="normal">
-        <div class="left">
-            <p>A CodeIgniter project contains application logic and 
-                support files.</p>
-            <p>"index.php", in the document root, *is* the
-                front controller, i.e. entry point.</p>
-            <p>".htaccess" is an Apache configuration file, to
-                eliminate the need to explicitly have "index.php" in
-                URLs.</p>
-        </div>
-        <div class="right">
+    <slide title="Finding Stuff" layout="normal">
+        <p>CodeIgniter has its own loader, which will generally handle
+            a support component <code>something</code> by looking for
+            <code>application/xxx/Something</code>, and then for 
+            <code>system/xxx/CI_Something</code>, where "xxx" is the 
+            kind of component. This is a simplification of the actual
+            process, which will be described in more detail in
+            later lessons.
+        </p>
+        <p>A controller property, <code>$this-&gt;something</code>, is thereafter
+            available inside your controller.</p>
+        <p>The CodeIgniter loader itself is injected as an object property
+            of your controller, accessible as <code>$this-&gt;load</code>.
+        </p>
+    </slide>
+
+    <slide title="Model Stuff" layout="normal">
+        <p>Model stuff is loaded using the CodeIgniter loader, as in <br/>
+            <code>$this-&gt;load-&gt;model('products');</code>
+        </p>
+        <p>The loader will look for <code>application/models/Products</code>,
+            which is expected to extend a class defined in 
+            <code>application/core/MY_Model</code> or else <code>system/core/CI_Model</code>.
+        </p>
+        <p>A controller property, <code>$this-&gt;products</code>, is thereafter
+            available inside your controller.</p>
+        <p>Note: "products" above is an example model name.</p>
+    </slide>
+
+    <slide title="Library Stuff" layout="normal">
+        <p>Library stuff is loaded using the CodeIgniter loader, as in <br/>
+            <code>$this-&gt;load-&gt;library('supporter');</code>
+        </p>
+        <p>The loader will look for <code>application/libraries/Supporter</code>,
+            and then for <code>system/libraries/CI_Supporter</code>.
+        </p>
+        <p>A controller property, <code>$this-&gt;supporter</code>, is thereafter
+            available inside your controller.</p>
+        <p>Note: "supporter" above is an example library name.</p>
+    </slide>
+
+    <slide title="Driver Stuff" layout="normal">
+        <p>Drivers are special libraries. Each one has a core driver class,
+            and then adapters specific to the kind of driver, for instance
+            providing an implementation for a particular database engine.</p>
+        <p>Driver stuff is loaded using the CodeIgniter loader, as in <br/>
+            <code>$this-&gt;load-&gt;driver('session');</code>
+        </p>
+        <p>The loader will look for <code>system/libraries/Session/Session</code>. 
+            The actual driver object returned will come from inside 
+            <code>system/libraries/Session/drivers/</code>, and will be chosen
+            based on driver configuration data that you have specified
+            in <code>application/config/...</code>.        </p>
+        <p>A controller property, <code>$this-&gt;session</code>, is thereafter
+            available inside your controller.</p>
+        <p>Note: "session" above is used as an example.</p>
+    </slide>
+
+    <slide title="Helper Stuff" layout="normal">
+        <p>Helper stuff is loaded using the CodeIgniter loader, as in <br/>
+            <code>$this-&gt;load-&gt;helper('useful');</code>
+        </p>
+        <p>The loader will look for <code>application/helpers/useful_helper</code>,
+            and then for <code>system/helpers/useful_helper</code>. 
+        </p>
+        <p>Helpers can be extended too, but that is an advanced topic.</p>
+        <p>When a helper is loaded, the functions defined inside it are
+            then available to your controller.</p>
+    </slide>
+
+    <slide title="Configuration Stuff" layout="normal">
+        <p>CodeIgniter automatically loads its 
+            <a href="http://www.codeigniter.com/userguide3/libraries/config.html"
+               target="_blank">configuration class</a>,
+            and injects it as a <code>config</code> property of your controller.
+        </p>
+        <p>You can retrieve configuration settings by<br/>
+            <code>$this-&gt;config-&gt;item(...);</code>
+        </p>
+        <p>Your configuration settings are made through key/value pairs in
+            the different files in <code>application/config</code>.
+        </p>        
+    </slide>
+
+    <slide title="Producing Output" layout="normal" tag="tag5">
+        <p>Your controller can produce output by 
+            <a href="http://www.codeigniter.com/userguide3/general/views.html"
+               target="_blank">loading
+                a view</a> from inside your <code>application/views</code>
+            folder.<br/>
+            <code>$this-&gt;load-&gt;view(name[,parms[,capture]]);</code>
+        </p>
+        <p>This technique simply copies the contents of the named PHP
+            webpage to the output stream.</p>
+        <p>The name of the view file can include subfolders, and *is*
+            case-sensitive, unlike the names used to reference other 
+            "stuff".</p>
+    </slide>
+
+    <slide title="Template Parser" layout="normal">
+        <p>CodeIgniter also includes a simple template parser,
+            which can do simple substitutions. It also uses view files
+            from inside your <code>application/views</code>
+            folder.<br/>
+            <code>$this-&gt;parser-&gt;parse(name[,parms[,capture]]);</code>
+        </p>
+        <p>This technique copies the contents of the named PHP
+            webpage to the output stream, after substituting
+            fields specified inside braces (eg <code>{somefield}</code>).</p>
+        <p>The template parser needs to be loaded, as a library, 
+            before it can be used.</p>
+        <p>You saw this earlier, in the contacts example from lesson 2.</p>
+    </slide>
+
+    <slide title="Template Parser Example" layout="normal">
+        <p>Here is a simple example of field substitution using the
+            template parser.</p>
+        <p>Controller:<br/>
+            <code>$parms=array('username'=&gt;'Jim');</code>
             <br/>
-            <img class="scale" width="270" height="256" src="/data/lessons/pix/2-2.png"/>
-        </div>
+            <code>$this-&gt;parser-&gt;parse('blah',$parms);</code>
+            <br/>
+        </p>
+        <p>View:<br/>
+            <code>&lt;p&gt;Hi there, {username}&lt;/p&gt;</code>
+            <br/>
+        </p>
+        <p>Result:<br/>
+            <code>Hi there, Jim</code>
+            <br/>
+        </p>
     </slide>
 
-    <slide title="Folder Structures" layout="normal">
-        <p>Other frameworks follow similar conventions.</p>
+    <slide title="Template Parser Parameters" layout="normal">
+        <p>Parameters are passed as associative arrays<br/>
+            <code>$parms=array('name'=&gt;'Jim','code'=&gt;'123');</code>
+            <br/>
+        </p>
+        <p>Parameters can be nested...<br/>
+            <code>$parms=array(
+                'items' =&gt; array(<br/>
+                &#160;&#160;&#160;&#160;array('itemcode'=&gt;'1','desc'=&gt;'burger'),<br/>
+                &#160;&#160;&#160;&#160;array('itemcode'=&gt;'2','desc'=&gt;'fries'),<br/>
+                &#160;&#160;), );</code>
+            <br/>
+        </p>
+        <p>These would be used like...<br/>
+            <code>{items}
+&lt;p&gt;{itemcode} means {desc}&lt;/p&gt;
+                {/items}</code>
+            <br/>
+        </p>
+        <p>And the result for the above would look like...<br/>
+            <code> 1 means burger<br/>
+                2 means fries</code>
+            <br/>
+        </p>
+    </slide>
+
+    <slide title="Controller, Revisited" layout="normal">
+        <p>So, putting the previous slides together gives the
+            following steps for each controller's handling method:
+        </p>
+        <ol>
+            <li>Load any needed components</li>
+            <li>Extract input parameters</li>
+            <li>Access your model(s)</li>
+            <li>Validate and process your input, updating any models</li>
+            <li>Build view parameters array</li>
+            <li>Load the proper response view or template</li>
+        </ol>
+    </slide>
+
+    <slide title="Routing" layout="normal" tag="tag6">
+        <p>The controller folder convention can be over-ridden by 
+            specifying 
+            <a href="http://www.codeigniter.com/userguide3/general/routing.html"
+               target="_blank">routing rules</a>, in 
+            <code>application/config/routes.php</code>
+        </p>
+        <p>An example such rule lets you change the default controller:<br/>
+            <code>$route['default_controller'] = 'welcome';</code>
+        </p>
+        <p>If you specify multiple rules, they are tested consecutively
+            until one fits.</p>
+    </slide>
+
+    <slide title="Wildcard Routing" layout="normal">
         <div class="left">
-            <p>
-                <i>Fat-Free</i>
+            <p>A routing rule can use a "wildcard" token,
+                <code>(:num)</code> to match a numeric segment value, or
+                <code>(:any)</code> to match any segment value.
             </p>
-            <img class="scale" width="358" height="315" src="/data/lessons/pix/2-4.png"/>
+            <p>Specify an expression using these as the "key" for a routing
+                rule, and specify the proper destination as the "value".</p>
+            <p>You can use the substitution token <code>$n</code>
+                to reference a URI segment in the original request.</p>
         </div>
         <div class="right">
+            <p>Some examples of routing rules:</p>
             <p>
-                <i>FuelPHP</i>
+                <code>$route['blog/joe'] = "blogs/users/34";</code>
             </p>
-            <img class="scale" width="256" height="576" src="/data/lessons/pix/2-5.jpg"/>
+            <p>
+                <code>$route['product/(:num)'] = "catalog/product_lookup_by_id/$1";</code>
+            </p>
+            <p>
+                <code>$route['page/(:any)'] = 'welcome/page/$1';</code>
+            </p>
+            <p>
+                <code>$route['secret'] = 'youllneverfindme/$1/$2';</code>
+            </p>
         </div>
     </slide>
 
-    <slide title="Class Loader" layout="normal">
-        <p>CodeIgniter has its own class loader.</p>
-        <p>It uses the folder structure to locate classes (per MVC)</p>
-        <pre>
-            <code>
-$this->load->model('customers');
-$this->customers->get(...);
+    <slide title="Regular Expression Routing" layout="normal">
+        <p>You can also use a regular expression in a routing rule.</p>
+        <p>For instance:<br/>
+            <code>$route['products/([a-z]+)/(\d+)'] = "$1/id_$2";</code>
+            <br/>
+            would remap <code>/products/banana/eat</code> 
+            to <code>/eat/id_banana</code>
+        </p>
+        <p>Another example:<br/>
+            <code>$route['([a-z]+)/register'] = 'assimilate/$0';</code>
+            <br/>
+            would remap <code>/jim/register</code> 
+            to <code>/assimilate/jim</code>
+        </p>
+    </slide>
+
+    <slide title="Callback Routing" layout="normal">
+        <p>If you are using PHP &gt;= 5.3 you can use callbacks in place 
+            of the normal routing rules to process the back-references.</p>
+        <p>For instance:<br/>
+            <code>$route['products/([a-zA-Z]+)/edit/(\d+)'] = <br/>
+                function ($product_type, $id)<br/>
+                {<br/>
+&#160;&#160;return 'catalog/product_edit/' . strtolower($product_type) . '/' . $id;<br/>
+                };<br/>
+
             </code>
-        </pre>
-        <p>It enforces naming conventions too.</p>
+        </p>
+        <p>
+            <emphasis>Author's note: this is new to me, and I don't have a
+                good explanation for it (yet).</emphasis>
+        </p>
     </slide>
 
-    <slide title="Routing" layout="normal">
-        <p>CodeIgniter normally routes requests to controllers by
-            convention, i.e. using the URI segment and looking in the controllers
-            folder.Other frameworks often handle routing a bit differently.</p>
-        <div class="left">
-                <i>Kohana</i>
-            <pre>
-                <code>
-Route::set(‘default’, 
-    ‘(&lt;controller&gt;(/&lt;action&gt;(/&lt;id&gt;)))’)
-    ->defaults(array(
-        ‘controller’ =&gt; ‘welcome’, 
-        ‘action’=&gt;‘index’, ))
-                </code>
-            </pre>
-        </div>
-        <div class="right">
-                <i>Laravel</i>
-            <pre>
-                <code>
-//Basic POST Route
-Route::post(‘/’, function()
-{
-     	return ‘example content’;
-});
-                </code>
-            </pre>
-        </div>
-    </slide>
-
-    <slide title="Models" layout="normal" tag="tag2">
-        <div class="left">
-            <p>Models encapsulate data sources or entities.</p>
-            <p>Each model is a class that wraps a data source.</p>
-        </div>
-        <div class="right">
+    <slide title="HTTP Verb Routing" layout="normal">
+        <p>You can specify routing rules that apply to specific HTTP
+            request types. This would be applicable to utility and
+            service controllers.</p>
+        <p>Some examples, in a RESTful fashion:<br/>
+            <code>$route['products']['PUT'] = 'product/insert';</code>
             <br/>
-            <img class="scale" width="279" height="386" src="/data/lessons/pix/2-6.png"/>
-        </div>
+            <code>$route['products/(:num)']['DELETE'] = 'product/delete/$1';</code>
+        </p>
     </slide>
 
-    <slide title="Active Record" layout="normal">
+    <slide title="Hooks" layout="normal" tag="tag7">
         <div class="left">
-            <p>CodeIgniter encourages the Active Record design
-                pattern which says you build CRUD methods into models.</p>
+            <p>The CodeIgniter framework, internally, performs the
+                following steps to handle a request:</p>
+            <ol>
+                <li>Apply routing rules to determine the controller
+                    and method to use</li>
+                <li>Instantiate the controller</li>
+                <li>Invoke the appropriate method, capturing output</li>
+                <li>Return the output to the browser</li>
+            </ol>
         </div>
         <div class="right">
-            <br/>
-            <img class="scale" width="267" height="176" src="/data/lessons/pix/2-7.png"/>
+            <p>CodeIgniter also provides "hooks", to let you
+                inject processing at various pre-defined stages of the
+                request handling.</p>
+            <p>Refer to the <a href="http://www.codeigniter.com/userguide3/general/hooks.html" 
+                               target="_blank">user guide</a> for details!</p>
         </div>
     </slide>
 
-    <slide title="Query Builder" layout="normal">
-        <div class="left">
-            <p>CodeIgniter comes with a QueryBuilder library,
-                to make it easier to access your databases.</p>
-        </div>
-        <div class="right">
-            <pre>
-                <code>
-$this-&gt;db-&gt;select('*')-&gt;from('my_table')
-    -&gt;group_start()
-    -&gt;where('a', 'a')
-    -&gt;or_group_start()
-    -&gt;where('b', 'b')
-    -&gt;where('c', 'c')
-    -&gt;group_end()
-    -&gt;group_end()
-    -&gt;where('d', 'd')
-    -&gt;get();                
-</code>
-            </pre>
-        </div>
-    </slide>
-
-    <slide title="Model Classes" layout="normal">
-        <div class="left">
-            <p>In CodeIgniter, models are classes that extend CI_Model.</p>
-            <p>Each data source, eg. RDB table, has its own model.</p>
-        </div>
-        <div class="right">
-            <pre>
-                <code>
-public class Orders extends CI_Model {
-    public function add_item($code, $quantity) {...}
-    public function calc_total() {...}
-}
-                </code>
-            </pre>
-        </div>
-    </slide>
-
-    <slide title="Model Methods" layout="normal">
-        <p>CRUD</p>
-        <p>Some business logic</p>
-        <p>Work with objects or associative arrays</p>
-        <p>* not * beans, i.e. entity models</p>
-        <p>Do not generate views, but generate or provide data
-            to be passed to views</p>
-        <p>Usage: $this->load->model('goodies');</p>
-    </slide>
-
-    <slide title="Base Model" layout="normal">
-        <p>You can provide your own base model, MY_Model, with
-            common methods. See core/MY_Model in the example webapp.</p>
-        <p>This could be used to provide a simple object-relational map.</p>
-        <p>Sample properties: $_tableName, $_keyField</p>
-        <p>Sample methods: create() get($key), add($record), 
-            update($record), delete($key), exists($key)</p>
-    </slide>
-
-    <slide title="Other Model Examples" layout="normal">
-        <p>Other frameworks have similar functionality.</p>
-        <div class="left">
-                <i>Fat-Free</i>
-            <pre>
-                <code>
-$db = new DB\SQL('mysql:host=localhost';
-    port=3306;dbname=mystuff',
-    'myuserid','mypassword');
-$user = new DB\SQL\Mapper($db,'users');
-$user-&gt;load('id=1');
-$user-&gt;name='Pointy haired boss';
-$user-&gt;save();                 
-                </code>
-            </pre>
-        </div>
-        <div class="right">
-                <i>CakePHP</i>
-            <pre>
-                <code>
-App::uses(’AppModel’, ’Model’);
-class Ingredient extends AppModel {
-    public $name = ’Ingredient’;
-}                
-                </code>
-            </pre>
-        </div>
-    
-    </slide>
-
-    <slide title="Controllers" layout="normal" tag="tag3">
-        <div class="left">
-            <p>Controllers handle incoming requests.</p>
-            <p>A Controller serves as an intermediary between the Model, 
-                the View, and any other resources needed to process an 
-                HTTP request and generate a web page.</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="225" height="148" src="/data/lessons/pix/2-8.png"/>
-        </div>
-    </slide>
-
-    <slide title="CI Controllers" layout="normal">
-        <div class="left">
-            <p>In CI, controllers are classes that extend CI_Controller or your base controller</p>
-            <p>Our base controller implements view templating, through render()</p>
-            <p>See application/core/MY_Controller.php</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="240" height="174" src="/data/lessons/pix/2-9.png"/>
-        </div>
-    </slide>
-
-    <slide title="App Controllers" layout="normal">
-        <p>Each of your webapp controllers builds on your base controller</p>
-        <p>Normally, each usecase has its own controller</p>
-        <p>Additionally, controllers or subcontrollers are used for services</p>
-        <p>See application/controllers/Welcome.php</p>
-    </slide>
-
-    <slide title="Controller Methods" layout="normal">
-        <p>URLs are segment based</p>
-        <p>example.com/class/function/parm1/parm2</p>
-        <p>index() is the default handler function</p>
-        <p>Other functions are treated as sub-controllers</p>
-        <p>Parameters are passed positionally</p>
-        <p>Confusion is possible ...
-            application/controllers/business/work</p>
-    </slide>
-
-    <slide title="Example Base Controller" layout="normal">
-        <p>core/MY_Controller.php</p>
-        <pre>
-            <code>
-class Application extends CI_Controller {
-// fields
-
-function __construct() {
-    parent::__construct();
-    // make sure we play the game nicely
-    $this-&gt;load-&gt;helper('common');
-    $this-&gt;load-&gt;helper('url');
-}
-
-function render() {...}
-}            
-            </code>
-        </pre>
-    </slide>
-
-    <slide title="Other Framework Examples" layout="normal">
-        <div class="left">
-                <i>FuelPHP</i>
-            <pre>
-                <code>
-class Controller_Example extends Controller {
-
-    public function action_index() {
-        $data['css'] = Asset::css(array
-            ('reset.css','960.css','main.css'));
-        return Response::forge(View::forge('welcome/index'));
-    }
-}
-                </code>
-            </pre>
-        </div>
-        <div class="right">
-                <i>Laravel</i>
-            <pre>
-                <code>
-class Controller extends BaseController {
-    public function home() {
-        return View::make(‘home’);
-    }
-}                
-...                
-Route::get(‘/’, ‘Controller@home’)                
-                </code>
-            </pre>
-        </div>
-    
-    </slide>
-    
-    <slide title="Views" layout="normal" tag="tag4">
-        <div class="left">
-            <p>Views are the components that deal with presentation,
-                typically for a web browser.</p>
-            <p>Views generate the information presented to a user, 
-                for instance a web page.</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="234" height="336" src="/data/lessons/pix/2-10.png"/>
-        </div>
-    </slide>
-
-    <slide title="View Templates" layout="normal">
-        <p>A normal practice is to build a view template, 
-            which wraps the "real" webpage body, whose name is 
-            passed as a parameter; this is managed by the base controller</p>
-        <p>CI has a template parser built-in, which lets us 
-            eliminate most PHP script from a view.</p>
-        <p>See application/views/_template.php</p>
-    </slide>
-
-    <slide title="View Fragments" layout="normal">
-        <p>Each of your view fragments is stored in its own file, 
-            using the substitution fields for passed parameters.</p>
-        <p>Substitution fields are enclosed in braces inside your view file.</p>
-        <p>See application/views/homepage.php</p>
-    </slide>
-
-    <slide title="View Usage" layout="normal">
-        <p>Javascript libraries are not well-supported in CI; 
-            you can use them, but effectively client-side</p>
-        <p>Do use CSS to control the appearance</p>
-        <p>Usage: $this-&gt;load-&gt;view('showoff',$data); or 
-            $this-&gt;parser-&gt;load('showoff',$data);</p>;
-        <p>Spoiler: JS/CSS integration coming  :)</p>
-    </slide>
-
-    <slide title="View Examples From Other Frameworks" layout="normal">
-        <p>Other frameworks have similar functionality.</p>
-        <div class="left">
-                <i>Fat-Free</i>
-            <pre>
-                <code>
-$f3-&gt;set('name','Jim');
-$f3-&gt;set('title','Sir');
-...
-$view = new Template;
-echo $view-&gt;render('template.html');
-
-where the HTML fragment includes
-... &lt;p&gt;Hello {{ @title }} {{ @name }}&lt;/p&gt;
-                </code>
-            </pre>
-        </div>
-        <div class="right">
-                <i>FuelPHP</i>
-            <pre>
-                <code>
-fuel/app/views/layout.php ...
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;?php echo $head; ?&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;?php echo $header; ?&gt;
-        &lt;?php echo $content; ?&gt;
-        &lt;?php echo $footer; ?&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-                </code>
-            </pre>
-        </div>
-    </slide>
-    
-    <slide title="View Methods" layout="normal">
-        <p>Seriously?</p>
-        <p>If you need functionality, use helpers</p>
-    </slide>
-
-    <slide title="Support Components" layout="normal" tag="tag5">
-        <h1>Support Components</h1>
-        <p>An MVC framework comes with a number of pre-built 
-            classes or scripts to make your webapp development
-            easier and more consistent.</p>
-        <p>These are collectively referred to as support components</p>
-    </slide>
-
-    <slide title="Libraries" layout="normal" >
-        <div class="left">
-            <p>Any classes that you would like to use can be put into 
-                the application/libraries folder</p>
-            <p>Usage: $this-&gt;load-&gt;library('whatever');</p>
-            <p>Examples: third party classes, bean-like classes?</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="264" height="600" src="/data/lessons/pix/2-11.png"/>
-        </div>
-    </slide>
-
-    <slide title="Example Library: Product" layout="normal">
-        <p>libraries/Product.php</p>
-        <p>Use for object model for entities stored in an XML 
-            document or RDB table</p>
-        <p>"models/products" would be the aggregation of these</p>
-        <p>Again, just one way to do this</p>
-    </slide>
-
-    <slide title="Libraries in Other Frameworks" layout="normal" >
-        <div class="left">
-            <p>Laravel</p>
-            <ul>
-                <li>Auth</li>
-                <li>Validation</li>
-                <li>Pagination</li>
-                <li>Database</li>
-            </ul>
-        </div>
-        <div class="right">
-            <p>Symfony</p>
-            <ul>
-                <li>Browserkit</li>
-                <li>Config</li>
-                <li>DomCrawler</li>
-                <li>Finder</li>
-                <li>OptionsResolver</li>
-                <li>...</li>
-            </ul>
-        </div>
-    </slide>
-
-    <slide title="Helpers" layout="normal" >
-        <div class="left">
-            <p>Put commonly used functions inside a "helper" script</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="255" height="246" src="/data/lessons/pix/2-12.png"/>
-        </div>
-    </slide>
-
-    <slide title="Helpers are &quot;Classic&quot;" layout="normal" >
-        <div class="left">
-            <p>Functions in any such loaded helpers are available everywhere</p>
-            <p>Usage: $this-&gt;load-&gt;helper('common');</p>
-            <p>See application/helpers/common_helper.php</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="336" height="592" src="/data/lessons/pix/2-13.png"/>
-        </div>
-    </slide>
-
-    <slide title="Example Helper: common_helper" layout="normal" >
-        <p>Form field handling, using associative array as data 
-            transfer object/buffer</p>
-        <p>fieldExtract($source,$target,$fields)<br/>
-            -$source – assoc array from form<br/>
-            -$target – corresponding object<br/>
-            -$fields – names of fields in this form</p>
-        <p>fieldInject($source,$target,$fields)<br/>
-            -$source – original data object<br/>
-            -$target – assoc array for parameters to view<br/>
-            -$fields – names of fields in this form</p>
-    </slide>
-
-    <slide title="Utilities Examples" layout="normal" >
-        <p>Many frameworks come with bundled utilities.</p>
-        <div class="left">
-                <i>Yii</i>
-            <br/>
-            <img class="scale" width="337" height="268" src="/data/lessons/pix/2-15.png"/>
-        </div>
-        <div class="right">
-                <i>FuelPHP</i>
-            <p>
-                <pre>
-                    <code>
-$ php oil g scaffold monkey name:string description:text
-
-Created model: APPPATH/classes/model/monkey.php
-Created migration: APPPATH/migrations/003_create_monkeys.php
-Created controller: APPPATH/classes/controller/monkeys.php
-Created view: APPPATH/views/monkeys/index.php
-Created view: APPPATH/views/monkeys/view.php
-Created view: APPPATH/views/monkeys/create.php
-Created view: APPPATH/views/monkeys/edit.php
-Created view: APPPATH/views/monkeys/_form.php                    
-                    </code>
-                </pre>
-            </p>
-        </div>
-    </slide>
-
-    <slide title="Configuration" layout="normal" >
-        <div class="left">
-            <p>CodeIgniter provides a "config" folder to 
-                let you customize your web app</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="234" height="334" src="/data/lessons/pix/2-14.png"/>
-        </div>
-    </slide>
-
-    <slide title="Configuration Practices" layout="normal">
-        <p>index.php points to your system folder</p>
-        <p>application/config/ contains...</p>
+    <slide title="Hook Points" layout="normal">
+        <p>The following are some of the "hook points" that you can use:</p>
         <ul>
-            <li>autoload – specify components to pre-load </li>
-            <li>config – specify application parameters</li>
-            <li>database – specify RDB parameters</li>
-            <li>routes – specify default controller</li>
+            <li>pre_system</li>
+            <li>pre_controller</li>
+            <li>post_controller_constructor</li>
+            <li>post_controller</li>
+            <li>display_override</li>
+            <li>post_system</li>
         </ul>
+        <p>Hooks are configured similarly to routes, and you can have
+            multiple hooks for the same hook point.</p>
     </slide>
 
-    <slide title="Configuration Examples From Other Frameworks" layout="normal" >
-        <div class="left">
-                <i>Laravel</i>
-                <pre>
-                    <code>
-composer create-project laravel/laravel project_name --prefer-dist
-Composer.json:
-"require": {
-    "laravel/framework": "4.1.*",
-    "intervention/image": "1.*"
-}
+    <slide title="Adding Hooks" layout="normal">
+        <p>Configure your hooks in <code>application/config/hooks</code></p>
+        <p>An example:</p>
+        <p>
+            <code>$hookie = array(<br/>
+            &#160;&#160;'class'=&gt;..., <br/>
+            &#160;&#160;'function'=&gt;..., <br/>
+            &#160;&#160;'filename'=&gt;..., <br/>
+            &#160;&#160;'filepath'=&gt;..., <br/>
+            &#160;&#160;'params'=&gt;...<br/>
+                );</code>
+        </p>
+        <p>
+            <code>$hooks[entrypoint][] = $hookie;</code>
+        </p>
+    </slide>
 
-Composer update
-                    </code>
-                </pre>
+    <slide title="Loose Ends" layout="normal" tag="tag8">
+        <p>Upcoming lessons will address some more exotic controller issues:
+            <ul>
+                <li>Webapp error handling (avoid getting fired)</li>
+                <li>Handling AJAX requests</li>
+                <li>Handling service requests</li>
+                <li>Handling plugins for additional resources</li>
+            </ul>
+        </p>
+        <p>Caution: Before using a feature, eg. hooks or routing, RTFM!</p>
+    </slide>
+
+    <slide title="Coding Conventions" layout="normal">
+        <div class="left">
+            <p>Required:
+                <ul>
+                    <li>Class and file naming - "ucfirst"</li>
+                </ul>
+            </p>
+           <p>Allowed:
+                <ul>
+                    <li>deviations from the suggested, for good reason</li>
+                    <li>multiple classes (related) in file</li>
+                </ul>
+            </p>
+            <p>Bad ideas:
+                <ul>
+                    <li>PHP namespaces (for now)</li>
+                </ul>
+            </p>
         </div>
         <div class="right">
-                <i>Kohana</i>
-                <pre>
-                    <code>
-Kohana::modules(array(
-   'auth'   	=&gt; MODPATH.'auth',   	// Basic authentication
-   'cache'  	=&gt; MODPATH.'cache',  	// Caching with multiple backends
-   'codebench'  =&gt; MODPATH.'codebench',  // Benchmarking tool
-   'database'   =&gt; MODPATH.'database',   // Database access
-   'image'  	=&gt; MODPATH.'image',  	// Image manipulation
-   'orm'    	=&gt; MODPATH.'orm',    	// Object Relationship Mapping
-   'oauth'  	=&gt; MODPATH.'oauth',  	// OAuth authentication
-   'pagination' =&gt; MODPATH.'pagination', // Paging of results
-   'unittest'   =&gt; MODPATH.'unittest',   // Unit testing
-   'userguide'  =&gt; MODPATH.'userguide',  // User guide and API documentation
-   ));
-                    </code>
-                </pre>
+             <p>Suggested (for methods &amp; variables):
+                <ul>
+                    <li>words separated by underscores</li>
+                    <li>underscores in front of internal items</li>
+                    <li>Allman style braces &amp; indenting</li>
+                    <li>commenting, Javadoc style!</li>
+                    <li>value &amp; type comparison (===)!</li>
+                    <li>don't use closing PHP tag at end of file!</li>
+                </ul>
+            </p>
         </div>
-    </slide>
-
-    <slide title="Your CodeIgniter Webapp!" layout="normal" tag="tag6">
-        <h1>Your CodeIgniter Webapp!</h1>
-        <p>This is a simplified look at where stuff goes inside
-            your webapp, and the general steps you would follow
-            to build a simple CodeIgniter webapp.</p>
-    </slide>
-
-    <slide title="Your Folder Structure" layout="normal">
-        <p>CI system → /xampp/htdocs/system3</p>
-        <p>CI user guide → desktop?</p>
-        <p>CI starter → copy to /xampp/htdocs and tailor for a new webapp</p>
-        <p>NOTE: the starter project differs from the official CI download 
-            in several ways: 
-            base controller with templating,
-            simple "ORM: model,
-            standard config for Apache</p>
-    </slide>
-
-    <slide title="Setup Your Webapp" layout="normal">
-        <p>Copy/extract the starter to a folder in htdocs</p>
-        <p>Open it with NB &amp; rename (proj &amp; folder)</p>
-        <p>Ensure virtual host mapping</p>
-        <p>Modify NB project run config?</p>
-        <p>Create RDB if needed</p>
-    </slide>
-
-    <slide title="Configure Your Webapp" layout="normal">
-        <p>config/constants.php – adjust as needed</p>
-        <p>config/config.php – define menu navbar</p>
-    </slide>
-
-    <slide title="Setup Your View Template" layout="normal">
-        <p>Make a wireframe model for the website.</p>
-        <p>Tailor views/_template.php to match it</p>
-        <p>This template contains only the common page elements for the site, 
-            with substitutable fields for the menu and content.</p>
-    </slide>
-
-    <slide title="Tailor Your Webapp" layout="normal">
-        <p>controllers/?.php – controller per navbar item, 
-            bound to corresponding view</p>
-        <p>models/?.php – model per RDB table</p>
-        <p>views/welcome.php – tailor your homepage</p>
-        <p>views/?.php – view per controller</p>
-    </slide>
-
-    <slide title="Manage Your Assets" layout="normal">
-        <p>assets/css/style.css – your CSS</p>
-        <p>assets/images/ - your webapp images</p>
-        <p>assets/css/ - any imported CSS frameworks</p>
-        <p>assets/js/ - any imported JS frameworks</p>
     </slide>
 
 

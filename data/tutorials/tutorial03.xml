@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Tutorial 02a - Working With a Shared Repository
+Tutorial 03 - Working With Controllers & Routing
 -->
 <tutorial status="beta">
     <!-- Activity metadata ... override anything from the course or organizer -->
     
     <!-- The meat of the presentation -->
     <slide title="Tutorial Goals" layout="normal">
-        <p>This tutorial will walk you through working with a shared
-            repository.</p>
-        <p>The goal is to add your name to the appropriate list, in the
-            appropriate order, on the 
-            <a href="https://github.com/comp4711/winter2015-students">Winter 
-                2015 Students</a> list.
-        </p>
+        <p>This tutorial will walk you through some common controller and
+            routing challenges.</p>
+        <p>The goal is to fix the broken starter webapp, as directed.</p>
         <p>That can't be so hard, can it? &lt;-- said with a straight face.</p>
         <p>Suggestion: you may want to skim the slideshow first,
             before working your way through it.</p>
