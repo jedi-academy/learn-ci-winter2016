@@ -117,6 +117,40 @@ Lesson 2:
 - (seem like it's a CI2 project and a CI3 system? since you look for a CI3 
     core file only avaiavle in CI3 and have the errors folder outside 
     and not in views.
+- I had to go back through this lesson and make some notes as a lot of it 
+had not sunk in when I came to do the lab. 
+Having gone through it again, a few key things became clear when also 
+googling the bits I wasn't clear on although some bits could still do with 
+some clarification. 
+- Initially thought the names MY-Model and MY_Controller were just your 
+choice of a name to use in the slides but it appears they are actually "the" 
+names you need to use when defining your own base model/controller in /core. 
+Is this the case ie convention over configuration? 
+- I think the slide on controller URI format would benefit from an example 
+that calls out the various parts as this wasn't clear to me e.g. 
+"If we consider the URI below: example.com/index.php/products/shoes/sandals/123 
+the 'segments' that make up this URI correspond to the following: 
+â€¢ index.php - the default controller filename 
+â€¢ products - the controller class name 
+â€¢ shoes - a function of the controller 
+â€¢ sandals - parameter one of the shoes function 
+â€¢ 43 - parameter two of the shoes function 
+Hence, our controller definition of "products" in the index.php file 
+will look like the following: 
+&lt;?php class Products extends CI_Controller {      
+public function shoes($style, $size)     {         
+echo $style;         echo $size;     } } ?&gt;
+
+- Do you have to copy the support components you want to use from the system 
+subdirectories into the subfolders of the application	 
+or can you leave them in he system hierarchy and refer to them there?
+- I think it would be good to point out that the name used to refer to a helper 
+file when loading it is the file name with the "_helper.php" removed
+- It was also interesting to note that the helper files don't contain classes 
+but standalone functions as I am new to PHP and hadn't reliased you could have 
+standalone functions outside of a class
+
+
 
 Example webapp - contacts:
 
@@ -216,6 +250,9 @@ Tutorial 2b:
     as well as .htaccess
     although when I looked in the httpd.conf file	 
     this parameter did not exist in the file &#40	not even commented out&#41
+- What do you mean when you say starter's root when placing .htaccess? 
+Is it in the starter folder itself, or is it in the parent folder of the starter folder?
+- Slide 6 Typo: fodlers
 
 
 Tutorial 2c:
@@ -340,6 +377,11 @@ Week 3
 Lesson 3:
 
 Tutorial 3:
+- i know in the beginning, it says to read over all the slides before tackling 
+the lab, but i didn't do that; i think on slide 4, it should mention that 
+there's a list of what should be done on slide 5. 
+- It took me a little while to understand what you meant on page 5 but 
+everything else was clear.
 
 Lab 3:
 
