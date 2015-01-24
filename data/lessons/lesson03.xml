@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 03 - Controllers
+-->
+<lesson status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <!-- Agenda -->
+    <slide title="Agenda" layout="normal">
+        <ol>
+            <li>
+                <a href="#{tag1}">Overview</a>
+            </li>
+            <li>
+                <a href="#{tag2}">Controller Basics</a>
+            </li>
+            <li>
+                <a href="#{tag3}">Getting Input</a>
+            </li>
+            <li>
+                <a href="#{tag4}">Using Stuff</a>
+            </li>
+            <li>
+                <a href="#{tag5}">Producing Output</a>
+            </li>
+            <li>
+                <a href="#{tag6}">Routing</a>
+            </li>
+            <li>
+                <a href="#{tag7}">Hooks</a>
+            </li>
+            <li>
+                <a href="#{tag8}">Loose Ends</a>
+            </li>
+        </ol>
+    </slide>
+
+
+    <!-- Normal slides -->
+
+    <slide title="Overview" layout="normal" tag="tag1">
+        <div class="left">
+            <p>Controllers are a key component of the MVC design pattern.</p>
+            <p>CodeIgniter controllers are found in the 
+                <code>application/controllers</code> folder.</p>
+            <p>If your webapp is extending the built-in controller with your own,
+                it will be found in 
+                <code>application/core/MY_Controller.php</code>, as you
+                saw in the example-contacts project in lesson 2.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="276" height="290" src="/data/lessons/pix/3-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Types of Controllers" layout="normal">
+        <div class="left">
+            <p>There are three common types of controllers:</p>
+            <ul>
+                <li>A <b>normal</b> controller is expected to return a webpage
+                    to the browser.</li>
+                <li>A <b>utility</b> controller is expected to return a file 
+                    or perhaps a specially formatted data structure.</li>
+                <li>A <b>service</b> controller is expected to implement the
+                    server side of some distributed system protocol (eg. REST).</li>
+            </ul>
+            <p>This week's tutorial will address the first two types, while 
+                service controllers will be addressed in the last third of the course.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="445" height="330" src="/data/lessons/pix/3-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Controller Basics" layout="normal" tag="tag2">
+        <div class="left">
+            <p>Controllers are found in the <code>application/controllers</code> folder</p>
+            <p>Controllers can also be in nested subfolders underneath that.</p>
+            <p>There is a default controller, <code>Welcome</code>, in any folder.
+                This default can be changed, if you like.
+                See the User Guide pages on <a href="http://www.codeigniter.com/userguide3/general/controllers.html" 
+                                               target="_blank">Controllers</a> 
+                and on <a href="http://www.codeigniter.com/userguide3/general/routing.html" 
+                          target="_blank">Routing</a>.</p>
+        </div>
+        <div class="right">
+            <p>A controller is referenced by its lower-case name.
+                The URL <code>comp4711.local/product</code> is a reference
+                to the <code>Product</code> controller.</p>
+            <p>If that same controller were in a subfolder, 
+                <code>application/controllers/inventory</code>, then
+                it would referenced in a URL as <code>comp4711.local/inventory/product</code>.
+            </p>
+            <p>If "orders" was a subfolder, then the URL 
+                <code>comp4711.local/orders</code> would be a reference
+                to the <code>application/orders/Welcome</code> controller.
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Segment Based Naming" layout="normal">
+        <div class="left">
+            <p>URLs are segment based.</p>
+            <p>For instance, the URL <code>example.com/class/function/parm1/parm2</code>
+                is meant to be interpreted as a reference to the <code>function</code>
+                method inside the <code>class</code> controller, with two positional
+                parameters, <code>parm1</code> and <code>parm2</code>,
+                passed to the method invocation.</p>
+            <p>You can't normally pass parameters to a controller's <code>index</code>
+                method. It is *possible* to do so, with some clever routing rules,
+                but that is beyond our scope.</p>
+        </div>
+        <div class="right">
+            <p>You need to be careful with your selection of controller class
+                and method names, or the handling of a request by CodeIgniter
+                might not be what you expect!</p>
+            <p>For example, the URL <code>/apple/banana/pear</code> *could*
+                be resolved by any of the following:
+                <ul>
+                    <li>
+                        <code>Apple::banana(pear)</code> or</li>
+                    <li>
+                        <code>apple/Banana::pear()</code> or</li>
+                    <li>
+                        <code>apple/banana/Pear::index()</code> or</li>
+                    <li>
+                        <code>apple/banana/pear/Welcome::index()</code> 
+                    </li>
+                </ul>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Getting Input" layout="normal" tag="tag3">
+        <p>Your controller normally gets data passed as positional
+            parameters in the URL.</p>
+        <p>For instance, if your method looks like...<br/>
+            <code>function order($item,$quantity) {...}</code>
+            <br/>
+            then the URL <br/>
+            <code>.../order/apple/1</code>
+            <br/>
+            will result in <code>$item</code> having the value 
+            <code>"apple"</code> and 
+            <code>$quantity</code> having the value <code>1</code>
+            inside your method.
+        </p>
+    </slide>
+
+    <slide title="Getting Input From a Form" layout="normal">
+        <p>If you are processing an HTML form, then the
+            form fields are accessed inside your handling method
+            by using the <a href="http://www.codeigniter.com/userguide3/libraries/input.html"
+                            target="_blank">Input class</a>.
+        </p>
+        <p>Retrieve field values from the submission using
+            <code>$this-&gt;input-&gt;post(fieldname)</code>.
+        </p>
+        <p>For instance,<br/>
+            <code>$item_code = $this-&gt;input-&gt;post('item');</code>
+            <br/>
+            will assign the submitted value of the form field with the name attribute
+            "item" to the local variable <code>$item_code</code>.</p>
+        <p>Note that fields are referenced according to their "name" 
+            attribute, and not their "id" attribute.</p>
+            
+    </slide>
+
+    <slide title="Getting Input Other Ways" layout="normal">
+        <p>It is *possible* to enable query strings, so that
+            input could be passed in the URL as query parameters
+            (<code>controller?a=...&amp;b=...</code>), but
+            strongly discouraged.</p>
+        <p>It is also possible to access the PHP superglobals
+            (<code>$_POST</code> or <code>$_GET</code>) directly, 
+            but you are then responsible
+            for checking for paremeter existence, and doing your
+            own data cleansing on the values.</p>
+        <p>CodeIgniter has a 
+            <a href="http://www.codeigniter.com/userguide3/libraries/file_uploading.html"
+               target="_blank">File uploading class
+            </a>. We will address this topic in lesson 5</p>
+    </slide>
+
+    <slide title="Using Stuff" layout="normal" tag="tag4">
+        <p>"Stuff" is a highly technical term, in this context meaning
+            any support component that comes with CodeIgniter or that you created.</p>
+        <p>Stuff includes models, libraries, helpers, drivers,
+            and configuration settings.</p>
+        <p>A slide for each of these follows, with a simple introduction.
+            Each of the kinds of support component is addressed, in more
+            detail, in upcoming lessons.</p>
+    </slide>
+
+    <slide title="Finding Stuff" layout="normal">
+        <p>CodeIgniter has its own loader, which will generally handle
+            a support component <code>something</code> by looking for
+            <code>application/xxx/Something</code>, and then for 
+            <code>system/xxx/CI_Something</code>, where "xxx" is the 
+            kind of component. This is a simplification of the actual
+            process, which will be described in more detail in
+            later lessons.
+        </p>
+        <p>A controller property, <code>$this-&gt;something</code>, is thereafter
+            available inside your controller.</p>
+        <p>The CodeIgniter loader itself is injected as an object property
+            of your controller, accessible as <code>$this-&gt;load</code>.
+        </p>
+    </slide>
+
+    <slide title="Model Stuff" layout="normal">
+        <p>Model stuff is loaded using the CodeIgniter loader, as in <br/>
+            <code>$this-&gt;load-&gt;model('products');</code>
+        </p>
+        <p>The loader will look for <code>application/models/Products</code>,
+            which is expected to extend a class defined in 
+            <code>application/core/MY_Model</code> or else <code>system/core/CI_Model</code>.
+        </p>
+        <p>A controller property, <code>$this-&gt;products</code>, is thereafter
+            available inside your controller.</p>
+        <p>Note: "products" above is an example model name.</p>
+    </slide>
+
+    <slide title="Library Stuff" layout="normal">
+        <p>Library stuff is loaded using the CodeIgniter loader, as in <br/>
+            <code>$this-&gt;load-&gt;library('supporter');</code>
+        </p>
+        <p>The loader will look for <code>application/libraries/Supporter</code>,
+            and then for <code>system/libraries/CI_Supporter</code>.
+        </p>
+        <p>A controller property, <code>$this-&gt;supporter</code>, is thereafter
+            available inside your controller.</p>
+        <p>Note: "supporter" above is an example library name.</p>
+    </slide>
+
+    <slide title="Driver Stuff" layout="normal">
+        <p>Drivers are special libraries. Each one has a core driver class,
+            and then adapters specific to the kind of driver, for instance
+            providing an implementation for a particular database engine.</p>
+        <p>Driver stuff is loaded using the CodeIgniter loader, as in <br/>
+            <code>$this-&gt;load-&gt;driver('session');</code>
+        </p>
+        <p>The loader will look for <code>system/libraries/Session/Session</code>. 
+            The actual driver object returned will come from inside 
+            <code>system/libraries/Session/drivers/</code>, and will be chosen
+            based on driver configuration data that you have specified
+            in <code>application/config/...</code>.        </p>
+        <p>A controller property, <code>$this-&gt;session</code>, is thereafter
+            available inside your controller.</p>
+        <p>Note: "session" above is used as an example.</p>
+    </slide>
+
+    <slide title="Helper Stuff" layout="normal">
+        <p>Helper stuff is loaded using the CodeIgniter loader, as in <br/>
+            <code>$this-&gt;load-&gt;helper('useful');</code>
+        </p>
+        <p>The loader will look for <code>application/helpers/useful_helper</code>,
+            and then for <code>system/helpers/useful_helper</code>. 
+        </p>
+        <p>Helpers can be extended too, but that is an advanced topic.</p>
+        <p>When a helper is loaded, the functions defined inside it are
+            then available to your controller.</p>
+    </slide>
+
+    <slide title="Configuration Stuff" layout="normal">
+        <p>CodeIgniter automatically loads its 
+            <a href="http://www.codeigniter.com/userguide3/libraries/config.html"
+               target="_blank">configuration class</a>,
+            and injects it as a <code>config</code> property of your controller.
+        </p>
+        <p>You can retrieve configuration settings by<br/>
+            <code>$this-&gt;config-&gt;item(...);</code>
+        </p>
+        <p>Your configuration settings are made through key/value pairs in
+            the different files in <code>application/config</code>.
+        </p>        
+    </slide>
+
+    <slide title="Producing Output" layout="normal" tag="tag5">
+        <p>Your controller can produce output by 
+            <a href="http://www.codeigniter.com/userguide3/general/views.html"
+               target="_blank">loading
+                a view</a> from inside your <code>application/views</code>
+            folder.<br/>
+            <code>$this-&gt;load-&gt;view(name[,parms[,capture]]);</code>
+        </p>
+        <p>This technique simply copies the contents of the named PHP
+            webpage to the output stream.</p>
+        <p>The name of the view file can include subfolders, and *is*
+            case-sensitive, unlike the names used to reference other 
+            "stuff".</p>
+    </slide>
+
+    <slide title="Template Parser" layout="normal">
+        <p>CodeIgniter also includes a simple template parser,
+            which can do simple substitutions. It also uses view files
+            from inside your <code>application/views</code>
+            folder.<br/>
+            <code>$this-&gt;parser-&gt;parse(name[,parms[,capture]]);</code>
+        </p>
+        <p>This technique copies the contents of the named PHP
+            webpage to the output stream, after substituting
+            fields specified inside braces (eg <code>{somefield}</code>).</p>
+        <p>The template parser needs to be loaded, as a library, 
+            before it can be used.</p>
+        <p>You saw this earlier, in the contacts example from lesson 2.</p>
+    </slide>
+
+    <slide title="Template Parser Example" layout="normal">
+        <p>Here is a simple example of field substitution using the
+            template parser.</p>
+        <p>Controller:<br/>
+            <code>$parms=array('username'=&gt;'Jim');</code>
+            <br/>
+            <code>$this-&gt;parser-&gt;parse('blah',$parms);</code>
+            <br/>
+        </p>
+        <p>View:<br/>
+            <code>&lt;p&gt;Hi there, {username}&lt;/p&gt;</code>
+            <br/>
+        </p>
+        <p>Result:<br/>
+            <code>Hi there, Jim</code>
+            <br/>
+        </p>
+    </slide>
+
+    <slide title="Template Parser Parameters" layout="normal">
+        <p>Parameters are passed as associative arrays<br/>
+            <code>$parms=array('name'=&gt;'Jim','code'=&gt;'123');</code>
+            <br/>
+        </p>
+        <p>Parameters can be nested...<br/>
+            <code>$parms=array(
+                'items' =&gt; array(<br/>
+                &#160;&#160;&#160;&#160;array('itemcode'=&gt;'1','desc'=&gt;'burger'),<br/>
+                &#160;&#160;&#160;&#160;array('itemcode'=&gt;'2','desc'=&gt;'fries'),<br/>
+                &#160;&#160;), );</code>
+            <br/>
+        </p>
+        <p>These would be used like...<br/>
+            <code>{items}
+&lt;p&gt;{itemcode} means {desc}&lt;/p&gt;
+                {/items}</code>
+            <br/>
+        </p>
+        <p>And the result for the above would look like...<br/>
+            <code> 1 means burger<br/>
+                2 means fries</code>
+            <br/>
+        </p>
+    </slide>
+
+    <slide title="Controller, Revisited" layout="normal">
+        <p>So, putting the previous slides together gives the
+            following steps for each controller's handling method:
+        </p>
+        <ol>
+            <li>Load any needed components</li>
+            <li>Extract input parameters</li>
+            <li>Access your model(s)</li>
+            <li>Validate and process your input, updating any models</li>
+            <li>Build view parameters array</li>
+            <li>Load the proper response view or template</li>
+        </ol>
+    </slide>
+
+    <slide title="Routing" layout="normal" tag="tag6">
+        <p>The controller folder convention can be over-ridden by 
+            specifying 
+            <a href="http://www.codeigniter.com/userguide3/general/routing.html"
+               target="_blank">routing rules</a>, in 
+            <code>application/config/routes.php</code>
+        </p>
+        <p>An example such rule lets you change the default controller:<br/>
+            <code>$route['default_controller'] = 'welcome';</code>
+        </p>
+        <p>If you specify multiple rules, they are tested consecutively
+            until one fits.</p>
+    </slide>
+
+    <slide title="Wildcard Routing" layout="normal">
+        <div class="left">
+            <p>A routing rule can use a "wildcard" token,
+                <code>(:num)</code> to match a numeric segment value, or
+                <code>(:any)</code> to match any segment value.
+            </p>
+            <p>Specify an expression using these as the "key" for a routing
+                rule, and specify the proper destination as the "value".</p>
+            <p>You can use the substitution token <code>$n</code>
+                to reference a URI segment in the original request.</p>
+        </div>
+        <div class="right">
+            <p>Some examples of routing rules:</p>
+            <p>
+                <code>$route['blog/joe'] = "blogs/users/34";</code>
+            </p>
+            <p>
+                <code>$route['product/(:num)'] = "catalog/product_lookup_by_id/$1";</code>
+            </p>
+            <p>
+                <code>$route['page/(:any)'] = 'welcome/page/$1';</code>
+            </p>
+            <p>
+                <code>$route['secret'] = 'youllneverfindme/$1/$2';</code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Regular Expression Routing" layout="normal">
+        <p>You can also use a regular expression in a routing rule.</p>
+        <p>For instance:<br/>
+            <code>$route['products/([a-z]+)/(\d+)'] = "$1/id_$2";</code>
+            <br/>
+            would remap <code>/products/banana/eat</code> 
+            to <code>/eat/id_banana</code>
+        </p>
+        <p>Another example:<br/>
+            <code>$route['([a-z]+)/register'] = 'assimilate/$0';</code>
+            <br/>
+            would remap <code>/jim/register</code> 
+            to <code>/assimilate/jim</code>
+        </p>
+    </slide>
+
+    <slide title="Callback Routing" layout="normal">
+        <p>If you are using PHP &gt;= 5.3 you can use callbacks in place 
+            of the normal routing rules to process the back-references.</p>
+        <p>For instance:<br/>
+            <code>$route['products/([a-zA-Z]+)/edit/(\d+)'] = <br/>
+                function ($product_type, $id)<br/>
+                {<br/>
+&#160;&#160;return 'catalog/product_edit/' . strtolower($product_type) . '/' . $id;<br/>
+                };<br/>
+
+            </code>
+        </p>
+        <p>
+            <emphasis>Author's note: this is new to me, and I don't have a
+                good explanation for it (yet).</emphasis>
+        </p>
+    </slide>
+
+    <slide title="HTTP Verb Routing" layout="normal">
+        <p>You can specify routing rules that apply to specific HTTP
+            request types. This would be applicable to utility and
+            service controllers.</p>
+        <p>Some examples, in a RESTful fashion:<br/>
+            <code>$route['products']['PUT'] = 'product/insert';</code>
+            <br/>
+            <code>$route['products/(:num)']['DELETE'] = 'product/delete/$1';</code>
+        </p>
+    </slide>
+
+    <slide title="Hooks" layout="normal" tag="tag7">
+        <div class="left">
+            <p>The CodeIgniter framework, internally, performs the
+                following steps to handle a request:</p>
+            <ol>
+                <li>Apply routing rules to determine the controller
+                    and method to use</li>
+                <li>Instantiate the controller</li>
+                <li>Invoke the appropriate method, capturing output</li>
+                <li>Return the output to the browser</li>
+            </ol>
+        </div>
+        <div class="right">
+            <p>CodeIgniter also provides "hooks", to let you
+                inject processing at various pre-defined stages of the
+                request handling.</p>
+            <p>Refer to the <a href="http://www.codeigniter.com/userguide3/general/hooks.html" 
+                               target="_blank">user guide</a> for details!</p>
+        </div>
+    </slide>
+
+    <slide title="Hook Points" layout="normal">
+        <p>The following are some of the "hook points" that you can use:</p>
+        <ul>
+            <li>pre_system</li>
+            <li>pre_controller</li>
+            <li>post_controller_constructor</li>
+            <li>post_controller</li>
+            <li>display_override</li>
+            <li>post_system</li>
+        </ul>
+        <p>Hooks are configured similarly to routes, and you can have
+            multiple hooks for the same hook point.</p>
+    </slide>
+
+    <slide title="Adding Hooks" layout="normal">
+        <p>Configure your hooks in <code>application/config/hooks</code></p>
+        <p>An example:</p>
+        <p>
+            <code>$hookie = array(<br/>
+            &#160;&#160;'class'=&gt;..., <br/>
+            &#160;&#160;'function'=&gt;..., <br/>
+            &#160;&#160;'filename'=&gt;..., <br/>
+            &#160;&#160;'filepath'=&gt;..., <br/>
+            &#160;&#160;'params'=&gt;...<br/>
+                );</code>
+        </p>
+        <p>
+            <code>$hooks[entrypoint][] = $hookie;</code>
+        </p>
+    </slide>
+
+    <slide title="Loose Ends" layout="normal" tag="tag8">
+        <p>Upcoming lessons will address some more exotic controller issues:
+            <ul>
+                <li>Webapp error handling (avoid getting fired)</li>
+                <li>Handling AJAX requests</li>
+                <li>Handling service requests</li>
+                <li>Handling plugins for additional resources</li>
+            </ul>
+        </p>
+        <p>Caution: Before using a feature, eg. hooks or routing, RTFM!</p>
+    </slide>
+
+    <slide title="Coding Conventions" layout="normal">
+        <div class="left">
+            <p>Required:
+                <ul>
+                    <li>Class and file naming - "ucfirst"</li>
+                </ul>
+            </p>
+           <p>Allowed:
+                <ul>
+                    <li>deviations from the suggested, for good reason</li>
+                    <li>multiple classes (related) in file</li>
+                </ul>
+            </p>
+            <p>Bad ideas:
+                <ul>
+                    <li>PHP namespaces (for now)</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+             <p>Suggested (for methods &amp; variables):
+                <ul>
+                    <li>words separated by underscores</li>
+                    <li>underscores in front of internal items</li>
+                    <li>Allman style braces &amp; indenting</li>
+                    <li>commenting, Javadoc style!</li>
+                    <li>value &amp; type comparison (===)!</li>
+                    <li>don't use closing PHP tag at end of file!</li>
+                </ul>
+            </p>
+        </div>
+    </slide>
+
+
+</lesson>

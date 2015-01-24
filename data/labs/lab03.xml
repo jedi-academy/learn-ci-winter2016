@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lab 03 - Controllers and Routing
+-->
+<lab status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Lab Goals" layout="normal">
+        <p>The purpose of this lab is to help you explore and practice
+            some of the controller and routing techniques
+            from lesson 3.</p>
+        <p>There are two parts to this lab: A) the basics and B) a hook.</p>
+        <p>You only need complete part A to get a good mark. 
+            Part B is specifically for those looking for more of a challenge, 
+            and I suggest you only tackle it after successfully completing part A.</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
+    </slide>
+
+    <slide title="Lab Submission" layout="normal">
+        <p>Your lab will be completed in a github repository.
+            This will be your (forked) winter2015-lab03 repo. 
+            If you are doing the optional
+            part of the lab, your repo will include the Part B
+            changes, and you should indicate that you
+            are shooting for the optional marks in your readme.</p>
+        <p>Dayschool students: submit a readme to the lab dropbox. 
+            This readme should have a link to your github repository.</p>
+        <p>Distance students: send me an email with a link to your github repository.</p>
+        <p>Due: Sunday, Jan 25, 17:30 PST</p>
+    </slide>
+
+    <slide title="Lab Marking Guideline" layout="normal">
+        <p>This lab will be marked out of 10, as follows:</p>
+        <ul>
+            <li>Part A addresses eight controllers/mappings.<br/>
+                These are worth one mark each.</li>
+            <li>(Optional) Part B is worth 2+ marks, depending on the 
+                elegance of your solution. 
+                Simply taking a stab at part B, 
+                without solving the challenge, 
+                won't get you any marks!</li>
+        </ul>
+        <p>The "+" for the optional part? I will award a bonus
+            mark to the most elegant solution in a set!</p>
+        <p>
+            <emphasis>Commenting:</emphasis> 
+            add comments sufficient to convince the reader that you 
+            know what you are doing. Inappropriate/inadequate comments 
+            will cost you up to two marks off.</p>
+    </slide>
+
+    <slide title="Part A: The Basics" layout="normal">
+        <p>Complete tutorial 3.</p>
+    </slide>
+
+    <slide title="Part B: Hooks (Optional)" layout="normal">
+        <p>Build a class to massage the final output before sending 
+            it to the browser.</p>
+        <p>Configure a display_override hook to inject your class 
+            into the processing stream for all single quote 
+            presentations. 
+            Don't forget to enable "hooks".</p>
+        <p>The massaging your hook should perform: 
+            inside any &lt;p&gt; element in the output, 
+            which have a class attribute of "lead", 
+            bold any capitalized words (yes, that includes "I"). </p>
+        <p>Bolding is done by enclosing a word in a "strong" element.</p>                    
+    </slide>
+
+    <slide title="Part B Notes" layout="normal">
+        <p>Part B is a challenge, hehe (on purpose). 
+            Don't even try this until you have completed part A, 
+            and then only if you are willing to dive a bit deeper 
+            into CodeIgniter and hooks.</p>
+        <p>Part B will not earn part marks for a partial solution, 
+            so be sure you want to risk/invest the time to tackle it!</p>                    
+    </slide>
+
+</lab>
