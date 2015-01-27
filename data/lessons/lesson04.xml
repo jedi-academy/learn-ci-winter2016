@@ -293,7 +293,7 @@ Lesson 03 - Models
         <p>Management properties needed to build/rebuild the XML 
             document for saving might include the document name,
             The element name of the root element, and the name
-            of the attrobute or nested child element to use as a
+            of the attribute or nested child element to use as a
             "primary key".
         </p>
         <p>Note that this approach could lend itself to using a DTD or 
