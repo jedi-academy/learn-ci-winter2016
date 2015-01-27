@@ -370,6 +370,61 @@ Specifics:
     And I wish all the instructions could be tested first and then public 
     to us in order to avoid misunderstanding parts!
 
+- Tutorial 02c: slide 7
+Interesting that the class is "Welcome" but the default controller in 
+routes.php is "welcome". Are these not case sensitive, or does the 
+routes.php actually refer to the filename without its .php extension 
+and not the class?
+
+- Slide 2
+I followed step 2 by cloning and then on slide 3 discovered you had cloned it 
+to a different name. As I am new to git, I didn't know you could do 
+this so it would be good to tell the user e.g.
+"- You can clone it to any folder inside your htdocs folder by adding 
+that subfolder name as an additional parameter to the "git clone" common.
+- I have cloned it to my-lab02 by specifiying git clone <lab02 url> my-lab02
+- Don't forget to update the virtual hosts mapping file, 
+httpd-vhosts.conf, with this document root!"
+
+- Slide 3
+Revise depending on suggested edits above
+There is a typo: "Substitute you choices"
+It would be helpful to also add in the step, "Create a new project in 
+netbeans based on the files in the my-lab02 folder"
+
+- Slide 7
+Interesting that the class is "Welcome" but the default controller in 
+routes.php is "welcome". Are these not case sensitive, or does the 
+routes.php actually refer to the filename without its .php extension 
+and not the class?
+
+- Slide 9
+Where have I told CI what the default page should be for comp4711.local 
+i.e. the Welcome.php file. Has this been specified somewhere as the default 
+controller? (see slide 11 comment, where we discover the answer!)
+
+- Slide 10
+The screenshot does not match mine as the css folders have not been moved yet. 
+You could therefore either add that instruction on the same slide but probably 
+better to have a second step to move the css
+
+- Slide 11
+As with slide 9, where have I specified what the homepage corresponds to? 
+A quick google search confirms that welcome.php is the default controller 
+in CI, configured in config/routes.php so it would be good to mention this 
+in the tutorial on slide 9
+
+- Slide 15
+I think there is a typo in your code: '/ about'
+2nd line of render() is truncated
+As there is no line to load the Parser class in the controller, where is 
+this being done (autoload.php doesn't refer to it)?
+This slide feels like a bit of a jump, probably because I have forgotten 
+the lesson where we touched upon the MY_Controller.php. However, going back 
+though the tutorials and lessons to remind myself I can't find it described 
+anywhere! Can you remind me where we convered the MY_Controller we are copying 
+here and all its functions?
+
 ------
 Week 3
 ------

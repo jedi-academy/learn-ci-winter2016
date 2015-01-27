@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Assignment 1 F A Q
+-->
+<lab status="alpha">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Overall Assignment Goals" layout="normal">
+        <p>The purpose of the assignments, collectively, is to let you
+            apply the techniques from the lessons,
+            tutorials and labs.</p>
+        <p>In teams of up to four, you will be building a small but complete 
+            webapp, in three stages, with specific expectations for
+            each stage. Each stage will be a separate assignment.</p> 
+        <p>The framework and a number of supporting technologies 
+            have been pre-decided. The techniques for applying these 
+            will be the subject of upcoming lessons and labs. </p>
+    </slide>
+
+    <slide title="Revisions?" layout="normal">
+        <p>If assignment details need clarifying, such changes will
+            be made in this slide deck, and a note added to this page.</p>  
+        <ul>
+            <li>
+                <a href="#{tag1}">Planning</a>
+            </li>
+            <li>
+                <a href="#{tag2}">Design</a>
+            </li>
+            <li>
+                <a href="#{tag3}">Process</a>
+            </li>
+            <li>
+                <a href="#{tag4}">FAQ</a>
+            </li>
+        </ul>
+
+    </slide>
+
+    <slide title="Goals for This Assignment" layout="normal" tag="tag1">
+        <p>The purpose of this assignment 1 is to get your webapp proposal 
+            together and approved, and then to get the basic pieces in the 
+            correct places expected for a CodeIgniter webapp.</p>
+        <p>This may sound suspiciously similar to lab #2! Hmmmmm.</p> 
+    </slide>
+
+    <slide title="Your Webapp" layout="normal">
+        <p>Each team will propose a webapp to build for their assignments.</p>
+        <p>Your webapp doesn't have to be "world-class" or even necessarily "real",
+            but it needs sufficient complexity to be dynamic, personalized
+            and scaleable/integrated.</p>
+        <p>Practically speaking, this means that your data will come
+            partly from a database with at least two tables, and partly
+            from a rich XML data structure, which might be stored as separate
+            XML documents, or which might be stored as a column in one of your
+            RDB tables.</p>
+    </slide>
+
+    <slide title="What Could I Possibly Build?" layout="normal">
+        <p>Four typical webapps come to mind, as suggestions:
+            <ul>
+                <li>A Mini-CMS (content management system)</li>
+                <li>A simple order entry system</li>
+                <li>A destination tourist guide</li>
+                <li>A sports team fansite</li>
+            </ul>
+        </p>
+        <p>You are welcome to propose your own ideas, too.</p>
+    </slide>
+
+    <slide title="Possiblity #1: Mini-CMS" layout="normal">
+        <p>A mini-CMS would be a webapp where the primary role of
+            your code/logic would be to make it easy for a content creator 
+            to create and edit rich content on a variety of topics,
+            with the content posts presented and searchable in some structured
+            fashion.</p>
+        <p>Examples of such a mini-CMS could be a blog, an informational
+            site, or even a small forum.</p>
+        <p>The rich XML content could be the actual post contents.</p>
+    </slide>
+
+    <slide title="Possiblity #2: Order Entry" layout="normal">
+        <p>An order entry webapp would present a simple menu,
+            and capture/validate customer order details.</p>
+        <p>Such a webapp could be built for a real/hypothetical coffee
+            shop, fast food oultet, or even a Ferrari dealership
+            (collect all the colors, hehe).</p>
+        <p>The rich XML content could be the order details themselves.</p>
+    </slide>
+
+    <slide title="Possiblity #3: Destination Guide" layout="normal">
+        <p>A destination guide is another suitable webapp.
+            This might present attraction details for a chosen destination
+            (country, planet or neighborhood), broken down into suitable
+            categories (eat, sleep, play).</p>
+        <p>We pursued this theme in the fall of 2014, with some of
+            teh destinations being Mykonos, Coruscant, and Ucleuelet.</p>
+        <p>The rich XML content would be the attraction
+            descriptons, with different data for each category.</p>
+    </slide>
+
+    <slide title="Possiblity #4: Sports Team Fansite" layout="normal">
+        <p>Such a site might present the team (roster), information
+            about the league they play in, and then their schedule for
+            upcoming games. The webapp would provide for updating
+            the schedule with results, as games are played.</p>
+        <p>This would only work for a "real" team, and one whose season
+            overlaps the course.</p>
+        <p>The rich XML content would likely be the schedule/results
+            data.</p>
+    </slide>
+
+    <slide title="Your Data" layout="normal" tag="tag2">
+        <p>Whatever you choose to build for a webapp, you want to make sure that
+            the data you plan is reasonable for the webapp, and reasonable
+            for your team.</p>
+        <p>A handy rule of thumb would be to plan a database with at least
+            as many tables as you have team members. This count would exclude any
+            tables for sessions or user management.</p>
+        <p>Your XML data would be in addition to this (or in some cases inside
+            one of your tables).</p>
+        <p>Keep your data plan/design simple!</p>            
+    </slide>
+
+    <slide title="Your Presentation" layout="normal">
+        <p>Your webapp will be evaluated on its functionality, not on how
+            good it looks. It is better to have a consistent design, with
+            elements appropriate to the purpose, than it is to have
+            a pretty design.</p>
+        <p>Your job is to design and implement the back-end of such a site.
+            That doesn't mean your site's appearance should be ugly or
+            cringe-worthy - there are many freely available website
+            templates online.</p>
+    </slide>
+
+    <slide title="Your Usecases" layout="normal">
+        <p>Your webapp should have four broad usecases: three that
+            each provide a different perspective or manipulation of your
+            data, and a maintenance/admin one to add/update
+            your data. This first assignment only need worry about the
+            first three - the maintenance will be added in assignment 2,
+            and it will be role-restricted in assignment 3.</p>
+        <p>In the case of a mini-CMS, your usecases might present
+            two different perspectives on your data and a search
+            function. In the case of a destination guide, they might
+            present three kinds of attractions, with different kinds
+            of information for each.</p>
+        <p>Each of your usecases would present a suitably ordered
+            list of some sort, with the ability to select an item
+            in the list to drill down for details on that item.</p>
+    </slide>
+    
+    <slide title="Your Sitemap" layout="normal">
+        <p>Your homepage should should provide some useful
+            summary information (eg. most recent post, or current
+            season statistics), as well as an elegant and obvious
+            way to reach the three "main" pages.</p>
+        <p>If you are planning to use your webapp as part
+            of a portfolio, I suggest adding an "about" page,
+            where you can describe your design or your process.</p>
+    </slide>
+
+    <slide title="A Sample Webapp" layout="normal">
+        <p>Here are the first two "napkin" sketches for a sample destination guide
+            to Arrakis...</p>
+        <div class="left">
+            <img class="scale" width="600" height="411" src="/data/assignments/pix/a1-1.png"/>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="432" src="/data/assignments/pix/a1-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="A Sample Webapp (Part 2)" layout="normal">
+        <p>And here are the last two sketches...</p>
+        <div class="left">
+            <img class="scale" width="600" height="466" src="/data/assignments/pix/a1-3.png"/>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="426" src="/data/assignments/pix/a1-4.png"/>
+        </div>
+    </slide>
+
+    <slide title="Webapp Stages" layout="normal" tag="tag3">
+        <p>Your webapp will be built in three stages, each corresponding
+            to an assignment.</p>
+        <p>Stage 1: basic webapp. The pieces will be there, in the right place,
+            but the data and interaction are largely bogus. You might find it
+            easier to mock the data in this stage, rather than providing a "real"
+            database.</p>
+        <p>Stage 2: make the data "real", the usecases functional, and add 
+            maintenance.</p>            
+        <p>Stage 3: Add the rich data and its maintenance, as well as 
+            role-based access control.</p>
+    </slide>
+
+    <slide title="Your Design" layout="normal">
+        <p>Run your webapp proposal and design by your instructor,
+            before embarking on its implementation. You want to make sure
+            that the scope and usecases are appropriate, and that you
+            haven't over-simplified or gotten carried away.</p>
+        <p>Typical design components include simple usecase
+            writeups and wireframe layout(s) depicting how you
+            see the site coming together.</p>
+        <p>This is *not* a formal design!</p>
+    </slide>
+
+    <slide title="Process" layout="normal">
+        <p>Create a github organization for your team, in which you
+            will then create a shared repository for your project. This
+            repository will be used for all three stages.</p>
+        <p>Each team member should fork the project repo, and
+            follow the gitflow workflow process for adding to or updating it.
+            You may wish to give one team member maintainer responsibility
+            for the repo, or you can all have it.</p>
+        <p>I would expect comparable contributions from each team member,
+            whether you measure that by quantity or quality. If one team
+            member does the bulk of the work for a given assignment,
+            they will get the bulk of the marks for that assignment!</p>
+    </slide>
+
+    <slide title="Submission" layout="normal">
+        <p>Dayschool students: submit a readme to the D2L assignment dropbox. 
+            This readme should have a link to your github repository.</p>
+        <p>Distance students: send me an email with a link to your github repository.</p>
+        <p>Due: Saturday, Jan 31, 23:59 PST</p>
+    </slide>
+
+    <slide title="Evaluation" layout="normal">
+        <p>Assignments will be evaluated out of 20, according to the following
+            breakdown:        </p>
+        <div class="left">
+            <ul>
+                <li>Design proposal/writeup (3)</li>
+                <li>Controllers, home plus three (2)</li>
+                <li>Models, with mock data (3)</li>
+                <li>Views, template plus 4 layouts (3)</li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul>
+                <li>Appropriate &amp; consistent UI (2)</li>
+                <li>Works properly? (3)</li>
+                <li>Workflow process (2)</li>
+                <li>Comments &amp; programming style (2)</li>
+            </ul>
+        </div>
+    </slide>
+
+    <slide title="Your Code" layout="normal">
+        <p>You are programmers, and you want to be professional. Code like it.</p>
+        <p>That means clearly written and formatted code, properly commented.</p>
+        <p>Your views should have no PHP in them, apart from possibly comments.</p>
+        <p>Remember the golden rules!!!</p>
+    </slide>
+
+    <slide title="Cautions" layout="normal">
+        <p>Don't get carried away, spending days coming up with “perfect” design 
+            or content, etc. </p>
+        <p>This is a course assignment, not a job, and not an industry-sponsored 
+            project. It is a vehicle to learn how to use CodeIgniter to
+            build a simple webapp, incorporating good practices.</p>
+    </slide>
+
+    <slide title="F.A.Q." layout="normal" tag="tag4">
+        <p>There are no questions yet, but I am sure there will be!</p>
+    </slide>
+
+
+</lab>

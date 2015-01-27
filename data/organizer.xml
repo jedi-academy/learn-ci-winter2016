@@ -5,7 +5,7 @@ Course organizer for Comp4711
 <organizer>
     <week num="1">
         <topic>Introduction to MVC Webapps</topic>
-        <lesson type="lesson" name="lesson00">In-class OnlyIntroduction</lesson>
+        <lesson type="lesson" name="lesson00">In-class Only Introduction</lesson>
         <lesson type="lesson" name="lesson01a">Introduction</lesson>
         <lesson type="lesson" name="lesson01b">Golden Rules</lesson>
         <tutorial type="tutorial" name="tutorial01a">XAMPP Installation</tutorial>
@@ -84,5 +84,9 @@ Course organizer for Comp4711
         <topic>Final Exam Week</topic>
         <lesson type="lesson" name="lesson13a">Exam Review</lesson>
         <lesson type="lesson" name="lesson13b">Crystal Ball</lesson>
+    </week>
+    <week>
+        <topic>Other Useful Material</topic>
+        <tutorial type="tutorial" name="faq">F.A.Q.</tutorial>
     </week>
 </organizer>

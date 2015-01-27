@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 03 - Models
+-->
+<lesson status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <!-- Agenda -->
+    <slide title="Agenda" layout="normal">
+        <ol>
+            <li>
+                <a href="#{tag1}">Model Patterns</a>
+            </li>
+            <li>
+                <a href="#{tag2}">Kinds of Models</a>
+            </li>
+            <li>
+                <a href="#{tag3}">CodeIgniter Models</a>
+            </li>
+            <li>
+                <a href="#{tag4}">Component Models</a>
+            </li>
+            <li>
+                <a href="#{tag5}">Object Relational Mapping</a>
+            </li>
+            <li>
+                <a href="#{tag6}">Database Utilities</a>
+            </li>
+            <li>
+                <a href="#{tag7}">Model Conventions</a>
+            </li>
+            <li>
+                <a href="#{tag8}">Database Configuration</a>
+            </li>
+        </ol>
+    </slide>
+
+
+    <!-- Normal slides -->
+
+    <slide title="MODEL PATTERNS" layout="normal" tag="tag1">
+        <div class="left">
+            <p>Models are the "model" component of the MVC design pattern.</p>
+            <p>The figure to the right shows this from the perspective of
+                a webapp.</p>
+            <p>Fundamentally, models encapsulate data sources.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="383" height="328" src="/data/lessons/pix/4-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Classic Model-View-Controller" layout="normal">
+        <div class="left">
+            <p>The figure to the right presents a "classic" view of
+                the MVC pattern, from a programming perspective.</p>
+            <p>A user interacts with a <b>view</b>, using view components
+                such as links, buttons, and form fields
+                to initiate a request to a controller.</p>
+            <p>The "tricky" part? The view is supposed to be bound to a 
+                model as an event handler; when model state changes,
+                an event is fired, and the view would respond to the
+                event, updating its presentation as warranted.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="339" height="390" src="/data/lessons/pix/4-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Classic MVC and the Web" layout="normal">
+        <div class="left">
+            <p>The "classic" MVC has two issues from a webapp's perspective:</p>
+            <ul>
+                <li>Accessing a model inside a view is legal, but considered
+                    a poor practice</li>
+                <li>Propagating an event in a distributed system is awkward</li>
+            </ul>
+            <p>The next two slides present solutions to these.</p>
+
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="339" height="390" src="/data/lessons/pix/4-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Model-View-Adapter" layout="normal">
+        <div class="left">
+            <p>The model-view-adapter design pattern has the controller
+                handle all interaction with a model, and pass data to a view
+                through parameters.</p>
+            <p>The view is unaware of the source of the data it presents.</p>
+            <p>True event handling is still awkward with PHP, as our
+                objects are not memory-resident.</p>
+            <p>This pattern is also called model-view-presenter.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="335" height="389" src="/data/lessons/pix/4-3.png"/>
+        </div>
+    </slide>
+
+    <slide title="Model-View-ViewModel" layout="normal">
+        <div class="left">
+            <p>The model-view-viewmodel design pattern has an explicit
+                component to handle the model and related events,
+                while keeping the view itself unaware of the source
+                of its data.</p>
+            <p>In a webapp, this could be implemented by data-aware
+                "widgets", typically programmed using Javascript.</p>
+            <p>This pattern is common in enterprise applications,
+                and supported in ASP.net and JavaServerFaces.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="640" height="464" src="/data/lessons/pix/4-4.png"/>
+        </div>
+    </slide>
+
+    <slide title="KINDS OF MODELS" layout="normal" tag="tag2">
+        <p>What is a model?</p>
+        <p>1) Models represent data sources &lt;data access layer&gt;</p>
+        <p>2) Models represent entities &lt;domain model&gt;</p>
+        <p>You've seen models corresponding to RDB tables as data
+            sources. Let's dive deeper!</p>
+    </slide>
+
+    <slide title="Domain Models" layout="normal">
+        <p>Domain models are awkward to enforce in PHP, without
+            strong typing. They are normal in Java &amp; C##.</p>
+        <p>For instance, Java supports JavaBeans (serializable,
+            standard accessor and mutator methods) for generic
+            domain models.</p>
+        <p>Java also supports Enterprise JavaBeans, following
+            a managed, server-side component architecture.
+            These can be session based, message-based, or persistent.</p>
+    </slide>
+
+    <slide title="Active Record Models" layout="normal">
+        <div class="left">
+            <p>The active record design pattern suggests that
+                domain models have collection-centric
+                methods in addition to entity property
+                accessor/mutators.</p>
+            <p>This suggests that a model include
+                <ul>
+                    <li>
+                        <code>add($record)</code> – add a new record to the collection</li>
+                    <li>
+                        <code>get($key)</code> – retrieve a keyed record</li>
+                    <li>
+                        <code>update($record)</code> – replace a record</li>
+                    <li>
+                        <code>delete($key)</code> – delete a record</li>
+                </ul>
+            </p>            
+        </div>
+        <div class="right">
+            <p>Some additional common model methods that support this:
+                <ul>
+                    <li>
+                        <code>create()</code> – return a suitable empty object</li>
+                    <li>
+                        <code>all()</code> – return all records</li>
+                    <li>
+                        <code>some(...)</code> – return some of the records</li>
+                    <li>
+                        <code>size()</code> – return the number of records</li>
+                </ul>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Active Record in Practice" layout="normal">
+        <div class="left">
+            <p>Given how easy it is to inject or eliminate
+                properties in PHP objects, many developers
+                use entity properties directly, rather than attempting
+                to follow the rigor of other language domain models</p>
+            <p>Given the way that PHP has evolved, many
+                developers will also provide methods that
+                return or work with associative arrays,
+                using them to store entity properties.</p>            
+        </div>
+        <div class="right">
+            <p>If adding collection centric methods to a
+                "conventional" domain model, it is a good idea
+                for your model to have collection-specific
+                properties too, for instance the name of a
+                database table and the fieldname used as
+                a primary key.</p>
+            <p>Regardless of any accessors or CRUD methods
+                you might have, make sure your model provides
+                suitable methods for extracting whatever
+                data your controllers need to pass on to a view!</p>
+        </div>
+    </slide>
+
+    <slide title="Models Can Be Used For... ?" layout="normal">
+        <p>Models can be used to encapsulate many
+            different sources of data, as you will see in the
+            next few slides :)</p>
+        <p>Beyond relational database tables, we will take
+            a quick look at encapsulating XML documents, file
+            system folders, and even services.</p>            
+        <p>These different kinds of models will be revisited later in the
+            course, when we talk about XML and services.</p>
+    </slide>
+            
+    <slide title="Models for RDB Tables" layout="normal">
+        <div class="left">
+            <p>You would normally have one model per table in the
+                relational database you are using.</p>
+            <p>CRUD methods in your model would deal with rows
+                in the RDB table.</p>            
+            <p>Reasonable model management properties in this kind
+                of model would usually include the table name and the
+                field name to use as the primary key.</p>
+        </div>
+        <div class="right">
+            <p>Referring to the contacts example from week 2, 
+                <code>application/core/MY_Model.php</code> is a sample base 
+                model you might use. 
+                <code>models/Contacts.php</code> is a model using
+                the RDB base model. The following provides access
+                to all the CRUD methods defined in MY_Model, making
+                it easy to follow the active record pattern.
+            </p>
+            <p>
+                <code>class Contacts extends MY_Model {<br/>
+&#160;&#160;function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct();<br/>
+&#160;&#160;&#160;&#160;$this->setTable('contacts', 'ID');<br/>
+&#160;&#160;}<br/>
+                    }</code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Models for XML" layout="normal">
+        <div class="left">
+            <p>You could use a model for a suitably structured XML
+                document, for instance one where each child of the root
+                element stored the state of an entity.
+                You would need to choose a convention for the "primary key"
+                in such a case, for instance the "id" attribute of an entity's
+                element.</p>
+            <p>CRUD methods in your model would deal with children of the
+                root element, and would traverse each child's
+                attributes and elements to build a record object
+                (or associative) array that looked like it
+                came from an RDB table.</p>            
+        </div>
+        <div class="right">
+            <p>Management properties needed to build/rebuild the XML 
+                document for saving might include the document name,
+                The element name of the root element, and the name
+                of the attrobute or nested child element to use as a
+                "primary key".
+            </p>
+            <p>Note that this approach could lend itself to using a DTD or 
+                schema for validation of "record" structure and
+                content.</p>
+        </div>
+    </slide>
+
+    <slide title="Models for Folders" layout="normal">
+        <div class="left">
+            <p>You could use a model to encapsulate the contents of
+                folders in your filesystem. The folder and subfolders
+                would not have to be inside your webapp - they could
+                be anywhere!</p>
+            <p>Such a model could be used for the files themselves,
+                or to mimic RDB table rows through flat file representations
+                of records.</p>            
+        </div>
+        <div class="right">
+            <p>Management properties suited to this use might include
+                the base folder name for your "collection",
+                and perhaps the default extension/filetype.
+                A filename itself might be considered a "primary key".
+            </p>
+            <p>An example of this kind of model would be to provide 
+                access to a folder of
+                images that support an image gallery. The <code>all()</code>
+                method might return a list of image descriptor objects.
+                You might use subfolder names as categories.</p>
+        </div>
+    </slide>
+
+    <slide title="Models for Services" layout="normal">
+        <div class="left">
+            <p>You could use a model to encapsulate a service, mapping
+                the conventional CRUD methods to something more appropriate
+                for a service. This isn't the only way to access
+                a service, or even the best way - just one approach.</p>
+            <p>Your model would need some properties to handle
+                the service configuration, for instance the endpoint
+                of a remote service.</p>            
+            <p>A sample method mapping is shown to the right.
+                This is a foreshadowing of RESTful services :)</p>
+        </div>
+        <div class="right">
+            <ul>
+                <li>
+                    <code>add($record)</code> sends a POST(x) to the service
+                </li>
+                <li>
+                    <code>create()</code> sends a POST() to the service</li>
+                <li>
+                    <code>get($key)</code> sends a GET(x) to the service</li>
+                <li>
+                    <code>all()</code> sends a GET() to the service</li>
+                <li>
+                    <code>update($record)</code> sends a PUT(x) to the service</li>
+                <li>
+                    <code>delete($key)</code> sends a DELETE(x to the service</li>
+            </ul>
+        </div>
+    </slide>
+
+    <slide title="CODEIGNITER MODELS" layout="normal" tag="tag3">
+        <div class="left">
+            <p>CodeIgniter leans more to the data access layer flavor of model,
+                rather than the domain flavor of model.</p>
+            <p>
+                <a href="http://www.codeigniter.com/userguide3/general/models.html" target="_blank">
+                    Models in CodeIgniter</a> are found in the <code>application/models</code>
+                folder.</p>
+            <p>The model class name should have the first letter capitalized,
+                and the filename should match that. You can get away with breaking
+                this rule on Windows, but your webapp will break on Linux
+                (the model's source file will not be found).</p>
+        </div>
+        <div class="right">
+            <p>Each model should extend CI_Model, or your base model
+                if you provide one.</p>
+            <p>Models need to be loaded before use. This can be done explicitly,
+                using <code>$this->load->model('customers');</code> or
+                it can be implied by configuration in 
+                <code>application/config/autoload.php</code>, with 
+                <code>$autoload['model'] = array('customers',...);</code>.
+            </p>
+            <p>Once loaded, the model becomes a property of your
+                controller, as in <code>$this->customers->...</code>.
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Implementing Models" layout="normal">
+        <div class="left">
+            <p>Some developers prefer to work closely with 
+                <a href="http://www.codeigniter.com/userguide3/database/queries.html" target="_blank">
+                    database
+                    drivers</a>, writing their own SQL statements, as in<br/>
+                <code>$results = $this->db->query(...);</code>
+            </p>
+        </div>
+        <div class="right">
+            <p>Other developers prefer to use the 
+                <a href="http://www.codeigniter.com/userguide3/database/query_builder.html" target="_blank">
+                    Query Builder</a> for
+                a more O-O approach to database manipulation, as in<br/>
+                <code>$model->where(...);<br/>
+                    $model->limit(...);<br/>
+                    $results = $model->get();</code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Using a Base Model" layout="normal">
+        <div class="left">
+            <p>Many developers use a base model (<code>application/core/MY_Model</code>)
+                to provide a consistent implementation of the base model methods
+                they want for their webapp. This typically includes all of the 
+                CRUD methods, regardless of their style (driver or query builder).</p>
+            <p>Your webapp models would extend the base model, and implement
+                usecase-specific methods.</p>
+        </div>
+        <div class="right">
+            <p>An example using a base model:</p>
+            <code>
+                class Sales extends MY_Model {<br/>
+&#160;&#160;function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct();<br/>
+&#160;&#160;}<br/>
+                <br/>
+&#160;&#160;function new_order(...) {}<br/>
+&#160;&#160;function add_item(...) {}<br/>
+&#160;&#160;function calc_tax(...) {}<br/>
+&#160;&#160;function receipt(...) {}<br/>
+                <br/>
+                }
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Misusing a Base Model?" layout="normal">
+        <p>The CodeIgniter core classes can be extended by
+            having a <code>MY_classname.php</code> inside 
+            <code>application/core</code>. You might have noticed, with
+            <code>application/core/MY_Controller.php</code>, that
+            the class name inside that source file does not *have* to
+            match the MY_... naming convention. We saw that with our
+            original example, with the <code>Welcome</code> controller extending
+            <code>Application</code>.
+        </p>
+        <p>CodeIgniter instantiates a singleton when a model
+            or other core class is loaded, which males it
+            awkward to deal with interfaces or abstract classes. 
+            However,  we can exploit
+            the general treatment of included source files by
+            having more than one thing inside one.</p>
+    </slide>
+
+    <slide title="Here is a Fancy Base Model!" layout="normal">
+        <p>
+            <a href="/data/examples/Fancy-MY_Model.txt" target="_blank">
+                Here</a> is a "fancy" model. The source file includes
+            an <code>Active_record</code> interface, as well as a
+            <code>MY_Model</code> class.
+            You could use this as a sort of template for writing
+            adapters for other kinds of models (folders, XML, etc).</p>
+        <p>As long as one of your models, extending MY_Model, is loaded
+            first, the <code>Active_record</code> interface will be
+            accessible to you.</p>
+        <p>You could add additional models to the file, for instance 
+            <code>XML_Model</code> or <code>Folder_Model</code>,
+            each implementing <code>Active_record</code>. Note that
+            this is not necessarily a "best" practice", just a 
+            "possible" one, exploiting the current CodeIgniter.
+            There will likely be better and more proper ways to do this
+            with the next version!
+        </p>
+    </slide>
+
+    <slide title="Example Working With DB Driver" layout="normal">
+        <p>
+            <code>$query = $this-&gt;db-&gt;query('SELECT name, title, email 
+                FROM customers');</code>
+        </p>
+        <p>
+            <code>foreach ($query->result() as $row) {<br/>
+                &#160;&#160;echo $row-&gt;title;<br/>
+                &#160;&#160;echo $row-&gt;name;<br/>
+                &#160;&#160;echo $row-&gt;email;<br/>
+                }</code>
+        </p>
+        <p>
+            <code>echo 'Total Results: ' . $query-&gt;num_rows(); </code>
+        </p>
+    </slide>
+
+    <slide title="Example Working With Query Builder" layout="normal">
+        <p>
+            <code>$query = $this-&gt;db-&gt;get();</code>
+        </p>
+        <p>
+            <code>foreach ($query-&gt;results() as $row) {<br/>
+                &#160;&#160;echo $row-&gt;title;<br/>
+                &#160;&#160;echo $row-&gt;name;<br/>
+                &#160;&#160;echo $row-&gt;email;<br/>
+                }</code>
+        </p>
+        <p>
+            <code>echo 'Total Results: ' . $query-&gt;count_all(); </code>
+        </p>
+    </slide>
+
+    <slide title="COMPONENT MODELS" layout="normal" tag="tag4">
+        <div class="left">
+            <p>Component models encapsulate entities with classes that
+                follow well-known conventions.</p>
+            <p>The best known component model is the JavaBean, originally
+                from Sun Microsystems.</p>
+            <p>PHP does not have a similar convention, but many
+                enterprise developers will assume that you know it,
+                and possibly that you will try to follow it where practical.</p>
+        </div>
+        <div class="right">
+            <p>JavaBean rules, in a nutshell:</p>
+            <ul>
+                <li>No argument constructor</li>
+                <li>Private fields</li>
+                <li>Public accessor methods, a.k.a. getters</li>
+                <li>Public mutator methods, a.k.a. setters</li>
+            </ul>
+            <p>Common JavaBean practices:</p>
+            <ul>
+                <li>Convenience constructors</li>
+                <li>Equality testing, <code>equals(object)</code></li>
+                <li>Text representation, <code>toString()</code></li>
+            </ul>
+        </div>
+    </slide>
+
+    <slide title="Component Model Diagrams" layout="normal">
+        <div class="left">
+            <p>Here is a typical UML class diagram showing some related JavaBeans.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="400" height="407" src="/data/lessons/pix/4-5.png"/>
+        </div>
+    </slide>
+
+    <slide title="Enterprise Component Model" layout="normal">
+        <div class="left">
+            <p>Building on JavaBeans, Enterprise JavaBeans provide a much more
+                robust set of conventions, including the ability to handle
+                persistence.</p>
+            <p>Without getting too carried away, the EJB inheritance hierarchy
+                is shown to the right.</p>
+            <p>Why do you care? Many enterprise systems assume a similar
+                infrastructure in webapps they work with or interact with.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="650" height="443" src="/data/lessons/pix/4-6.png"/>
+        </div>
+    </slide>
+
+    <slide title="OBJECT-RELATIONAL MAPPING" layout="normal" tag="tag5">
+        <div class="left">
+            <p>
+                <a href="http://en.wikipedia.org/wiki/Object-relational_mapping" 
+                   target="_blank">Object-relational mapping</a> 
+                is a programming technique or convention for converting
+                data between an object model/state and a relational database 
+                model/state.
+            </p>
+            <p>It is usually implemented by a tool or package which:</p>
+            <ul>
+                <li>From a database schema, generates an ERD, class diagram, and then code</li>
+                <li>From a class diagram, generates code, an ERD and a schema</li>
+                <li>From an ERD, generates a schema, and a class diagram and code</li>
+            </ul>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="550" height="375" src="/data/lessons/pix/4-8.png"/>
+        </div>
+    </slide>
+
+    <slide title="ORMS, Really..." layout="normal">
+        <p>In the PHP environment, object-relational mapping is typically
+            effected by a third-party tool or plugin.</p>
+        <p>These tools attempt to automatically create the robustness of JavaBeans
+            with the persistence of Enterprise JavaBeans.</p>
+        <p>These are notoriously awkward to implement properly.</p>
+        <p>Several such packages are available for CodeIgniter:
+            <a href="http://www.doctrine-project.org/" target="_blank">Doctrine</a>,
+            <a href="http://laravel.com/docs/4.2/eloquent" target="_blank">Eloquent</a>, and
+            <a href="http://propelorm.org/" target="_blank">Propel</a>.
+            You're on your own using them, though - not part of this course!
+        </p>
+    </slide>
+
+    <slide title="Objects From Results" layout="normal">
+        <p>When PHP returns a result set from a relational
+            database query, it usually does so as an
+            iterable collection of row objects.</p>
+        <p>Each row object has properties corresponding to the table
+            column names that the data came from.</p>
+        <p>This is *not* ORM, but it may suffice for many purposes.</p>
+        <p>If a row object is cast as an array, the result is an associative 
+            array with the table column names as indices.</p>
+        <p>Many PHP frameworks consider the objects and/or associative 
+            arrays returned by the database layer to be a simple form of ORM.</p>
+    </slide>
+
+    <slide title="DATABASE UTILITIES" layout="normal" tag="tag6">
+        <p>CodeIgniter has two classes specifically to manipulate databases.</p>
+        <p>The <a href="http://www.codeigniter.com/userguide3/database/forge.html" 
+                  target="_blank">Database Forge</a> class 
+            helps you work with metadata.
+            <ul>
+                <li>Create or drop entire databases</li>
+                <li>Create, drop or modify tables</li>
+            </ul>                  
+        </p>
+        <p>The <a href="http://www.codeigniter.com/userguide3/database/utilities.html" 
+                  target="_blank">Database Utilities</a> class 
+            helps you work with metadata.
+            <ul>
+                <li>List databases</li>
+                <li>Backup or export databases</li>
+                <li>Repair or optimize databases</li>
+                <li>Extract or convert records (CSV, XML)</li>
+            </ul>                  
+        </p>
+    </slide>
+
+    <slide title="MODEL CONVENTIONS" layout="normal" tag="tag7">
+        <p>Use entity-related naming!</p>
+        <p>use the plural of an entity name for a table &amp; model name.
+            An example would be the <code>Posts</code> model for
+            the <code>posts</code> table.
+        </p>
+        <p>Use the singular of the entity name for a CRUD controller, for instance...            
+            <ul>
+                <li>
+                    <code>Post</code>
+                </li>
+                <li>
+                    <code>Post/view/x</code>
+                </li>
+                <li>
+                    <code>Post/add</code>
+                </li>
+            </ul>
+        </p>
+        <p>Avoid controllers and models with the same class name. Only one will
+            be loaded. Namespaces (coming in CI4?) address this issue.</p>
+    </slide>
+
+    <slide title="DATABASE CONFIGURATION" layout="normal" tag="tag8">
+        <div class="left">
+            <p>Your database access is configured by settings in 
+                <code>application/config/database.php</code>.</p>
+            <p>Read the 
+                <a href="http://www.codeigniter.com/userguide3/libraries/config.html" 
+                   target="_blank">Config class</a>
+                writeup carefully, as you want to use subfolders inside
+                <code>application/config</code> to hold environment
+                specific database configuration, for instance the
+                username, password and database name to use when your
+                webapp is deployed. It is a good practice to "git ignore" any
+                such subfolders, so that you don't share confidential information
+                on a public repository.
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <code>$db['default'] = array(<br/>
+&#160;&#160;'dsn'   => '',<br/>
+&#160;&#160;'hostname' => 'localhost',<br/>
+&#160;&#160;'username' => 'root',<br/>
+&#160;&#160;'password' => '',<br/>
+&#160;&#160;'database' => 'database_name',<br/>
+&#160;&#160;'dbdriver' => 'mysqli',<br/>
+&#160;&#160;'dbprefix' => '',<br/>
+&#160;&#160;...<br/>
+&#160;&#160;);</code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Database Conventions" layout="normal">
+        <div class="left">
+            <p>For our purposes, I will expect your database configuraiton 
+                to work seemlessly when I pull your labs or
+                assignments for marking. What this means:</p>
+            <ul>
+                <li>Make sure your default database configuration
+                    for "development" uses the username "root" with
+                    no password</li>
+                <li>If I specify a database name, please use that,
+                    as I will have a test database already setup</li>
+                    
+                <li>Use config subfolders, not commited to your repo,
+                    for any local or secure settings you need.</li>
+            </ul>
+        </div>
+        <div class="right">
+            <p>If you use a database in a project, clearly
+                indicate so in your repo readme, and provide a SQL
+                dump (gzipped) of your database, including dropping
+                and tables you use before creating them, and
+                including the insert statements to populate
+                your database, as the file <code>setup.sql.gz</code>
+                in either the root of your project or directly
+                inside a <code>data</code> folder in your project.
+                If you provide both, I will use the one in your
+                project root.</p> 
+                <p>If your webapp breaks because it
+                is the wrong one, you're fired.<br/>
+                If you don't provide a database dump, and I 
+                cannot run your webapp at all, you're fired.
+            </p>
+        </div>
+    </slide>
+
+
+</lesson>
