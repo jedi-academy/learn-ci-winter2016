@@ -117,6 +117,40 @@ Lesson 2:
 - (seem like it's a CI2 project and a CI3 system? since you look for a CI3 
     core file only avaiavle in CI3 and have the errors folder outside 
     and not in views.
+- I had to go back through this lesson and make some notes as a lot of it 
+had not sunk in when I came to do the lab. 
+Having gone through it again, a few key things became clear when also 
+googling the bits I wasn't clear on although some bits could still do with 
+some clarification. 
+- Initially thought the names MY-Model and MY_Controller were just your 
+choice of a name to use in the slides but it appears they are actually "the" 
+names you need to use when defining your own base model/controller in /core. 
+Is this the case ie convention over configuration? 
+- I think the slide on controller URI format would benefit from an example 
+that calls out the various parts as this wasn't clear to me e.g. 
+"If we consider the URI below: example.com/index.php/products/shoes/sandals/123 
+the 'segments' that make up this URI correspond to the following: 
+â€¢ index.php - the default controller filename 
+â€¢ products - the controller class name 
+â€¢ shoes - a function of the controller 
+â€¢ sandals - parameter one of the shoes function 
+â€¢ 43 - parameter two of the shoes function 
+Hence, our controller definition of "products" in the index.php file 
+will look like the following: 
+&lt;?php class Products extends CI_Controller {      
+public function shoes($style, $size)     {         
+echo $style;         echo $size;     } } ?&gt;
+
+- Do you have to copy the support components you want to use from the system 
+subdirectories into the subfolders of the application	 
+or can you leave them in he system hierarchy and refer to them there?
+- I think it would be good to point out that the name used to refer to a helper 
+file when loading it is the file name with the "_helper.php" removed
+- It was also interesting to note that the helper files don't contain classes 
+but standalone functions as I am new to PHP and hadn't reliased you could have 
+standalone functions outside of a class
+
+
 
 Example webapp - contacts:
 
@@ -216,6 +250,9 @@ Tutorial 2b:
     as well as .htaccess
     although when I looked in the httpd.conf file	 
     this parameter did not exist in the file &#40	not even commented out&#41
+- What do you mean when you say starter's root when placing .htaccess? 
+Is it in the starter folder itself, or is it in the parent folder of the starter folder?
+- Slide 6 Typo: fodlers
 
 
 Tutorial 2c:
@@ -333,6 +370,61 @@ Specifics:
     And I wish all the instructions could be tested first and then public 
     to us in order to avoid misunderstanding parts!
 
+- Tutorial 02c: slide 7
+Interesting that the class is "Welcome" but the default controller in 
+routes.php is "welcome". Are these not case sensitive, or does the 
+routes.php actually refer to the filename without its .php extension 
+and not the class?
+
+- Slide 2
+I followed step 2 by cloning and then on slide 3 discovered you had cloned it 
+to a different name. As I am new to git, I didn't know you could do 
+this so it would be good to tell the user e.g.
+"- You can clone it to any folder inside your htdocs folder by adding 
+that subfolder name as an additional parameter to the "git clone" common.
+- I have cloned it to my-lab02 by specifiying git clone <lab02 url> my-lab02
+- Don't forget to update the virtual hosts mapping file, 
+httpd-vhosts.conf, with this document root!"
+
+- Slide 3
+Revise depending on suggested edits above
+There is a typo: "Substitute you choices"
+It would be helpful to also add in the step, "Create a new project in 
+netbeans based on the files in the my-lab02 folder"
+
+- Slide 7
+Interesting that the class is "Welcome" but the default controller in 
+routes.php is "welcome". Are these not case sensitive, or does the 
+routes.php actually refer to the filename without its .php extension 
+and not the class?
+
+- Slide 9
+Where have I told CI what the default page should be for comp4711.local 
+i.e. the Welcome.php file. Has this been specified somewhere as the default 
+controller? (see slide 11 comment, where we discover the answer!)
+
+- Slide 10
+The screenshot does not match mine as the css folders have not been moved yet. 
+You could therefore either add that instruction on the same slide but probably 
+better to have a second step to move the css
+
+- Slide 11
+As with slide 9, where have I specified what the homepage corresponds to? 
+A quick google search confirms that welcome.php is the default controller 
+in CI, configured in config/routes.php so it would be good to mention this 
+in the tutorial on slide 9
+
+- Slide 15
+I think there is a typo in your code: '/ about'
+2nd line of render() is truncated
+As there is no line to load the Parser class in the controller, where is 
+this being done (autoload.php doesn't refer to it)?
+This slide feels like a bit of a jump, probably because I have forgotten 
+the lesson where we touched upon the MY_Controller.php. However, going back 
+though the tutorials and lessons to remind myself I can't find it described 
+anywhere! Can you remind me where we convered the MY_Controller we are copying 
+here and all its functions?
+
 ------
 Week 3
 ------
@@ -340,6 +432,11 @@ Week 3
 Lesson 3:
 
 Tutorial 3:
+- i know in the beginning, it says to read over all the slides before tackling 
+the lab, but i didn't do that; i think on slide 4, it should mention that 
+there's a list of what should be done on slide 5. 
+- It took me a little while to understand what you meant on page 5 but 
+everything else was clear.
 
 Lab 3:
 

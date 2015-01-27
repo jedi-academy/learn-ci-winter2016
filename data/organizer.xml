@@ -5,7 +5,7 @@ Course organizer for Comp4711
 <organizer>
     <week num="1">
         <topic>Introduction to MVC Webapps</topic>
-        <lesson type="lesson" name="lesson00">In-class OnlyIntroduction</lesson>
+        <lesson type="lesson" name="lesson00">In-class Only Introduction</lesson>
         <lesson type="lesson" name="lesson01a">Introduction</lesson>
         <lesson type="lesson" name="lesson01b">Golden Rules</lesson>
         <tutorial type="tutorial" name="tutorial01a">XAMPP Installation</tutorial>
@@ -33,7 +33,10 @@ Course organizer for Comp4711
     <week num="4">
         <topic>Models &amp; ORM</topic>
         <lesson type="lesson" name="lesson04">Models</lesson>
-        <assignment type="assignment" name="assignment2" duedate="2015.03.07 21:30">Functional Webapp</assignment>
+        <tutorial type="tutorial" name="#">CodeIgniter Models - next week!</tutorial>
+        <lab type="lab" name="#" duedate="">Work on or complete assignment 1</lab>
+        <assignment type="assignment" name="assignment1-faq" duedate="2015.01.31 21:30">FAQ for assignment 1</assignment>
+        <assignment type="assignment" name="assignment2" duedate="2015.03.07 21:30">Functional Webapp writeup</assignment>
     </week>
     <week num="5">
         <topic>Views &amp; Templating</topic>
@@ -84,5 +87,9 @@ Course organizer for Comp4711
         <topic>Final Exam Week</topic>
         <lesson type="lesson" name="lesson13a">Exam Review</lesson>
         <lesson type="lesson" name="lesson13b">Crystal Ball</lesson>
+    </week>
+    <week>
+        <topic>Other Useful Material</topic>
+        <tutorial type="tutorial" name="faq">F.A.Q.</tutorial>
     </week>
 </organizer>
