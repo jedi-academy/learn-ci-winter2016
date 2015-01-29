@@ -22,7 +22,7 @@ Course organizer for Comp4711
         <tutorial type="tutorial" name="tutorial02b">Setup CodeIgniter</tutorial>
         <tutorial type="tutorial" name="tutorial02c">Convert Static Site to CodeIgniter</tutorial>
         <lab type="lab" name="lab02" duedate="2015.01.18 17:30">CodeIgniter Intro</lab>
-        <assignment type="assignment" name="assignment1" duedate="2015.01.31 21:30">Basic Webapp</assignment>
+        <assignment type="assignment" name="assignment1" duedate="2015.01.31 23:59">Basic Webapp</assignment>
     </week>
     <week num="3">
         <topic>Controllers &amp; Routing</topic>
@@ -35,8 +35,8 @@ Course organizer for Comp4711
         <lesson type="lesson" name="lesson04">Models</lesson>
         <tutorial type="tutorial" name="#">CodeIgniter Models - next week!</tutorial>
         <lab type="lab" name="#" duedate="">Work on or complete assignment 1</lab>
-        <assignment type="assignment" name="assignment1-faq" duedate="2015.01.31 21:30">FAQ for assignment 1</assignment>
-        <assignment type="assignment" name="assignment2" duedate="2015.03.07 21:30">Functional Webapp writeup</assignment>
+        <assignment type="assignment" name="assignment1-faq" duedate="2015.01.31 23:59">FAQ for assignment 1</assignment>
+        <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59">Functional Webapp writeup</assignment>
     </week>
     <week num="5">
         <topic>Views &amp; Templating</topic>
@@ -60,7 +60,7 @@ Course organizer for Comp4711
     <week num="9">
         <topic>XML Constraints &amp; Processing</topic>
         <lesson type="lesson" name="lesson08">XML Processing</lesson>
-        <assignment type="assignment" name="assignment3" duedate="2015.04.11 21:30">Completed Webapp</assignment>
+        <assignment type="assignment" name="assignment3" duedate="2015.04.11 23:59">Completed Webapp</assignment>
     </week>
     <week num="10">
         <topic>XML-RPC</topic>
