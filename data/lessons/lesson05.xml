@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 05 - Views & Input Handling
+-->
+<lesson status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <!-- Agenda -->
+    <slide title="Agenda" layout="normal">
+        <ol>
+            <li>
+                <a href="#{tag1}">View Assembly Strategies</a>
+            </li>
+            <li>
+                <a href="#{tag2}">HTML Form Handling</a>
+            </li>
+            <li>
+                <a href="#{tag3}">Data Transfer Buffer</a>
+            </li>
+            <li>
+                <a href="#{tag4}">File Uploading</a>
+            </li>
+            <li>
+                <a href="#{tag5}">Loose Ends</a>
+            </li>
+        </ol>
+    </slide>
+
+
+    <!-- Normal slides -->
+
+    <slide title="VIEW ASSEMBLY STRATEGIES" layout="normal" tag="tag1">
+        <p>Views are all about presentation, driven by UI design.
+            Even if we take the perspective that "design" is not a programmer's
+            job, we still need to provide the view components with the
+            data to present.</p>
+        <p>Most developers will use a CSS/Javascript framework to
+            style the presentation nicely - integrating these into
+            a webapp is next week's lesson.</p>
+    </slide>
+
+    <slide title="Our Target View Excerpt" layout="normal" tag="tag1">
+        <div class="left">
+            <p>Our views are data-driven, and we will look at several
+                strategies to assemble a view with iteration, such
+                as the table shown to the right. Each of the strategies 
+                that follow will end up with the same view - 
+                they differ in their approach.</p>
+            <p>The view to the right shows a "typical" table,
+                with one row per contact. The styling comes from 
+                default Bootstrap CSS.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="760" height="220" src="/data/lessons/pix/5-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Traditional View Construction" layout="normal">
+        <p>The code below is typical of the "traditional" PHP approach.</p>
+        <div class="left">
+            <p>Controller...</p>
+            <code>
+                $this->load->view('contacts');
+            </code>
+        </div>
+        <div class="right">
+            <p>views/contacts.php<br/>
+                <code>
+                &lt;table...&gt;<br/>
+                    &#160;&#160;&lt;?php foreach ($contacts-&gt;... as $record) { ?&gt;<br/>
+                    &#160;&#160;&lt;tr&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;&lt;?php echo $record-&gt;id ?&gt;&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;&lt;?php echo $record-&gt;firstname ?&gt;&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;&lt;?php echo $record-&gt;lastname ?&gt;&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;&lt;?php echo $record-&gt;username ?&gt;&lt;/td&gt;<br/>
+                    &#160;&#160;&lt;/tr&gt;<br/>
+                    &#160;&lt;?php } ?&gt;<br/>
+                &lt;/table&gt;
+                </code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="View Construction Using the Template Parser" layout="normal">
+        <p>This excerpt is typical of the "template parser" approach, 
+            which you saw in lesson 2.</p>
+        <div class="left">
+            <p>Controller...</p>
+            <code>
+                $rows = array();<br/>      
+                foreach ($contacts->... as $record)<br/>
+&#160;&#160;$rows[] = (array) $record;<br/>
+                $parms['records'] = $rows;<br/>
+                $this->parser->parse('mycontacts',$parms);                
+            </code>
+        </div>
+        <div class="right">
+            <p>views/mycontacts.php<br/>
+                <code>
+&lt;table...&gt;<br/>
+&#160;&#160;{data}<br/>
+&#160;&#160;&#160;&#160;&lt;tr&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;{id}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;{firstname}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;{lastname}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;{username}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;/tr&gt;<br/>
+&#160;&#160;{/data}<br/>
+&lt;/table&gt;
+                </code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="View Construction Using View Fragments" layout="normal">
+        <p>The code below is typical of the "view fragment approach", 
+            which you also saw in lesson 2.</p>
+        <div class="left">
+            <p>Controller...<br/>
+                <code>
+                    $result = '';<br/>      
+                    foreach ($contacts->... as $record)<br/>
+&#160;&#160;$result .= $this->parser->parse('just1',<br/>
+&#160;&#160;&#160;&#160;(array) $record, true);<br/>
+                    $parms['inside_stuff'] = $result;<br/>
+                    $this->parser->parse('mycontacts',$parms);                
+                </code>
+            </p>
+        </div>
+        <div class="right">
+            <p>views/mycontacts.php<br/>
+                <code>
+&lt;table...&gt;<br/>
+&#160;&#160;{inside_stuff}<br/>
+&lt;/table&gt;
+                </code>
+            </p>
+            <p>views/just1.php...
+                <code>
+                    <br/>
+&lt;tr&gt;<br/>
+&#160;&#160;&lt;td&gt;{id}&lt;/td&gt;<br/>
+&#160;&#160;&lt;td&gt;{firstname}&lt;/td&gt;<br/>
+&#160;&#160;&lt;td&gt;{lastname}&lt;/td&gt;<br/>
+&#160;&#160;&lt;td&gt;{username}&lt;/td&gt;<br/>
+&lt;/tr&gt;
+                </code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Comparing View Construction Strategies" layout="normal">
+        <p>The "traditional" approach is marginally more efficient, with
+            one less layer of computation compared to using the template
+            parser, but you end up with PHP scriptlets mixed up with HTML
+            in your view. All iteration is done in the view, and the view
+            accesses the model. This is <b>bad</b>.</p>
+        <p>The "template parser" approach has a much cleaner view,
+            with substitution fields and no PHP. Iteration, however,
+            appears in both the controller and the view.</p>
+        <p>The "view fragment" approach has the simplest views, but
+            at the expense of some complexity in the controller, building
+            an associative array of associative arrays.</p>
+        <p>All of these are *legal*, but the first will cost you marks!</p>
+    </slide>
+
+    <slide title="HTML FORM HANDLING" layout="normal" tag="tag2">
+        <p>HTML form handling is really two separate issues:
+            <ul>
+                <li>Handling submitted input, and</li>
+                <li>Generating the form to be completed</li>
+            </ul>
+        </p>
+        <p>We will deal with some strategies for each of these issues,
+            in the above order.</p>
+    </slide>
+
+    <slide title="Sample Input to Handle" layout="normal">
+        <p>Refer to the <a href="https://github.com/comp4711/example-forms">
+                example-forms webapp</a> for actual code!</p>
+        <div class="left">
+            <p>A simple form, in pure HTML:</p>
+            <code style="font-size:50%">
+&lt;form action="/dealwithme" method="post"&gt;<br/>
+&#160;&#160;Why don't they play poker in the jungle?&lt;br&gt;<br/>
+&#160;&#160;&lt;input type="radio" name="jungle" value="treefrog"&gt; Too many tree frogs.&lt;br&gt;<br/>
+&#160;&#160;&lt;input type="radio" name="jungle" value="cheetah"&gt; Too many cheetahs.&lt;br&gt;<br/>
+&#160;&#160;&lt;input type="radio" name="jungle" value="river"&gt; Too many rivers.&lt;br&gt;&lt;br&gt;<br/>
+&#160;&#160;Check the box if you want your answer to be graded:<br/>
+&#160;&#160;&lt;input type="checkbox" name="grade" value="yes"&gt;&lt;br&gt;&lt;br&gt;<br/>
+&#160;&#160;&lt;input type="submit" name="submit" value="Submit"&gt;&lt;br&gt;<br/>
+&lt;/form&gt;
+            </code>
+        </div>
+        <div class="right">
+            <p>The result of the form:</p>
+            <br/>
+            <img class="scale" width="462" height="176" src="/data/lessons/pix/5-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Handling Input Traditionally" layout="normal">
+        <p>The traditional PHP approach to handling form input is to use
+            the <code>$_POST</code> superglobal, which gives access
+            to the form fields. This would look something like...
+        </p>
+        <code>
+            if (!empty($_POST['grade'])) {<br/>
+&#160;&#160;if (!empty($_POST['jungle'])) {<br/>
+&#160;&#160;&#160;&#160;if ($_POST['jungle']=="cheetah") { echo "You got the right answer!"; <br/>
+&#160;&#160;&#160;&#160;} else { echo "Sorry, wrong answer."; }<br/>
+&#160;&#160;} else { echo "You did not choose an answer."; }<br/>
+            } else { echo "Your answer will not be graded.";  }            
+        </code>
+    </slide>
+
+    <slide title="Handling Input Using CodeIgniter" layout="normal">
+        <p>CodeIgniter provides an <a href="http://www.codeigniter.com/userguide3/libraries/input.html"
+                                      target="_blank">
+                Input class</a> to do the same job.
+            The advantages of using it are input filtering, and easy access to input
+            data whether it came from a form or was part of the URL.
+            This would look something like...
+        </p>
+        <code>
+            if ($this-&gt;input-&gt;post('grade') !== false) {<br/>
+&#160;&#160;if ($this-&gt;input-&gt;post('jungle') !== false) {<br/>
+&#160;&#160;&#160;&#160;if ($this-&gt;input-&gt;post('jungle')=="cheetah") { echo "You got the right answer!"; <br/>
+&#160;&#160;&#160;&#160;} else { echo "Sorry, wrong answer."; }<br/>
+&#160;&#160;} else { echo "You did not choose an answer."; }<br/>
+            } else { echo "Your answer will not be graded.";  }            
+        </code>
+    </slide>
+
+    <slide title="What About Error Handling?" layout="normal">
+        <p>CodeIgniter provides a <a href="http://www.codeigniter.com/userguide3/libraries/form_validation.html"
+                                     target="_blank">
+                Form Validation class</a> to do this.
+            A sample excerpt using this would look something like...
+        </p>
+        <code>
+            $this-&gt;form_validation-&gt;set_rules('passconf', 'Password Confirmation', 'required');<br/>
+            $this-&gt;form_validation-&gt;set_rules('email', 'Email', 'required');<br/>
+            <br/>
+            if ($this-&gt;form_validation-&gt;run() == FALSE) {
+&#160;&#160;$this-&gt;load-&gt;view('myform');<br/>
+            } else {<br/>
+&#160;&#160;                        $this-&gt;load-&gt;view('formsuccess');<br/>
+            }
+        </code>
+    </slide>
+
+    <slide title="What About Creating the Form?" layout="normal">
+        <p>An input form can be pretty simple, but ugly ... see below.</p>
+        <div class="left">
+            <br/>
+            <img class="scale" width="373" height="288" src="/data/lessons/pix/5-4.png"/>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="815" height="139" src="/data/lessons/pix/5-3.png"/>
+        </div>
+    </slide>
+
+    <slide title="Styling the Form?" layout="normal">
+        <p>The form can always be styled to look better, but that can get
+            complicated, as shown below. Wait until next week's lesson :)</p>
+        <div class="left">
+            <p>Your HTML...</p>
+            <code style="font-size:50%">
+&lt;label for="name"&gt;Name&lt;/label&gt; <br/>
+&lt;input name="name" type="text" id="name" class="textfield" /&gt; <br/>
+                <br/>
+&lt;label for="phone"&gt;Phone&lt;/label&gt; <br/>
+&lt;input name="phone" type="text" id="phone" class="textfield" /&gt; <br/>
+                <br/>
+&lt;label for="email"&gt;Email Address&lt;/label&gt; <br/>
+&lt;input name="email" type="text" id="email" class="textfield" /&gt;
+            </code>
+        </div>
+        <div class="right">
+            <p>The accompanying CSS...</p>
+            <code style="font-size:50%">
+                label {<br/>
+&#160;&#160;clear: left; float: left;<br/>
+&#160;&#160;padding: 3px 10px 2px; text-align: right; width: 180px;<br/>
+                }<br/>
+                .textfield, .textarea, .selectlist {<br/>
+&#160;&#160;font-family: Arial,Helvetica,sans-serif;<br/>
+&#160;&#160;font-size: 12px; margin: 0 0 8px; width: 250px;<br/>
+                }                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Making Forms With CodeIgniter" layout="normal">
+        <p>CodeIgniter provides an <a href="http://www.codeigniter.com/userguide3/helpers/form_helper.html"
+                                      target="_blank">
+                Form Helper</a> to make this a bit easier.
+            This would look something like...
+        </p>
+        <code>
+            if ($this-&gt;input-&gt;post('grade') !== false) {<br/>
+&#160;&#160;if ($this-&gt;input-&gt;post('jungle') !== false) {<br/>
+&#160;&#160;&#160;&#160;if ($this-&gt;input-&gt;post('jungle')=="cheetah") { echo "You got the right answer!"; <br/>
+&#160;&#160;&#160;&#160;} else { echo "Sorry, wrong answer."; }<br/>
+&#160;&#160;} else { echo "You did not choose an answer."; }<br/>
+            } else { echo "Your answer will not be graded.";  }            
+        </code>
+        <p>There are better ways, which we will explore next week, so don't 
+            get hung up on this as *the way* to create forms!</p>
+    </slide>
+
+    <slide title="DATA TRANSFER BUFFER" layout="normal" tag="tag3">
+        <p>The "data transfer buffer" design pattern says that you use a session
+            object (associative array, in our case) to hold field values for
+            form handling.</p>
+        <p>If a form was intended to hold a customer record, for instance,
+            then you might use the "record" session object to hold a
+            record's values during processing. You would update this
+            to record in-progress input, so that the user does not
+            have to re-enter a form from scratch if they make
+            a mistake and you reject their input.</p>
+    </slide>
+
+    <slide title="Data Transfer Buffer Pseudo-code" layout="normal">
+        <p>Generally speaking, the logic to apply this pattern
+            looks like...</p>
+        <div class="left">
+            <p>Form presenting:<br/>
+                <ul>
+                    <li>if no session object
+                        <ul>
+                            <li>create an empty one if adding a new record</li>
+                            <li>create one with existing data if updating</li>
+                        </ul>
+                    </li>
+                    <li>get the session object</li>
+                    <li>forward its values as view parameters</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>Form handling:<br/>
+                <ul>
+                    <li>retrieve the session object, and 
+                        merge the posted data into it</li>
+                    <li>validate the updated record</li>
+                    <li>if the data is valid, update your database and 
+                        destroy the session object</li>
+                    <li>if the data isn't valid, update the session object,
+                        add error messages to the session and 
+                        redisplay the form</li>
+                </ul>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Sessions" layout="normal">
+        <p>The "data transfer buffer" design pattern relies on sessions,
+            which are handled in CodeIgniter using the
+            <a href="http://www.codeigniter.com/userguide3/libraries/sessions.html"
+               target="_blank">
+                Session library</a>, which is a wrapper for PHP's
+            native sessions.</p>
+        <p>Think of a session as a container for key/value pairs,
+            like a <code>java.util.Map</code>
+        </p>
+        <p>You will want to configure the sessions properly, using
+            a database session driver. The SQL to create this is in the
+            user guide, referenced above.</p>
+        <p>Autoload your session library!</p>
+    </slide>
+
+    <slide title="Getting Session Data" layout="normal">
+        <p>Session data can be retrieved several different ways, using
+            the native provisions or using the Session library.</p>
+        <p>To retrieve a "record" stored in a session, <ul>
+                <li>
+                    <code>$record = $_SESSION['record']; // use the PHP superglobal</code>, or
+                </li>
+                <li>
+                    <code>$record = $this-&gt;session-&gt;record; // use PHP's magic getter</code>, or
+                </li>
+                <li>
+                    <code>$record = $this-&gt;session&gt;userdata('record'); // use the Session library</code>
+                </li>
+            </ul>
+        </p>
+        <p>The <code>userdatea()</code> method returns NULL if the requested 
+            entry is not in the session, while the other techniques will trigger 
+            a PHP error.</p>
+    </slide>
+
+    <slide title="Setting Session Data" layout="normal">
+        <p>Session data can be set several different ways, using
+            the native provisions or using the Session library.</p>
+        <p>To store a "record" as a session property, <ul>
+                <li>
+                    <code> $_SESSION['record'] = $record; // use the PHP superglobal</code>, or
+                </li>
+                <li>
+                    <code>$this-&gt;session-&gt;record = $record;  // use PHP's magic setter</code>, or
+                </li>
+                <li>
+                    <code>$this-&gt;session&gt;set_userdata('record',$record); // use the Session library</code>
+                </li>
+            </ul>
+        </p>
+    </slide>
+
+    <slide title="Session Flashdata" layout="normal">
+        <p>The CodeIgniter Session library also supports the notion of 
+            "flashdata", which is a session property that only exists
+            until the next request. This could be a great way to hold
+            error messages, or to hold tokens used to make sure that
+            a form isn't submitted and handled twice.</p>
+        <p>Retrieve flashdata just like any other session data.</p>
+        <p>To set a flashdata property in a session, <ul>
+                <li>
+                    <code>$this-&gt;session-&gt;set_flashdata('errors', $error_messages); // use the Session library</code>, or
+                </li>
+                <li>
+                    <code>$_SESSION['errors'] = $error_messages; // save the property normally<br/>
+                        $this-&gt;session-&gt;mark_as_flash('errors'); // and flag it as flashdata</code>
+                </li>
+            </ul>
+        </p>
+    </slide>
+
+    <slide title="FILE UPLOADING" layout="normal" tag="tag4">
+        <p>File uploading is a standard expectation of a webapp.</p>
+        <p>Your HTML form will need to use POST for submission, and you
+            will need to specify an appropriate enclosure type, for
+            instance...</p>
+        <code>
+&lt;form enctype="multipart/form-data" action="/uploader" method="POST"&gt;<br/>
+&#160;&#160;Choose a file to upload: <br/>
+&#160;&#160;&lt;input name="uploadedfile" type="file" /&gt;&lt;br /&gt;<br/>
+&#160;&#160;&lt;input type="submit" value="Upload File" /&gt;<br/>
+&lt;/form&gt;            
+        </code>
+        <p>This will result in something like</p>
+        <img class="scale" width="505" height="52" src="/data/lessons/pix/5-6.png"/>
+    </slide>
+
+    <slide title="Traditional File Uploading" layout="normal">
+        <p>With traditional PHP, uploaded files are accessed through the
+            <code>$_FILES</code> superglobal.</p>
+        <ul>
+            <li>
+                <code>$_FILES["file"]["name"]</code> - the name of 
+                the uploaded file</li>
+            <li>
+                <code>$_FILES["file"]["type"]</code> - the type of the
+                uploaded file</li>
+            <li>
+                <code>$_FILES["file"]["size"]</code> - the size in bytes 
+                of the uploaded file</li>
+            <li>
+                <code>$_FILES["file"]["tmp_name"]</code> - the name of the 
+                temporary copy of the file stored on the server</li>
+            <li>
+                <code>$_FILES["file"]["error"]</code> - the error code 
+                resulting from the file upload</li>
+        </ul>
+        <p>You provide error-checking.</p>
+        <p>Handling multiple file uploads is a topic for another day.</p>
+    </slide>
+
+    <slide title="Saving An Uploaded File" layout="normal">
+        <p>PHP provides a method to move the uploaded file form the
+            system's temporary folder to a destination you specify:</p>
+        <code>move_uploaded_file($_FILES["file"]["tmp_name"],<br/>
+&#160;&#160;$target_folder . $_FILES["file"]["name"]);</code>
+        <p>You are responsible for proper file naming, for instance replacing 
+            spaces or undesirable characters with underscores.</p>
+    </slide>
+
+    <slide title="File Uploading With CodeIgniter" layout="normal">
+        <p>CodeIgniter provides a 
+            <a href="http://www.codeigniter.com/userguide3/libraries/file_uploading.html"
+               target="_blank">
+                File Uploading library</a> to make the job easier.</p>
+        <p>The user guide explanation is a bit clunky, but
+            the gist is...</p>
+        <code style="font-size:50%">
+            public function do_upload() {<br/>
+&#160;&#160;$config['upload_path']          = './uploads/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 100;<br/>
+&#160;&#160;$config['max_width']            = 1024;
+            $config['max_height']           = 768;<br/>
+&#160;&#160;$this-&gt;load-&gt;library('upload', $config);<br/>
+&#160;&#160;if ( ! $this-&gt;upload-&gt;do_upload()) {<br/>
+&#160;&#160;&#160;&#160;$error = array('error' =&gt; $this-&gt;upload-&gt;display_errors());<br/>
+&#160;&#160;&#160;&#160;$this-&gt;load-&gt;view('upload_form', $error);<br/>
+&#160;&#160;} else {<br/>
+&#160;&#160;&#160;&#160;$data = array('upload_data' =&gt; $this-&gt;upload-&gt;data());<br/>
+&#160;&#160;&#160;&#160;$this-&gt;load-&gt;view('upload_success', $data);<br/>
+&#160;&#160;}<br/>
+            }                    
+        </code>
+    </slide>
+
+    <slide title="File Uploading Widgets" layout="normal">
+        <p>Much better file upload widgets are available for your webpage
+            HTML, eg. the Jasny file 
+            uploader (shown below), for Bootstrap.</p>
+        <br/>
+        <img class="scale" width="897" height="323" src="/data/lessons/pix/5-7.png"/>
+
+    </slide>
+
+    <slide title="LOOSE ENDS" layout="normal" tag="tag5">
+        <p>What about some of the slick forms widgets? 
+            (date pickers, smart fields, etc)</p>
+        <p>Most CSS frameworks use jQuery (or similar), 
+            and there are lots of plugins/gadgets/widgets for them.</p>
+        <p>Be patient, young padawans... this is next week's lesson</p>
+    </slide>
+
+    <slide title="Menu Item Highlighting" layout="normal">
+        <p>Menu item highlighting is CSS framework dependent.
+            Generally, add “active” class to the "current" item</p>
+        <p>The general idea is something like:</p>
+        <code>
+            foreach($menuitems as $item) {<br/>
+&#160;&#160;$active = $item-&gt;link == $this-&gt;uri-&gt;segment(0);<br/>
+&#160;&#160;$thelist .= make_menu_item($item...,$active);<br/>
+            }</code>
+    </slide>
+
+    <slide title="Image Handling" layout="normal">
+        <p>If you want to mess with images, for instance creating thumbnails, 
+            that is usually done with a library, and not necessarily as
+            part of image uploading (though it could be).
+            See libraries/simpleimage for an example.</p>
+        <p>Caution: make sure that any graphics libraries you need 
+            are part of your PHP configuration.</p>
+    </slide>
+
+    <slide title="Cross Site Scripting (XSS)!" layout="normal">
+        <p>Check the 
+            <a href="http://www.codeigniter.com/userguide3/libraries/security.html"
+               target="_blank">
+                security class</a> in CI … 
+            it is meant to block cross-site scripting attempts, 
+            or inappropriate filenames.</p>
+        <p>Another approach: use the <code>htmlentities</code> and the 
+            <code>html_entity_decode</code> PHP functions to convert 
+            applicable characters to HTML entities instead.
+            This would prevent someone from injecting a JS exploit 
+            into a text area, for instance.</p>
+    </slide>
+
+</lesson>
