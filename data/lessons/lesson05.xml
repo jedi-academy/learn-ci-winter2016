@@ -99,14 +99,14 @@ Lesson 05 - Views & Input Handling
             <p>views/mycontacts.php<br/>
                 <code>
 &lt;table...&gt;<br/>
-&#160;&#160;{data}<br/>
+&#160;&#160;{records}<br/>
 &#160;&#160;&#160;&#160;&lt;tr&gt;<br/>
 &#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;{id}&lt;/td&gt;<br/>
 &#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;{firstname}&lt;/td&gt;<br/>
 &#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;{lastname}&lt;/td&gt;<br/>
 &#160;&#160;&#160;&#160;&#160;&#160;&lt;td&gt;{username}&lt;/td&gt;<br/>
 &#160;&#160;&#160;&#160;&lt;/tr&gt;<br/>
-&#160;&#160;{/data}<br/>
+&#160;&#160;{/records}<br/>
 &lt;/table&gt;
                 </code>
             </p>
@@ -158,10 +158,12 @@ Lesson 05 - Views & Input Handling
             accesses the model. This is <b>bad</b>.</p>
         <p>The "template parser" approach has a much cleaner view,
             with substitution fields and no PHP. Iteration, however,
-            appears in both the controller and the view.</p>
+            appears in both the controller and the view. The controller part of
+            the iteration results in building
+            an associative array of associative arrays, which is not comfortable 
+            for everyone!</p>
         <p>The "view fragment" approach has the simplest views, but
-            at the expense of some complexity in the controller, building
-            an associative array of associative arrays.</p>
+            at the expense of some complexity in the controller.</p>
         <p>All of these are *legal*, but the first will cost you marks!</p>
     </slide>
 
@@ -301,12 +303,19 @@ Lesson 05 - Views & Input Handling
             This would look something like...
         </p>
         <code>
-            if ($this-&gt;input-&gt;post('grade') !== false) {<br/>
-&#160;&#160;if ($this-&gt;input-&gt;post('jungle') !== false) {<br/>
-&#160;&#160;&#160;&#160;if ($this-&gt;input-&gt;post('jungle')=="cheetah") { echo "You got the right answer!"; <br/>
-&#160;&#160;&#160;&#160;} else { echo "Sorry, wrong answer."; }<br/>
-&#160;&#160;} else { echo "You did not choose an answer."; }<br/>
-            } else { echo "Your answer will not be graded.";  }            
+&lt;?php<br/>
+            echo form_open('#');<br/>
+            echo form_fieldset('Personal information:');<br/>
+            $parms = array('name'=&gt;'name','size'=&gt;30);<br/>
+            echo 'Name: ' . form_input($parms) . '&lt;br/&gt;';  <br/>
+            $parms = array('name'=&gt;'email','size'=&gt;30);<br/>
+            echo 'E-mail: ' . form_input($parms) . '&lt;br/&gt;';  <br/>
+            $parms = array('name'=&gt;'born','size'=&gt;10);<br/>
+            echo 'Date of birth: ' . form_input($parms) . '&lt;br/&gt;';  <br/>
+            echo form_fieldset_close();<br/>
+            echo form_close();<br/>
+            ?&gt;<br/>
+            ...
         </code>
         <p>There are better ways, which we will explore next week, so don't 
             get hung up on this as *the way* to create forms!</p>
