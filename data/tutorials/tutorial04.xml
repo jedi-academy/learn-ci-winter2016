@@ -1,138 +1,427 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Tutorial 03 - Working With Controllers & Routing
+Tutorial 04 - Working With Models
 -->
 <tutorial status="beta">
     <!-- Activity metadata ... override anything from the course or organizer -->
     
     <!-- The meat of the presentation -->
     <slide title="Tutorial Goals" layout="normal">
-        <p>This tutorial will walk you through some common controller and
-            routing challenges.</p>
-        <p>The goal is to fix the broken starter webapp, as directed.</p>
-        <p>That can't be so hard, can it? &lt;-- said with a straight face.</p>
-        <p>Suggestion: you may want to skim the slideshow first,
-            before working your way through it.</p>
+        <p>We talked about models in class ... 
+            this tutorial is meant to give you an opportunity to explore 
+            and practice a bunch of what we talked about :)</p>
+        <p>I have prepared a starter webapp – a mini "menu ordering system". 
+            It has controllers and views, but is incomplete – lacking models, 
+            which you are to provide.</p>
     </slide>
 
     <slide title="Preparation" layout="normal">
+        <p>I have prepared a 
+            <a href="https://github.com/comp4711/winter2015-lab04">
+                starter webapp</a>. The lab 4 starter, Jim's Joint, 
+            is meant to handle ordering in a small restaurant. 
+            I have build some database tables for this 
+            (menu and then orders &amp; order items), 
+            as well as some minimal controllers and views.</p>
+        <p>The webapp is "broken" as delivered, and will not
+            run properly until you fix it :)</p>
+        <p>Fork the github project, and clone it locally to
+            work with, the same as you have done with the previous tutorial.</p>
+    </slide>
+
+    <slide title="The End Result" layout="normal">
+        <p>This is what the end result should look like, after fixing!</p>
+        <br/>
+        <img class="scale" width="500" height="391" src="/data/tutorials/pix/4-1.png"/>
+
+    </slide>
+
+    <slide title="Database Setup" layout="normal">
+        <p>You will need to setup your webapp's database, using the 
+            supplied script, <code>data/comp4711-lab04-setup.sql</code>.
+            Please name the database "comp4711", so that your webapp will
+            work without additional setup when I run it on my system.</p>
+        <p>As part of the tutorial, you will then build models for each 
+            of the tables contained in it. </p>
+    </slide>
+
+    <slide title="Database Design" layout="normal">
         <div class="left">
-            <p>I have prepared a 
-                <a href="https://github.com/comp4711/winter2015-lab03">
-                    starter webapp</a> – a mini 
-                "content management system". 
-                It is incomplete and the pieces are not properly connected, 
-                and you need to fix these, as described following.</p>
-            <p>Fork the github project, and clone it locally to
-                work with, the same as you have done with the previous tutorial.</p>
+            <p>The RDB data provided is a pretty standard associative entity, 
+                very much like the diagram to the right. In our case,
+                OrderItems is the associative entity/table connecting Menu and Orders.</p>
+            <p>In an O-O world, an ideal implementation would have an Order class, 
+                which had a collection of OrderItem objects as one of its 
+                properties. If we did that, the focus would end up more on good
+                O-O practices rather than how you work with models inside a 
+                framework. The approach that I ended up taking is simple, 
+                but defensible.</p>
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="600" height="312" src="/data/tutorials/pix/3-1.png"/>
+            <img class="scale" width="556" height="208" src="/data/tutorials/pix/4-3.png"/>
         </div>
     </slide>
 
-    <slide title="The Starter Webapp" layout="normal">
-        <p>The "Quotes" starter webapp
-            uses bootstrap and jquery, 
-            simply because they make it so easy to have a 
-            not-ugly-though-the-same-as-everyones looking site.</p>
-        <p>The  Quotes webapp looks beautiful, I have to admit, but none 
-            of the links work, apart from the logo taking you back 
-            to the homepage :(</p>
-        <p>Your job is to fix these :)</p>
-    </slide>
-
-    <slide title="Where Do I Start?" layout="normal">
-        <p>There is a view template in the views folder, <code>justone</code>. 
-            This is meant to display just a single quote. 
-            Each of the broken links needs to resolve to the appropriate 
-            controller or method in a controller, which extracts the 
-            relevant quote from the model, 
-            and builds the view parameters for <code>justone</code> to present it.</p>
-        <p>Solve the logic for the first broken link that you fix, 
-            and you can re-use the technique for all the others.</p>
-    </slide>
-
-    <slide title="What Needs Fixing?" layout="normal">
-        <p>You might use this as a checklist.</p>
-        <table style="font-size:80%; padding: 10px; text-align:left">
+    <slide title="Data Structure - Menu Table" layout="normal">
+        <table>
             <tr>
-                <th>Link</th>
-                <th>Location</th>
-                <th>How to Fix It</th>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Notes</th>
             </tr>
             <tr>
-                <td>first</td>
-                <td>Navbar</td>
-                <td>A suitable <b>new controller</b> in controllers/</td>
+                <td>code</td>
+                <td>Unique menu identifier</td>
+                <td>Primary key</td>
             </tr>
             <tr>
-                <td>last</td>
-                <td>Navbar</td>
-                <td>A suitable <b>new controller</b> in controllers/last/</td>
+                <td>description</td>
+                <td>Menu item description</td>
+                <td>Used for alt text when image displayed</td>
             </tr>
             <tr>
-                <td>sleep</td>
-                <td>Homepage</td>
-                <td>Remapped to first::zzz</td>
+                <td>price</td>
+                <td>Price per item</td>
+                <td>Dollars &amp; cents</td>
             </tr>
             <tr>
-                <td>lock/em/up</td>
-                <td>Homepage</td>
-                <td>Remapped to welcome::shucks, using wildcard (lock / *)</td>
+                <td>picture</td>
+                <td>Name of item picture</td>
+                <td>Pictures in /assets/images</td>
             </tr>
             <tr>
-                <td>show/3</td>
-                <td>Homepage</td>
-                <td>Remapped to first::gimme/3, using wildcard (show / digit)</td>
-            </tr>
-            <tr>
-                <td>dunno</td>
-                <td>Homepage</td>
-                <td>Remapped to guess (<b>new controller</b>)</td>
-            </tr>
-            <tr>
-                <td>wise/bingo</td>
-                <td>Homepage</td>
-                <td>Remapped to bingo, using regular expression 
-                    (4 letters / bingo) (<b>new controller</b>)</td>
-            </tr>
-            <tr>
-                <td>comp4711/wisdom</td>
-                <td>Homepage</td>
-                <td>Remapped to bingo::wisdom, using regular expression (comp + digits / *)</td>
+                <td>category</td>
+                <td>Menu category</td>
+                <td>m=meal, d=drink, s=sweet</td>
             </tr>
         </table>
     </slide>
 
-    <slide title="Fixing Notes" layout="normal">
-        <div class="left">
-            <p>Fix the problems in sequence, working your way down the table.</p>
-            <p>For each of these, I suggest you determine the controller 
-                responsible for handling the request, the method inside 
-                that controller, and then the necessary routing.</p>   
-            <p>Note that the table row for "last" suggests a controller 
-                in <code>controllers/last/</code> ... 
-                this explicitly means that "last" is a subfolder 
-                inside <code>application/controllers</code>. Hmmm.</p>         
-        </div>
-        <div class="right">
-            <p>A helpful hint... if you retrieve a record from your model, 
-                and you want to add its key/value pairs to the view 
-                parameters array, you could have a bunch of assignments 
-                (<code>$this-&gt;data['who']= ...</code>), 
-                but there is an easier way:</p>
-            <p>
-                <code>$record = $this-&gt;quotes-&gt;whatever(...);<br/>
-                    $this-&gt;data = array_merge($this-&gt;data, $record);</code>
-            </p>
-        </div>
+    <slide title="Data Structure - Orders Table" layout="normal">
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>num</td>
+                <td>Order #</td>
+                <td>Primary key</td>
+            </tr>
+            <tr>
+                <td>date</td>
+                <td>Date/time order placed</td>
+                <td>Set when created, updated on checkout</td>
+            </tr>
+            <tr>
+                <td>status</td>
+                <td>Order status</td>
+                <td>a=open, c=complete, x=cancelled</td>
+            </tr>
+            <tr>
+                <td>total</td>
+                <td>Order total</td>
+                <td>Stored on checkout</td>
+            </tr>
+        </table>
+    </slide>
+
+    <slide title="Data Structure - Orderitemss Table" layout="normal">
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Description</th>
+                <th>Notes</th>
+            </tr>
+            <tr>
+                <td>order</td>
+                <td>Order #</td>
+                <td>Part 1 of composite primary key</td>
+            </tr>
+            <tr>
+                <td>item</td>
+                <td>Menu item code</td>
+                <td>Within the order, part 2 of composite key</td>
+            </tr>
+            <tr>
+                <td>quantity</td>
+                <td>Quantity</td>
+                <td>Positive</td>
+            </tr>
+        </table>
+    </slide>
+
+    <slide title="Model Implementation" layout="normal">
+        <p>You can use the database and active record classes built into 
+            CodeIgniter to complete this (using the CodeIgniter user guide 
+            for details), or you can build on the starter models in 
+            <code>core/MY_Model</code>. The former approach will get you deeper 
+            into the CodeIgniter "way", but the latter approach is the easier one.</p> 
+        <p>The base model supplied with the starter app provides
+            for single key tables (MY_Model) as well as composite key
+            tables (MY_Model2).</p>
+    </slide>
+
+    <slide title="Controller Expectations" layout="normal">
+        <p>There are two controllers: Welcome and Order. 
+            The welcome page displays a summary of the orders handled so far, 
+            with a link to the order page to deal with order handling. 
+            Methods are provided in the Order controller to create a new order, 
+            to add an item to an order, and to "checkout". 
+            The checkout prompts for confirmation and takes the user back to 
+            the homepage if appropriate.</p>
+        <p>Each of the controller methods has comments and pseudo-code 
+            sufficient to guide you in the intended use of the model 
+            classes you need to build.</p>
+    </slide>
+
+    <slide title="What Needs Fixing?" layout="normal">
+        <p>There are seven steps to complete, the way I have broken
+            the problem down. Each is described on following slides.</p>
+        <ol>
+            <li>Configuration</li>
+            <li>Homepage</li>
+            <li>Handle a new order</li>
+            <li>Handle order display</li>
+            <li>Handle order additions</li>
+            <li>Handle checkout</li>
+            <li>Handle completion</li>
+        </ol>
+    </slide>
+
+    <slide title="1. CONFIGURATION" layout="normal">
+        <p>Fix the <code>config/autoload</code> and <code>config/database</code> 
+            files.</p>
+        <p>
+            <code>config/autoload.php</code> needs to load the database library. 
+            You can also load your three models here, or you can load 
+            them in the constructors of any controllers that need them.</p>
+        <p>
+            <code>config/database.php</code> needs to reference the appropriate 
+            database name, and MySQL username/password to work with them. 
+            If you are using this at home, or elsewhere, with a different 
+            username/password, then add a configuration subfolder with
+            your settings, and "git ignore" it so it is not part of
+            your repository. That would technically make your config
+            <code>config/development/database.php</code>
+        </p>
+    </slide>
+
+    <slide title="2. HOMEPAGE" layout="normal">
+        <p>Fix the default controller. It needs to get completed 
+            order data from somewhere.</p>
+        <p>
+            <code>controllers/Welcome.php</code> ... 
+            the loop at line 31 expects a variable <code>$completed</code> 
+            to contain the order data, as an associative array. 
+            Completed orders can be distinguished by their 
+            status being 'c'. </p>
+        <p>Put this together, 
+            and the "fix" is to assign <code>$this->orders->some('status','c')</code>
+            to <code>$completed</code>, if you are using the provided
+            base models. 
+            I determined this by inspecting the <code>Active_record</code> 
+            interface at the top of <code>core/MY_Model.php</code>.
+        </p>   
+    </slide>
+
+    <slide title="3. HANDLE A NEW ORDER" layout="normal">
+        <p>You need to fix <code>controllers/Order::neworder()</code>, 
+            creating a new order record with an order number one higher than the 
+            last used.</p>
+        <p>
+            <code>Active_record::highest()</code> returns the highest key 
+            used in a model/table.<br/>
+            <code>$this-&gt;orders-&gt;highest()</code> gives the last order # used.<br/>
+            I suggest setting <code>$order_num</code> to that plus 1.</p>
+        <p>
+            <code>Active_record::create()</code> creates a new record.<br/>
+            <code>$this-&gt;orders-&gt;create()</code> hence creates a new object, 
+            with all the fields from the Orders table, 
+            initialized to blank.<br/>
+            Set the order properties properly (number, current date, status), 
+            then save the new order object (add it to the orders model).
+        </p>   
+    </slide>
+
+    <slide title="4. HANDLE ORDER DISPLAY" layout="normal">
+        <p>There are two pieces here – building the title for the page (order # 
+            and total), and building the graphical menu display.</p>
+        <p>Fix <code>controllers/order:display_menu()</code>. 
+            It needs to get order data from somewhere.
+            It also needs to get the column data from somewhere.</p>
+        <p>You are given the order # as a parameter.
+            Retrieve the order record from the orders table, for instance 
+            <code>$order = $this-&gt;orders-&gt;get($order_num)</code>.
+            A starting point for the title would then be <code>$order-&gt;num</code> or <code>$order_num</code>.
+            This is the first part of the FIXME at line 32.</p>   
+    </slide>
+
+    <slide title="Order Display - Column Data" layout="normal">
+        <p>Inspecting <code>views/show_menu</code>, the data for each column 
+            comes from an array of Menu records. 
+            The <code>make_column</code> method in <code>controllers/Order</code> 
+            looks ready for that, and it is even passed the value of the 
+            category to use for relevant menu items.</p>
+        <p>Sounds like the body of that method (FIXME on line 44) 
+            will be very similar to the fix we applied to the Welcome controller... 
+            <code>return $this-&gt;menu-&gt;some('category',$category)</code>
+        </p>
+    </slide>
+
+    <slide title="Order Display - Order Total" layout="normal">
+        <p>Fix <code>models/Orders::total()</code>. 
+            It needs to calculate the current total of an order.
+            It will need to get all of the items that make up that order.</p>
+        <p>The last part of the menu display is showing the order total in the title.
+            The <code>models/Orders::total()</code> method (lines 20+) is 
+            meant to handle that.
+            In order to calculate the total for an order, 
+            iterate over the items in an order. 
+            For each, retrieve its corresponding menu item. 
+            Add the orderitem quantity times the menu price to the order total.</p>
+    </slide>
+
+    <slide title="Order Model Needs Updating Too" layout="normal">
+        <p>The order total is also a property in the orders table. 
+            The writeup says it only has to be saved/accurate when an order 
+            is completed. You could make a design decision to update the order 
+            total whenever an item was added to an order, 
+            in which case this step could be satisfied by getting 
+            that property from the order. Regardless of your design decision, 
+            you will need to complete the <code>Order::total()</code> 
+            method at some point.</p>
+        <p>However you calculate or get the order total, it needs to be 
+            appended to the page title, inside parentheses. 
+            It would be a good idea to format it nicely and consistently. 
+            Any of the <code>money_format</code>, <code>number_format</code> 
+            or <code>sprintf</code> functions,
+            built-in to PHP , could do the trick.</p>
+    </slide>
+
+    <slide title="5. HANDLE ORDER ADDITIONS" layout="normal">
+        <p>Fix <code>controllers/Order:add()</code>. 
+            It will need to use <code>models/Orders::add_item()</code> to do useful stuff.</p>
+        <p>This method is invoked when a menu picture is clicked on. 
+            You can see that by mousing over any of the menu item images 
+            and observing the target link in the bottom left of your browser window.</p>
+        <p>
+            <code>Order::add</code> needs to properly update the <code>orderitems</code> 
+            table to reflect the request.
+            In theory, the logic to do this could be in a controller 
+            (interpreting it as business logic), or in a 
+            model (interpreting it as model logic). 
+            Given the "model adapter" strategy that PHP frameworks favor, 
+            it makes most sense to deal with the logic inside the model, 
+            reducing the coupling between the controller and model layers.</p>   
+    </slide>
+
+    <slide title="Order Additions - Facade" layout="normal">
+        <p>
+            <code>Order::add(num,item)</code> then becomes just a facade for 
+            calling the related model method, <code>models/Orders::add_item(...)</code>. 
+            These have similar names to reinforce the connection between them.</p>
+        <p>So, the controller fix (line 50 fixme) is simply 
+            <code>$this-&gt;orders-&gt;add_item($order_num,$item)</code>.</p>
+        <p>The add_item method in the orders model now needs to be completed.
+            There, you need to see if that item is part of the order already, 
+            in which case retrieve its record, 
+            increment the quantity and then update the table. 
+            If it isn't already there, you will need to make 
+            an empty orderitem record, and populate its fields 
+            appropriately (including setting the quantity to 1), 
+            before adding that record to the table.</p>   
+    </slide>
+
+    <slide title="Order Additions - Orderitems?" layout="normal">
+        <p>The <code>Orderitems</code> model is not referenced inside any 
+            controller. I did this on purpose, hoping that you would conclude 
+            that such references belong in the Orders model. 
+            In the Orders model, you will need to get a handle to the CodeIgniter 
+            instance, and then load the Orderitems model, because of O-O scoping. 
+            Even if autoloaded, Orderitems would be a property of the controller 
+            object, and out of scope inside a model object. </p>
+        <p>The idea, inside <code>models/Orders</code>: 
+            <code>$CI = &amp;get_instance(); $CI-&gt;load-&gt;model('orderitems');</code> 
+        </p>
+        <p>This will inject an <code>orderitems</code> property, inside the 
+            Orders model, so that we can manipulate the orderitems table.</p>
+        <p>If you made the earlier design decision to keep an order's total 
+            continuously updated, then you would hav
+            that method here. Otherwise, you are done.</p>
+    </slide>
+
+    <slide title="Order Additions - Ideal Treatment?" layout="normal">
+        <p>An ideal implementation would have some domain/entity classes, 
+            specifically a <code>domain/Order</code> to deal with the logic here that 
+            might feel awkward in a controller or in a conventional orders 
+            model, which is part of the data access layer and not an entity 
+            encapsulation.</p>
+        <p>In hindsight, it might have been kinder to you 
+            to follow this strategy, even if it meant a more complex 
+            starter app – O-O cohesion could have been better.</p>   
+    </slide>
+
+    <slide title="6. HANDLE CHECKOUT" layout="normal">
+        <p>Fix <code>controllers/Order::checkout()</code>. 
+            Where do the order details come from?</p>
+        <p>
+            <code>controllers/order::check_out()</code> displays the 
+            <code>show_order</code> view.
+            You need to pass view parameters to this.</p>
+        <p>
+            <code>order_num</code> and <code>total</code> come from the 
+            <code>order</code> object. You know how to get this.</p>
+        <p>
+            Items will be provided by the <code>Orders::details()</code> method 
+            - that is its intended purpose.
+            In other words,<br/>
+            <code>$this-&gt;data['items'] = $this-&gt;orders-&gt;details($num);</code>
+        </p>
+        <p>The <code>models/Orders::details()</code> method will need to 
+            access the <code>orderitems</code> model, similarly to the last step, 
+            and retrieve the relevant orderitems records, 
+            using the some method you have already seen.</p>   
+    </slide>
+
+    <slide title="Checkout - Order Validation" layout="normal">
+        <p>Validate the order before displaying the checkout page. 
+            To be considered "valid", it must include at least one 
+            item from each menu category.</p>
+        <p>
+            <code>models/Orders</code> has a <code>validate()</code> method. 
+            Implement this, and then the view parameter becomes easy ...<br/>
+            <code>$this-&gt;data['okornot'] = $this-&gt;orders-&gt;validate($num);</code>
+        </p>   
+    </slide>
+
+    <slide title="7. HANDLE COMPLETION" layout="normal">
+        <p>Fix <code>controllers/Order::proceed()</code> and <code>cancel()</code>.?</p>
+        <p>
+            <code>controllers/Order::proceed()</code> needs to update the order 
+            status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        <p>
+            <code>controllers/Order::cancel()</code> needs to update the order 
+            status to 'x' (for cancelled), after deleting any related 
+            orderitems records. To maintain cohesion, 
+            there is a <code>flush(num)</code> method in the <code>models/Orders</code> 
+            class, for you to implement. 
+            It needs to retrieve the orderitems for an order, and then delete them. 
+            The controller <code>cancel()</code> method would then call this model method.</p>   
     </slide>
 
     <slide title="Are We Done Yet?" layout="normal">
-        <p>When you are done, nothing will look different.
-            The links will work properly :)</p>
+        <p>Make sure the homepage displays completed orders, with correct totals!</p>
+        <p>This is more of a quality control step, making sure that the 
+            expected completed orders are shown :)</p>
+    </slide>
+
+    <slide title="Hint!" layout="normal">
+        <p>I warned you to skim the whole slideshow before beginning!</p>
+        <p>Your controllers only ever need to deal with the menu and orders models. 
+            Your orders model is the only place you need to deal with the orderitems model.</p>
     </slide>
 
 </tutorial>
