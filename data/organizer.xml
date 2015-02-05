@@ -33,16 +33,16 @@ Course organizer for Comp4711
     <week num="4">
         <topic>Models &amp; ORM</topic>
         <lesson type="lesson" name="lesson04">Models</lesson>
-        <tutorial type="tutorial" name="#">CodeIgniter Models - next week!</tutorial>
-        <lab type="lab" name="#" duedate="">Work on or complete assignment 1</lab>
+        <tutorial type="tutorial" name="">CodeIgniter Models - next week!</tutorial>
+        <lab type="lab" name="" duedate="">Work on or complete assignment 1</lab>
         <assignment type="assignment" name="assignment1-faq" duedate="2015.01.31 23:59">FAQ for assignment 1</assignment>
     </week>
     <week num="5">
         <topic>Views &amp; Templating</topic>
         <lesson type="lesson" name="lesson05">Views</lesson>
         <github type="github" name="forms" link="https://github.com/comp4711/example-forms">Example webapp - forms</github>
-        <tutorial type="tutorial" name="tutorial04">CodeIgniter Models</tutorial>
-        <lab type="lab" name="lab04" duedate="2015.02.08 17:30">Models</lab>
+        <tutorial type="tutorial" name="tutorial04">Working With CodeIgniter Models</tutorial>
+        <lab type="lab" name="lab04" duedate="2015.02.11 17:30">Models</lab>
         <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59">Functional Webapp writeup</assignment>
     </week>
     <week num="6">
