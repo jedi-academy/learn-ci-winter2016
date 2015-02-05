@@ -15,9 +15,23 @@ Tutorial 04 - Working With Models
             which you are to provide.</p>
     </slide>
 
+    <slide title="Tutorial Revisions" layout="normal">
+        <p>Two main revisions for this tutorial: I have added a bunch of
+            screenshots showing how the webapp remains broken while
+            you are fixing pieces of it, and I have updated the codebase,
+            to work around a change in CodeIgniter 3 since I first put
+            this lab together in the fall.</p>
+        <p>If you have not updated your framework recently, I suggest
+            doing so, to the latest release candidate, before undertaking 
+            this lab. If you base yours on the week 2 version you made,
+            you might find that you get errors referring to
+            "...application/errors/...", as the starter I provided
+            back then was out of date.</p>
+    </slide>
+
     <slide title="Preparation" layout="normal">
         <p>I have prepared a 
-            <a href="https://github.com/comp4711/winter2015-lab04">
+            <a href="https://github.com/comp4711/winter2015-lab04" target="_blank">
                 starter webapp</a>. The lab 4 starter, Jim's Joint, 
             is meant to handle ordering in a small restaurant. 
             I have build some database tables for this 
@@ -191,6 +205,12 @@ Tutorial 04 - Working With Models
         </ol>
     </slide>
 
+    <slide title="The Starting Point" layout="normal">
+        <p>The webapp is broken when you start, looking like this...</p>
+        <br/>
+        <img class="scale" width="638" height="500" src="/data/tutorials/pix/4-step0.png"/>
+    </slide>
+
     <slide title="1. CONFIGURATION" layout="normal">
         <p>Fix the <code>config/autoload</code> and <code>config/database</code> 
             files.</p>
@@ -209,6 +229,12 @@ Tutorial 04 - Working With Models
         </p>
     </slide>
 
+    <slide title="Post Configuration" layout="normal">
+        <p>There is no apparent difference after fixing your configuration...</p>
+        <br/>
+        <img class="scale" width="601" height="500" src="/data/tutorials/pix/4-step1.png"/>
+    </slide>
+
     <slide title="2. HOMEPAGE" layout="normal">
         <p>Fix the default controller. It needs to get completed 
             order data from somewhere.</p>
@@ -218,13 +244,38 @@ Tutorial 04 - Working With Models
             to contain the order data, as an associative array. 
             Completed orders can be distinguished by their 
             status being 'c'. </p>
-        <p>Put this together, 
-            and the "fix" is to assign <code>$this->orders->some('status','c')</code>
-            to <code>$completed</code>, if you are using the provided
-            base models. 
-            I determined this by inspecting the <code>Active_record</code> 
-            interface at the top of <code>core/MY_Model.php</code>.
-        </p>   
+    </slide>
+
+    <slide title="Fix the Homepage" layout="normal">
+        <div class="left">
+            <p>Put this together, 
+                and the "fix" is to assign <code>$this->orders->some('status','c')</code>
+                to <code>$completed</code>, if you are using the provided
+                base models. 
+                I determined this by inspecting the <code>Active_record</code> 
+                interface at the top of <code>core/MY_Model.php</code>.
+            </p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="525" height="170" src="/data/tutorials/pix/4-step2a.png"/>
+        </div>
+    </slide>
+
+    <slide title="Post Step 2" layout="normal">
+        <p>Your homepage should now look a bit different, showing any orders.
+            You might not have any orders, if you are just getting underway.</p>
+        <br/>
+        <img class="scale" width="800" height="424" src="/data/tutorials/pix/4-step2b.png"/>
+    </slide>
+
+    <slide title="Pre Step 3" layout="normal">
+        <p>If you try the next logical thing, "Start a new order", you will 
+            be presented with a nasty browser error page. This happens becuase
+            we need to create a new order object before we can start wirking with it.
+        </p>
+        <br/>
+        <img class="scale" width="600" height="293" src="/data/tutorials/pix/4-step3a.png"/>
     </slide>
 
     <slide title="3. HANDLE A NEW ORDER" layout="normal">
@@ -246,42 +297,100 @@ Tutorial 04 - Working With Models
         </p>   
     </slide>
 
+    <slide title="Fix neworder()" layout="normal">
+        <div class="left">
+            <p>
+                <code>Active_record::create()</code> creates a new record.<br/>
+                <code>$this-&gt;orders-&gt;create()</code> hence creates a new object, 
+                with all the fields from the Orders table, 
+                initialized to blank.<br/>
+                Set the order properties properly (number, current date, status), 
+                then save the new order object (add it to the orders model).
+            </p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="539" height="230" src="/data/tutorials/pix/4-step3b.png"/>
+        </div>
+    </slide>
+
+    <slide title="Post Step 3" layout="normal">
+        <p>That solved the redirection problem, but the order display (for our new
+            order) has other issues - an undefined variable "items" :(</p>
+        <br/>
+        <img class="scale" width="538" height="500" src="/data/tutorials/pix/4-step3c.png"/>
+    </slide>
+
     <slide title="4. HANDLE ORDER DISPLAY" layout="normal">
         <p>There are two pieces here – building the title for the page (order # 
             and total), and building the graphical menu display.</p>
         <p>Fix <code>controllers/order:display_menu()</code>. 
             It needs to get order data from somewhere.
             It also needs to get the column data from somewhere.</p>
-        <p>You are given the order # as a parameter.
-            Retrieve the order record from the orders table, for instance 
-            <code>$order = $this-&gt;orders-&gt;get($order_num)</code>.
-            A starting point for the title would then be <code>$order-&gt;num</code> or <code>$order_num</code>.
-            This is the first part of the FIXME at line 32.</p>   
+    </slide>
+
+    <slide title="Fix the Title" layout="normal">
+        <div class="left">
+            <p>You are given the order # as a parameter.
+                Retrieve the order record from the orders table, for instance 
+                <code>$order = $this-&gt;orders-&gt;get($order_num)</code>.
+                A starting point for the title would then be <code>$order-&gt;num</code> or <code>$order_num</code>.
+                This is the first part of the FIXME at line 32.</p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="541" height="230" src="/data/tutorials/pix/4-step3d.png"/>
+        </div>
     </slide>
 
     <slide title="Order Display - Column Data" layout="normal">
-        <p>Inspecting <code>views/show_menu</code>, the data for each column 
-            comes from an array of Menu records. 
-            The <code>make_column</code> method in <code>controllers/Order</code> 
-            looks ready for that, and it is even passed the value of the 
-            category to use for relevant menu items.</p>
-        <p>Sounds like the body of that method (FIXME on line 44) 
-            will be very similar to the fix we applied to the Welcome controller... 
-            <code>return $this-&gt;menu-&gt;some('category',$category)</code>
-        </p>
+        <div class="left">
+            <p>Inspecting <code>views/show_menu</code>, the data for each column 
+                comes from an array of Menu records. 
+                The <code>make_column</code> method in <code>controllers/Order</code> 
+                looks ready for that, and it is even passed the value of the 
+                category to use for relevant menu items.</p>
+            <p>Sounds like the body of that method (FIXME on line 44) 
+                will be very similar to the fix we applied to the Welcome controller... 
+                <code>return $this-&gt;menu-&gt;some('category',$category)</code>
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="594" height="113" src="/data/tutorials/pix/4-step3e.png"/>
+        </div>
+    </slide>
+
+    <slide title="Now We can See" layout="normal">
+        <p>Yay - we can now see the ordering display :)</p>
+        <br/>
+        <img class="scale" width="603" height="400" src="/data/tutorials/pix/4-step4g.png"/>
     </slide>
 
     <slide title="Order Display - Order Total" layout="normal">
-        <p>Fix <code>models/Orders::total()</code>. 
-            It needs to calculate the current total of an order.
-            It will need to get all of the items that make up that order.</p>
-        <p>The last part of the menu display is showing the order total in the title.
-            The <code>models/Orders::total()</code> method (lines 20+) is 
-            meant to handle that.
-            In order to calculate the total for an order, 
-            iterate over the items in an order. 
-            For each, retrieve its corresponding menu item. 
-            Add the orderitem quantity times the menu price to the order total.</p>
+        <div class="left">
+            <p>Fix <code>models/Orders::total()</code>. 
+                It needs to calculate the current total of an order.
+                It will need to get all of the items that make up that order.</p>
+            <p>The last part of the menu display is showing the order total in the title.
+                The <code>models/Orders::total()</code> method (lines 20+) is 
+                meant to handle that.
+                In order to calculate the total for an order, 
+                iterate over the items in an order. 
+                For each, retrieve its corresponding menu item. 
+                Add the orderitem quantity times the menu price to the order total.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="567" height="380" src="/data/tutorials/pix/4-step4k.png"/>
+        </div>
+    </slide>
+
+    <slide title="Menu Display Looking Good :)" layout="normal">
+        <p>Our menu display looks better now, with the current order
+            total displayed as part of the page header...</p>
+        <br/>
+        <img class="scale" width="609" height="400" src="/data/tutorials/pix/4-step4n.png"/>
     </slide>
 
     <slide title="Order Model Needs Updating Too" layout="normal">
@@ -307,6 +416,18 @@ Tutorial 04 - Working With Models
         <p>This method is invoked when a menu picture is clicked on. 
             You can see that by mousing over any of the menu item images 
             and observing the target link in the bottom left of your browser window.</p>
+        <p>If all goes well, clicking on an item will add it to the order
+            and redisplay the menu. The only evidence of this will be that
+            the order total is updated.</p>
+        <p>At this point, with no logic behind the handling method,
+            clicking on an item appears to do nothing, which is quite
+            correct!</p>
+    </slide>
+
+    <slide title="Let's Start to Fix the Handling" layout="normal">
+        <p>This method is invoked when a menu picture is clicked on. 
+            You can see that by mousing over any of the menu item images 
+            and observing the target link in the bottom left of your browser window.</p>
         <p>
             <code>Order::add</code> needs to properly update the <code>orderitems</code> 
             table to reflect the request.
@@ -319,12 +440,21 @@ Tutorial 04 - Working With Models
     </slide>
 
     <slide title="Order Additions - Facade" layout="normal">
-        <p>
-            <code>Order::add(num,item)</code> then becomes just a facade for 
-            calling the related model method, <code>models/Orders::add_item(...)</code>. 
-            These have similar names to reinforce the connection between them.</p>
-        <p>So, the controller fix (line 50 fixme) is simply 
-            <code>$this-&gt;orders-&gt;add_item($order_num,$item)</code>.</p>
+        <div class="left">
+            <p>
+                <code>Order::add(num,item)</code> then becomes just a facade for 
+                calling the related model method, <code>models/Orders::add_item(...)</code>. 
+                These have similar names to reinforce the connection between them.</p>
+            <p>So, the controller fix (line 50 fixme) is simply 
+                <code>$this-&gt;orders-&gt;add_item($order_num,$item)</code>.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="507" height="133" src="/data/tutorials/pix/4-step5b.png"/>
+        </div>
+    </slide>
+
+    <slide title="Order Additions - Orderitems?" layout="normal">
         <p>The add_item method in the orders model now needs to be completed.
             There, you need to see if that item is part of the order already, 
             in which case retrieve its record, 
@@ -333,89 +463,166 @@ Tutorial 04 - Working With Models
             an empty orderitem record, and populate its fields 
             appropriately (including setting the quantity to 1), 
             before adding that record to the table.</p>   
-    </slide>
-
-    <slide title="Order Additions - Orderitems?" layout="normal">
         <p>The <code>Orderitems</code> model is not referenced inside any 
             controller. I did this on purpose, hoping that you would conclude 
             that such references belong in the Orders model. 
             In the Orders model, you will need to get a handle to the CodeIgniter 
-            instance, and then load the Orderitems model, because of O-O scoping. 
+            instance, in order to reference the Orderitems model, because of O-O scoping. 
             Even if autoloaded, Orderitems would be a property of the controller 
             object, and out of scope inside a model object. </p>
-        <p>The idea, inside <code>models/Orders</code>: 
-            <code>$CI = &amp;get_instance(); $CI-&gt;load-&gt;model('orderitems');</code> 
-        </p>
-        <p>This will inject an <code>orderitems</code> property, inside the 
-            Orders model, so that we can manipulate the orderitems table.</p>
-        <p>If you made the earlier design decision to keep an order's total 
-            continuously updated, then you would hav
-            that method here. Otherwise, you are done.</p>
+    </slide>
+
+    <slide title="Order Additions - Orderitems!" layout="normal">
+        <div class="left">
+            <p>The idea, inside <code>models/Orders</code>, is shown to the right.</p>
+            <p>If you made the earlier design decision to keep an order's total 
+                continuously updated, then you would have
+                that method here. Otherwise, you are done.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="553" height="328" src="/data/tutorials/pix/4-step5x.png"/>
+        </div>
     </slide>
 
     <slide title="Order Additions - Ideal Treatment?" layout="normal">
-        <p>An ideal implementation would have some domain/entity classes, 
-            specifically a <code>domain/Order</code> to deal with the logic here that 
-            might feel awkward in a controller or in a conventional orders 
-            model, which is part of the data access layer and not an entity 
-            encapsulation.</p>
-        <p>In hindsight, it might have been kinder to you 
-            to follow this strategy, even if it meant a more complex 
-            starter app – O-O cohesion could have been better.</p>   
+        <div class="left">
+            <p>Order additions should now work, with the order total updating
+                as you click on items to add to an order.</p>
+            <p>An ideal implementation would have some domain/entity classes, 
+                specifically a <code>domain/Order</code> to deal with the logic here that 
+                might feel awkward in a controller or in a conventional orders 
+                model, which is part of the data access layer and not an entity 
+                encapsulation.</p>
+            <p>In hindsight, it might have been kinder to you 
+                to follow this strategy, even if it meant a more complex 
+                starter app – O-O cohesion could have been better.</p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="606" height="400" src="/data/tutorials/pix/4-step5d.png"/>
+        </div>
     </slide>
 
     <slide title="6. HANDLE CHECKOUT" layout="normal">
-        <p>Fix <code>controllers/Order::checkout()</code>. 
-            Where do the order details come from?</p>
-        <p>
-            <code>controllers/order::check_out()</code> displays the 
-            <code>show_order</code> view.
-            You need to pass view parameters to this.</p>
-        <p>
-            <code>order_num</code> and <code>total</code> come from the 
-            <code>order</code> object. You know how to get this.</p>
-        <p>
-            Items will be provided by the <code>Orders::details()</code> method 
-            - that is its intended purpose.
-            In other words,<br/>
-            <code>$this-&gt;data['items'] = $this-&gt;orders-&gt;details($num);</code>
-        </p>
-        <p>The <code>models/Orders::details()</code> method will need to 
-            access the <code>orderitems</code> model, similarly to the last step, 
-            and retrieve the relevant orderitems records, 
-            using the some method you have already seen.</p>   
+        <div class="left">
+            <p>Fix <code>controllers/Order::checkout()</code>. 
+                Where do the order details come from?</p>
+            <p>
+                <code>controllers/order::check_out()</code> displays the 
+                <code>show_order</code> view.
+                You need to pass view parameters to this, or we
+                will get a funny looking checkout screen, shown right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="263" src="/data/tutorials/pix/4-step5e.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout View Parameters" layout="normal">
+        <div class="left">
+            <p>
+                <code>order_num</code> and <code>total</code> come from the 
+                <code>order</code> object. You know how to get this.</p>
+            <p>
+                Here is an implementation for the 'total' and
+                'items' view parameters:
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="755" height="353" src="/data/tutorials/pix/4-step5e2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout Is Starting to Look Real" layout="normal">
+        <div class="left">
+            <p>Checkout is looking better (see right).</p>
+            <p>The intent is that the "Proceed" button be enabled only
+                if the order is valid.We'll fix that next.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="262" src="/data/tutorials/pix/4-step5f.png"/>
+        </div>
     </slide>
 
     <slide title="Checkout - Order Validation" layout="normal">
-        <p>Validate the order before displaying the checkout page. 
-            To be considered "valid", it must include at least one 
-            item from each menu category.</p>
-        <p>
-            <code>models/Orders</code> has a <code>validate()</code> method. 
-            Implement this, and then the view parameter becomes easy ...<br/>
-            <code>$this-&gt;data['okornot'] = $this-&gt;orders-&gt;validate($num);</code>
-        </p>   
+        <div class="left">
+            <p>Validate the order before displaying the checkout page. 
+                To be considered "valid", it must include at least one 
+                item from each menu category.</p>
+            <p>
+                <code>models/Orders</code> has a <code>validate()</code> method. 
+                Implement this, and then the view parameter becomes easy ...<br/>
+                <code>$this-&gt;data['okornot'] = $this-&gt;orders-&gt;validate($num);</code>
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="706" height="348" src="/data/tutorials/pix/4-step6f.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout - Using Validation" layout="normal">
+        <div class="left">
+            <p>
+                We can reference <code>Orders::validate</code> from our <code>checkout()</code> method ...<br/>
+                <code>$this-&gt;data['okornot'] = $this-&gt;orders-&gt;validate($num);</code>
+            </p>   
+            <p>The checkout view should now show the Proceed button disabled.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="218" src="/data/tutorials/pix/4-step6hi.png"/>
+        </div>
     </slide>
 
     <slide title="7. HANDLE COMPLETION" layout="normal">
-        <p>Fix <code>controllers/Order::proceed()</code> and <code>cancel()</code>.?</p>
-        <p>
-            <code>controllers/Order::proceed()</code> needs to update the order 
-            status, to 'c', and to make sure the date/time and the total are properly set too.</p>
-        <p>
-            <code>controllers/Order::cancel()</code> needs to update the order 
-            status to 'x' (for cancelled), after deleting any related 
-            orderitems records. To maintain cohesion, 
-            there is a <code>flush(num)</code> method in the <code>models/Orders</code> 
-            class, for you to implement. 
-            It needs to retrieve the orderitems for an order, and then delete them. 
-            The controller <code>cancel()</code> method would then call this model method.</p>   
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="Completion, Really" layout="normal">
+        <div class="left">
+            <p>
+                <code>controllers/Order::cancel()</code> needs to update the order 
+                status to 'x' (for cancelled), after deleting any related 
+                orderitems records. To maintain cohesion, 
+                there is a <code>flush(num)</code> method in the <code>models/Orders</code> 
+                class, for you to implement. </p>
+            <p>It should also retrieve the orderitems for an order, and then delete them. 
+                That would be done by the <code>flush()</code> method inside
+                our Orders model, but I think we have done enough!</p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="465" height="177" src="/data/tutorials/pix/4-step7d.png"/>
+        </div>
     </slide>
 
     <slide title="Are We Done Yet?" layout="normal">
-        <p>Make sure the homepage displays completed orders, with correct totals!</p>
-        <p>This is more of a quality control step, making sure that the 
-            expected completed orders are shown :)</p>
+        <div class="left">
+            <p>Make sure the homepage displays completed orders, with correct totals!</p>
+            <p>This is more of a quality control step, making sure that the 
+                expected completed orders are shown :)</p>
+         </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="318" src="/data/tutorials/pix/4-step7x.png"/>
+        </div>
     </slide>
 
     <slide title="Hint!" layout="normal">
