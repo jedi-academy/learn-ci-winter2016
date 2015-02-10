@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Assignment 2 - Functional Webapp
+-->
+<lab status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Overall Assignment Goals" layout="normal">
+        <p>The purpose of assignment 2 is to make your project functional,
+            and to add admin maintenance to it.</p>
+        <p>Your assignment 1 project will need to have its database
+            realized (not just mock data) and its usecases implemented
+            (not just mock views).</p> 
+        <p>This may sound suspiciously similar to labs #3-5! Hmmmmm.</p> 
+    </slide>
+
+    <slide title="FAQ? Revisions?" layout="normal">
+        <p>If assignment details need clarifying, such changes will
+            be made in this slide deck, and a note added to this page.</p>  
+        <ul>
+            <li></li>
+        </ul>
+
+    </slide>
+
+    <slide title="Preparation" layout="normal">
+        <p>Make sure that you create a "develop" branch in your shared
+            repository, based on "master". Make this develop branch the default.</p>
+        <p>This will let you continut work on assignment 2 without impacting
+            your assignment 1 work, which has been preserved in the master branch.</p>
+        <p>If there turn out to be issues with your assignment 1, those
+            can be addressed in a fixme branch, with a PR t the master branch.
+            It will then need to be remerged into the develop branch.</p>
+        <p>From this point on, all work is done on the develop branch, and it 
+            will only get merged into the master branch when you have completed
+            assignment 2.</p>
+        <p>You are welcome to "tag" the master branch, perhaps "1.0",
+            once you have isolated it.</p>
+    </slide>
+
+    <slide title="Submission" layout="normal">
+        <p>Dayschool students: submit a readme to the D2L assignment dropbox. 
+            This readme should have a link to your github repository.</p>
+        <p>Distance students: send me an email with a link to your github repository.</p>
+        <p>Due: Saturday, Mar 7, 23:59 PST</p>
+    </slide>
+
+    <slide title="Evaluation" layout="normal">
+        <p>Assignments will be evaluated out of 20, according to the following
+            breakdown:        </p>
+        <div class="left">
+            <ul>
+                <li>Controllers (2)</li>
+                <li>Models, bound to DB tables (2)</li>
+                <li>Usecases, home and 3x two levels deep ? (4)</li>
+                <li>Aesthetics &amp; consistency (2)</li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul>
+                <li>Admin page - add/edit/delete (4)</li>
+                <li>Rich text and image uploading (2)</li>
+                <li>Works properly? (3)</li>
+                <li>Comments &amp; programming style (2)</li>
+            </ul>
+        </div>
+    </slide>
+
+    <slide title="Your Code" layout="normal">
+        <p>You are programmers, and you want to be professional. Code like it.</p>
+        <p>That means clearly written and formatted code, properly commented.</p>
+        <p>Your views should have no PHP in them, apart from possibly comments.</p>
+        <p>Remember the golden rules!!!</p>
+    </slide>
+
+</lab>

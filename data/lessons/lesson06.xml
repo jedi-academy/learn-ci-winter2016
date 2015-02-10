@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 06 - Helpers & Addons
+-->
+<lesson status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <!-- Agenda -->
+    <slide title="Agenda" layout="normal">
+        <ol>
+            <li>
+                <a href="#{tag1}">Building on CodeIgniter</a>
+            </li>
+            <li>
+                <a href="#{tag2}">A CodeIgniter Library (Caboose)</a>
+            </li>
+            <li>
+                <a href="#{tag3}">A CodeIgniter Helper (formfields)</a>
+            </li>
+            <li>
+                <a href="#{tag4}">A CodeIgniter Package</a>
+            </li>
+            <li>
+                <a href="#{tag5}">Package Management</a>
+            </li>
+        </ol>
+    </slide>
+
+
+    <!-- Normal slides -->
+
+    <slide title="BUILDING ON CODEIGNITER" layout="normal" tag="tag1">
+        <p>So far, your webapp has been assembled using controllers.
+            models and views. Helpers and libraries are two other
+            kinds of components you can use in a CI webapp.</p>
+        <p>CodeIgniter also has the notion of packages,
+            which are larger sets of the above kinds of comnponents.</p>
+    </slide>
+
+    <slide title="Loading Components" layout="normal">
+        <p>When CodeIgniter loads components, it looks
+            first in the appropriate subfolder inside
+            <code>application</code>, and then in the
+            appropriate subfolder inside the framework's
+            <code>system</code> folder.
+        </p>
+        <p>The CodeIgniter loader applies its own naming
+            rules when looking for components, for instance
+            looking only for the "ucfirst" filename
+            corresponding to a library, or appending
+            an appropriate extension ("_helper") when
+            looking for a helper. You already know to watch
+            out for this if developing on Windows and
+            deploying on *nix!</p>
+    </slide>
+
+    <slide title="Helper Basics" layout="normal">
+        <div class="left">
+            <p>Helpers are files that contain one or more procedural functions.
+                A number of them are built into CodeIgniter, as shown in the
+                folder list to the right.</p>
+            <p>Helpers can be explicitly loaded, as in
+                <code>$this->load->helper('whatever');</code>,
+                or they can be autoloaded in <code>application/config/autoload.php</code>,
+                for instance <code>$autoload['helper'] = array('url');</code>.
+                Use the name of the helper without the extension.
+            </p>
+            <p>Helper functions are not O-O, but they are simpler
+                than having classes with static methods and referring to those.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="575" height="136" src="/data/lessons/pix/6-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Writing Helpers" layout="normal">
+        <div class="left">
+            <p>Each helper file is meant to hold a set of *related* functions.</p>
+            <p>One good practice is to ensure that helpers cannot be loaded
+                outside the context of CodeIgniter. This is done by making sure that
+                the <code>BASEPATH</code> constant is defined.</p>
+            <p>Another good practice, with functions, is to make sure they are not
+                already defined (which would trigger a PHP error). This is done
+                using the <code>function_exists</code> function built into PHP.</p>    
+        </div>
+        <div class="right">
+            <p>A typical helper excerpt...<br/>
+                <code>
+&lt;?php<br/>
+                    defined('BASEPATH') OR exit('No direct script access allowed');<br/>
+                    <br/>
+                    if ( ! function_exists('do_something_useful')) {<br/>
+&#160;&#160;function do_something_useful(...) {<br/>
+&#160;&#160;&#160;&#160;...<br/>
+&#160;&#160;}<br/>
+                    }
+                </code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Extending Built-In Helpers" layout="normal">
+        <div class="left">
+            <p>You can replace functions in a built-in helper, or add
+                your own to them, by "extending" the helper.</p>
+            <p>Create a helper named the same as the one you
+                want to enahnce, but with the subclass prefix (<code>MY_</code>),
+                and in your application/helpers folder.</p>
+            <p>It will automatically be loaded before the built-in
+                helper, and any functions you define will be used in
+                preference to the built-in ones.</p>
+        </div>
+        <div class="right">
+            <p>In application/helpers/MY_foo_helper.php: <br/>
+                <code>
+                    function a() {...}<br/>
+                    function b() {...}</code>
+            </p>
+            <p>In system/helpers/foo_helper.php: <br/>
+                <code>
+                    function a() {...}<br/>
+                    function c() {...}</code>
+            </p>
+            <p>In your controller using "foo": <br/>
+                <code>
+                    $this->load->helper('foo');</code>
+                <br/>
+                functions a and b come from your code, while function c comes from the built-in.
+            </p>
+
+        </div>
+    </slide>
+
+    <slide title="Library Basics" layout="normal">
+        <div class="left">
+            <p>Libraries are files that contain class definitions - 
+                usually one per file.</p>
+            <p>Libraries can be explicitly loaded, as in
+                <code>$this->load->library('whatever');</code>,
+                or they can be autoloaded in <code>application/config/autoload.php</code>,
+                for instance <code>$autoload['libraries'] = array('parser');</code>.
+            </p>
+            <p>Library functions are O-O.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="580" height="154" src="/data/lessons/pix/6-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Writing Libraries" layout="normal">
+        <div class="left">
+            <p>Each library is meant to hold a single useful class.</p>
+            <p>One good practice is to ensure that libraries cannot be loaded
+                outside the context of CodeIgniter. This is done by making sure that
+                the <code>BASEPATH</code> constant is defined.</p>
+            <p>You don't have to worry about libraries being loaded twice -
+                the CodeIgniter loader takes care of that.</p>    
+        </div>
+        <div class="right">
+            <p>A typical library excerpt...<br/>
+                <code>
+&lt;?php<br/>
+                    defined('BASEPATH') OR exit('No direct script access allowed');<br/>
+                    <br/>
+                    class Whatever {<br/>
+&#160;&#160;function do_something_useful(...) {<br/>
+&#160;&#160;&#160;&#160;...<br/>
+&#160;&#160;}<br/>
+                    }
+                </code>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Extending Built-In Libraries" layout="normal">
+        <div class="left">
+            <p>You can extend a built-in library, replacing or adding
+                methods in an "O-O" fashion.
+                Create a library named the same as the one you
+                want to enahnce, but with the subclass prefix (<code>MY_</code>),
+                and in your application/libraries folder.</p>
+            <p>It will automatically be loaded whenever you use the CI loader
+                to pull in the "original" one.</p>
+            <p>If the source file contains other classes, they can
+                be instantiated or extended in your logic, after loading.
+                You've seen this with <code>Welcome extends Application</code>.</p>
+        </div>
+        <div class="right">
+            <p>In application/libraries/MY_Foo.php: <br/>
+                <code>
+                    class MY_Foo extends CI_Foo {
+&#160;&#160;function a() {...}<br/>
+&#160;&#160;function b() {...}
+                    }</code>
+                    
+            </p>
+            <p>In system/libraries/Foo.php: <br/>
+                <code>
+                    class CI_Foo {<br/>
+                    }
+                </code>
+            </p>
+            <p>In your controller using "foo": <br/>
+                <code>
+                    $this->load->library('foo');</code>
+                <br/>
+                Your controller will end up with a "foo" instance
+                injected as a property, namely <code>$this->foo</code>
+            </p>
+
+        </div>
+    </slide>
+
+    <slide title="Package Basics" layout="normal">
+        <div class="left">
+            <p>Packages are collections of related components organized 
+                in a file hierarchy similarly to <code>application/</code>.</p>
+            <p>Packages are not "loaded", in the conventional sense - their
+                folders are added to the appropriate list of folders to search
+                when the CI loader is invoked.
+                Packages can be explicitly specified, as in
+                <code>$this->load->add_package_path(APPPATH.'third_party', '/some_package');</code>,
+                or they can be autoloaded in <code>application/config/autoload.php</code>,
+                for instance <code>$autoload['packages'] = array(APPPATH.'third_party', '/some_package');</code>.
+            </p>
+        </div>
+        <div class="right">
+            <p>Packages contain most things that might be in an app, with one
+                glaring exception ... can you spot it?</p>
+            <code>
+                /application/third_party/some_package/<br/>
+                <br/>
+                config/<br/>
+                helpers/<br/>
+                language/<br/>
+                libraries/<br/>
+                models/<br/>
+                views/
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Writing Packages" layout="normal">
+        <div class="left">
+            <p>The components in a package are written and referenced "normally".
+                They become "visible" when the package's path is added to
+                the loader.</p>
+            <p>Package paths are pre-pended to the list of folders to search,
+                in the order that you add them, i.e. LIFO.</p>
+            <p>"Normal" component loading rules apply inside a package too.</p>    
+        </div>
+        <div class="right">
+            <p>Packages are meant to be self-contained.</p>
+            <p>Packages will often come from outside projects.</p>
+            <p>Naming collisions are possible, and not properly dealt with -
+                namespaces in a future CodeIgniter will fix that.</p>
+        </div>
+    </slide>
+
+    <slide title="Extending Built-In Packages?" layout="normal">
+        <p>No packages are built-in to CodeIgniter.</p>
+        <p>There are not a lot of good examples, at the moment.</p>
+        <p>A suggested best practice is to "install" a package by
+            creating a folder for it, inside <code>application/third_party</code>,
+            and crafting a "composer" file to manage pulling and
+            updating the files that comprise it, from an external site.</p>
+        <p>Treat this notion of packages as CodeIgniter-specific.</p>
+    </slide>
+
+    <slide title="A CODEIGNITER LIBRARY (CABOOSE)" layout="normal" tag="tag2">
+        <p>
+            <i>An <b>example</b> library, to help your understanding.</i>
+        </p>
+        <br/>
+        <p>Plain HTML doesn't cut it in your views :(</p>
+        <p>CSS frameworks improve presentation substantially :)</p>
+        <p>But ... they involve CSS, Javascript &amp; often initialization</p>
+        <p>
+            <b>Caboose</b> is a library that manages these frameworks &amp; widgets</p>
+    </slide>
+
+    <slide title="Frameworks &amp; Widgets" layout="normal">
+        <p>In the context of presentation, a framework is a complete set of 
+            CSS and/or Javascript files that provide styling and behaviour
+            for your webpages. Examples include 
+            <a href="http://getbootstrap.com/" target="_blank">BootStrap</a> or 
+            <a href="http://jquery.com/" target="_blank">jQuery</a>.</p>
+        <p>These can be deployed from a content distribution network
+            or as part of your webapp. If they are pervasive in your webapp,
+            you would normally add links to them in your master template,
+            so they are referenced on every page.</p>
+        <p>
+            <b>Caboose</b> solves the problem of managing the individual
+            add-on components, referred to as "widgets",
+            or frameworks that are only used on some of your pages.</p>
+    </slide>
+
+    <slide title="Caboose Perspective" layout="normal">
+        <p>What Caboose assumes to be a managed widget...</p>
+        <ul>
+            <li>Zero or more CSS files, to be included in your page's 
+                <code>&lt;head&gt;</code>
+            </li>
+            <li>Zero or more javascript files, to be included just before 
+                <code>&lt;/body&gt;</code>
+            </li>
+            <li>An optional component template, holding a javascript 
+                snippet needed to initialize the library/widget</li>
+        </ul>
+    </slide>
+
+    <slide title="Caboose Assumptions" layout="normal">
+        <p>Caboose assumes that you will store the bits and pieces for a
+            component in specific subfolders, <code>assets/css</code> and 
+            <code>assets/js</code> in your webapp's document root.</p>
+        <p>It further assumes that you will tailor any needed
+            widget initialization using a parser template inside your
+            <code>view/components</code> folder.</p>
+    </slide>
+
+    <slide title="Caboose Configuration" layout="normal">
+        <div class="left">
+            <p>Components recognized by Caboose are defined in its
+                <code>$components</code> array, using names of your choice.
+            </p>
+            <p>Each component name references an array of settings for that component.</p>
+            <p>
+                The <code>css</code> and <code>js</code> settings can themselves contain an array of filenames
+                to include, if appropriate.</p>
+        </div>
+        <div class="right">
+            <p>Configuration for a sample datepicker component:</p>
+            <code>
+                $components = array(<br/>
+&#160;&#160;...<br/>
+&#160;&#160;'time' =&gt; array(<br/>
+&#160;&#160;&#160;&#160;'css' =&gt; 'bootstrap-timepicker.css',<br/>
+&#160;&#160;&#160;&#160;'js' =&gt; 'bootstrap-timepicker.js',<br/>
+&#160;&#160;&#160;&#160;'template' =&gt; 'time'<br/>
+&#160;&#160;),<br/>
+                ...);                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Caboose Usage - Field Level" layout="normal">
+        <div class="left">
+            <p>Once the library is loaded, you basically tell it
+                whenever you need to use a component...<br/>
+                <code>$this-&gt;caboose-&gt;needed('whatever','fieldname');</code>
+            </p>
+            <p>"whatever" is the name of the widget, and "fieldname" is
+                the ID of a component to be bound to that widget.</p>
+            <p>The library will keep track of all of the widgets referenced,
+                and generate/accumulate the needed Javascript initialization
+                for each of them.</p>
+        </div>
+        <div class="right">
+            <p>An example, inside a controller method that will result
+                in a webpage with a datepicker that we want associated
+                with the input text field "asof_date":</p>
+            <code>
+                $this-&gt;caboose-&gt;needed('time','asof_date');
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Caboose Usage - Page Level " layout="normal">
+        <div class="left">
+            <p>The Caboose class has three methods to return the constructed
+                HTML/Javascript. In my base controller's <code>render()</code>, 
+                I use these to set view parameters:</p>
+            <code>
+                // convert Caboose output into view parameters<br/>
+                $this-&gt;data['caboose_styles'] = $this-&gt;caboose-&gt;styles();<br/>
+                $this-&gt;data['caboose_scripts'] = $this-&gt;caboose-&gt;scripts();<br/>
+                $this-&gt;data['caboose_trailings'] = $this-&gt;caboose-&gt;trailings();
+            </code>
+        </div>
+        <div class="right">
+            <p>Inside my master template, I include those view parameters:</p>
+            <code>
+&lt;html&gt;<br/>
+&#160;&#160;&lt;head&gt;<br/>
+&#160;&#160;&#160;&#160;...<br/>
+&#160;&#160;&#160;&#160;{caboose_styles}<br/>
+&#160;&#160;&lt;/head&gt;<br/>
+&#160;&#160;&lt;body&gt;<br/>
+&#160;&#160;&#160;&#160;...<br/>
+&#160;&#160;&#160;&#160;{caboose_scripts}<br/>
+&#160;&#160;&#160;&#160;{caboose_trailings}<br/>
+&#160;&#160;&lt;/body&gt;<br/>
+&lt;/html&gt;
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Caboose Notes" layout="normal">
+        <p>The Caboose library *is* a library, but there are
+            some awkward things you might have noticed:</p>
+        <ul>
+            <li>Configuration is done inside the class. Wouldn't it be 
+                better to handle this inside a config file?
+                That would make the library more generalized.</li>
+            <li>The library relies on some view fragments in
+                the <code>views</code> folder. This means we have
+                several places in our webapp to change :(</li>
+            <li>What if we wanted to store our assets somewhere 
+                other than in <code>assets</code>? Shouldn't
+                that be a variable, constant, or configuration item?</li>
+        </ul>
+        <p>Hmmmm - do you remember mention of something that would
+            let us bundle related classes, configuration and views?</p>
+    </slide>
+
+
+    <slide title="A CODEIGNITER HELPER (FORMFIELDS)" layout="normal" tag="tag3">
+        <p>The <b>Formfields</b> helper is a collection of functions, 
+            and corresponding view fragments, 
+            to deal with the styling of HTML form fields.</p>
+        <p>Each function builds a standard array of view parameters, and 
+            then invokes the template parser to style the form field for 
+            the CSS/JS framework(s) you are using.</p>
+        <p>So what? This adds a layer of abstraction, so that
+            you don't worry about form styling in your controller logic.
+            Further, should you wish to switch CSS or Javascript 
+            frameworks, all you have to do is update your set
+            of view fragments :)</p>
+    </slide>
+
+    <slide title="Sample Formfields Function " layout="normal">
+        <div class="left">
+            <p>To the right is a typical function from the Formfields helper.
+                It looks complicted for just a text field, but includes
+                a number of standard parameters used in the field styling,
+                such as standard help text.</p>
+            <p>The end result looks something like...</p>
+            <br/>
+            <img class="scale" width="530" height="75" src="/data/lessons/pix/6-5.png"/>
+        </div>
+        <div class="right">
+            <code>
+                function makeTextField($label, $name, $value, ...) {<br/>
+&#160;&#160;$CI = &amp;get_instance();<br/>
+&#160;&#160;$parms = array(<br/>
+&#160;&#160;&#160;&#160;'label' =&gt; $label,<br/>
+&#160;&#160;&#160;&#160;'name' =&gt; $name,<br/>
+&#160;&#160;&#160;&#160;'value' =&gt; htmlentities($value,ENT_COMPAT,'UTF-8'),<br/>
+&#160;&#160;&#160;&#160;'explain' =&gt; $explain,<br/>
+&#160;&#160;&#160;&#160;'maxlen' =&gt; $maxlen,<br/>
+&#160;&#160;&#160;&#160;'size' =&gt; $size,<br/>
+&#160;&#160;&#160;&#160;'disabled' =&gt; ($disabled?'disabled="disabled"':'')<br/>
+&#160;&#160;);<br/>
+&#160;&#160;return $CI-&gt;parser-&gt;parse('_fields/textfield', $parms, true);<br/>
+                }                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Sample Formfields View Fragment " layout="normal">
+        <div class="left">
+            <p>To the right is a view fragment that might correspond to
+                the function on the previous slide.</p>
+            <p>It looks ugly, but only because of the Bootstrap styling.</p>
+        </div>
+        <div class="right">
+            <code>
+&lt;div class="control-group"&gt;<br/>
+&#160;&#160;&lt;label class="control-label" for="{name}"&gt;{label}&lt;/label&gt;<br/>
+&#160;&#160;&lt;div class="controls"&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;input type="text" id="{name}" name="{name}" <br/>
+&#160;&#160;&#160;&#160;&#160;&#160; value="{value}" maxLength="{maxlen}"<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;style="width:{size}em;height:2em" {disabled}/&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;br/&gt;&lt;small&gt;&lt;em&gt;{explain}&lt;/em&gt;&lt;/small&gt;<br/>
+&#160;&#160;&lt;/div&gt;<br/>
+&lt;/div&gt;
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Formfields Usage" layout="normal">
+        <div class="left">
+            <p>How do we use a helper like this? In your controller,
+                you could construct the HTML for a given textfield
+                something like...</p>
+            <code>
+                $data['fuserid'] = makeTextField('Userid', "userid", <br/>
+&#160;&#160;&#160;&#160;$member-&gt;userid,<br/>
+&#160;&#160;&#160;&#160;"Login ID for this member", 10, 10);            
+            </code>
+        </div>
+        <div class="right">
+            <p>To use the result in your view, it might look something like...</p>
+            <code>
+&lt;fieldset id="group3"&gt;<br/>
+&#160;&#160;&lt;legend&gt;(b) Listing Details&lt;/legend&gt;<br/>
+&#160;&#160;{fuserid}<br/>
+&#160;&#160;{fbiz_email}<br/>
+&#160;&#160;{fxdesc_web}<br/>
+&lt;/fieldset&gt;            
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Formfields Helper - So What?" layout="normal">
+        <p>Separated control logic from presentation</p>
+        <p>Our views are *much* simpler, and do not have to involve PHP,
+            Javascript, or customization!</p>
+        <p>Change the view fragments to suit the framework(s) you want 
+            to use (use the caboose, luke)</p>
+        <p>Add function/view fragment pairs to suit your application</p>
+    </slide>
+
+    <slide title="Formfields Helper - Show Me!" layout="normal">
+        <p>Ok - here is the HTML for a file uploading widget. 
+            You might switch to outline view to see it better! ;p</p>
+        <code>
+&lt;div class="control-group"&gt;<br/>
+&#160;&#160;&lt;label class="control-label" for="{name}"&gt;{label}&lt;/label&gt;<br/>
+&#160;&#160;&lt;div class="controls"&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;div class="fileupload fileupload-new" data-provides="fileupload"&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;div class="fileupload-new thumbnail" style="width: 120px; height: 80px;"&gt;&lt;img src="http://www.placehold.it/50x50/EFEFEF/AAAAAA" /&gt;&lt;/div&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;div class="fileupload-preview fileupload-exists thumbnail" style="width: 120px; height: 80px;"&gt;&lt;/div&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;span class="btn btn-file"&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;span class="fileupload-new"&gt;Select file&lt;/span&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;span class="fileupload-exists"&gt;Change&lt;/span&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&lt;input type="file" name="{name}"/&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;/span&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;a href="#" class="btn fileupload-exists" data-dismiss="fileupload"&gt;Remove&lt;/a&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;br/&gt;&lt;small&gt;&lt;em&gt;{explain}&lt;/em&gt;&lt;/small&gt;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&lt;br/&gt;Any file selected above will be uploaded when you submit this form.&lt;br/&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;/div&gt;<br/>
+&#160;&#160;&lt;/div&gt;<br/>
+&lt;/div&gt;                
+        </code>
+    </slide>
+
+    <slide title="Formfields Helper - And...?" layout="normal">
+        <div class="left">
+            <p>Make a simple image uploader function for that...</p>
+            <code>
+                function makeImageUploader($label, $name,$explain="") {<br/>
+&#160;&#160;$CI = &amp;get_instance();<br/>
+&#160;&#160;$parms = array(<br/>
+&#160;&#160;&#160;&#160;'label' =&gt; $label,<br/>
+&#160;&#160;&#160;&#160;'name' =&gt; $name,<br/>
+&#160;&#160;&#160;&#160;'explain' =&gt; $explain<br/>
+&#160;&#160;);<br/>
+&#160;&#160;return $CI-&gt;parser-&gt;parse('_fields/image_upload', $parms, true);<br/>
+                }                
+            </code>
+        </div>
+        <div class="right">
+            <p>And the controller code ends up like...</p>
+            <code>$this-&gt;data['simpler'] = makeImageUploader($label,$name,'Any file...');</code>
+            <p>And the view like...</p>
+            <code>{simpler}</code>
+        </div>
+    </slide>
+
+    <slide title="A CODEIGNITER PACKAGE" layout="normal" tag="tag4">
+        <p>To make one of the helpers or libraries into a package, 
+            set it up in its own folder, inside application/third_party, 
+            and autoload its config file.</p>
+    </slide>
+
+    <slide title="Caboose as a Package" layout="normal">
+        <div class="left">
+            <code>
+                /caboose<br/>
+&#160;&#160;/config/caboose.php<br/>
+&#160;&#160;/libraries/caboose.php<br/>
+&#160;&#160;/views/_components<br/>
+&#160;&#160;&#160;&#160;Confirm.php, date.php, ...<br/>
+                /assets<br/>
+&#160;&#160;/css/<br/>
+&#160;&#160;&#160;&#160;bootstrap.css,datepicker.css,jquery.css,...<br/>
+&#160;&#160;&#160;&#160;style.css<br/>
+&#160;&#160;/images/glyph...<br/>
+&#160;&#160;/js/<br/>
+&#160;&#160;&#160;&#160;bootstrap.js,jquery.js,redactor.js            
+            </code>
+        </div>
+        <div class="right">
+            <code>$autoload['config'] = array('third_party/caboose/config/caboose',...);</code>
+        </div>
+    </slide>
+
+    <slide title="Formfields Helper as a Package" layout="normal">
+        <div class="left">
+            <code>
+                /formfields<br/>
+&#160;&#160;/config/formfields.php<br/>
+&#160;&#160;/helpers/formfields_helper.php<br/>
+&#160;&#160;/views/_fields/<br/>
+&#160;&#160;&#160;&#160;checkbox, date, textfield, ...
+            </code>
+        </div>
+        <div class="right">
+            <code>$autoload['config'] = array('third_party/formfields/config/formfields',...);</code>
+        </div>
+    </slide>
+
+
+    <slide title="PACKAGE MANAGEMENT" layout="normal" tag="tag5">
+        <p>
+            <a href="https://getcomposer.org/" target="_blank">Composer</a>
+            is the de facto standard for managing package dependencies.</p>
+        <p>CodeIgniter supports Composer and its autoloading. This
+            is new for version 3, and I am not up to speed on it yet.</p>
+        <p>Things are further complicated, because Composer requires PHP 5.3.2 or better,
+            and its integration into CI is a bit awkward as a result.</p>
+    </slide>
+
+    <slide title="PLUGIN MANAGEMENT" layout="normal">
+        <p>A <a href="https://github.com/bcit-ci/netbeans-plugin" target="_blank">Netbeans Plugin</a>
+            is under development, to make it easier to manage
+            the packages in a webapp, including those that
+            come from external sources.</p>
+        <p>I am the mentor for that project, and trying to get up to speed
+            as quickly as possible, on Composer and related goodies.</p>
+    </slide>
+
+    <slide title="Gimme More!" layout="normal">
+        <p>Check the User Guide ...</p>
+        <ul>
+            <li>
+                <a href="http://www.codeigniter.com/userguide3/general/creating_libraries.html" target="_blank">Libraries</a>
+            </li>
+            <li>
+                <a href="http://www.codeigniter.com/userguide3/general/helpers.html" target="_blank">Helpers</a>
+            </li>
+            <li>
+                <a href="http://www.codeigniter.com/userguide3/libraries/loader.html" target="_blank">Packages</a>
+            </li>
+        </ul>
+    </slide>
+    
+</lesson>

@@ -43,12 +43,13 @@ Course organizer for Comp4711
         <github type="github" name="forms" link="https://github.com/comp4711/example-forms">Example webapp - forms</github>
         <tutorial type="tutorial" name="tutorial04">Working With CodeIgniter Models</tutorial>
         <lab type="lab" name="lab04" duedate="2015.02.11 17:30">Models</lab>
-        <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59">Functional Webapp writeup</assignment>
     </week>
     <week num="6">
         <topic>Helpers &amp; CSS / Javascript Integration</topic>
         <lesson type="lesson" name="lesson06">Helpers and Addons</lesson>
-        <lab type="lab" name="lab05" duedate="2015.02.15 17:30">Views</lab>
+        <tutorial type="tutorial" name="tutorial05">Working With Libraries and Helpers</tutorial>
+        <lab type="lab" name="lab05" duedate="2015.02.18 17:30">Views</lab>
+        <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59">Functional Webapp writeup</assignment>
     </week>
     <week num="7">
         <topic>XML Introduction &amp; Structure</topic>
