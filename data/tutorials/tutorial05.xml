@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 05 - Working With Libraries and Helpers
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial is meant to give you some practice using and extending
+            a library and a helper, as described in lesson 6.</p>
+        <p>I have prepared a starter webapp – based on the "quotes" webapp you 
+            saw and fixed earlier, in tutorial 3. The webapp is complete,
+            showing the most recent quote on the homepage, and then a gallery when you
+            drill down, but it is painfully boring. We will add some ratings to the
+            individual quote presentations, as well as a simple maintenance
+            component for the quotes.</p>
+    </slide>
+
+    <slide title="Preparation" layout="normal">
+        <p>I have prepared a 
+            <a href="https://github.com/comp4711/winter2015-lab05" target="_blank">
+                starter webapp</a>. The lab 5 starter, Quotes, 
+            is meant to handle ordering in a small restaurant. 
+        </p>
+        <p>The webapp is fully functional as delivered, but painfully
+            boring. You are going to spice it up a bit :)</p>
+        <p>Fork the github project, and clone it locally to
+            work with, the same as you have done with the previous tutorial.</p>
+    </slide>
+
+    <slide title="The End Result" layout="normal">
+        <p>This is what the end result should look like, after fixing!</p>
+        <br/>
+        <img class="scale" width="500" height="391" src="/data/tutorials/pix/4-1.png"/>
+
+    </slide>
+
+    <slide title="Database Setup" layout="normal">
+        <p>You will need to setup your webapp's database, using the 
+            supplied script, <code>quotes-setup.sql</code>.
+            Please name the database "quotes", so that your webapp will
+            work without additional setup when I run it on my system.</p>
+        <p>As part of the tutorial, you will add a few columns to the
+            table, for ratings.</p>
+    </slide>
+
+    <slide title="The Database" layout="normal">
+        <p>The database provided contains a single table, with a single
+            field as the primary key. The model provided, <code>Quotes</code>,
+            extends MY_Model, inheriting all of the CRUD methods we need.</p>
+        <p>The quotes table has four columns:
+            <ul>
+                <li>
+                    <code>id</code> is a unique numeric identifier for a quote; it must be positive</li>
+                <li>
+                    <code>who</code> is the name of the person quoted; it cannot be blank, 
+                    and has a maximum length of 64</li>
+                <li>
+                    <code>mug</code> is the filename of the author's picture; images are
+                    stored in the <code>data</code> folder off of the document root;
+                    filenames have a maximum length of 64</li>
+                <li>
+                    <code>what</code> is is the actual quoted text, of arbitrary length</li>
+            </ul>
+        </p>
+    </slide>
+    
+    <slide title="What Needs Doing?" layout="normal">
+       <div class="left">
+        <ol>
+            <li>Enable the supplied bolding hook</li>
+            <li>Add a viewer rating widget</li>
+            <li>Randomize the quote presented on the homepage</li>
+            <li>Add a maintenance controller, presenting an ordered
+                list of the quotes</li>
+            <li>Add the ability to add a new quote</li>
+        </ol>
+        </div>
+        <div class="right">
+         <ol start="6">
+            <li>Add the ability to edit a quote</li>
+            <li>Add the ability to delete a quote</li>
+            <li>Add the ability to fake admin rights</li>
+            <li>Add an on-page editing for an admin</li>
+            <li>Return to the page we were on after editing a quote</li>
+        </ol>
+       </div>
+   </slide>
+
+    <slide title="The Starting Point" layout="normal">
+        <div class="left">
+            <p>The webapp is functional when you start, with the homepage shown
+                to the right.</p>
+            <p>It has a simple menubar on the top, with the smiley face
+                linked back to the homepage, and the "View 'Em" menu link
+                taking you to the "viewer" page.</p>
+            <p>The quote shown is the most recently added, i.e. the one with the
+                highest ID.</p>            
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="200" src="/data/tutorials/pix/5-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="And Beyond the Homepage?" layout="normal">
+        <div class="left">
+            <p>The "viewer" presents a table of the quotes on file,
+                showing the author's mugshots.
+                This is ordered from left-to-right and top-to-bottom by ID#.</p>
+            <p>Each image  is itself a link to the page that presents
+                just that one quote, implemented by the <code>quote</code> method
+                inside the <code>Viewer</code> controller, and using the 
+                <code>justone</code> view that you saw in lab 3.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="296" src="/data/tutorials/pix/5-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="And Then There Be Quotes" layout="normal">
+        <div class="left">
+            <p>The single page presentation of a quote shows all of the quote's
+                data fields, arranged somewhat pleasingly though neutral.</p>
+            <p>The <code>justone</code> view uses the template parser to
+                substitute actual data values.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="220" src="/data/tutorials/pix/5-3.png"/>
+        </div>
+    </slide>
+
+    <slide title="1. ENABLE THE SUPPLIED BOLDING HOOK" layout="normal">
+        <p>Fix the <code>config/autoload</code> and <code>config/database</code> 
+            files.</p>
+        <p>
+            <code>config/autoload.php</code> needs to load the database library. 
+            You can also load your three models here, or you can load 
+            them in the constructors of any controllers that need them.</p>
+        <p>
+            <code>config/database.php</code> needs to reference the appropriate 
+            database name, and MySQL username/password to work with them. 
+            If you are using this at home, or elsewhere, with a different 
+            username/password, then add a configuration subfolder with
+            your settings, and "git ignore" it so it is not part of
+            your repository. That would technically make your config
+            <code>config/development/database.php</code>
+        </p>
+    </slide>
+
+    <slide title="Post Configuration" layout="normal">
+        <p>There is no apparent difference after fixing your configuration...</p>
+        <br/>
+        <img class="scale" width="601" height="500" src="/data/tutorials/pix/4-step1.png"/>
+    </slide>
+
+    <slide title="2. ADD A VIEWER RATING WIDGET" layout="normal">
+        <p>Fix the default controller. It needs to get completed 
+            order data from somewhere.</p>
+        <p>
+            <code>controllers/Welcome.php</code> ... 
+            the loop at line 31 expects a variable <code>$completed</code> 
+            to contain the order data, as an associative array. 
+            Completed orders can be distinguished by their 
+            status being 'c'. </p>
+    </slide>
+
+    <slide title="Fix the Homepage" layout="normal">
+        <div class="left">
+            <p>Put this together, 
+                and the "fix" is to assign <code>$this->orders->some('status','c')</code>
+                to <code>$completed</code>, if you are using the provided
+                base models. 
+                I determined this by inspecting the <code>Active_record</code> 
+                interface at the top of <code>core/MY_Model.php</code>.
+            </p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="525" height="170" src="/data/tutorials/pix/4-step2a.png"/>
+        </div>
+    </slide>
+
+    <slide title="Post Step 2" layout="normal">
+        <p>Your homepage should now look a bit different, showing any orders.
+            You might not have any orders, if you are just getting underway.</p>
+        <br/>
+        <img class="scale" width="800" height="424" src="/data/tutorials/pix/4-step2b.png"/>
+    </slide>
+
+    <slide title="Pre Step 3" layout="normal">
+        <p>If you try the next logical thing, "Start a new order", you will 
+            be presented with a nasty browser error page. This happens becuase
+            we need to create a new order object before we can start wirking with it.
+        </p>
+        <br/>
+        <img class="scale" width="600" height="293" src="/data/tutorials/pix/4-step3a.png"/>
+    </slide>
+
+    <slide title="3. RANDOMIZE THE HOMEPAGE QUOTE" layout="normal">
+        <p>You need to fix <code>controllers/Order::neworder()</code>, 
+            creating a new order record with an order number one higher than the 
+            last used.</p>
+        <p>
+            <code>Active_record::highest()</code> returns the highest key 
+            used in a model/table.<br/>
+            <code>$this-&gt;orders-&gt;highest()</code> gives the last order # used.<br/>
+            I suggest setting <code>$order_num</code> to that plus 1.</p>
+        <p>
+            <code>Active_record::create()</code> creates a new record.<br/>
+            <code>$this-&gt;orders-&gt;create()</code> hence creates a new object, 
+            with all the fields from the Orders table, 
+            initialized to blank.<br/>
+            Set the order properties properly (number, current date, status), 
+            then save the new order object (add it to the orders model).
+        </p>   
+    </slide>
+
+    <slide title="Fix neworder()" layout="normal">
+        <div class="left">
+            <p>
+                <code>Active_record::create()</code> creates a new record.<br/>
+                <code>$this-&gt;orders-&gt;create()</code> hence creates a new object, 
+                with all the fields from the Orders table, 
+                initialized to blank.<br/>
+                Set the order properties properly (number, current date, status), 
+                then save the new order object (add it to the orders model).
+            </p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="539" height="230" src="/data/tutorials/pix/4-step3b.png"/>
+        </div>
+    </slide>
+
+    <slide title="Post Step 3" layout="normal">
+        <p>That solved the redirection problem, but the order display (for our new
+            order) has other issues - an undefined variable "items" :(</p>
+        <br/>
+        <img class="scale" width="538" height="500" src="/data/tutorials/pix/4-step3c.png"/>
+    </slide>
+
+    <slide title="4. ADD A MAINTENANCE CONTROLLER" layout="normal">
+        <p>There are two pieces here – building the title for the page (order # 
+            and total), and building the graphical menu display.</p>
+        <p>Fix <code>controllers/order:display_menu()</code>. 
+            It needs to get order data from somewhere.
+            It also needs to get the column data from somewhere.</p>
+    </slide>
+
+    <slide title="Fix the Title" layout="normal">
+        <div class="left">
+            <p>You are given the order # as a parameter.
+                Retrieve the order record from the orders table, for instance 
+                <code>$order = $this-&gt;orders-&gt;get($order_num)</code>.
+                A starting point for the title would then be <code>$order-&gt;num</code> or <code>$order_num</code>.
+                This is the first part of the FIXME at line 32.</p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="541" height="230" src="/data/tutorials/pix/4-step3d.png"/>
+        </div>
+    </slide>
+
+    <slide title="Order Display - Column Data" layout="normal">
+        <div class="left">
+            <p>Inspecting <code>views/show_menu</code>, the data for each column 
+                comes from an array of Menu records. 
+                The <code>make_column</code> method in <code>controllers/Order</code> 
+                looks ready for that, and it is even passed the value of the 
+                category to use for relevant menu items.</p>
+            <p>Sounds like the body of that method (FIXME on line 44) 
+                will be very similar to the fix we applied to the Welcome controller... 
+                <code>return $this-&gt;menu-&gt;some('category',$category)</code>
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="594" height="113" src="/data/tutorials/pix/4-step3e.png"/>
+        </div>
+    </slide>
+
+    <slide title="Now We can See" layout="normal">
+        <p>Yay - we can now see the ordering display :)</p>
+        <br/>
+        <img class="scale" width="603" height="400" src="/data/tutorials/pix/4-step4g.png"/>
+    </slide>
+
+    <slide title="Order Display - Order Total" layout="normal">
+        <div class="left">
+            <p>Fix <code>models/Orders::total()</code>. 
+                It needs to calculate the current total of an order.
+                It will need to get all of the items that make up that order.</p>
+            <p>The last part of the menu display is showing the order total in the title.
+                The <code>models/Orders::total()</code> method (lines 20+) is 
+                meant to handle that.
+                In order to calculate the total for an order, 
+                iterate over the items in an order. 
+                For each, retrieve its corresponding menu item. 
+                Add the orderitem quantity times the menu price to the order total.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="567" height="380" src="/data/tutorials/pix/4-step4k.png"/>
+        </div>
+    </slide>
+
+    <slide title="Menu Display Looking Good :)" layout="normal">
+        <p>Our menu display looks better now, with the current order
+            total displayed as part of the page header...</p>
+        <br/>
+        <img class="scale" width="609" height="400" src="/data/tutorials/pix/4-step4n.png"/>
+    </slide>
+
+    <slide title="Order Model Needs Updating Too" layout="normal">
+        <p>The order total is also a property in the orders table. 
+            The writeup says it only has to be saved/accurate when an order 
+            is completed. You could make a design decision to update the order 
+            total whenever an item was added to an order, 
+            in which case this step could be satisfied by getting 
+            that property from the order. Regardless of your design decision, 
+            you will need to complete the <code>Order::total()</code> 
+            method at some point.</p>
+        <p>However you calculate or get the order total, it needs to be 
+            appended to the page title, inside parentheses. 
+            It would be a good idea to format it nicely and consistently. 
+            Any of the <code>money_format</code>, <code>number_format</code> 
+            or <code>sprintf</code> functions,
+            built-in to PHP , could do the trick.</p>
+    </slide>
+
+    <slide title="5. ADD QUOTE ADDITION" layout="normal">
+        <p>Fix <code>controllers/Order:add()</code>. 
+            It will need to use <code>models/Orders::add_item()</code> to do useful stuff.</p>
+        <p>This method is invoked when a menu picture is clicked on. 
+            You can see that by mousing over any of the menu item images 
+            and observing the target link in the bottom left of your browser window.</p>
+        <p>If all goes well, clicking on an item will add it to the order
+            and redisplay the menu. The only evidence of this will be that
+            the order total is updated.</p>
+        <p>At this point, with no logic behind the handling method,
+            clicking on an item appears to do nothing, which is quite
+            correct!</p>
+    </slide>
+
+    <slide title="Let's Start to Fix the Handling" layout="normal">
+        <p>This method is invoked when a menu picture is clicked on. 
+            You can see that by mousing over any of the menu item images 
+            and observing the target link in the bottom left of your browser window.</p>
+        <p>
+            <code>Order::add</code> needs to properly update the <code>orderitems</code> 
+            table to reflect the request.
+            In theory, the logic to do this could be in a controller 
+            (interpreting it as business logic), or in a 
+            model (interpreting it as model logic). 
+            Given the "model adapter" strategy that PHP frameworks favor, 
+            it makes most sense to deal with the logic inside the model, 
+            reducing the coupling between the controller and model layers.</p>   
+    </slide>
+
+    <slide title="Order Additions - Facade" layout="normal">
+        <div class="left">
+            <p>
+                <code>Order::add(num,item)</code> then becomes just a facade for 
+                calling the related model method, <code>models/Orders::add_item(...)</code>. 
+                These have similar names to reinforce the connection between them.</p>
+            <p>So, the controller fix (line 50 fixme) is simply 
+                <code>$this-&gt;orders-&gt;add_item($order_num,$item)</code>.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="507" height="133" src="/data/tutorials/pix/4-step5b.png"/>
+        </div>
+    </slide>
+
+    <slide title="Order Additions - Orderitems?" layout="normal">
+        <p>The add_item method in the orders model now needs to be completed.
+            There, you need to see if that item is part of the order already, 
+            in which case retrieve its record, 
+            increment the quantity and then update the table. 
+            If it isn't already there, you will need to make 
+            an empty orderitem record, and populate its fields 
+            appropriately (including setting the quantity to 1), 
+            before adding that record to the table.</p>   
+        <p>The <code>Orderitems</code> model is not referenced inside any 
+            controller. I did this on purpose, hoping that you would conclude 
+            that such references belong in the Orders model. 
+            In the Orders model, you will need to get a handle to the CodeIgniter 
+            instance, in order to reference the Orderitems model, because of O-O scoping. 
+            Even if autoloaded, Orderitems would be a property of the controller 
+            object, and out of scope inside a model object. </p>
+    </slide>
+
+    <slide title="Order Additions - Orderitems!" layout="normal">
+        <div class="left">
+            <p>The idea, inside <code>models/Orders</code>, is shown to the right.</p>
+            <p>If you made the earlier design decision to keep an order's total 
+                continuously updated, then you would have
+                that method here. Otherwise, you are done.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="553" height="328" src="/data/tutorials/pix/4-step5x.png"/>
+        </div>
+    </slide>
+
+    <slide title="Order Additions - Ideal Treatment?" layout="normal">
+        <div class="left">
+            <p>Order additions should now work, with the order total updating
+                as you click on items to add to an order.</p>
+            <p>An ideal implementation would have some domain/entity classes, 
+                specifically a <code>domain/Order</code> to deal with the logic here that 
+                might feel awkward in a controller or in a conventional orders 
+                model, which is part of the data access layer and not an entity 
+                encapsulation.</p>
+            <p>In hindsight, it might have been kinder to you 
+                to follow this strategy, even if it meant a more complex 
+                starter app – O-O cohesion could have been better.</p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="606" height="400" src="/data/tutorials/pix/4-step5d.png"/>
+        </div>
+    </slide>
+
+    <slide title="6. ADD QUOTE EDITING" layout="normal">
+        <div class="left">
+            <p>Fix <code>controllers/Order::checkout()</code>. 
+                Where do the order details come from?</p>
+            <p>
+                <code>controllers/order::check_out()</code> displays the 
+                <code>show_order</code> view.
+                You need to pass view parameters to this, or we
+                will get a funny looking checkout screen, shown right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="263" src="/data/tutorials/pix/4-step5e.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout View Parameters" layout="normal">
+        <div class="left">
+            <p>
+                <code>order_num</code> and <code>total</code> come from the 
+                <code>order</code> object. You know how to get this.</p>
+            <p>
+                Here is an implementation for the 'total' and
+                'items' view parameters:
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="755" height="353" src="/data/tutorials/pix/4-step5e2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout Is Starting to Look Real" layout="normal">
+        <div class="left">
+            <p>Checkout is looking better (see right).</p>
+            <p>The intent is that the "Proceed" button be enabled only
+                if the order is valid.We'll fix that next.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="262" src="/data/tutorials/pix/4-step5f.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout - Order Validation" layout="normal">
+        <div class="left">
+            <p>Validate the order before displaying the checkout page. 
+                To be considered "valid", it must include at least one 
+                item from each menu category.</p>
+            <p>
+                <code>models/Orders</code> has a <code>validate()</code> method. 
+                Implement this, and then the view parameter becomes easy ...<br/>
+                <code>$this-&gt;data['okornot'] = $this-&gt;orders-&gt;validate($num);</code>
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="706" height="348" src="/data/tutorials/pix/4-step6f.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout - Using Validation" layout="normal">
+        <div class="left">
+            <p>
+                We can reference <code>Orders::validate</code> from our <code>checkout()</code> method ...<br/>
+                <code>$this-&gt;data['okornot'] = $this-&gt;orders-&gt;validate($num);</code>
+            </p>   
+            <p>The checkout view should now show the Proceed button disabled.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="218" src="/data/tutorials/pix/4-step6hi.png"/>
+        </div>
+    </slide>
+
+    <slide title="7. ADD QUOTE DELETION" layout="normal">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="Completion, Really" layout="normal">
+        <div class="left">
+            <p>
+                <code>controllers/Order::cancel()</code> needs to update the order 
+                status to 'x' (for cancelled), after deleting any related 
+                orderitems records. To maintain cohesion, 
+                there is a <code>flush(num)</code> method in the <code>models/Orders</code> 
+                class, for you to implement. </p>
+            <p>It should also retrieve the orderitems for an order, and then delete them. 
+                That would be done by the <code>flush()</code> method inside
+                our Orders model, but I think we have done enough!</p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="465" height="177" src="/data/tutorials/pix/4-step7d.png"/>
+        </div>
+    </slide>
+
+    <slide title="7. ADD FAKE ADMIN RIGHTS" layout="normal">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="7. ADD ON-PAGE EDITING" layout="normal">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="7. RETURN PROPERLY" layout="normal">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="Are We Done Yet?" layout="normal">
+        <div class="left">
+            <p>Make sure the homepage displays completed orders, with correct totals!</p>
+            <p>This is more of a quality control step, making sure that the 
+                expected completed orders are shown :)</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="318" src="/data/tutorials/pix/4-step7x.png"/>
+        </div>
+    </slide>
+
+    <slide title="Hint!" layout="normal">
+        <p>I warned you to skim the whole slideshow before beginning!</p>
+        <p>Your controllers only ever need to deal with the menu and orders models. 
+            Your orders model is the only place you need to deal with the orderitems model.</p>
+    </slide>
+
+</tutorial>
