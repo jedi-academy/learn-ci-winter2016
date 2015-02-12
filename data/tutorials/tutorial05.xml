@@ -67,26 +67,26 @@ Tutorial 05 - Working With Libraries and Helpers
     </slide>
     
     <slide title="What Needs Doing?" layout="normal">
-       <div class="left">
-        <ol>
-            <li>Enable the supplied bolding hook</li>
-            <li>Add a viewer rating widget</li>
-            <li>Randomize the quote presented on the homepage</li>
-            <li>Add a maintenance controller, presenting an ordered
-                list of the quotes</li>
-            <li>Add the ability to add a new quote</li>
-        </ol>
+        <div class="left">
+            <ol>
+                <li>Enable the supplied bolding hook</li>
+                <li>Add a viewer rating widget</li>
+                <li>Randomize the quote presented on the homepage</li>
+                <li>Add a maintenance controller, presenting an ordered
+                    list of the quotes</li>
+                <li>Add the ability to add a new quote</li>
+            </ol>
         </div>
         <div class="right">
-         <ol start="6">
-            <li>Add the ability to edit a quote</li>
-            <li>Add the ability to delete a quote</li>
-            <li>Add the ability to fake admin rights</li>
-            <li>Add an on-page editing for an admin</li>
-            <li>Return to the page we were on after editing a quote</li>
-        </ol>
-       </div>
-   </slide>
+            <ol start="6">
+                <li>Add the ability to edit a quote</li>
+                <li>Add the ability to delete a quote</li>
+                <li>Add the ability to fake admin rights</li>
+                <li>Add an on-page editing for an admin</li>
+                <li>Return to the page we were on after editing a quote</li>
+            </ol>
+        </div>
+    </slide>
 
     <slide title="The Starting Point" layout="normal">
         <div class="left">
@@ -135,89 +135,311 @@ Tutorial 05 - Working With Libraries and Helpers
     </slide>
 
     <slide title="1. ENABLE THE SUPPLIED BOLDING HOOK" layout="normal">
-        <p>Fix the <code>config/autoload</code> and <code>config/database</code> 
-            files.</p>
-        <p>
-            <code>config/autoload.php</code> needs to load the database library. 
-            You can also load your three models here, or you can load 
-            them in the constructors of any controllers that need them.</p>
-        <p>
-            <code>config/database.php</code> needs to reference the appropriate 
-            database name, and MySQL username/password to work with them. 
-            If you are using this at home, or elsewhere, with a different 
-            username/password, then add a configuration subfolder with
-            your settings, and "git ignore" it so it is not part of
-            your repository. That would technically make your config
-            <code>config/development/database.php</code>
-        </p>
+        <p>The challenge part of lab 3 was to add a 
+            <a href="http://www.codeigniter.com/userguide3/general/hooks.html" target="_blank">"hook"</a> to
+            your webapp, to bold capitalized words in the quoted text.
+            A couple of students asked for a solution for that, so I
+            have included one of the simpler ones submitted.</p>
+        <p>The "hook" itself is found in <code>application/hooks/Hooks.php</code>.
+            Check it out ... I'll wait.</p>
+        <p>The hook's configuration is in <code>application/config/hooks.php</code>.
+            Go ahead - check that one out too.</p>
+        <p>So, why isn't it working already?</p>
     </slide>
 
-    <slide title="Post Configuration" layout="normal">
-        <p>There is no apparent difference after fixing your configuration...</p>
-        <br/>
-        <img class="scale" width="601" height="500" src="/data/tutorials/pix/4-step1.png"/>
-    </slide>
-
-    <slide title="2. ADD A VIEWER RATING WIDGET" layout="normal">
-        <p>Fix the default controller. It needs to get completed 
-            order data from somewhere.</p>
-        <p>
-            <code>controllers/Welcome.php</code> ... 
-            the loop at line 31 expects a variable <code>$completed</code> 
-            to contain the order data, as an associative array. 
-            Completed orders can be distinguished by their 
-            status being 'c'. </p>
-    </slide>
-
-    <slide title="Fix the Homepage" layout="normal">
+    <slide title="One Teeny Step Needed" layout="normal">
         <div class="left">
-            <p>Put this together, 
-                and the "fix" is to assign <code>$this->orders->some('status','c')</code>
-                to <code>$completed</code>, if you are using the provided
-                base models. 
-                I determined this by inspecting the <code>Active_record</code> 
-                interface at the top of <code>core/MY_Model.php</code>.
-            </p>   
+            <p>We need to enable hooks if ours is to do anything.</p>
+            <p>In <code>application/config/config.php</code> change the value
+                of the 'enable_hooks' setting, and you should see a change
+                in the homepage, shown right - the capitalized words are bolded
+                as expected.</p>
+            <code>$config['enable_hooks'] = TRUE;</code>
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="525" height="170" src="/data/tutorials/pix/4-step2a.png"/>
+            <img class="scale" width="600" height="202" src="/data/tutorials/pix/5-4.png"/>
         </div>
     </slide>
 
-    <slide title="Post Step 2" layout="normal">
-        <p>Your homepage should now look a bit different, showing any orders.
-            You might not have any orders, if you are just getting underway.</p>
+    <slide title="2. ADD A VIEWER RATING WIDGET" layout="normal">
+        <p>This is a fun little idea, and an excuse to explore the
+            <b>Caboose</b> widget manager mentioned in lesson 6.
+            The idea is to add a rating star widget somewhere in the
+            view fragment used to present a quote, and to track the votes
+            as part of our webapp.</p>
+        <p>A rating widget looks something like:</p>
         <br/>
-        <img class="scale" width="800" height="424" src="/data/tutorials/pix/4-step2b.png"/>
+        <img class="scale" width="229" height="39" src="/data/tutorials/pix/5-5.png"/>       
     </slide>
 
-    <slide title="Pre Step 3" layout="normal">
-        <p>If you try the next logical thing, "Start a new order", you will 
-            be presented with a nasty browser error page. This happens becuase
-            we need to create a new order object before we can start wirking with it.
-        </p>
+    <slide title="Database Mods for Voting" layout="normal">
+        <div class="left">
+            <p>We need to add two fields to our quotes table:</p>
+            <ul>
+                <li>
+                    <b>vote_total</b> - an integer to hold the total of all votes</li>
+                <li>
+                    <b>vote_count</b> - an integer to hold the number of votes cast</li>
+            </ul>
+            <p>I suggest using phpMyAdmin to do this, resulting in the 
+                table structure shown right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="615" height="270" src="/data/tutorials/pix/5-7.png"/>
+        </div>
+    </slide>
+
+    <slide title="Get a Rating Widget" layout="normal">
+        <div class="left">
+            <p>A rating widget that I have used is 
+                <a href="http://www.myjqueryplugins.com/jquery-plugin/jrating" target="_blank">jRating</a>, from
+                <a href="http://www.alpixel.fr/" target="_blank">Alpixel</a>.</p>   
+            <p>The jRating link above leads to the documentation for the widget,
+                which is pretty easy to follow for our purposes. The 
+                Download link leads to their Github page, from which you can 
+                <a href="https://github.com/alpixel/jRating/archive/master.zip">download</a>
+                a zip of the project. Do so!</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="248" src="/data/tutorials/pix/5-6.png"/>
+        </div>
+    </slide>
+
+    <slide title="What's In the Widget?" layout="normal">
+        <div class="left">
+            <p>Extract the jRating once downloaded. When you checkout its
+                contents (shown right), you can see several files or foldersof interest:</p>   
+            <ul>
+                <li>
+                    <b>icons/</b> - images used by the widget</li>
+                <li>
+                    <b>jRating.jquery.css</b> - CSS styling for the widget</li>
+                <li>
+                    <b>jRating.jquery.js</b> - the widget's Javascript source</li>
+            </ul>
+            <p>We won't need the others.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="317" height="392" src="/data/tutorials/pix/5-8.png"/>
+        </div>
+    </slide>
+
+    <slide title="Copy the Widget Into Our Project" layout="normal">
+        <div class="left">
+            <p>Let's copy the widget pieces that we need into our project's
+                <code>assets</code> folder, and we can then tailor them.
+            </p>   
+            <ul>
+                <li>
+                    <b>icons/*</b> - the .png images go into our <code>images</code> folder</li>
+                <li>
+                    <b>jRating.jquery.css</b> - goes inside <code>css</code>
+                </li>
+                <li>
+                    <b>jRating.jquery.js</b> - goes inside <code>js</code>
+                </li>
+            </ul>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="342" height="343" src="/data/tutorials/pix/5-10.png"/>
+        </div>
+    </slide>
+
+    <slide title="Fix the CSS Image References" layout="normal">
+        <p>We copied the images into our <code>assets/images</code> folder,
+            and need to reflect that in <code>jRating.jquery.css</code>, as shown below.</p>   
         <br/>
-        <img class="scale" width="600" height="293" src="/data/tutorials/pix/4-step3a.png"/>
+        <img class="scale" width="722" height="223" src="/data/tutorials/pix/5-11.png"/>
+    </slide>
+
+    <slide title="Fix the JS Image References" layout="normal">
+        <p>We need to make a similar change in <code>jRating.jquery.js</code>, 
+            as shown below.</p>   
+        <br/>
+        <img class="scale" width="778" height="155" src="/data/tutorials/pix/5-12.png"/>
+    </slide>
+
+    <slide title="Enable Caboose in our webapp (1/3)" layout="normal">
+        <p>We want to autoload the Caboose library, as it will be used in our 
+            master template.</p>
+        <br/>
+        <img class="scale" width="558" height="55" src="/data/tutorials/pix/5-13.png"/>
+    </slide>
+
+    <slide title="Enable Caboose in our webapp (2/3)" layout="normal">
+        <p>We want to set some view parameters from our Caboose object, inside
+            <code>core/MY_Controller</code>, as discussed in the lesson.</p>
+        <br/>
+        <img class="scale" width="646" height="217" src="/data/tutorials/pix/5-14.png"/>
+    </slide>
+
+    <slide title="Enable Caboose in our webapp (3/3)" layout="normal">
+        <div class="left">
+            <p>And we want to include the Caboose output at the appropriate
+                points in our <code>views/_template.php</code>, using substitution 
+                parameters, again as discussed in the lesson.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="474" height="557" src="/data/tutorials/pix/5-15.png"/>
+        </div>
+    </slide>
+
+    <slide title="We Have Caboose" layout="normal">
+        <div class="left">
+            <p>At this point, we have enabled the Caboose, without making
+                any requests of it.</p>
+            <p>We should also not have broken anything in doing so.
+                Our webapp should look the same as it did a short while ago...</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="213" src="/data/tutorials/pix/5-16.png"/>
+        </div>
+    </slide>
+
+    <slide title="Add a Rating to a Quote" layout="normal">
+        <p>The jRating documentation shows some sample HTML to
+            hold an instance of their widget...<br/>
+            <code>
+            &lt;div class="basic" data-average="12" data-id="1"&gt;&lt;/div&gt;
+            </code>
+        </p>
+        
+        <p>In our case, the data-id will be the <code>id</code> from a quote,
+            and we will need to calculate the average from the values stored in
+            our table...<br/>
+            <code>
+            &lt;div class="hollywood" data-average="{average}" data-id="{id}"&gt;&lt;/div&gt;
+            </code>
+        </p>
+        <p>Add this <code>div</code> below the paragraph holding the author,
+            in <code>views/justone.php</code>
+        </p>
+                
+        <br/>
+        <img class="scale" width="647" height="148" src="/data/tutorials/pix/5-17.png"/>
+    </slide>
+
+    <slide title="Initializing a Rating Widget" layout="normal">
+        <p>Again referring to the jRating documentaiton, we need
+            to initialize the jRating widget, binding it to a
+            component on the webpage. This will be our
+            <code>views/_components/jrating.php</code>.</p>
+        <p>We can set some options when it is initialized, 
+            including the planned target URL for the AJAX call
+            that the widget will make to record a vote.</p>
+        <p>Ours should look like:</p>
+        <code>
+            $('.{field}').jRating({<br/>
+&#160;&#160;maxRate : 5,    // highest rating<br/>
+&#160;&#160;phpPath : '/viewer/rate'	// target for the AJAX call<br/>
+            });
+        </code>
+    </slide>
+
+    <slide title="Configure Caboose for Ratings" layout="normal">
+        <p>We are finally ready to add a configuration entry
+            for our ratings widget, in <code>libraries/Caboose.php</code>.
+            We can add it to the <code>$components</code> array after the existing two
+            configuration entries...</p>
+        <code>
+            'jrating' =&gt; array(<br/>
+&#160;&#160;'css' =&gt; 'jRating.jquery.css',<br/>
+&#160;&#160;'js' =&gt; 'jRating.jquery.js',<br/>
+&#160;&#160;'template' =&gt; 'jrating'<br/>
+            ),            
+        </code>
+    </slide>
+
+    <slide title="Let's Invoke the Caboose!" layout="normal">
+        <div class="left">
+            <p>We show single quotes in two places: in <code>controllers/Welcome::index()</code>
+                and in <code>controllers/Viewer::quote()</code>. In both cases, we want to
+                add one line of code before the <code>$this-&gt;render();</code>...</p>
+            <code>
+                $this-&gt;caboose-&gt;needed('jrating','hollywood');        
+            </code>
+            <p>And the result is...</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="207" src="/data/tutorials/pix/5-18.png"/>
+        </div>
+    </slide>
+
+    <slide title="Oops - We Need the Average" layout="normal">
+        <div class="left">
+            <p>The homepage didn't look any different. If you examine the page 
+                source, however, you will find...<br/>
+                <code>&lt;div class="hollywood" data-average="{average}" data-id="6"&gt;&lt;/div&gt;</code>
+            </p>
+            <p>We need to add a bit of logic to calculate the rating average, 
+                and to pass it on as a view parameter.</p>
+            <code>
+                $this-&gt;caboose-&gt;needed('jrating','hollywood');        
+            </code>
+            <p>And the result is...</p>
+            <h2>Arghh ... the rating widget should be visible, but isn't!</h2>
+        </div>
+        <div class="right">
+            <br/>
+             <img class="scale" width="600" height="207" src="/data/tutorials/pix/5-19.png"/>
+       </div>
+    </slide>
+
+    <slide title="And We Need to Process the Rating" layout="normal">
+        <div class="left">
+            <p>We need to add the <code>vote()</code> method to our <code>Viewer</code>,
+                to handle the AJAX request from the rating widget. Without going 
+                into too much detail about it, this will look like...</p>
+        </div>
+        <div class="right">
+            <code>
+                // handle a rating<br/>
+                function vote() {<br/>
+&#160;&#160;// detect non-AJAX entry<br/>
+&#160;&#160;if (!isset($_POST['action'])) redirect("/");<br/>
+&#160;&#160;// extract parameters<br/>
+&#160;&#160;$id = intval($_POST['idBox']);<br/>
+&#160;&#160;$rate = intval($_POST['rate']);<br/>
+&#160;&#160;// update the posting<br/>
+&#160;&#160;$record = $this-&gt;quotes-&gt;get($id);<br/>
+&#160;&#160;if ($record != null) {<br/>
+&#160;&#160;&#160;&#160;$record-&gt;vote_total += $rate;<br/>
+&#160;&#160;&#160;&#160;$record-&gt;vote_count++;<br/>
+&#160;&#160;&#160;&#160;$this-&gt;quotes-&gt;update($record);<br/>
+&#160;&#160;}<br/>
+&#160;&#160;$response = 'Thanks for voting!';<br/>
+&#160;&#160;echo json_encode($response);	<br/>
+                }                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="And The Result Is..." layout="normal">
+        <div class="left">
+            <p>The results after voting a few times...</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="207" src="/data/tutorials/pix/5-20.png"/>
+        </div>
     </slide>
 
     <slide title="3. RANDOMIZE THE HOMEPAGE QUOTE" layout="normal">
-        <p>You need to fix <code>controllers/Order::neworder()</code>, 
-            creating a new order record with an order number one higher than the 
-            last used.</p>
-        <p>
-            <code>Active_record::highest()</code> returns the highest key 
-            used in a model/table.<br/>
-            <code>$this-&gt;orders-&gt;highest()</code> gives the last order # used.<br/>
-            I suggest setting <code>$order_num</code> to that plus 1.</p>
-        <p>
-            <code>Active_record::create()</code> creates a new record.<br/>
-            <code>$this-&gt;orders-&gt;create()</code> hence creates a new object, 
-            with all the fields from the Orders table, 
-            initialized to blank.<br/>
-            Set the order properties properly (number, current date, status), 
-            then save the new order object (add it to the orders model).
-        </p>   
+        <p>Now that we are voting, we should mix things up a bit on the
+        homepage. Let's choose a quote randomly instead. We'll need to make
+        an adjustment in the <code>index()</code> method of our
+        <code>Welcome</code> controller...</p>
+        <code>
+            
+        </code>
     </slide>
 
     <slide title="Fix neworder()" layout="normal">
