@@ -65,8 +65,8 @@ Tutorial 04 - Working With Models
                 very much like the diagram to the right. In our case,
                 OrderItems is the associative entity/table connecting Menu and Orders.</p>
             <p>In an O-O world, an ideal implementation would have an Order class, 
-                which had a collection of OrderItem objects as one of its 
-                properties. If we did that, the focus would end up more on good
+                containing a collection of OrderItem objects. 
+                If we did that, the focus would end up more on good
                 O-O practices rather than how you work with models inside a 
                 framework. The approach that I ended up taking is simple, 
                 but defensible.</p>
@@ -336,6 +336,10 @@ Tutorial 04 - Working With Models
                 <code>$order = $this-&gt;orders-&gt;get($order_num)</code>.
                 A starting point for the title would then be <code>$order-&gt;num</code> or <code>$order_num</code>.
                 This is the first part of the FIXME at line 32.</p>   
+                <p>You might end up with something like...<br/>
+                <code>	$this-&gt;data['title'] = "Order # " . $order_num .<br/>
+		' (' . number_format($this-&gt;orders-&gt;total($order_num), 2) . ')';
+</code></p>
         </div>
         <div class="right">
             <br/>
@@ -382,7 +386,7 @@ Tutorial 04 - Working With Models
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="567" height="380" src="/data/tutorials/pix/4-step4k.png"/>
+            <img class="scale" width="517" height="255" src="/data/tutorials/pix/4-step4k.png"/>
         </div>
     </slide>
 
@@ -450,7 +454,7 @@ Tutorial 04 - Working With Models
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="507" height="133" src="/data/tutorials/pix/4-step5b.png"/>
+            <img class="scale" width="517" height="255" src="/data/tutorials/pix/4-step4k.png"/>
         </div>
     </slide>
 
@@ -493,10 +497,7 @@ Tutorial 04 - Working With Models
                 specifically a <code>domain/Order</code> to deal with the logic here that 
                 might feel awkward in a controller or in a conventional orders 
                 model, which is part of the data access layer and not an entity 
-                encapsulation.</p>
-            <p>In hindsight, it might have been kinder to you 
-                to follow this strategy, even if it meant a more complex 
-                starter app – O-O cohesion could have been better.</p>   
+                encapsulation.</p> 
         </div>
         <div class="right">
             <br/>
