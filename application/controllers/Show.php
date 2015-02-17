@@ -68,6 +68,10 @@ class Show extends Application {
      */
     private function work($category, $name)
     {
+	if ($name == "#") {
+	    redirect($_SERVER['HTTP_REFERER']);
+	}
+	
 	$activity = $this->course->activity($category, $name);
 	if ($activity == null)
 	{
@@ -101,7 +105,7 @@ class Show extends Application {
     /**
      * Entry point for a lesson
      */
-    public function lesson($which)
+    public function lesson($which="#")
     {
 	$this->work('lesson', $which);
     }
@@ -109,7 +113,7 @@ class Show extends Application {
     /**
      * Entry point for an example
      */
-    public function example($which)
+    public function example($which="#")
     {
 	$this->work('example', $which);
     }
@@ -117,7 +121,7 @@ class Show extends Application {
     /**
      * Entry point for a repo
      */
-    public function github($which)
+    public function github($which="#")
     {
 	$this->work('github', $which);
     }
@@ -125,7 +129,7 @@ class Show extends Application {
     /**
      * Entry point for a tutorial
      */
-    public function tutorial($which)
+    public function tutorial($which="#")
     {
 	$this->work('tutorial', $which);
     }
@@ -133,7 +137,7 @@ class Show extends Application {
     /**
      * Entry point for a lab
      */
-    public function lab($which)
+    public function lab($which="#")
     {
 	$this->work('lab', $which);
     }
@@ -141,7 +145,7 @@ class Show extends Application {
     /**
      * Entry point for an assignment
      */
-    public function assignment($which)
+    public function assignment($which="#")
     {
 	$this->work('assignment', $which);
     }
@@ -149,7 +153,7 @@ class Show extends Application {
     /**
      * Entry point for a exam
      */
-    public function exam($which)
+    public function exam($which="#")
     {
 	$this->work('exam', $which);
     }

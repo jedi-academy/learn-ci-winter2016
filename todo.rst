@@ -438,5 +438,53 @@ there's a list of what should be done on slide 5.
 - It took me a little while to understand what you meant on page 5 but 
 everything else was clear.
 
+Although your tutorial was right that once you figure out how to do the first part, 
+the others will be easy. I spent much too long trying to figure out how to fix 
+the first link because I had no idea what I was doing.  
+For example in First.php I used: 
+$this->data = array_merge($this->data, $this->quotes->first());  
+and I spent 3~5 hours pondering what the heck I was doing,
+ why I was using this code, and why should I use this code when I 
+don't even understand how it works. 
+I later figured out that array_merge( firstParameter, secondParameter ) 
+is a function where You get the array from the first parameter, 
+and the array from the second parameter and merge it together. 
+The $this->quotes->first() function is a method in the Models/Quotes.php 
+which returns an array of the first id. 
+ Afterwards in the routes on page 5/8 where I had to remap to 
+first::zzz it took me awhile to figure out that I was supposed 
+to map to first/zzz and not first::zzz.  But once I understand that, 
+everything felt like a breeze. Because I understand how the php and 
+code igniter works with routing and controllers now. 
+So... I guess I learnt how controllers and routings work but the process of 
+learning was very awkward and more time consuming than it should be.
+
 Lab 3:
+
+
+------
+Week 4
+------
+
+Lesson 4:
+
+Tutorial 4:
+
+-Some portions (such as proceed button) seem to not work as expected, 
+naming conventions are also a little hard to follow 
+(order_num vs num vs code vs item). 
+Extreme lack of feedback from prior labs, and only a single lab 
+session usually taken up by github or some other topic rather then a 
+chance to go over mistakes made on previous labs to improve marks for coming ones. 
+
+Lab 4:
+
+-Great job: http://i.imgur.com/x81TITw.png http://i.imgur.com/bwP3GOG.png  
+How are we even supposed to follow labs or anything when your website shits 
+itself every 5 minutes? Not that being able to read the instructions would help much... 
+...
+The organizer has blank links for labs that don't exist (in this case "work on assignment 1".
+The Show/lab expects a lab name, and craps if it is not there ... missing argument 1
+for Show::lab() @ 136, and then undefined variable: which @138
+
 
