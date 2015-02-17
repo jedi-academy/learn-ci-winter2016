@@ -479,3 +479,26 @@ chance to go over mistakes made on previous labs to improve marks for coming one
 
 Lab 4:
 
+------
+Week 5
+------
+
+Lesson 5:
+
+
+------
+Week 6
+------
+
+Lesson 6:
+
+------
+Week 7
+------
+
+Midterm Review:
+
+Tutorial 5:
+
+Lab 5:
+

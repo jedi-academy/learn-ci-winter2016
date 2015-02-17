@@ -69,21 +69,41 @@ Tutorial 05 - Working With Libraries and Helpers
     <slide title="What Needs Doing?" layout="normal">
         <div class="left">
             <ol>
-                <li>Enable the supplied bolding hook</li>
-                <li>Add a viewer rating widget</li>
-                <li>Randomize the quote presented on the homepage</li>
-                <li>Add a maintenance controller, presenting an ordered
-                    list of the quotes</li>
-                <li>Add the ability to add a new quote</li>
+                <li>
+                    <a href="#{tag1}">Enable the supplied bolding hook</a>
+                </li>
+                <li>
+                    <a href="#{tag2}">Add a viewer rating widget</a>
+                </li>
+                <li>
+                    <a href="#{tag3}">Randomize the quote presented on the homepage</a>
+                </li>
+                <li>
+                    <a href="#{tag4}">Add a maintenance controller, presenting an ordered
+                        list of the quotes</a>
+                </li>
+                <li>
+                    <a href="#{tag5}">Add the ability to add a new quote</a>
+                </li>
             </ol>
         </div>
         <div class="right">
             <ol start="6">
-                <li>Add the ability to edit a quote</li>
-                <li>Add the ability to delete a quote</li>
-                <li>Add the ability to fake admin rights</li>
-                <li>Add an on-page editing for an admin</li>
-                <li>Return to the page we were on after editing a quote</li>
+                <li>
+                    <a href="#{tag6}">Add the ability to edit a quote</a>
+                </li>
+                <li>
+                    <a href="#{tag7}">Add the ability to delete a quote</a>
+                </li>
+                <li>
+                    <a href="#{tag8}">Add the ability to fake admin rights</a>
+                </li>
+                <li>
+                    <a href="#{tag9}">Add an on-page editing for an admin</a>
+                </li>
+                <li>
+                    <a href="#{tag10}">Return to the page we were on after editing a quote</a>
+                </li>
             </ol>
         </div>
     </slide>
@@ -134,7 +154,7 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-    <slide title="1. ENABLE THE SUPPLIED BOLDING HOOK" layout="normal">
+    <slide title="1. ENABLE THE SUPPLIED BOLDING HOOK" layout="normal" tag="tag1">
         <p>The challenge part of lab 3 was to add a 
             <a href="http://www.codeigniter.com/userguide3/general/hooks.html" target="_blank">"hook"</a> to
             your webapp, to bold capitalized words in the quoted text.
@@ -162,7 +182,7 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-    <slide title="2. ADD A VIEWER RATING WIDGET" layout="normal">
+    <slide title="2. ADD A VIEWER RATING WIDGET" layout="normal" tag="tag2">
         <p>This is a fun little idea, and an excuse to explore the
             <b>Caboose</b> widget manager mentioned in lesson 6.
             The idea is to add a rating star widget somewhere in the
@@ -261,7 +281,7 @@ Tutorial 05 - Working With Libraries and Helpers
         <p>We need to make a similar change in <code>jRating.jquery.js</code>, 
             as shown below.</p>   
         <br/>
-        <img class="scale" width="778" height="155" src="/data/tutorials/pix/5-12.png"/>
+        <img class="scale" width="803" height="150" src="/data/tutorials/pix/5-12.png"/>
     </slide>
 
     <slide title="Enable Caboose in our webapp (1/3)" layout="normal">
@@ -357,11 +377,28 @@ Tutorial 05 - Working With Libraries and Helpers
         </code>
     </slide>
 
+    <slide title="jRating Housekeeping" layout="normal">
+        <div class="left">
+            <p>We have another bit of housekeeping to tend to - removing the
+                "demo only" blocks in the jrating's javascript file,
+                <code>assets/js/jRating.jquery.js</code>
+            </p>
+            <p>For example, the original code is shown to the right, and after trimming below.</p>
+            <br/>
+            <img class="scale" width="600" height="149" src="/data/tutorials/pix/5-17c.png"/>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="334" src="/data/tutorials/pix/5-17b.png"/>
+        </div>
+    </slide>
+
     <slide title="Let's Invoke the Caboose!" layout="normal">
         <div class="left">
-            <p>We show single quotes in two places: in <code>controllers/Welcome::index()</code>
-                and in <code>controllers/Viewer::quote()</code>. In both cases, we want to
-                add one line of code before the <code>$this-&gt;render();</code>...</p>
+            <p>We show single quotations in two places: in <code>controllers/Welcome::index()</code>
+                and in <code>controllers/Viewer::quote()</code>. In both cases, 
+                we need to invoke the rating widget
+                before the <code>$this-&gt;render();</code>...</p>
             <code>
                 $this-&gt;caboose-&gt;needed('jrating','hollywood');        
             </code>
@@ -382,27 +419,29 @@ Tutorial 05 - Working With Libraries and Helpers
             <p>We need to add a bit of logic to calculate the rating average, 
                 and to pass it on as a view parameter.</p>
             <code>
-                $this-&gt;caboose-&gt;needed('jrating','hollywood');        
+                $this-&gt;data['average'] = <br/>
+                ($this-&gt;data['vote_count'] &gt; 0) ? <br/>
+&#160;&#160;($this-&gt;data['vote_total'] / $this-&gt;data['vote_count']) : 0;
             </code>
             <p>And the result is...</p>
             <h2>Arghh ... the rating widget should be visible, but isn't!</h2>
         </div>
         <div class="right">
             <br/>
-             <img class="scale" width="600" height="207" src="/data/tutorials/pix/5-19.png"/>
-       </div>
+            <img class="scale" width="600" height="207" src="/data/tutorials/pix/5-19.png"/>
+        </div>
     </slide>
 
     <slide title="And We Need to Process the Rating" layout="normal">
         <div class="left">
-            <p>We need to add the <code>vote()</code> method to our <code>Viewer</code>,
+            <p>We need to add the <code>rate()</code> method to our <code>Viewer</code>,
                 to handle the AJAX request from the rating widget. Without going 
                 into too much detail about it, this will look like...</p>
         </div>
         <div class="right">
             <code>
                 // handle a rating<br/>
-                function vote() {<br/>
+                function rate() {<br/>
 &#160;&#160;// detect non-AJAX entry<br/>
 &#160;&#160;if (!isset($_POST['action'])) redirect("/");<br/>
 &#160;&#160;// extract parameters<br/>
@@ -425,6 +464,13 @@ Tutorial 05 - Working With Libraries and Helpers
     <slide title="And The Result Is..." layout="normal">
         <div class="left">
             <p>The results after voting a few times...</p>
+            <br/>
+            <br/>
+            <p>
+                <b>
+                    <i>Still broken. It should work. It doesn't. I will revisit later!</i>
+                </b>
+            </p>
         </div>
         <div class="right">
             <br/>
@@ -432,224 +478,350 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-    <slide title="3. RANDOMIZE THE HOMEPAGE QUOTE" layout="normal">
+    <slide title="3. RANDOMIZE THE HOMEPAGE QUOTE" layout="normal" tag="tag3">
         <p>Now that we are voting, we should mix things up a bit on the
-        homepage. Let's choose a quote randomly instead. We'll need to make
-        an adjustment in the <code>index()</code> method of our
-        <code>Welcome</code> controller...</p>
+            homepage. Let's choose a quote randomly instead. We'll need to make
+            an adjustment in the <code>index()</code> method of our
+            <code>Welcome</code> controller...</p>
+        <p>Instead of <br/>
+            <code>	$this-&gt;data = array_merge($this-&gt;data, (array) $this-&gt;quotes-&gt;last());
+            </code>
+        </p>
+        <p>We can choose a quote randomly instead...<br/>
+            <code>	$choice = rand(1,$this-&gt;quotes-&gt;size());<br/>
+                $this-&gt;data = array_merge($this-&gt;data, (array) $this-&gt;quotes-&gt;get($choice));
+            </code>
+        </p>
         <code>
             
         </code>
     </slide>
 
-    <slide title="Fix neworder()" layout="normal">
+    <slide title="Our Improved Homepage" layout="normal">
         <div class="left">
             <p>
-                <code>Active_record::create()</code> creates a new record.<br/>
-                <code>$this-&gt;orders-&gt;create()</code> hence creates a new object, 
-                with all the fields from the Orders table, 
-                initialized to blank.<br/>
-                Set the order properties properly (number, current date, status), 
-                then save the new order object (add it to the orders model).
+                It doesn't look any different, except that we don't get the
+                same quotation every time we reload the page.
             </p>   
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="539" height="230" src="/data/tutorials/pix/4-step3b.png"/>
+            <img class="scale" width="600" height="203" src="/data/tutorials/pix/5-21.png"/>
         </div>
-    </slide>
-
-    <slide title="Post Step 3" layout="normal">
-        <p>That solved the redirection problem, but the order display (for our new
-            order) has other issues - an undefined variable "items" :(</p>
-        <br/>
-        <img class="scale" width="538" height="500" src="/data/tutorials/pix/4-step3c.png"/>
     </slide>
 
     <slide title="4. ADD A MAINTENANCE CONTROLLER" layout="normal">
-        <p>There are two pieces here – building the title for the page (order # 
-            and total), and building the graphical menu display.</p>
-        <p>Fix <code>controllers/order:display_menu()</code>. 
-            It needs to get order data from somewhere.
-            It also needs to get the column data from somewhere.</p>
+        <p>We want to add quotation maintenance to our webapp</p>
+        <p>We will add an <code>Admin</code> controller to do this.</p>
+        <p>Its default view will be a list of the quotes, with provision
+            to edit or delete any one of them, and the ability to add a new
+            quotation.</p>
     </slide>
 
-    <slide title="Fix the Title" layout="normal">
+    <slide title="Update Our Navbar Menu" layout="normal">
         <div class="left">
-            <p>You are given the order # as a parameter.
-                Retrieve the order record from the orders table, for instance 
-                <code>$order = $this-&gt;orders-&gt;get($order_num)</code>.
-                A starting point for the title would then be <code>$order-&gt;num</code> or <code>$order_num</code>.
-                This is the first part of the FIXME at line 32.</p>   
+            <p>This is easy. Add an entry for our Admin controller
+                to the <code>menu_choices</code> array in
+                <code>applicaiton/config/config.php</code>,
+                and a (broken) link for our planned maintenance controller
+                will now be on the top of every page.
+            </p>   
+            <code>
+                'menudata' =&gt; array(<br/>
+&#160;&#160;array('name' =&gt; "View 'Em", 'link' =&gt; '/viewer'),<br/>
+&#160;&#160;array('name' =&gt; "Change 'Em", 'link' =&gt; '/admin'),<br/>
+                )   
+            </code>
+            <p>In a later tutorial, we will restrict access to the
+                maintenance, to authorized users only.</p>
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="541" height="230" src="/data/tutorials/pix/4-step3d.png"/>
+            <img class="scale" width="428" height="206" src="/data/tutorials/pix/5-22.png"/>
         </div>
     </slide>
 
-    <slide title="Order Display - Column Data" layout="normal">
+    <slide title="Start With a Basic Controller" layout="normal">
         <div class="left">
-            <p>Inspecting <code>views/show_menu</code>, the data for each column 
-                comes from an array of Menu records. 
-                The <code>make_column</code> method in <code>controllers/Order</code> 
-                looks ready for that, and it is even passed the value of the 
-                category to use for relevant menu items.</p>
-            <p>Sounds like the body of that method (FIXME on line 44) 
-                will be very similar to the fix we applied to the Welcome controller... 
-                <code>return $this-&gt;menu-&gt;some('category',$category)</code>
+            <p>Let's add our <code>Admin</code> controller.
+                I suggest copying the Welcome controller, and removing
+                what we don't need.</p>
+            <p>The starting point should then look like...
             </p>
         </div>
         <div class="right">
-            <br/>
-            <img class="scale" width="594" height="113" src="/data/tutorials/pix/4-step3e.png"/>
+            <code>
+                class Admin extends Application {<br/>
+                <br/>
+&#160;&#160;function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct();<br/>
+&#160;&#160;}<br/>
+                <br/>
+&#160;&#160;function index() {<br/>
+&#160;&#160;&#160;&#160;$this-&gt;data['pagebody'] = 'homepage';<br/>
+&#160;&#160;&#160;&#160;$this-&gt;render();<br/>
+&#160;&#160;}<br/>
+                <br/>
+                }                
+            </code>
         </div>
     </slide>
 
-    <slide title="Now We can See" layout="normal">
-        <p>Yay - we can now see the ordering display :)</p>
-        <br/>
-        <img class="scale" width="603" height="400" src="/data/tutorials/pix/4-step4g.png"/>
-    </slide>
-
-    <slide title="Order Display - Order Total" layout="normal">
+    <slide title="Oh No - It Broke!" layout="normal">
         <div class="left">
-            <p>Fix <code>models/Orders::total()</code>. 
-                It needs to calculate the current total of an order.
-                It will need to get all of the items that make up that order.</p>
-            <p>The last part of the menu display is showing the order total in the title.
-                The <code>models/Orders::total()</code> method (lines 20+) is 
-                meant to handle that.
-                In order to calculate the total for an order, 
-                iterate over the items in an order. 
-                For each, retrieve its corresponding menu item. 
-                Add the orderitem quantity times the menu price to the order total.</p>
+            <p>If we check the Admin page, it looks broken, because
+                we are just using the homepage, without supplying
+                any data to show.</p>
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="567" height="380" src="/data/tutorials/pix/4-step4k.png"/>
+            <img class="scale" width="656" height="197" src="/data/tutorials/pix/5-23.png"/>
         </div>
     </slide>
 
-    <slide title="Menu Display Looking Good :)" layout="normal">
-        <p>Our menu display looks better now, with the current order
-            total displayed as part of the page header...</p>
-        <br/>
-        <img class="scale" width="609" height="400" src="/data/tutorials/pix/4-step4n.png"/>
+    <slide title="Main Admin View" layout="normal">
+        <div class="left">
+            <p>Let's make a main view for maintenance. This can be as simple
+                as the contacts list from an earlier tutorial, but using
+                the field names appropriate to the <code>Quotes</code> model.</p>
+            <p>
+                <code>application/views/admin_list</code> would look like...</p>
+        </div>
+        <div class="right">
+            <code>
+&lt;table cols="" border="0"&gt;<br/>
+&#160;&#160;&lt;tr&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;ID&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Author&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Mugshot&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Their Saying&lt;/th&gt;<br/>
+&#160;&#160;&lt;/tr&gt;<br/>
+&#160;&#160;{quotes}<br/>
+&#160;&#160;&lt;tr&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{id}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{who}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{mug}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{what}&lt;/td&gt;<br/>
+&#160;&#160;&lt;/tr&gt;<br/>
+&#160;&#160;{/quotes}<br/>
+&lt;/table&gt;    <br/>
+                
+            </code>
+        </div>
     </slide>
 
-    <slide title="Order Model Needs Updating Too" layout="normal">
-        <p>The order total is also a property in the orders table. 
-            The writeup says it only has to be saved/accurate when an order 
-            is completed. You could make a design decision to update the order 
-            total whenever an item was added to an order, 
-            in which case this step could be satisfied by getting 
-            that property from the order. Regardless of your design decision, 
-            you will need to complete the <code>Order::total()</code> 
-            method at some point.</p>
-        <p>However you calculate or get the order total, it needs to be 
-            appended to the page title, inside parentheses. 
-            It would be a good idea to format it nicely and consistently. 
-            Any of the <code>money_format</code>, <code>number_format</code> 
-            or <code>sprintf</code> functions,
-            built-in to PHP , could do the trick.</p>
+    <slide title="Use the Main Admin View" layout="normal">
+        <div class="left">
+            <p>The <code>index()</code> method of our
+            Admin controller should use this view instead
+            of the homepage, and it should pass the
+            collection of quotations data as a view parameter.</p>
+            <p>It should also set the page title properly :)</p>
+            <code>
+    function index() {<br/>
+&#160;&#160;$this-&gt;data['title'] = 'Quotations Maintenance';<br/>
+&#160;&#160;$this-&gt;data['quotes'] = $this-&gt;quotes-&gt;all();<br/>
+&#160;&#160;$this-&gt;data['pagebody'] = 'admin_list'; <br/>
+&#160;&#160;$this-&gt;render();<br/>
+    }
+            </code>
+       </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="258" src="/data/tutorials/pix/5-24.png"/>
+         </div>
     </slide>
 
-    <slide title="5. ADD QUOTE ADDITION" layout="normal">
-        <p>Fix <code>controllers/Order:add()</code>. 
-            It will need to use <code>models/Orders::add_item()</code> to do useful stuff.</p>
-        <p>This method is invoked when a menu picture is clicked on. 
-            You can see that by mousing over any of the menu item images 
-            and observing the target link in the bottom left of your browser window.</p>
-        <p>If all goes well, clicking on an item will add it to the order
-            and redisplay the menu. The only evidence of this will be that
-            the order total is updated.</p>
-        <p>At this point, with no logic behind the handling method,
-            clicking on an item appears to do nothing, which is quite
-            correct!</p>
+    <slide title="5. ADD QUOTE ADDITION" layout="normal" tag="tag5">
+        <div class="left">
+            <p>Let's add a link to the maintenance
+            list, linked to a new method in our Admin controller,
+            <code>add()</code>.</p>
+            <p>This will look cheesy, but the link can be styled
+            nicely later.</p>
+            <code>
+...<br/>
+&#160;&#160;{/quotes}<br/>
+&lt;/table&gt;    <br/>
+&lt;a href='/admin/add'&gt;Add a new quotation&lt;/a&gt;
+            </code>
+       </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="408" src="/data/tutorials/pix/5-25.png"/>
+         </div>
     </slide>
 
-    <slide title="Let's Start to Fix the Handling" layout="normal">
-        <p>This method is invoked when a menu picture is clicked on. 
-            You can see that by mousing over any of the menu item images 
-            and observing the target link in the bottom left of your browser window.</p>
-        <p>
-            <code>Order::add</code> needs to properly update the <code>orderitems</code> 
-            table to reflect the request.
-            In theory, the logic to do this could be in a controller 
-            (interpreting it as business logic), or in a 
-            model (interpreting it as model logic). 
-            Given the "model adapter" strategy that PHP frameworks favor, 
-            it makes most sense to deal with the logic inside the model, 
-            reducing the coupling between the controller and model layers.</p>   
+    <slide title="Handling Quote Addition" layout="normal">
+        <p>Generally speaking, to handle adding a new quotation, we
+            <ol>
+                <li>Create an empty record, with default/empty fields</li>
+                <li>Present it to the user to fill in</li>
+                <li>Submit the completed form</li>
+                <li>If any errors, redisplay the form, with messages</li>
+                <li>If no errors, add the new quote.</li>
+                <li>Redisplay the list of quotes</li>               
+            </ol>
+        </p>
     </slide>
 
-    <slide title="Order Additions - Facade" layout="normal">
+    <slide title="Quote Addition - The Form" layout="normal">
         <div class="left">
             <p>
-                <code>Order::add(num,item)</code> then becomes just a facade for 
-                calling the related model method, <code>models/Orders::add_item(...)</code>. 
-                These have similar names to reinforce the connection between them.</p>
-            <p>So, the controller fix (line 50 fixme) is simply 
-                <code>$this-&gt;orders-&gt;add_item($order_num,$item)</code>.</p>
+                We need a form for maintaining a single quote. Let's call it 
+            <code>application/views/quote_edit.php</code></p>
+            <p>We could start with plain HTML, shown right, but that would look
+            so bad that we couldn't show our face professionally
+            for months.</p>
         </div>
         <div class="right">
-            <br/>
-            <img class="scale" width="507" height="133" src="/data/tutorials/pix/4-step5b.png"/>
+            <code>
+&lt;form action="/admin/confirm"&gt;<br/>
+&#160;&#160;&lt;label for="id"&gt;ID#&lt;/label&gt;<br/>
+&#160;&#160;&lt;input type="text" id="id" name="id"&gt;&lt;/input&gt;<br/>
+&#160;&#160;...<br/>
+&lt;/form&gt;                
+            </code>
         </div>
     </slide>
 
-    <slide title="Order Additions - Orderitems?" layout="normal">
-        <p>The add_item method in the orders model now needs to be completed.
-            There, you need to see if that item is part of the order already, 
-            in which case retrieve its record, 
-            increment the quantity and then update the table. 
-            If it isn't already there, you will need to make 
-            an empty orderitem record, and populate its fields 
-            appropriately (including setting the quantity to 1), 
-            before adding that record to the table.</p>   
-        <p>The <code>Orderitems</code> model is not referenced inside any 
-            controller. I did this on purpose, hoping that you would conclude 
-            that such references belong in the Orders model. 
-            In the Orders model, you will need to get a handle to the CodeIgniter 
-            instance, in order to reference the Orderitems model, because of O-O scoping. 
-            Even if autoloaded, Orderitems would be a property of the controller 
-            object, and out of scope inside a model object. </p>
-    </slide>
-
-    <slide title="Order Additions - Orderitems!" layout="normal">
+   <slide title="Quote Addition - Prettier Form" layout="normal">
         <div class="left">
-            <p>The idea, inside <code>models/Orders</code>, is shown to the right.</p>
-            <p>If you made the earlier design decision to keep an order's total 
-                continuously updated, then you would have
-                that method here. Otherwise, you are done.</p>
+            <p>
+                We could add some Bootstrap styling, like the
+                <code>justone</code> view!</p>
+            <p>Hmmm - that would be better, but still ugly HTML.</p>
         </div>
         <div class="right">
-            <br/>
-            <img class="scale" width="553" height="328" src="/data/tutorials/pix/4-step5x.png"/>
+             <br/>
+            <img class="scale" width="478" height="143" src="/data/tutorials/pix/5-26.png"/>
         </div>
     </slide>
 
-    <slide title="Order Additions - Ideal Treatment?" layout="normal">
+   <slide title="Formfields Helper to the Rescue" layout="normal">
         <div class="left">
-            <p>Order additions should now work, with the order total updating
-                as you click on items to add to an order.</p>
-            <p>An ideal implementation would have some domain/entity classes, 
-                specifically a <code>domain/Order</code> to deal with the logic here that 
-                might feel awkward in a controller or in a conventional orders 
-                model, which is part of the data access layer and not an entity 
-                encapsulation.</p>
-            <p>In hindsight, it might have been kinder to you 
-                to follow this strategy, even if it meant a more complex 
-                starter app – O-O cohesion could have been better.</p>   
+            <p>This is a great opportunity to exploit the <code>formfields</code>
+            helper talked about in class last week.</p>
+            <p>Let's plan to create styled fields, one for each column in the
+            <code>Quotes</code> model.</p>
         </div>
         <div class="right">
-            <br/>
-            <img class="scale" width="606" height="400" src="/data/tutorials/pix/4-step5d.png"/>
+            <p>Our <code>quote_edit</code> view:</p>
+            <code>
+&lt;div class="row"&gt;<br/>
+&#160;&#160;&lt;form action="/admin/confirm"&gt;<br/>
+&#160;&#160;&#160;&#160;{fid}<br/>
+&#160;&#160;&#160;&#160;{fwho}<br/>
+&#160;&#160;&#160;&#160;{fmug}<br/>
+&#160;&#160;&#160;&#160;{fwhat}<br/>
+&#160;&#160;&lt;/form&gt;<br/>
+&lt;/div&gt;                
+            </code>
         </div>
     </slide>
 
-    <slide title="6. ADD QUOTE EDITING" layout="normal">
+   <slide title="Handle the New Quote Request" layout="normal">
+        <div class="left">
+            <p>We can get down to serious work in our controller now.</p>
+            <p>Add an <code>add</code> method, that we created a link to
+            in our admin quotations list.</p>
+            <p>Becuase we planned the steps, all this method needs to
+            do is create a new record, and hand off to the presenter
+            method.</p>
+        </div>
+        <div class="right">
+            <p>
+                <code>Admin::add()</code>
+            </p>
+            <code>
+    // Add a new quotation<br/>
+    function add() {<br/>
+&#160;&#160;$quote = $this-&gt;quotes-&gt;create();<br/>
+&#160;&#160;$this-&gt;present($quote);<br/>
+    }
+                </code>
+        </div>
+    </slide>
+
+   <slide title="Construct the Form" layout="normal">
+        <div class="left">
+            <p>Our presenter method can build the form from the
+            supplied record, using the formfields helper.</p>
+        </div>
+        <div class="right">
+            <p><code>Admin::present</code>:</p>
+            <code>
+    // Present a quotation for adding/editing
+    function present($quote) {
+	$this->data['fid'] = makeTextField('ID#', 'id', $quote->id);
+	$this->data['fwho'] = makeTextField('Author', 'who', $quote->who);
+	$this->data['fmug'] = makeTextField('Picture', 'mug', $quote->mug);
+	$this->data['fwhat'] = makeTextArea('The Quote', 'what', $quote->what);
+	$this->data['pagebody'] = 'quote_edit';
+	$this->render();
+    }
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Helper Oops" layout="normal">
+        <div class="left">
+            <p>When we click on the "Add a new quotation"
+            link, our webapp blows up :(</p>
+            <p>We forgot to load the helper!</p>
+         </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="600" height="140" src="/data/tutorials/pix/5-27.png"/>
+        </div>
+    </slide>
+
+   <slide title="Helper Fix" layout="normal">
+        <div class="left">
+            <p>Add a line to our Admin's constructor to
+            fix this.</p>
+            <code>
+	$this-&gt;load-&gt;helper('formfields');
+            </code>
+            <p>We can work with this, and it looks a lot better than
+            a plain HTML form!</p>
+        </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="468" height="594" src="/data/tutorials/pix/5-28.png"/>
+        </div>
+    </slide>
+
+   <slide title="Handle Form Submission" layout="normal">
+        <div class="left">
+            <p>We need a submit button to trigger form processing.</p>
+            <p>The easiest way is to use the formfield helper for this,
+            adding a snippet of code inside our <code>Admin::present()</code>,
+            just before the <code>render()</code> call.</p>
+            <code>
+        $this->data['fsubmit'] = makeSubmitButton('Process Quote', "Click here to validate the quotation data", 'btn-success');
+                
+            </code>
+            <p>You also need to add <code>{fsubmit}</code> to your quote
+            editing form. The result should look like...</p>
+        </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="375" height="500" src="/data/tutorials/pix/5-29.png"/>
+        </div>
+    </slide>
+
+   <slide title="To Be Continued..." layout="normal">
+        <div class="left">
+            <p>This is not complete yet. I will update it
+            as soon as I can!</p>
+        </div>
+        <div class="right">
+        </div>
+    </slide>
+
+<!--
+    <slide title="6. ADD QUOTE EDITING" layout="normal" tag="tag6">
         <div class="left">
             <p>Fix <code>controllers/Order::checkout()</code>. 
                 Where do the order details come from?</p>
@@ -694,38 +866,7 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-    <slide title="Checkout - Order Validation" layout="normal">
-        <div class="left">
-            <p>Validate the order before displaying the checkout page. 
-                To be considered "valid", it must include at least one 
-                item from each menu category.</p>
-            <p>
-                <code>models/Orders</code> has a <code>validate()</code> method. 
-                Implement this, and then the view parameter becomes easy ...<br/>
-                <code>$this-&gt;data['okornot'] = $this-&gt;orders-&gt;validate($num);</code>
-            </p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="706" height="348" src="/data/tutorials/pix/4-step6f.png"/>
-        </div>
-    </slide>
-
-    <slide title="Checkout - Using Validation" layout="normal">
-        <div class="left">
-            <p>
-                We can reference <code>Orders::validate</code> from our <code>checkout()</code> method ...<br/>
-                <code>$this-&gt;data['okornot'] = $this-&gt;orders-&gt;validate($num);</code>
-            </p>   
-            <p>The checkout view should now show the Proceed button disabled.</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="600" height="218" src="/data/tutorials/pix/4-step6hi.png"/>
-        </div>
-    </slide>
-
-    <slide title="7. ADD QUOTE DELETION" layout="normal">
+    <slide title="7. ADD QUOTE DELETION" layout="normal" tag="tag7">
         <div class="left">
             <p>Fix <code>controllers/Order::commit()</code> ?
                 This will only be invokable if the Proceed button is enabled, i.e.
@@ -758,7 +899,7 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-    <slide title="7. ADD FAKE ADMIN RIGHTS" layout="normal">
+    <slide title="8. ADD FAKE ADMIN RIGHTS" layout="normal" tag="tag8">
         <div class="left">
             <p>Fix <code>controllers/Order::commit()</code> ?
                 This will only be invokable if the Proceed button is enabled, i.e.
@@ -773,7 +914,7 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-    <slide title="7. ADD ON-PAGE EDITING" layout="normal">
+    <slide title="9. ADD ON-PAGE EDITING" layout="normal" tag="tag9">
         <div class="left">
             <p>Fix <code>controllers/Order::commit()</code> ?
                 This will only be invokable if the Proceed button is enabled, i.e.
@@ -788,7 +929,7 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-    <slide title="7. RETURN PROPERLY" layout="normal">
+    <slide title="10. RETURN PROPERLY" layout="normal" tag="tag10">
         <div class="left">
             <p>Fix <code>controllers/Order::commit()</code> ?
                 This will only be invokable if the Proceed button is enabled, i.e.
@@ -805,9 +946,7 @@ Tutorial 05 - Working With Libraries and Helpers
 
     <slide title="Are We Done Yet?" layout="normal">
         <div class="left">
-            <p>Make sure the homepage displays completed orders, with correct totals!</p>
-            <p>This is more of a quality control step, making sure that the 
-                expected completed orders are shown :)</p>
+            <p>This is more of a quality control step :)</p>
         </div>
         <div class="right">
             <br/>
@@ -817,8 +956,6 @@ Tutorial 05 - Working With Libraries and Helpers
 
     <slide title="Hint!" layout="normal">
         <p>I warned you to skim the whole slideshow before beginning!</p>
-        <p>Your controllers only ever need to deal with the menu and orders models. 
-            Your orders model is the only place you need to deal with the orderitems model.</p>
     </slide>
-
+-->
 </tutorial>
