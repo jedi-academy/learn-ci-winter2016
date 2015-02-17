@@ -479,12 +479,3 @@ chance to go over mistakes made on previous labs to improve marks for coming one
 
 Lab 4:
 
--Great job: http://i.imgur.com/x81TITw.png http://i.imgur.com/bwP3GOG.png  
-How are we even supposed to follow labs or anything when your website shits 
-itself every 5 minutes? Not that being able to read the instructions would help much... 
-...
-The organizer has blank links for labs that don't exist (in this case "work on assignment 1".
-The Show/lab expects a lab name, and craps if it is not there ... missing argument 1
-for Show::lab() @ 136, and then undefined variable: which @138
-
-
