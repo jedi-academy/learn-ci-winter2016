@@ -1,0 +1,961 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 05 - Working With Libraries and Helpers
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial is meant to give you some practice using and extending
+            a library and a helper, as described in lesson 6.</p>
+        <p>I have prepared a starter webapp – based on the "quotes" webapp you 
+            saw and fixed earlier, in tutorial 3. The webapp is complete,
+            showing the most recent quote on the homepage, and then a gallery when you
+            drill down, but it is painfully boring. We will add some ratings to the
+            individual quote presentations, as well as a simple maintenance
+            component for the quotes.</p>
+    </slide>
+
+    <slide title="Preparation" layout="normal">
+        <p>I have prepared a 
+            <a href="https://github.com/comp4711/winter2015-lab05" target="_blank">
+                starter webapp</a>. The lab 5 starter, Quotes, 
+            is meant to handle ordering in a small restaurant. 
+        </p>
+        <p>The webapp is fully functional as delivered, but painfully
+            boring. You are going to spice it up a bit :)</p>
+        <p>Fork the github project, and clone it locally to
+            work with, the same as you have done with the previous tutorial.</p>
+    </slide>
+
+    <slide title="The End Result" layout="normal">
+        <p>This is what the end result should look like, after fixing!</p>
+        <br/>
+        <img class="scale" width="500" height="391" src="/data/tutorials/pix/4-1.png"/>
+
+    </slide>
+
+    <slide title="Database Setup" layout="normal">
+        <p>You will need to setup your webapp's database, using the 
+            supplied script, <code>quotes-setup.sql</code>.
+            Please name the database "quotes", so that your webapp will
+            work without additional setup when I run it on my system.</p>
+        <p>As part of the tutorial, you will add a few columns to the
+            table, for ratings.</p>
+    </slide>
+
+    <slide title="The Database" layout="normal">
+        <p>The database provided contains a single table, with a single
+            field as the primary key. The model provided, <code>Quotes</code>,
+            extends MY_Model, inheriting all of the CRUD methods we need.</p>
+        <p>The quotes table has four columns:
+            <ul>
+                <li>
+                    <code>id</code> is a unique numeric identifier for a quote; it must be positive</li>
+                <li>
+                    <code>who</code> is the name of the person quoted; it cannot be blank, 
+                    and has a maximum length of 64</li>
+                <li>
+                    <code>mug</code> is the filename of the author's picture; images are
+                    stored in the <code>data</code> folder off of the document root;
+                    filenames have a maximum length of 64</li>
+                <li>
+                    <code>what</code> is is the actual quoted text, of arbitrary length</li>
+            </ul>
+        </p>
+    </slide>
+    
+    <slide title="What Needs Doing?" layout="normal">
+        <div class="left">
+            <ol>
+                <li>
+                    <a href="#{tag1}">Enable the supplied bolding hook</a>
+                </li>
+                <li>
+                    <a href="#{tag2}">Add a viewer rating widget</a>
+                </li>
+                <li>
+                    <a href="#{tag3}">Randomize the quote presented on the homepage</a>
+                </li>
+                <li>
+                    <a href="#{tag4}">Add a maintenance controller, presenting an ordered
+                        list of the quotes</a>
+                </li>
+                <li>
+                    <a href="#{tag5}">Add the ability to add a new quote</a>
+                </li>
+            </ol>
+        </div>
+        <div class="right">
+            <ol start="6">
+                <li>
+                    <a href="#{tag6}">Add the ability to edit a quote</a>
+                </li>
+                <li>
+                    <a href="#{tag7}">Add the ability to delete a quote</a>
+                </li>
+                <li>
+                    <a href="#{tag8}">Add the ability to fake admin rights</a>
+                </li>
+                <li>
+                    <a href="#{tag9}">Add an on-page editing for an admin</a>
+                </li>
+                <li>
+                    <a href="#{tag10}">Return to the page we were on after editing a quote</a>
+                </li>
+            </ol>
+        </div>
+    </slide>
+
+    <slide title="The Starting Point" layout="normal">
+        <div class="left">
+            <p>The webapp is functional when you start, with the homepage shown
+                to the right.</p>
+            <p>It has a simple menubar on the top, with the smiley face
+                linked back to the homepage, and the "View 'Em" menu link
+                taking you to the "viewer" page.</p>
+            <p>The quote shown is the most recently added, i.e. the one with the
+                highest ID.</p>            
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="200" src="/data/tutorials/pix/5-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="And Beyond the Homepage?" layout="normal">
+        <div class="left">
+            <p>The "viewer" presents a table of the quotes on file,
+                showing the author's mugshots.
+                This is ordered from left-to-right and top-to-bottom by ID#.</p>
+            <p>Each image  is itself a link to the page that presents
+                just that one quote, implemented by the <code>quote</code> method
+                inside the <code>Viewer</code> controller, and using the 
+                <code>justone</code> view that you saw in lab 3.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="296" src="/data/tutorials/pix/5-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="And Then There Be Quotes" layout="normal">
+        <div class="left">
+            <p>The single page presentation of a quote shows all of the quote's
+                data fields, arranged somewhat pleasingly though neutral.</p>
+            <p>The <code>justone</code> view uses the template parser to
+                substitute actual data values.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="220" src="/data/tutorials/pix/5-3.png"/>
+        </div>
+    </slide>
+
+    <slide title="1. ENABLE THE SUPPLIED BOLDING HOOK" layout="normal" tag="tag1">
+        <p>The challenge part of lab 3 was to add a 
+            <a href="http://www.codeigniter.com/userguide3/general/hooks.html" target="_blank">"hook"</a> to
+            your webapp, to bold capitalized words in the quoted text.
+            A couple of students asked for a solution for that, so I
+            have included one of the simpler ones submitted.</p>
+        <p>The "hook" itself is found in <code>application/hooks/Hooks.php</code>.
+            Check it out ... I'll wait.</p>
+        <p>The hook's configuration is in <code>application/config/hooks.php</code>.
+            Go ahead - check that one out too.</p>
+        <p>So, why isn't it working already?</p>
+    </slide>
+
+    <slide title="One Teeny Step Needed" layout="normal">
+        <div class="left">
+            <p>We need to enable hooks if ours is to do anything.</p>
+            <p>In <code>application/config/config.php</code> change the value
+                of the 'enable_hooks' setting, and you should see a change
+                in the homepage, shown right - the capitalized words are bolded
+                as expected.</p>
+            <code>$config['enable_hooks'] = TRUE;</code>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="202" src="/data/tutorials/pix/5-4.png"/>
+        </div>
+    </slide>
+
+    <slide title="2. ADD A VIEWER RATING WIDGET" layout="normal" tag="tag2">
+        <p>This is a fun little idea, and an excuse to explore the
+            <b>Caboose</b> widget manager mentioned in lesson 6.
+            The idea is to add a rating star widget somewhere in the
+            view fragment used to present a quote, and to track the votes
+            as part of our webapp.</p>
+        <p>A rating widget looks something like:</p>
+        <br/>
+        <img class="scale" width="229" height="39" src="/data/tutorials/pix/5-5.png"/>       
+    </slide>
+
+    <slide title="Database Mods for Voting" layout="normal">
+        <div class="left">
+            <p>We need to add two fields to our quotes table:</p>
+            <ul>
+                <li>
+                    <b>vote_total</b> - an integer to hold the total of all votes</li>
+                <li>
+                    <b>vote_count</b> - an integer to hold the number of votes cast</li>
+            </ul>
+            <p>I suggest using phpMyAdmin to do this, resulting in the 
+                table structure shown right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="615" height="270" src="/data/tutorials/pix/5-7.png"/>
+        </div>
+    </slide>
+
+    <slide title="Get a Rating Widget" layout="normal">
+        <div class="left">
+            <p>A rating widget that I have used is 
+                <a href="http://www.myjqueryplugins.com/jquery-plugin/jrating" target="_blank">jRating</a>, from
+                <a href="http://www.alpixel.fr/" target="_blank">Alpixel</a>.</p>   
+            <p>The jRating link above leads to the documentation for the widget,
+                which is pretty easy to follow for our purposes. The 
+                Download link leads to their Github page, from which you can 
+                <a href="https://github.com/alpixel/jRating/archive/master.zip">download</a>
+                a zip of the project. Do so!</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="248" src="/data/tutorials/pix/5-6.png"/>
+        </div>
+    </slide>
+
+    <slide title="What's In the Widget?" layout="normal">
+        <div class="left">
+            <p>Extract the jRating once downloaded. When you checkout its
+                contents (shown right), you can see several files or foldersof interest:</p>   
+            <ul>
+                <li>
+                    <b>icons/</b> - images used by the widget</li>
+                <li>
+                    <b>jRating.jquery.css</b> - CSS styling for the widget</li>
+                <li>
+                    <b>jRating.jquery.js</b> - the widget's Javascript source</li>
+            </ul>
+            <p>We won't need the others.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="317" height="392" src="/data/tutorials/pix/5-8.png"/>
+        </div>
+    </slide>
+
+    <slide title="Copy the Widget Into Our Project" layout="normal">
+        <div class="left">
+            <p>Let's copy the widget pieces that we need into our project's
+                <code>assets</code> folder, and we can then tailor them.
+            </p>   
+            <ul>
+                <li>
+                    <b>icons/*</b> - the .png images go into our <code>images</code> folder</li>
+                <li>
+                    <b>jRating.jquery.css</b> - goes inside <code>css</code>
+                </li>
+                <li>
+                    <b>jRating.jquery.js</b> - goes inside <code>js</code>
+                </li>
+            </ul>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="342" height="343" src="/data/tutorials/pix/5-10.png"/>
+        </div>
+    </slide>
+
+    <slide title="Fix the CSS Image References" layout="normal">
+        <p>We copied the images into our <code>assets/images</code> folder,
+            and need to reflect that in <code>jRating.jquery.css</code>, as shown below.</p>   
+        <br/>
+        <img class="scale" width="722" height="223" src="/data/tutorials/pix/5-11.png"/>
+    </slide>
+
+    <slide title="Fix the JS Image References" layout="normal">
+        <p>We need to make a similar change in <code>jRating.jquery.js</code>, 
+            as shown below.</p>   
+        <br/>
+        <img class="scale" width="803" height="150" src="/data/tutorials/pix/5-12.png"/>
+    </slide>
+
+    <slide title="Enable Caboose in our webapp (1/3)" layout="normal">
+        <p>We want to autoload the Caboose library, as it will be used in our 
+            master template.</p>
+        <br/>
+        <img class="scale" width="558" height="55" src="/data/tutorials/pix/5-13.png"/>
+    </slide>
+
+    <slide title="Enable Caboose in our webapp (2/3)" layout="normal">
+        <p>We want to set some view parameters from our Caboose object, inside
+            <code>core/MY_Controller</code>, as discussed in the lesson.</p>
+        <br/>
+        <img class="scale" width="646" height="217" src="/data/tutorials/pix/5-14.png"/>
+    </slide>
+
+    <slide title="Enable Caboose in our webapp (3/3)" layout="normal">
+        <div class="left">
+            <p>And we want to include the Caboose output at the appropriate
+                points in our <code>views/_template.php</code>, using substitution 
+                parameters, again as discussed in the lesson.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="474" height="557" src="/data/tutorials/pix/5-15.png"/>
+        </div>
+    </slide>
+
+    <slide title="We Have Caboose" layout="normal">
+        <div class="left">
+            <p>At this point, we have enabled the Caboose, without making
+                any requests of it.</p>
+            <p>We should also not have broken anything in doing so.
+                Our webapp should look the same as it did a short while ago...</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="213" src="/data/tutorials/pix/5-16.png"/>
+        </div>
+    </slide>
+
+    <slide title="Add a Rating to a Quote" layout="normal">
+        <p>The jRating documentation shows some sample HTML to
+            hold an instance of their widget...<br/>
+            <code>
+            &lt;div class="basic" data-average="12" data-id="1"&gt;&lt;/div&gt;
+            </code>
+        </p>
+        
+        <p>In our case, the data-id will be the <code>id</code> from a quote,
+            and we will need to calculate the average from the values stored in
+            our table...<br/>
+            <code>
+            &lt;div class="hollywood" data-average="{average}" data-id="{id}"&gt;&lt;/div&gt;
+            </code>
+        </p>
+        <p>Add this <code>div</code> below the paragraph holding the author,
+            in <code>views/justone.php</code>
+        </p>
+                
+        <br/>
+        <img class="scale" width="647" height="148" src="/data/tutorials/pix/5-17.png"/>
+    </slide>
+
+    <slide title="Initializing a Rating Widget" layout="normal">
+        <p>Again referring to the jRating documentaiton, we need
+            to initialize the jRating widget, binding it to a
+            component on the webpage. This will be our
+            <code>views/_components/jrating.php</code>.</p>
+        <p>We can set some options when it is initialized, 
+            including the planned target URL for the AJAX call
+            that the widget will make to record a vote.</p>
+        <p>Ours should look like:</p>
+        <code>
+            $('.{field}').jRating({<br/>
+&#160;&#160;maxRate : 5,    // highest rating<br/>
+&#160;&#160;phpPath : '/viewer/rate'	// target for the AJAX call<br/>
+            });
+        </code>
+    </slide>
+
+    <slide title="Configure Caboose for Ratings" layout="normal">
+        <p>We are finally ready to add a configuration entry
+            for our ratings widget, in <code>libraries/Caboose.php</code>.
+            We can add it to the <code>$components</code> array after the existing two
+            configuration entries...</p>
+        <code>
+            'jrating' =&gt; array(<br/>
+&#160;&#160;'css' =&gt; 'jRating.jquery.css',<br/>
+&#160;&#160;'js' =&gt; 'jRating.jquery.js',<br/>
+&#160;&#160;'template' =&gt; 'jrating'<br/>
+            ),            
+        </code>
+    </slide>
+
+    <slide title="jRating Housekeeping" layout="normal">
+        <div class="left">
+            <p>We have another bit of housekeeping to tend to - removing the
+                "demo only" blocks in the jrating's javascript file,
+                <code>assets/js/jRating.jquery.js</code>
+            </p>
+            <p>For example, the original code is shown to the right, and after trimming below.</p>
+            <br/>
+            <img class="scale" width="600" height="149" src="/data/tutorials/pix/5-17c.png"/>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="334" src="/data/tutorials/pix/5-17b.png"/>
+        </div>
+    </slide>
+
+    <slide title="Let's Invoke the Caboose!" layout="normal">
+        <div class="left">
+            <p>We show single quotations in two places: in <code>controllers/Welcome::index()</code>
+                and in <code>controllers/Viewer::quote()</code>. In both cases, 
+                we need to invoke the rating widget
+                before the <code>$this-&gt;render();</code>...</p>
+            <code>
+                $this-&gt;caboose-&gt;needed('jrating','hollywood');        
+            </code>
+            <p>And the result is...</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="207" src="/data/tutorials/pix/5-18.png"/>
+        </div>
+    </slide>
+
+    <slide title="Oops - We Need the Average" layout="normal">
+        <div class="left">
+            <p>The homepage didn't look any different. If you examine the page 
+                source, however, you will find...<br/>
+                <code>&lt;div class="hollywood" data-average="{average}" data-id="6"&gt;&lt;/div&gt;</code>
+            </p>
+            <p>We need to add a bit of logic to calculate the rating average, 
+                and to pass it on as a view parameter.</p>
+            <code>
+                $this-&gt;data['average'] = <br/>
+                ($this-&gt;data['vote_count'] &gt; 0) ? <br/>
+&#160;&#160;($this-&gt;data['vote_total'] / $this-&gt;data['vote_count']) : 0;
+            </code>
+            <p>And the result is...</p>
+            <h2>Arghh ... the rating widget should be visible, but isn't!</h2>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="207" src="/data/tutorials/pix/5-19.png"/>
+        </div>
+    </slide>
+
+    <slide title="And We Need to Process the Rating" layout="normal">
+        <div class="left">
+            <p>We need to add the <code>rate()</code> method to our <code>Viewer</code>,
+                to handle the AJAX request from the rating widget. Without going 
+                into too much detail about it, this will look like...</p>
+        </div>
+        <div class="right">
+            <code>
+                // handle a rating<br/>
+                function rate() {<br/>
+&#160;&#160;// detect non-AJAX entry<br/>
+&#160;&#160;if (!isset($_POST['action'])) redirect("/");<br/>
+&#160;&#160;// extract parameters<br/>
+&#160;&#160;$id = intval($_POST['idBox']);<br/>
+&#160;&#160;$rate = intval($_POST['rate']);<br/>
+&#160;&#160;// update the posting<br/>
+&#160;&#160;$record = $this-&gt;quotes-&gt;get($id);<br/>
+&#160;&#160;if ($record != null) {<br/>
+&#160;&#160;&#160;&#160;$record-&gt;vote_total += $rate;<br/>
+&#160;&#160;&#160;&#160;$record-&gt;vote_count++;<br/>
+&#160;&#160;&#160;&#160;$this-&gt;quotes-&gt;update($record);<br/>
+&#160;&#160;}<br/>
+&#160;&#160;$response = 'Thanks for voting!';<br/>
+&#160;&#160;echo json_encode($response);	<br/>
+                }                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="And The Result Is..." layout="normal">
+        <div class="left">
+            <p>The results after voting a few times...</p>
+            <br/>
+            <br/>
+            <p>
+                <b>
+                    <i>Still broken. It should work. It doesn't. I will revisit later!</i>
+                </b>
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="207" src="/data/tutorials/pix/5-20.png"/>
+        </div>
+    </slide>
+
+    <slide title="3. RANDOMIZE THE HOMEPAGE QUOTE" layout="normal" tag="tag3">
+        <p>Now that we are voting, we should mix things up a bit on the
+            homepage. Let's choose a quote randomly instead. We'll need to make
+            an adjustment in the <code>index()</code> method of our
+            <code>Welcome</code> controller...</p>
+        <p>Instead of <br/>
+            <code>	$this-&gt;data = array_merge($this-&gt;data, (array) $this-&gt;quotes-&gt;last());
+            </code>
+        </p>
+        <p>We can choose a quote randomly instead...<br/>
+            <code>	$choice = rand(1,$this-&gt;quotes-&gt;size());<br/>
+                $this-&gt;data = array_merge($this-&gt;data, (array) $this-&gt;quotes-&gt;get($choice));
+            </code>
+        </p>
+        <code>
+            
+        </code>
+    </slide>
+
+    <slide title="Our Improved Homepage" layout="normal">
+        <div class="left">
+            <p>
+                It doesn't look any different, except that we don't get the
+                same quotation every time we reload the page.
+            </p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="203" src="/data/tutorials/pix/5-21.png"/>
+        </div>
+    </slide>
+
+    <slide title="4. ADD A MAINTENANCE CONTROLLER" layout="normal">
+        <p>We want to add quotation maintenance to our webapp</p>
+        <p>We will add an <code>Admin</code> controller to do this.</p>
+        <p>Its default view will be a list of the quotes, with provision
+            to edit or delete any one of them, and the ability to add a new
+            quotation.</p>
+    </slide>
+
+    <slide title="Update Our Navbar Menu" layout="normal">
+        <div class="left">
+            <p>This is easy. Add an entry for our Admin controller
+                to the <code>menu_choices</code> array in
+                <code>applicaiton/config/config.php</code>,
+                and a (broken) link for our planned maintenance controller
+                will now be on the top of every page.
+            </p>   
+            <code>
+                'menudata' =&gt; array(<br/>
+&#160;&#160;array('name' =&gt; "View 'Em", 'link' =&gt; '/viewer'),<br/>
+&#160;&#160;array('name' =&gt; "Change 'Em", 'link' =&gt; '/admin'),<br/>
+                )   
+            </code>
+            <p>In a later tutorial, we will restrict access to the
+                maintenance, to authorized users only.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="428" height="206" src="/data/tutorials/pix/5-22.png"/>
+        </div>
+    </slide>
+
+    <slide title="Start With a Basic Controller" layout="normal">
+        <div class="left">
+            <p>Let's add our <code>Admin</code> controller.
+                I suggest copying the Welcome controller, and removing
+                what we don't need.</p>
+            <p>The starting point should then look like...
+            </p>
+        </div>
+        <div class="right">
+            <code>
+                class Admin extends Application {<br/>
+                <br/>
+&#160;&#160;function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct();<br/>
+&#160;&#160;}<br/>
+                <br/>
+&#160;&#160;function index() {<br/>
+&#160;&#160;&#160;&#160;$this-&gt;data['pagebody'] = 'homepage';<br/>
+&#160;&#160;&#160;&#160;$this-&gt;render();<br/>
+&#160;&#160;}<br/>
+                <br/>
+                }                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Oh No - It Broke!" layout="normal">
+        <div class="left">
+            <p>If we check the Admin page, it looks broken, because
+                we are just using the homepage, without supplying
+                any data to show.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="656" height="197" src="/data/tutorials/pix/5-23.png"/>
+        </div>
+    </slide>
+
+    <slide title="Main Admin View" layout="normal">
+        <div class="left">
+            <p>Let's make a main view for maintenance. This can be as simple
+                as the contacts list from an earlier tutorial, but using
+                the field names appropriate to the <code>Quotes</code> model.</p>
+            <p>
+                <code>application/views/admin_list</code> would look like...</p>
+        </div>
+        <div class="right">
+            <code>
+&lt;table cols="" border="0"&gt;<br/>
+&#160;&#160;&lt;tr&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;ID&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Author&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Mugshot&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Their Saying&lt;/th&gt;<br/>
+&#160;&#160;&lt;/tr&gt;<br/>
+&#160;&#160;{quotes}<br/>
+&#160;&#160;&lt;tr&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{id}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{who}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{mug}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{what}&lt;/td&gt;<br/>
+&#160;&#160;&lt;/tr&gt;<br/>
+&#160;&#160;{/quotes}<br/>
+&lt;/table&gt;    <br/>
+                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Use the Main Admin View" layout="normal">
+        <div class="left">
+            <p>The <code>index()</code> method of our
+            Admin controller should use this view instead
+            of the homepage, and it should pass the
+            collection of quotations data as a view parameter.</p>
+            <p>It should also set the page title properly :)</p>
+            <code>
+    function index() {<br/>
+&#160;&#160;$this-&gt;data['title'] = 'Quotations Maintenance';<br/>
+&#160;&#160;$this-&gt;data['quotes'] = $this-&gt;quotes-&gt;all();<br/>
+&#160;&#160;$this-&gt;data['pagebody'] = 'admin_list'; <br/>
+&#160;&#160;$this-&gt;render();<br/>
+    }
+            </code>
+       </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="258" src="/data/tutorials/pix/5-24.png"/>
+         </div>
+    </slide>
+
+    <slide title="5. ADD QUOTE ADDITION" layout="normal" tag="tag5">
+        <div class="left">
+            <p>Let's add a link to the maintenance
+            list, linked to a new method in our Admin controller,
+            <code>add()</code>.</p>
+            <p>This will look cheesy, but the link can be styled
+            nicely later.</p>
+            <code>
+...<br/>
+&#160;&#160;{/quotes}<br/>
+&lt;/table&gt;    <br/>
+&lt;a href='/admin/add'&gt;Add a new quotation&lt;/a&gt;
+            </code>
+       </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="408" src="/data/tutorials/pix/5-25.png"/>
+         </div>
+    </slide>
+
+    <slide title="Handling Quote Addition" layout="normal">
+        <p>Generally speaking, to handle adding a new quotation, we
+            <ol>
+                <li>Create an empty record, with default/empty fields</li>
+                <li>Present it to the user to fill in</li>
+                <li>Submit the completed form</li>
+                <li>If any errors, redisplay the form, with messages</li>
+                <li>If no errors, add the new quote.</li>
+                <li>Redisplay the list of quotes</li>               
+            </ol>
+        </p>
+    </slide>
+
+    <slide title="Quote Addition - The Form" layout="normal">
+        <div class="left">
+            <p>
+                We need a form for maintaining a single quote. Let's call it 
+            <code>application/views/quote_edit.php</code></p>
+            <p>We could start with plain HTML, shown right, but that would look
+            so bad that we couldn't show our face professionally
+            for months.</p>
+        </div>
+        <div class="right">
+            <code>
+&lt;form action="/admin/confirm"&gt;<br/>
+&#160;&#160;&lt;label for="id"&gt;ID#&lt;/label&gt;<br/>
+&#160;&#160;&lt;input type="text" id="id" name="id"&gt;&lt;/input&gt;<br/>
+&#160;&#160;...<br/>
+&lt;/form&gt;                
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Quote Addition - Prettier Form" layout="normal">
+        <div class="left">
+            <p>
+                We could add some Bootstrap styling, like the
+                <code>justone</code> view!</p>
+            <p>Hmmm - that would be better, but still ugly HTML.</p>
+        </div>
+        <div class="right">
+             <br/>
+            <img class="scale" width="478" height="143" src="/data/tutorials/pix/5-26.png"/>
+        </div>
+    </slide>
+
+   <slide title="Formfields Helper to the Rescue" layout="normal">
+        <div class="left">
+            <p>This is a great opportunity to exploit the <code>formfields</code>
+            helper talked about in class last week.</p>
+            <p>Let's plan to create styled fields, one for each column in the
+            <code>Quotes</code> model.</p>
+        </div>
+        <div class="right">
+            <p>Our <code>quote_edit</code> view:</p>
+            <code>
+&lt;div class="row"&gt;<br/>
+&#160;&#160;&lt;form action="/admin/confirm"&gt;<br/>
+&#160;&#160;&#160;&#160;{fid}<br/>
+&#160;&#160;&#160;&#160;{fwho}<br/>
+&#160;&#160;&#160;&#160;{fmug}<br/>
+&#160;&#160;&#160;&#160;{fwhat}<br/>
+&#160;&#160;&lt;/form&gt;<br/>
+&lt;/div&gt;                
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Handle the New Quote Request" layout="normal">
+        <div class="left">
+            <p>We can get down to serious work in our controller now.</p>
+            <p>Add an <code>add</code> method, that we created a link to
+            in our admin quotations list.</p>
+            <p>Becuase we planned the steps, all this method needs to
+            do is create a new record, and hand off to the presenter
+            method.</p>
+        </div>
+        <div class="right">
+            <p>
+                <code>Admin::add()</code>
+            </p>
+            <code>
+    // Add a new quotation<br/>
+    function add() {<br/>
+&#160;&#160;$quote = $this-&gt;quotes-&gt;create();<br/>
+&#160;&#160;$this-&gt;present($quote);<br/>
+    }
+                </code>
+        </div>
+    </slide>
+
+   <slide title="Construct the Form" layout="normal">
+        <div class="left">
+            <p>Our presenter method can build the form from the
+            supplied record, using the formfields helper.</p>
+        </div>
+        <div class="right">
+            <p><code>Admin::present</code>:</p>
+            <code>
+    // Present a quotation for adding/editing
+    function present($quote) {
+	$this->data['fid'] = makeTextField('ID#', 'id', $quote->id);
+	$this->data['fwho'] = makeTextField('Author', 'who', $quote->who);
+	$this->data['fmug'] = makeTextField('Picture', 'mug', $quote->mug);
+	$this->data['fwhat'] = makeTextArea('The Quote', 'what', $quote->what);
+	$this->data['pagebody'] = 'quote_edit';
+	$this->render();
+    }
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Helper Oops" layout="normal">
+        <div class="left">
+            <p>When we click on the "Add a new quotation"
+            link, our webapp blows up :(</p>
+            <p>We forgot to load the helper!</p>
+         </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="600" height="140" src="/data/tutorials/pix/5-27.png"/>
+        </div>
+    </slide>
+
+   <slide title="Helper Fix" layout="normal">
+        <div class="left">
+            <p>Add a line to our Admin's constructor to
+            fix this.</p>
+            <code>
+	$this-&gt;load-&gt;helper('formfields');
+            </code>
+            <p>We can work with this, and it looks a lot better than
+            a plain HTML form!</p>
+        </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="468" height="594" src="/data/tutorials/pix/5-28.png"/>
+        </div>
+    </slide>
+
+   <slide title="Handle Form Submission" layout="normal">
+        <div class="left">
+            <p>We need a submit button to trigger form processing.</p>
+            <p>The easiest way is to use the formfield helper for this,
+            adding a snippet of code inside our <code>Admin::present()</code>,
+            just before the <code>render()</code> call.</p>
+            <code>
+        $this->data['fsubmit'] = makeSubmitButton('Process Quote', "Click here to validate the quotation data", 'btn-success');
+                
+            </code>
+            <p>You also need to add <code>{fsubmit}</code> to your quote
+            editing form. The result should look like...</p>
+        </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="375" height="500" src="/data/tutorials/pix/5-29.png"/>
+        </div>
+    </slide>
+
+   <slide title="To Be Continued..." layout="normal">
+        <div class="left">
+            <p>This is not complete yet. I will update it
+            as soon as I can!</p>
+        </div>
+        <div class="right">
+        </div>
+    </slide>
+
+<!--
+    <slide title="6. ADD QUOTE EDITING" layout="normal" tag="tag6">
+        <div class="left">
+            <p>Fix <code>controllers/Order::checkout()</code>. 
+                Where do the order details come from?</p>
+            <p>
+                <code>controllers/order::check_out()</code> displays the 
+                <code>show_order</code> view.
+                You need to pass view parameters to this, or we
+                will get a funny looking checkout screen, shown right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="263" src="/data/tutorials/pix/4-step5e.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout View Parameters" layout="normal">
+        <div class="left">
+            <p>
+                <code>order_num</code> and <code>total</code> come from the 
+                <code>order</code> object. You know how to get this.</p>
+            <p>
+                Here is an implementation for the 'total' and
+                'items' view parameters:
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="755" height="353" src="/data/tutorials/pix/4-step5e2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout Is Starting to Look Real" layout="normal">
+        <div class="left">
+            <p>Checkout is looking better (see right).</p>
+            <p>The intent is that the "Proceed" button be enabled only
+                if the order is valid.We'll fix that next.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="262" src="/data/tutorials/pix/4-step5f.png"/>
+        </div>
+    </slide>
+
+    <slide title="7. ADD QUOTE DELETION" layout="normal" tag="tag7">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="Completion, Really" layout="normal">
+        <div class="left">
+            <p>
+                <code>controllers/Order::cancel()</code> needs to update the order 
+                status to 'x' (for cancelled), after deleting any related 
+                orderitems records. To maintain cohesion, 
+                there is a <code>flush(num)</code> method in the <code>models/Orders</code> 
+                class, for you to implement. </p>
+            <p>It should also retrieve the orderitems for an order, and then delete them. 
+                That would be done by the <code>flush()</code> method inside
+                our Orders model, but I think we have done enough!</p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="465" height="177" src="/data/tutorials/pix/4-step7d.png"/>
+        </div>
+    </slide>
+
+    <slide title="8. ADD FAKE ADMIN RIGHTS" layout="normal" tag="tag8">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="9. ADD ON-PAGE EDITING" layout="normal" tag="tag9">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="10. RETURN PROPERLY" layout="normal" tag="tag10">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="Are We Done Yet?" layout="normal">
+        <div class="left">
+            <p>This is more of a quality control step :)</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="318" src="/data/tutorials/pix/4-step7x.png"/>
+        </div>
+    </slide>
+
+    <slide title="Hint!" layout="normal">
+        <p>I warned you to skim the whole slideshow before beginning!</p>
+    </slide>
+-->
+</tutorial>
