@@ -16,12 +16,11 @@ Lab 05 - Views, libraries & helpers
     </slide>
 
     <slide title="NEWSFLASH" layout="normal">
-        <p>I have encountered some major issues with part
-        of this lab - the ratings plugin.</p>
-        <p>I am holding off on the lab until next week,
-            by which time this will be resolved.</p>
-        <p>This week in lab (Feb 11/12), I hope to go over the first 
-            assignment with each team.</p>
+        <p>I have split the tutorial into 3 parts, because
+        it was becoming excessively lengthy
+        being all in one.
+        I have had positive feedback about the "baby steps"
+        in the lab, but that means lots of "pages/slides".</p>
     </slide>
 
     <slide title="Lab Submission" layout="normal">
@@ -41,14 +40,19 @@ Lab 05 - Views, libraries & helpers
         <p>There are ten tasks to complete for the lab.</p>
         <p>Keeping things simple, I will award one mark each,
         even though some are more involved than others.</p>
-        <p>
-            <i>Commenting:</i> add comments sufficient to convince 
-            the reader that you know what you are doing. 
-            Inappropriate/inadequate comments will cost you up to two marks off.</p>
     </slide>
 
     <slide title="Your Job" layout="normal">
-        <p>Complete tutorial 5.</p>
+        <p>Complete tutorial 5, being aware that it has been split into three 
+            parts: #5, #5b and #5c!</p>
+            <p>
+                <i>Update ... Weds Feb 18th, 08:00 ... out of time and
+                out of energy. I will complete #5b tonight, which
+                will see the first 5 tasks through, and will base
+                the lab grade on just those. I will complete #5c
+                when I can Thurs Feb 19th, but will not expect it as part of
+                your lab 5.</i>
+            </p>
     </slide>
 
 
