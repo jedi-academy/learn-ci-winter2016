@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 05 - Working With Libraries and Helpers
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial is meant to give you some practice using and extending
+            a library and a helper, as described in lesson 6.</p>
+        <p>This tutorial part (#5b) deals only with adding a new quotation.
+            It is a continuation of tutorial #5, and assumes you have completed that.</p>
+    </slide>
+
+     <slide>
+        <h1>Revisions &amp; Notes</h1>    
+        <ul>
+            <li></li>
+
+        </ul>            
+    </slide>
+
+
+    <slide title="What Needs Doing?" layout="normal">
+        <div class="left">
+            <ol>
+                <li>
+                    <a href="/show/tutorial/tutorial05">Enable the supplied bolding hook</a> (#5)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05">Add a viewer rating widget</a> (#5)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05">Randomize the quote presented on the homepage</a> (#5)
+                </li>
+                <li>
+                    <a href="#{tag4}">Add a maintenance controller, presenting an ordered
+                        list of the quotes</a>
+                </li>
+                <li>
+                    <a href="#{tag5}">Add the ability to add a new quote</a>
+                </li>
+            </ol>
+        </div>
+        <div class="right">
+            <ol start="6">
+                <li>
+                    <a href="/show/tutorial/tutorial05c">Add the ability to edit a quote</a> (#5c)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05c">Add the ability to delete a quote</a> (#5c)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05c">Add the ability to fake admin rights</a> (#5c)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05c">Add an on-page editing for an admin</a> (#5c)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05c">Return to the page we were on after editing a quote</a> (#5c)
+                </li>
+            </ol>
+        </div>
+    </slide>
+
+    <slide title="The Starting Point" layout="normal">
+        <div class="left">
+            <p>The webapp is functional when you start, with the homepage shown
+                to the right.</p>
+            <p>It has a simple menubar on the top, with the smiley face
+                linked back to the homepage, and the "View 'Em" menu link
+                taking you to the "viewer" page.</p>
+            <p>The quote shown is the most recently added, i.e. the one with the
+                highest ID.</p>            
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="200" src="/data/tutorials/pix/5-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="4. ADD A MAINTENANCE CONTROLLER" layout="normal" tag="tag4">
+        <p>We want to add quotation maintenance to our webapp</p>
+        <p>We will add an <code>Admin</code> controller to do this.</p>
+        <p>Its default view will be a list of the quotes, with provision
+            to edit or delete any one of them, and the ability to add a new
+            quotation.</p>
+    </slide>
+
+    <slide title="Update Our Navbar Menu" layout="normal">
+        <div class="left">
+            <p>This is easy. Add an entry for our Admin controller
+                to the <code>menu_choices</code> array in
+                <code>applicaiton/config/config.php</code>,
+                and a (broken) link for our planned maintenance controller
+                will now be on the top of every page.
+            </p>   
+            <code>
+                'menudata' =&gt; array(<br/>
+&#160;&#160;array('name' =&gt; "View 'Em", 'link' =&gt; '/viewer'),<br/>
+&#160;&#160;array('name' =&gt; "Change 'Em", 'link' =&gt; '/admin'),<br/>
+                )   
+            </code>
+            <p>In a later tutorial, we will restrict access to the
+                maintenance, to authorized users only.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="428" height="206" src="/data/tutorials/pix/5-22.png"/>
+        </div>
+    </slide>
+
+    <slide title="Start With a Basic Controller" layout="normal">
+        <div class="left">
+            <p>Let's add our <code>Admin</code> controller.
+                I suggest copying the Welcome controller, and removing
+                what we don't need.</p>
+            <p>The starting point should then look like...
+            </p>
+        </div>
+        <div class="right">
+            <code>
+                class Admin extends Application {<br/>
+                <br/>
+&#160;&#160;function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct();<br/>
+&#160;&#160;}<br/>
+                <br/>
+&#160;&#160;function index() {<br/>
+&#160;&#160;&#160;&#160;$this-&gt;data['pagebody'] = 'homepage';<br/>
+&#160;&#160;&#160;&#160;$this-&gt;render();<br/>
+&#160;&#160;}<br/>
+                <br/>
+                }                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Oh No - It Broke!" layout="normal">
+        <div class="left">
+            <p>If we check the Admin page, it looks broken, because
+                we are just using the homepage, without supplying
+                any data to show.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="656" height="197" src="/data/tutorials/pix/5-23.png"/>
+        </div>
+    </slide>
+
+    <slide title="Main Admin View" layout="normal">
+        <div class="left">
+            <p>Let's make a main view for maintenance. This can be as simple
+                as the contacts list from an earlier tutorial, but using
+                the field names appropriate to the <code>Quotes</code> model.</p>
+            <p>
+                <code>application/views/admin_list</code> would look like...</p>
+        </div>
+        <div class="right">
+            <code>
+&lt;table cols="" border="0"&gt;<br/>
+&#160;&#160;&lt;tr&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;ID&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Author&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Mugshot&lt;/th&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;th&gt;Their Saying&lt;/th&gt;<br/>
+&#160;&#160;&lt;/tr&gt;<br/>
+&#160;&#160;{quotes}<br/>
+&#160;&#160;&lt;tr&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{id}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{who}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{mug}&lt;/td&gt;<br/>
+&#160;&#160;&#160;&#160;&lt;td&gt;{what}&lt;/td&gt;<br/>
+&#160;&#160;&lt;/tr&gt;<br/>
+&#160;&#160;{/quotes}<br/>
+&lt;/table&gt;    <br/>
+                
+            </code>
+        </div>
+    </slide>
+
+    <slide title="Use the Main Admin View" layout="normal">
+        <div class="left">
+            <p>The <code>index()</code> method of our
+            Admin controller should use this view instead
+            of the homepage, and it should pass the
+            collection of quotations data as a view parameter.</p>
+            <p>It should also set the page title properly :)</p>
+            <code>
+    function index() {<br/>
+&#160;&#160;$this-&gt;data['title'] = 'Quotations Maintenance';<br/>
+&#160;&#160;$this-&gt;data['quotes'] = $this-&gt;quotes-&gt;all();<br/>
+&#160;&#160;$this-&gt;data['pagebody'] = 'admin_list'; <br/>
+&#160;&#160;$this-&gt;render();<br/>
+    }
+            </code>
+       </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="258" src="/data/tutorials/pix/5-24.png"/>
+         </div>
+    </slide>
+
+    <slide title="5. ADD QUOTE ADDITION" layout="normal" tag="tag5">
+        <div class="left">
+            <p>Let's add a link to the maintenance
+            list, linked to a new method in our Admin controller,
+            <code>add()</code>.</p>
+            <p>This will look cheesy, but the link can be styled
+            nicely later.</p>
+            <code>
+...<br/>
+&#160;&#160;{/quotes}<br/>
+&lt;/table&gt;    <br/>
+&lt;a href='/admin/add'&gt;Add a new quotation&lt;/a&gt;
+            </code>
+       </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="408" src="/data/tutorials/pix/5-25.png"/>
+         </div>
+    </slide>
+
+    <slide title="Handling Quote Addition" layout="normal">
+        <p>Generally speaking, to handle adding a new quotation, we
+            <ol>
+                <li>Create an empty record, with default/empty fields</li>
+                <li>Present it to the user to fill in</li>
+                <li>Submit the completed form</li>
+                <li>If any errors, redisplay the form, with messages</li>
+                <li>If no errors, add the new quote.</li>
+                <li>Redisplay the list of quotes</li>               
+            </ol>
+        </p>
+    </slide>
+
+    <slide title="Quote Addition - The Form" layout="normal">
+        <div class="left">
+            <p>
+                We need a form for maintaining a single quote. Let's call it 
+            <code>application/views/quote_edit.php</code></p>
+            <p>We could start with plain HTML, shown right, but that would look
+            so bad that we couldn't show our face professionally
+            for months.</p>
+        </div>
+        <div class="right">
+            <code>
+&lt;form action="/admin/confirm"&gt;<br/>
+&#160;&#160;&lt;label for="id"&gt;ID#&lt;/label&gt;<br/>
+&#160;&#160;&lt;input type="text" id="id" name="id"&gt;&lt;/input&gt;<br/>
+&#160;&#160;...<br/>
+&lt;/form&gt;                
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Quote Addition - Prettier Form" layout="normal">
+        <div class="left">
+            <p>
+                We could add some Bootstrap styling, like the
+                <code>justone</code> view!</p>
+            <p>Hmmm - that would be better, but still ugly HTML.</p>
+        </div>
+        <div class="right">
+             <br/>
+            <img class="scale" width="478" height="143" src="/data/tutorials/pix/5-26.png"/>
+        </div>
+    </slide>
+
+   <slide title="Formfields Helper to the Rescue" layout="normal">
+        <div class="left">
+            <p>This is a great opportunity to exploit the <code>formfields</code>
+            helper talked about in class last week.</p>
+            <p>Let's plan to create styled fields, one for each column in the
+            <code>Quotes</code> model.</p>
+        </div>
+        <div class="right">
+            <p>Our <code>quote_edit</code> view:</p>
+            <code>
+&lt;div class="row"&gt;<br/>
+&#160;&#160;&lt;form action="/admin/confirm"&gt;<br/>
+&#160;&#160;&#160;&#160;{fid}<br/>
+&#160;&#160;&#160;&#160;{fwho}<br/>
+&#160;&#160;&#160;&#160;{fmug}<br/>
+&#160;&#160;&#160;&#160;{fwhat}<br/>
+&#160;&#160;&lt;/form&gt;<br/>
+&lt;/div&gt;                
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Handle the New Quote Request" layout="normal">
+        <div class="left">
+            <p>We can get down to serious work in our controller now.</p>
+            <p>Add an <code>add</code> method, that we created a link to
+            in our admin quotations list.</p>
+            <p>Because we planned the steps, all this method needs to
+            do is create a new record, and hand off to the presenter
+            method.</p>
+        </div>
+        <div class="right">
+            <p>
+                <code>Admin::add()</code>
+            </p>
+            <code>
+    // Add a new quotation<br/>
+    function add() {<br/>
+&#160;&#160;$quote = $this-&gt;quotes-&gt;create();<br/>
+&#160;&#160;$this-&gt;present($quote);<br/>
+    }
+                </code>
+        </div>
+    </slide>
+
+   <slide title="Construct the Form" layout="normal">
+        <div class="left">
+            <p>Our presenter method can build the form from the
+            supplied record, using the formfields helper.</p>
+        </div>
+        <div class="right">
+            <p><code>Admin::present</code>:</p>
+            <code>
+    // Present a quotation for adding/editing<br/>
+    function present($quote) {<br/>
+&#160;&#160;$this-&gt;data['fid'] = makeTextField('ID#', 'id', $quote-&gt;id);<br/>
+&#160;&#160;$this-&gt;data['fwho'] = makeTextField('Author', 'who', $quote-&gt;who);<br/>
+&#160;&#160;$this-&gt;data['fmug'] = makeTextField('Picture', 'mug', $quote-&gt;mug);<br/>
+&#160;&#160;$this-&gt;data['fwhat'] = makeTextArea('The Quote', 'what', $quote-&gt;what);<br/>
+&#160;&#160;$this-&gt;data['pagebody'] = 'quote_edit';<br/>
+&#160;&#160;$this-&gt;render();<br/>
+    }
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Helper Oops" layout="normal">
+        <div class="left">
+            <p>When we click on the "Add a new quotation"
+            link, our webapp blows up :(</p>
+            <p>We forgot to load the helper!</p>
+         </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="600" height="140" src="/data/tutorials/pix/5-27.png"/>
+        </div>
+    </slide>
+
+   <slide title="Helper Fix" layout="normal">
+        <div class="left">
+            <p>Add a line to our Admin's constructor to
+            fix this.</p>
+            <code>
+	$this-&gt;load-&gt;helper('formfields');
+            </code>
+            <p>We can work with this, and it looks a lot better than
+            a plain HTML form!</p>
+        </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="468" height="594" src="/data/tutorials/pix/5-28.png"/>
+        </div>
+    </slide>
+
+   <slide title="Handle Form Submission" layout="normal">
+        <div class="left">
+            <p>We need a submit button to trigger form processing.</p>
+            <p>The easiest way is to use the formfield helper for this,
+            adding a snippet of code inside our <code>Admin::present()</code>,
+            just before the <code>render()</code> call.</p>
+            <code>
+        $this->data['fsubmit'] = makeSubmitButton('Process Quote', "Click here to validate the quotation data", 'btn-success');
+                
+            </code>
+            <p>You also need to add <code>{fsubmit}</code> to your quote
+            editing form. The result should look like...</p>
+        </div>
+        <div class="right">
+              <br/>
+            <img class="scale" width="375" height="500" src="/data/tutorials/pix/5-29.png"/>
+        </div>
+    </slide>
+
+   <slide title="Fix the Form Method" layout="normal">
+            <p>If you click on the "Process Quote" button, we get a 404 error :(</p>
+            <p>Oh - that is because we didn't add the confirm method :)</p>
+            <p>But the format of the URL looks funny - <br/>
+             <img class="scale" width="434" height="34" src="/data/tutorials/pix/5-30.png"/>
+           </p>
+            <p>We need to specify the 
+                POST method in the opening form element in the
+                <code>quote_edit</code> view...<br/>
+            <code>&lt;form action="/admin/confirm" method="post"&gt;</code></p>
+
+    </slide>
+
+   <slide title="To Be Continued..." layout="normal">
+            <p>This is not complete, but I am out of time :(</p>
+            <p>I was hoping to be done by Weds morning, the 18th.
+            I am shooting for Thurs morning, the 19th.</p>
+    </slide>
+
+</tutorial>

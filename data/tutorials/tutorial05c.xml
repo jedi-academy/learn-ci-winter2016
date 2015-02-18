@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 05 - Working With Libraries and Helpers
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial is meant to give you some practice using and extending
+            a library and a helper, as described in lesson 6.</p>
+        <p>This tutorial part (#5c) deals only with quotation maintenance,
+            beyond addition.
+            It is a continuation of tutorial #5b, and assumes you have completed that.</p>
+    </slide>
+
+     <slide>
+        <h1>Revisions &amp; Notes</h1>    
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>            
+    </slide>
+    
+   <slide title="What Needs Doing?" layout="normal">
+        <div class="left">
+            <ol>
+               <li>
+                    <a href="/show/tutorial/tutorial05">Enable the supplied bolding hook</a> (#5)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05">Add a viewer rating widget</a> (#5)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05">Randomize the quote presented on the homepage</a> (#5)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05b">Add a maintenance controller, presenting an ordered
+                        list of the quotes</a> (#5b)
+                </li>
+                <li>
+                    <a href="/show/tutorial/tutorial05b">Add the ability to add a new quote</a> (#5b)
+                </li>
+            </ol>
+        </div>
+        <div class="right">
+            <ol start="6">
+                <li>
+                    <a href="#{tag6}">Add the ability to edit a quote</a>
+                </li>
+                <li>
+                    <a href="#{tag7}">Add the ability to delete a quote</a>
+                </li>
+                <li>
+                    <a href="#{tag8}">Add the ability to fake admin rights</a>
+                </li>
+                <li>
+                    <a href="#{tag9}">Add an on-page editing for an admin</a>
+                </li>
+                <li>
+                    <a href="#{tag10}">Return to the page we were on after editing a quote</a>
+                </li>
+            </ol>
+        </div>
+    </slide>
+
+    <slide title="The Starting Point" layout="normal">
+            <p></p>            
+    </slide>
+<!--
+    <slide title="6. ADD QUOTE EDITING" layout="normal" tag="tag6">
+        <div class="left">
+            <p>Fix <code>controllers/Order::checkout()</code>. 
+                Where do the order details come from?</p>
+            <p>
+                <code>controllers/order::check_out()</code> displays the 
+                <code>show_order</code> view.
+                You need to pass view parameters to this, or we
+                will get a funny looking checkout screen, shown right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="263" src="/data/tutorials/pix/4-step5e.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout View Parameters" layout="normal">
+        <div class="left">
+            <p>
+                <code>order_num</code> and <code>total</code> come from the 
+                <code>order</code> object. You know how to get this.</p>
+            <p>
+                Here is an implementation for the 'total' and
+                'items' view parameters:
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="755" height="353" src="/data/tutorials/pix/4-step5e2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Checkout Is Starting to Look Real" layout="normal">
+        <div class="left">
+            <p>Checkout is looking better (see right).</p>
+            <p>The intent is that the "Proceed" button be enabled only
+                if the order is valid.We'll fix that next.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="262" src="/data/tutorials/pix/4-step5f.png"/>
+        </div>
+    </slide>
+
+    <slide title="7. ADD QUOTE DELETION" layout="normal" tag="tag7">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="Completion, Really" layout="normal">
+        <div class="left">
+            <p>
+                <code>controllers/Order::cancel()</code> needs to update the order 
+                status to 'x' (for cancelled), after deleting any related 
+                orderitems records. To maintain cohesion, 
+                there is a <code>flush(num)</code> method in the <code>models/Orders</code> 
+                class, for you to implement. </p>
+            <p>It should also retrieve the orderitems for an order, and then delete them. 
+                That would be done by the <code>flush()</code> method inside
+                our Orders model, but I think we have done enough!</p>   
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="465" height="177" src="/data/tutorials/pix/4-step7d.png"/>
+        </div>
+    </slide>
+
+    <slide title="8. ADD FAKE ADMIN RIGHTS" layout="normal" tag="tag8">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="9. ADD ON-PAGE EDITING" layout="normal" tag="tag9">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="10. RETURN PROPERLY" layout="normal" tag="tag10">
+        <div class="left">
+            <p>Fix <code>controllers/Order::commit()</code> ?
+                This will only be invokable if the Proceed button is enabled, i.e.
+                the order is valid.</p>
+            <p>
+                <code>controllers/Order::commit()</code> needs to update the order 
+                status, to 'c', and to make sure the date/time and the total are properly set too.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="565" height="224" src="/data/tutorials/pix/4-step7c.png"/>
+        </div>
+    </slide>
+
+    <slide title="Are We Done Yet?" layout="normal">
+        <div class="left">
+            <p>This is more of a quality control step :)</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="318" src="/data/tutorials/pix/4-step7x.png"/>
+        </div>
+    </slide>
+
+    <slide title="Hint!" layout="normal">
+        <p>I warned you to skim the whole slideshow before beginning!</p>
+    </slide>
+-->
+</tutorial>

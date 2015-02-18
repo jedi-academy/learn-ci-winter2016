@@ -53,6 +53,8 @@ Course organizer for Comp4711
         <topic>Midterm Exam Review</topic>
         <lesson type="lesson" name="midterm">Midterm Review</lesson>
         <tutorial type="tutorial" name="tutorial05">Working With Libraries and Helpers</tutorial>
+        <tutorial type="tutorial" name="tutorial05b">Libraries and Helpers, Part (b)</tutorial>
+        <tutorial type="tutorial" name="tutorial05c">Libraries and Helpers, Part (c)</tutorial>
         <lab type="lab" name="lab05" duedate="2015.02.22 17:30">Views</lab>
     </week>
     <week num="8">
