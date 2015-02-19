@@ -13,7 +13,7 @@ Tutorial 05 - Working With Libraries and Helpers
             It is a continuation of tutorial #5, and assumes you have completed that.</p>
     </slide>
 
-     <slide>
+    <slide>
         <h1>Revisions &amp; Notes</h1>    
         <ul>
             <li></li>
@@ -183,43 +183,43 @@ Tutorial 05 - Working With Libraries and Helpers
     <slide title="Use the Main Admin View" layout="normal">
         <div class="left">
             <p>The <code>index()</code> method of our
-            Admin controller should use this view instead
-            of the homepage, and it should pass the
-            collection of quotations data as a view parameter.</p>
+                Admin controller should use this view instead
+                of the homepage, and it should pass the
+                collection of quotations data as a view parameter.</p>
             <p>It should also set the page title properly :)</p>
             <code>
-    function index() {<br/>
+                function index() {<br/>
 &#160;&#160;$this-&gt;data['title'] = 'Quotations Maintenance';<br/>
 &#160;&#160;$this-&gt;data['quotes'] = $this-&gt;quotes-&gt;all();<br/>
 &#160;&#160;$this-&gt;data['pagebody'] = 'admin_list'; <br/>
 &#160;&#160;$this-&gt;render();<br/>
-    }
+                }
             </code>
-       </div>
+        </div>
         <div class="right">
             <br/>
             <img class="scale" width="600" height="258" src="/data/tutorials/pix/5-24.png"/>
-         </div>
+        </div>
     </slide>
 
     <slide title="5. ADD QUOTE ADDITION" layout="normal" tag="tag5">
         <div class="left">
             <p>Let's add a link to the maintenance
-            list, linked to a new method in our Admin controller,
-            <code>add()</code>.</p>
+                list, linked to a new method in our Admin controller,
+                <code>add()</code>.</p>
             <p>This will look cheesy, but the link can be styled
-            nicely later.</p>
+                nicely later.</p>
             <code>
-...<br/>
+                ...<br/>
 &#160;&#160;{/quotes}<br/>
 &lt;/table&gt;    <br/>
 &lt;a href='/admin/add'&gt;Add a new quotation&lt;/a&gt;
             </code>
-       </div>
+        </div>
         <div class="right">
             <br/>
             <img class="scale" width="600" height="408" src="/data/tutorials/pix/5-25.png"/>
-         </div>
+        </div>
     </slide>
 
     <slide title="Handling Quote Addition" layout="normal">
@@ -239,10 +239,11 @@ Tutorial 05 - Working With Libraries and Helpers
         <div class="left">
             <p>
                 We need a form for maintaining a single quote. Let's call it 
-            <code>application/views/quote_edit.php</code></p>
+                <code>application/views/quote_edit.php</code>
+            </p>
             <p>We could start with plain HTML, shown right, but that would look
-            so bad that we couldn't show our face professionally
-            for months.</p>
+                so bad that we couldn't show our face professionally
+                for months.</p>
         </div>
         <div class="right">
             <code>
@@ -255,7 +256,7 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-   <slide title="Quote Addition - Prettier Form" layout="normal">
+    <slide title="Quote Addition - Prettier Form" layout="normal">
         <div class="left">
             <p>
                 We could add some Bootstrap styling, like the
@@ -263,17 +264,17 @@ Tutorial 05 - Working With Libraries and Helpers
             <p>Hmmm - that would be better, but still ugly HTML.</p>
         </div>
         <div class="right">
-             <br/>
+            <br/>
             <img class="scale" width="478" height="143" src="/data/tutorials/pix/5-26.png"/>
         </div>
     </slide>
 
-   <slide title="Formfields Helper to the Rescue" layout="normal">
+    <slide title="Formfields Helper to the Rescue" layout="normal">
         <div class="left">
             <p>This is a great opportunity to exploit the <code>formfields</code>
-            helper talked about in class last week.</p>
+                helper talked about in class last week.</p>
             <p>Let's plan to create styled fields, one for each column in the
-            <code>Quotes</code> model.</p>
+                <code>Quotes</code> model.</p>
         </div>
         <div class="right">
             <p>Our <code>quote_edit</code> view:</p>
@@ -290,114 +291,311 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-   <slide title="Handle the New Quote Request" layout="normal">
+    <slide title="Handle the New Quote Request" layout="normal">
         <div class="left">
             <p>We can get down to serious work in our controller now.</p>
             <p>Add an <code>add</code> method, that we created a link to
-            in our admin quotations list.</p>
+                in our admin quotations list.</p>
             <p>Because we planned the steps, all this method needs to
-            do is create a new record, and hand off to the presenter
-            method.</p>
+                do is create a new record, and hand off to the presenter
+                method.</p>
         </div>
         <div class="right">
             <p>
                 <code>Admin::add()</code>
             </p>
             <code>
-    // Add a new quotation<br/>
-    function add() {<br/>
+                // Add a new quotation<br/>
+                function add() {<br/>
 &#160;&#160;$quote = $this-&gt;quotes-&gt;create();<br/>
 &#160;&#160;$this-&gt;present($quote);<br/>
-    }
-                </code>
+                }
+            </code>
         </div>
     </slide>
 
-   <slide title="Construct the Form" layout="normal">
+    <slide title="Construct the Form" layout="normal">
         <div class="left">
             <p>Our presenter method can build the form from the
-            supplied record, using the formfields helper.</p>
+                supplied record, using the formfields helper.</p>
         </div>
         <div class="right">
-            <p><code>Admin::present</code>:</p>
+            <p>
+                <code>Admin::present</code>:</p>
             <code>
-    // Present a quotation for adding/editing<br/>
-    function present($quote) {<br/>
+                // Present a quotation for adding/editing<br/>
+                function present($quote) {<br/>
 &#160;&#160;$this-&gt;data['fid'] = makeTextField('ID#', 'id', $quote-&gt;id);<br/>
 &#160;&#160;$this-&gt;data['fwho'] = makeTextField('Author', 'who', $quote-&gt;who);<br/>
 &#160;&#160;$this-&gt;data['fmug'] = makeTextField('Picture', 'mug', $quote-&gt;mug);<br/>
 &#160;&#160;$this-&gt;data['fwhat'] = makeTextArea('The Quote', 'what', $quote-&gt;what);<br/>
 &#160;&#160;$this-&gt;data['pagebody'] = 'quote_edit';<br/>
 &#160;&#160;$this-&gt;render();<br/>
-    }
+                }
             </code>
         </div>
     </slide>
 
-   <slide title="Helper Oops" layout="normal">
+    <slide title="Helper Oops" layout="normal">
         <div class="left">
             <p>When we click on the "Add a new quotation"
-            link, our webapp blows up :(</p>
+                link, our webapp blows up :(</p>
             <p>We forgot to load the helper!</p>
-         </div>
+        </div>
         <div class="right">
-              <br/>
+            <br/>
             <img class="scale" width="600" height="140" src="/data/tutorials/pix/5-27.png"/>
         </div>
     </slide>
 
-   <slide title="Helper Fix" layout="normal">
+    <slide title="Helper Fix" layout="normal">
         <div class="left">
             <p>Add a line to our Admin's constructor to
-            fix this.</p>
+                fix this.</p>
             <code>
-	$this-&gt;load-&gt;helper('formfields');
+                $this-&gt;load-&gt;helper('formfields');
             </code>
             <p>We can work with this, and it looks a lot better than
-            a plain HTML form!</p>
+                a plain HTML form!</p>
         </div>
         <div class="right">
-              <br/>
+            <br/>
             <img class="scale" width="468" height="594" src="/data/tutorials/pix/5-28.png"/>
         </div>
     </slide>
 
-   <slide title="Handle Form Submission" layout="normal">
+    <slide title="Handle Form Submission" layout="normal">
         <div class="left">
             <p>We need a submit button to trigger form processing.</p>
             <p>The easiest way is to use the formfield helper for this,
-            adding a snippet of code inside our <code>Admin::present()</code>,
-            just before the <code>render()</code> call.</p>
+                adding a snippet of code inside our <code>Admin::present()</code>,
+                just before the <code>render()</code> call.</p>
             <code>
-        $this->data['fsubmit'] = makeSubmitButton('Process Quote', "Click here to validate the quotation data", 'btn-success');
+                $this->data['fsubmit'] = makeSubmitButton('Process Quote', "Click here to validate the quotation data", 'btn-success');
                 
             </code>
             <p>You also need to add <code>{fsubmit}</code> to your quote
-            editing form. The result should look like...</p>
+                editing form. The result should look like...</p>
         </div>
         <div class="right">
-              <br/>
+            <br/>
             <img class="scale" width="375" height="500" src="/data/tutorials/pix/5-29.png"/>
         </div>
     </slide>
 
-   <slide title="Fix the Form Method" layout="normal">
-            <p>If you click on the "Process Quote" button, we get a 404 error :(</p>
-            <p>Oh - that is because we didn't add the confirm method :)</p>
-            <p>But the format of the URL looks funny - <br/>
-             <img class="scale" width="434" height="34" src="/data/tutorials/pix/5-30.png"/>
-           </p>
-            <p>We need to specify the 
-                POST method in the opening form element in the
-                <code>quote_edit</code> view...<br/>
-            <code>&lt;form action="/admin/confirm" method="post"&gt;</code></p>
+    <slide title="Fix the Form Method" layout="normal">
+        <p>If you click on the "Process Quote" button, we get a 404 error :(</p>
+        <p>Oh - that is because we didn't add the confirm method :)</p>
+        <p>But the format of the URL looks funny - <br/>
+            <img class="scale" width="434" height="34" src="/data/tutorials/pix/5-30.png"/>
+        </p>
+        <p>We need to specify the 
+            POST method in the opening form element in the
+            <code>quote_edit</code> view...<br/>
+            <code>&lt;form action="/admin/confirm" method="post"&gt;</code>
+        </p>
 
     </slide>
 
-   <slide title="To Be Continued..." layout="normal">
-            <p>This is not complete, but I am out of time :(</p>
-            <p>I was hoping to be done by Weds morning, the 18th.
-            I am shooting for Thurs morning, the 19th.</p>
+    <slide title="Submission Handling" layout="normal">
+        <p>We need our <code>Admin::confirm()</code> method in order to go further.
+            We can start with an empty method, shown below.
+            Clicking the form's submit button will now lead to a blank
+            page, because we haven't told it to do anything.</p>
+        <code>
+            // process a quotation edit<br/>
+            function confirm() {<br/>
+            <br/>
+            }
+        </code>
     </slide>
+
+    <slide title="Extract Submitted Record" layout="normal">
+        <div class="left">
+            <p>We need to extract the submitted fields, to
+                use as a quotations record for validation or database
+                updates. Note the first statement - creating an empty
+                quote object to populate.</p>
+            <p>You might be tempted to use the PHP <code>$_POST</code>
+                array, but then you need to check if anticipated fields
+                are actually part of the submission.</p>
+            <p>You might be tempted to use <code>$this->input->post()</code>
+                to get all the fields at once, but you may not want them all,
+                and they might not all be handled the same, by the time we are done.</p>
+                
+        </div>
+        <div class="right">
+            <code>
+                function confirm() {<br/>
+&#160;&#160;$record = $this-&gt;quotes-&gt;create();<br/>
+&#160;&#160;// Extract submitted fields<br/>
+&#160;&#160;$record-&gt;id = $this-&gt;input-&gt;post('id');<br/>
+&#160;&#160;$record-&gt;who = $this-&gt;input-&gt;post('who');<br/>
+&#160;&#160;$record-&gt;mug = $this-&gt;input-&gt;post('mug');<br/>
+&#160;&#160;$record-&gt;what = $this-&gt;input-&gt;post('what');<br/>
+                ...
+            </code>
+        </div>
+    </slide>
+    
+    <slide title="Trivial Handling" layout="normal">
+        <p>Ignoring any error checking, our handling method
+            needs to either add a new quote or update an existing one
+            in our model, and then redisplay the admin page.
+            We can determine which to do by checking if the "ID" field
+            has a value ... it should be blank for a new quote,
+            and contain the quote # for an existing one</p>
+        <code>
+            ...<br/>
+&#160;&#160;// Save stuff<br/>
+&#160;&#160;if (empty($record-&gt;id)) $this-&gt;quotes-&gt;add($record);<br/>
+&#160;&#160;else $this-&gt;quotes-&gt;update($record);<br/>
+&#160;&#160;redirect('/admin');<br/>
+        </code>
+    </slide>
+
+    <slide title="Try Unsafe Adding" layout="normal">
+        <div class="left">
+            <p>It owuld be easy to trigger an error in the quotes
+            addition, but if we are careful...</p>
+            <p>Trigger the new quote addition, and provide some
+            silly new quote. I cited Yoda, shown right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="487" height="532" src="/data/tutorials/pix/5-31.png"/>
+        </div>
+    </slide>
+    
+    <slide title="Unsafe Adding Result" layout="normal">
+        <div class="left">
+            <p>On submission, we can see the new quotation
+                when the <code>confirm</code> method send us back to the
+            admin page.</p>
+            <p>We are not done yet! Still to tackle are protecting
+            the ID field, validation, remembering field values, and image uploading.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="660" height="488" src="/data/tutorials/pix/5-32.png"/>
+        </div>
+    </slide>
+    
+    <slide title="We Need to Step Up Our Game" layout="normal">
+        <div class="left">
+            <p>On submission, we can see the new quotation
+                when the <code>confirm</code> method send us back to the
+            admin page.</p>
+            <p>We are not done yet! Still to tackle are protecting
+            the ID field, validation, remembering field values, and image uploading.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="660" height="488" src="/data/tutorials/pix/5-32.png"/>
+        </div>
+    </slide>
+    
+    <slide title="Protect the ID Form Field" layout="normal">
+        <div class="left">
+            <p>The formfields helper method that we used, <code>makeTextField(...)</code>,
+            has additional parameters, one of which let's us disable a field,
+            preventing it from being edited.</p>
+            <p>In our <code>Admin::present()</code>, change<br/>
+            <code>makeTextField('ID#', 'id', $quote-&gt;id);</code> 
+            to<br/>
+            <code>makeTextField('ID#', 'id', $quote-&gt;id,
+                "Unique quote identifier, system-assigned",10,10,true);</code>
+            <br/>
+            and observe the difference when we ask to add a new quotation.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="511" height="611" src="/data/tutorials/pix/5-33.png"/>
+        </div>
+    </slide>
+    
+   <slide title="Explanations" layout="normal">
+        <div class="left">
+            <p>We also added an explanation message, which you can optionally
+            do for the other input fields.</p>
+            <p>In our <code>Admin::present()</code>, change<br/>
+            <code>makeTextField('ID#', 'id', $quote-&gt;id);</code> 
+            to<br/>
+            <code>makeTextField('ID#', 'id', $quote-&gt;id,
+                "Unique quote identifier, system-assigned",10,10,true);</code>
+            <br/>
+            and observe the difference when we ask to add a new quotation.
+            </p>
+            <p>We also added an explanation message, which you can optionally
+            do for the other input fields.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="511" height="611" src="/data/tutorials/pix/5-33.png"/>
+        </div>
+    </slide>
+
+   <slide title="Simple Validation" layout="normal">
+        <div class="left">
+            <p>Let's add some simple validation rules, for instance
+            insisting that an author's name be non-empty,
+            and that a quotation have a minimum length of 20
+            characters.</p>
+            <p>You may not have noticed earlier, but our base controller,
+                <code>Applicaiton</code>, initializes an <code>errors</code> 
+                property, to an empty array, on its line 26.                
+            </p>
+            <p>We can exploit that, in our <code>confirm</code> method, by 
+            adding entries to the <code>errors</code> property if there is 
+                an error, as shown to the right.</p>
+        </div>
+        <div class="right">
+            <code>
+&#160;&#160;// validation<br/>
+&#160;&#160;if (empty($record-&gt;who))<br/>
+&#160;&#160;&#160;&#160;$this-&gt;errors[] = 'You must specify an author.';<br/>
+&#160;&#160;if (strlen($record-&gt;what) &lt; 20)<br/>
+&#160;&#160;&#160;&#160;$this-&gt;errors[] = 'A quotation must be at least 20 characters long.';<br/>
+	<br/>
+&#160;&#160;// Save stuff<br/>
+&#160;&#160;...
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Dealing With Errors" layout="normal">
+        <div class="left">
+            <p>If there are any errors, we want to redisplay the
+            form, with error messages, and without updating the
+            database.</p>
+            <p>A simple way to do this would be to present the form
+            again, and modify the base controller to show any errors.</p>
+            <p>Redisplaying the form is easy, shown right.</p>
+        </div>
+        <div class="right">
+            <code>
+&#160;&#160;// validation<br/>
+&#160;&#160;...<br/>
+&#160;&#160;// redisplay if any errors<br/>
+&#160;&#160;if (count($this-&gt;errors) > 0) {<br/>
+&#160;&#160;&#160;&#160;$this-&gt;present($record);<br/>
+&#160;&#160;&#160;&#160;return; // make sure we don't try to save anything<br/>
+&#160;&#160;}<br/>
+<br/>
+&#160;&#160;// Save stuff<br/>
+&#160;&#160;...
+            </code>
+        </div>
+    </slide>
+
+   <slide title="Displaying Errors" layout="normal">
+        <div class="left">
+            <p>So close ... to be continued when I get to school.</p>
+        </div>
+        <div class="right">
+        </div>
+    </slide>
+
 
 </tutorial>
