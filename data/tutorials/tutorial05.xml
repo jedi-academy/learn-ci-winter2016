@@ -45,7 +45,7 @@ Tutorial 05 - Working With Libraries and Helpers
     <slide title="The End Result" layout="normal">
         <p>This is what the end result should look like, after fixing!</p>
         <br/>
-        <img class="scale" width="500" height="391" src="/data/tutorials/pix/4-1.png"/>
+        <img class="scale" width="500" height="391" src="/data/tutorials/pix/5-0.png"/>
 
     </slide>
 
@@ -253,7 +253,9 @@ Tutorial 05 - Working With Libraries and Helpers
                 <li>
                     <b>jRating.jquery.js</b> - the widget's Javascript source</li>
             </ul>
-            <p>We won't need the others.</p>
+            <p>We won't need the others. <strong>The supplied php/jRating.php does
+            not belong anywhere inside our project!</strong>
+            </p>
         </div>
         <div class="right">
             <br/>
@@ -439,7 +441,9 @@ Tutorial 05 - Working With Libraries and Helpers
                 ($this-&gt;data['vote_count'] &gt; 0) ? <br/>
 &#160;&#160;($this-&gt;data['vote_total'] / $this-&gt;data['vote_count']) : 0;
             </code>
-            <p>And the result is...</p>
+            <p>This calculation and parameter setting should go into both
+                <code>Welcome::index()</code> and <code>Viewer::quote()</code>.
+                And the result is...</p>
             <h2>Arghh ... the rating widget should be visible, but isn't!</h2>
         </div>
         <div class="right">
@@ -475,6 +479,22 @@ Tutorial 05 - Working With Libraries and Helpers
                 }                
             </code>
         </div>
+    </slide>
+
+    <slide title="Wait, What?" layout="normal">
+                 <p>Some of you wanted the detail about the approach
+                     shown on the previous slide, so ... </p>
+                <p>The <code>rate()</code> method is an example of the
+                handling of an AJAX request.</p><p> That would make this a
+                "utility controller", i.e. one which is not meant
+                to return HTML. Done properly, it would be a separate
+                controller, perhaps <code>controllers/Rate</code>,
+                and what you see here as <code>rate()</code> would then be 
+                <code>index()</code>.</p>
+                <p>Done properly/, its endpoint (for an AJAX request) would be
+                <code>mysite.com/rate</code>. 
+                Done this way, the endpoint is <code>mysite.com/viewer/rate</code>.</p>
+                <p>You asked for this!</p>
     </slide>
 
     <slide title="And The Result Is..." layout="normal">

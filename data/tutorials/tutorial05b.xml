@@ -71,8 +71,7 @@ Tutorial 05 - Working With Libraries and Helpers
             <p>It has a simple menubar on the top, with the smiley face
                 linked back to the homepage, and the "View 'Em" menu link
                 taking you to the "viewer" page.</p>
-            <p>The quote shown is the most recently added, i.e. the one with the
-                highest ID.</p>            
+            <p>The quote shown has been chosen randomly.</p>            
         </div>
         <div class="right">
             <br/>
@@ -457,9 +456,9 @@ Tutorial 05 - Working With Libraries and Helpers
     <slide title="Try Unsafe Adding" layout="normal">
         <div class="left">
             <p>It owuld be easy to trigger an error in the quotes
-            addition, but if we are careful...</p>
+                addition, but if we are careful...</p>
             <p>Trigger the new quote addition, and provide some
-            silly new quote. I cited Yoda, shown right.</p>
+                silly new quote. I cited Yoda, shown right.</p>
         </div>
         <div class="right">
             <br/>
@@ -471,9 +470,9 @@ Tutorial 05 - Working With Libraries and Helpers
         <div class="left">
             <p>On submission, we can see the new quotation
                 when the <code>confirm</code> method send us back to the
-            admin page.</p>
+                admin page.</p>
             <p>We are not done yet! Still to tackle are protecting
-            the ID field, validation, remembering field values, and image uploading.</p>
+                the ID field, validation, remembering field values, and image uploading.</p>
         </div>
         <div class="right">
             <br/>
@@ -485,9 +484,9 @@ Tutorial 05 - Working With Libraries and Helpers
         <div class="left">
             <p>On submission, we can see the new quotation
                 when the <code>confirm</code> method send us back to the
-            admin page.</p>
+                admin page.</p>
             <p>We are not done yet! Still to tackle are protecting
-            the ID field, validation, remembering field values, and image uploading.</p>
+                the ID field, validation, remembering field values, and image uploading.</p>
         </div>
         <div class="right">
             <br/>
@@ -498,15 +497,15 @@ Tutorial 05 - Working With Libraries and Helpers
     <slide title="Protect the ID Form Field" layout="normal">
         <div class="left">
             <p>The formfields helper method that we used, <code>makeTextField(...)</code>,
-            has additional parameters, one of which let's us disable a field,
-            preventing it from being edited.</p>
+                has additional parameters, one of which let's us disable a field,
+                preventing it from being edited.</p>
             <p>In our <code>Admin::present()</code>, change<br/>
-            <code>makeTextField('ID#', 'id', $quote-&gt;id);</code> 
-            to<br/>
-            <code>makeTextField('ID#', 'id', $quote-&gt;id,
-                "Unique quote identifier, system-assigned",10,10,true);</code>
-            <br/>
-            and observe the difference when we ask to add a new quotation.
+                <code>makeTextField('ID#', 'id', $quote-&gt;id);</code> 
+                to<br/>
+                <code>makeTextField('ID#', 'id', $quote-&gt;id,
+                    "Unique quote identifier, system-assigned",10,10,true);</code>
+                <br/>
+                and observe the difference when we ask to add a new quotation.
             </p>
         </div>
         <div class="right">
@@ -515,20 +514,20 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
     
-   <slide title="Explanations" layout="normal">
+    <slide title="Explanations" layout="normal">
         <div class="left">
             <p>We also added an explanation message, which you can optionally
-            do for the other input fields.</p>
+                do for the other input fields.</p>
             <p>In our <code>Admin::present()</code>, change<br/>
-            <code>makeTextField('ID#', 'id', $quote-&gt;id);</code> 
-            to<br/>
-            <code>makeTextField('ID#', 'id', $quote-&gt;id,
-                "Unique quote identifier, system-assigned",10,10,true);</code>
-            <br/>
-            and observe the difference when we ask to add a new quotation.
+                <code>makeTextField('ID#', 'id', $quote-&gt;id);</code> 
+                to<br/>
+                <code>makeTextField('ID#', 'id', $quote-&gt;id,
+                    "Unique quote identifier, system-assigned",10,10,true);</code>
+                <br/>
+                and observe the difference when we ask to add a new quotation.
             </p>
             <p>We also added an explanation message, which you can optionally
-            do for the other input fields.</p>
+                do for the other input fields.</p>
         </div>
         <div class="right">
             <br/>
@@ -536,18 +535,18 @@ Tutorial 05 - Working With Libraries and Helpers
         </div>
     </slide>
 
-   <slide title="Simple Validation" layout="normal">
+    <slide title="Simple Validation" layout="normal">
         <div class="left">
             <p>Let's add some simple validation rules, for instance
-            insisting that an author's name be non-empty,
-            and that a quotation have a minimum length of 20
-            characters.</p>
+                insisting that an author's name be non-empty,
+                and that a quotation have a minimum length of 20
+                characters.</p>
             <p>You may not have noticed earlier, but our base controller,
                 <code>Applicaiton</code>, initializes an <code>errors</code> 
                 property, to an empty array, on its line 26.                
             </p>
             <p>We can exploit that, in our <code>confirm</code> method, by 
-            adding entries to the <code>errors</code> property if there is 
+                adding entries to the <code>errors</code> property if there is 
                 an error, as shown to the right.</p>
         </div>
         <div class="right">
@@ -557,20 +556,20 @@ Tutorial 05 - Working With Libraries and Helpers
 &#160;&#160;&#160;&#160;$this-&gt;errors[] = 'You must specify an author.';<br/>
 &#160;&#160;if (strlen($record-&gt;what) &lt; 20)<br/>
 &#160;&#160;&#160;&#160;$this-&gt;errors[] = 'A quotation must be at least 20 characters long.';<br/>
-	<br/>
+                <br/>
 &#160;&#160;// Save stuff<br/>
 &#160;&#160;...
             </code>
         </div>
     </slide>
 
-   <slide title="Dealing With Errors" layout="normal">
+    <slide title="Dealing With Errors" layout="normal">
         <div class="left">
             <p>If there are any errors, we want to redisplay the
-            form, with error messages, and without updating the
-            database.</p>
+                form, with error messages, and without updating the
+                database.</p>
             <p>A simple way to do this would be to present the form
-            again, and modify the base controller to show any errors.</p>
+                again, and rely on the <code>present</code> method to show any errors.</p>
             <p>Redisplaying the form is easy, shown right.</p>
         </div>
         <div class="right">
@@ -582,20 +581,87 @@ Tutorial 05 - Working With Libraries and Helpers
 &#160;&#160;&#160;&#160;$this-&gt;present($record);<br/>
 &#160;&#160;&#160;&#160;return; // make sure we don't try to save anything<br/>
 &#160;&#160;}<br/>
-<br/>
+                <br/>
 &#160;&#160;// Save stuff<br/>
 &#160;&#160;...
             </code>
         </div>
     </slide>
 
-   <slide title="Displaying Errors" layout="normal">
+    <slide title="Displaying Errors" layout="normal">
         <div class="left">
-            <p>So close ... to be continued when I get to school.</p>
+            <p>Shown to the right is some code to build a view parameter
+                for any error messages. It isn't the best written, but it is
+                expedient.</p>
+            <p>It assumes that your <code>application/cpnfig/constants.php</code>
+                defines the constant <code>BREAK</code> with a line like this:<br/>
+                <code>define('BR', '&lt;br/&gt;');</code>
+            </p>
         </div>
         <div class="right">
+            <code>
+                function present($quote) {<br/>
+&#160;&#160;// format any errors<br/>
+&#160;&#160;$message = '';<br/>
+&#160;&#160;if (count($this-&gt;errors) &gt; 0) {<br/>
+&#160;&#160;&#160;&#160;foreach ($this-&gt;errors as $booboo)<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;$message .= $booboo . BR;<br/>
+&#160;&#160;}<br/>
+&#160;&#160;$this-&gt;data['message'] = $message;<br/>
+&#160;&#160;...
+            </code>
         </div>
     </slide>
 
+    <slide title="Formatting the Error Display" layout="normal">
+        <div class="left">
+            <p>We need to add the view parameter to <code>application/views/quote_edit.php</code>:<br/>
+                <code>
+    &lt;div class="row"&gt;<br/>
+&#160;&#160;&lt;div class="errors"&gt;{message}&lt;/div&gt;<br/>
+&#160;&#160;&lt;form action="/admin/confirm" method="post"&gt;
+
+                </code>
+            </p>
+            <p>And we need to add a style rule in <code>assets/css/style.css</code>:<br/>
+                <code>.errors {color: red; font-weigfht:bold; font-size:large}</code>
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="502" height="600" src="/data/tutorials/pix/5-34.png"/>
+        </div>
+    </slide>
+
+    <slide title="Remembering Field Values?" layout="normal">
+        <div class="left">
+            <p>At the moment, it looks like field values are being kept when
+                we need to redisplay a form with errors.</p>
+            <p>The data we are dealing with is simple enough, and all fields
+                for a record are present in the HTML form as well, so we can
+                get away with our current approach.</p>
+        </div>
+        <div class="right">
+            <p>The better solution is to use a data transfer buffer.</p>
+            <p>That means using sessions, and storing the record currently
+                being edited or created as a value in the session container.</p>
+            <p>I am leaving that topic for an upcoming tutorial :-/</p>
+        </div>
+    </slide>
+
+
+    <slide title="Are We Done Yet?" layout="normal">
+        <p>We are as done as I expect you to be for lab 5.</p>
+        <p>Image uploading and basic processing is not that
+            hard, but I am out of time for this tutorial.
+            I will add that to one of the upcoming ones, perhaps 5C.</p>
+        <p>The remaing tutorial 5 topics will make it up into
+            the site, but I don't expect you to complete them
+            for lab 5. I am not even sure if I will get them finished
+            before the lab 5 deadline.</p>
+        <p>I do want them to be ready before you start on Assignment 2 
+            in earnest, as I think there are many techniques that would be 
+            useful for you.</p>
+    </slide>
 
 </tutorial>
