@@ -5,57 +5,57 @@ Course organizer for Comp4711
 <organizer>
     <week num="1">
         <topic>Introduction to MVC Webapps</topic>
-        <lesson type="lesson" name="lesson00">In-class Only Introduction</lesson>
-        <lesson type="lesson" name="lesson01a">Introduction</lesson>
-        <lesson type="lesson" name="lesson01b">Golden Rules</lesson>
-        <tutorial type="tutorial" name="tutorial01a">XAMPP Installation</tutorial>
-        <tutorial type="tutorial" name="tutorial01b">Virtual Hosting Setup</tutorial>
-        <tutorial type="tutorial" name="tutorial01c">PHP Crash Course</tutorial>
-        <lab type="lab" name="lab01" duedate="2015.01.11 17:30">Development Setup</lab>
+        <lesson type="lesson" name="lesson00" pdf="lesson00-in-class.pdf">In-class Only Introduction</lesson>
+        <lesson type="lesson" name="lesson01a" pdf="lesson01a-introduction.pdf">Introduction</lesson>
+        <lesson type="lesson" name="lesson01b" pdf="lesson01b-golden-rules.pdf">Golden Rules</lesson>
+        <tutorial type="tutorial" name="tutorial01a" pdf="tutorial01a-xampp-installation.pdf">XAMPP Installation</tutorial>
+        <tutorial type="tutorial" name="tutorial01b" pdf="tutorial01b-virtual-hosting-setup.pdf">Virtual Hosting Setup</tutorial>
+        <tutorial type="tutorial" name="tutorial01c" pdf="tutorial01c-php-crash-course.pdf">PHP Crash Course</tutorial>
+        <lab type="lab" name="lab01" duedate="2015.01.11 17:30" pdf="lab01-development-setup.pdf">Development Setup</lab>
     </week>
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
-        <lesson type="lesson" name="lesson02">MVC Framework Introduction</lesson>
+        <lesson type="lesson" name="lesson02" pdf="lesson02-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
         <github type="github" name="contacts" link="https://github.com/comp4711/example-contacts">Example webapp - contacts</github>
-        <lesson type="lesson" name="lesson02b">Devops Workflow</lesson>
-        <tutorial type="tutorial" name="tutorial02a">Working With a Shared Repository</tutorial>
-        <tutorial type="tutorial" name="tutorial02b">Setup CodeIgniter</tutorial>
-        <tutorial type="tutorial" name="tutorial02c">Convert Static Site to CodeIgniter</tutorial>
-        <lab type="lab" name="lab02" duedate="2015.01.18 17:30">CodeIgniter Intro</lab>
-        <assignment type="assignment" name="assignment1" duedate="2015.01.31 23:59">Basic Webapp</assignment>
+        <lesson type="lesson" name="lesson02b" pdf="lesson02b-devops-workflow.pdf">Devops Workflow</lesson>
+        <tutorial type="tutorial" name="tutorial02a" pdf="tutorial02a-working-with-shared-repository.pdf">Working With a Shared Repository</tutorial>
+        <tutorial type="tutorial" name="tutorial02b" pdf="tutorial02b-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
+        <tutorial type="tutorial" name="tutorial02c" pdf="tutorial02c-convert-static-site-to-codeigniter.pdf">Convert Static Site to CodeIgniter</tutorial>
+        <lab type="lab" name="lab02" duedate="2015.01.18 17:30" pdf="lab02-codeigniter-intro.pdf">CodeIgniter Intro</lab>
+        <assignment type="assignment" name="assignment1" duedate="2015.01.31 23:59" pdf="assignment1-basic-webapp.pdf">Basic Webapp</assignment>
     </week>
     <week num="3">
         <topic>Controllers &amp; Routing</topic>
-        <lesson type="lesson" name="lesson03">Controller Concepts</lesson>
-        <tutorial type="tutorial" name="tutorial03">CodeIgniter Controllers</tutorial>
-        <lab type="lab" name="lab03" duedate="2015.01.25 17:30">Working With Controllers</lab>
+        <lesson type="lesson" name="lesson03" pdf="lesson03-controller-concepts.pdf">Controller Concepts</lesson>
+        <tutorial type="tutorial" name="tutorial03" pdf="tutorial03-codeigniter-controllers.pdf">CodeIgniter Controllers</tutorial>
+        <lab type="lab" name="lab03" duedate="2015.01.25 17:30" pdf="lab03-working-with-controllers.pdf">Working With Controllers</lab>
     </week>
     <week num="4">
         <topic>Models &amp; ORM</topic>
-        <lesson type="lesson" name="lesson04">Models</lesson>
+        <lesson type="lesson" name="lesson04" pdf="lesson04-models.pdf">Models</lesson>
         <tutorial type="tutorial" name="">CodeIgniter Models - next week!</tutorial>
         <lab type="lab" name="" duedate="">Work on or complete assignment 1</lab>
-        <assignment type="assignment" name="assignment1-faq" duedate="2015.01.31 23:59">FAQ for assignment 1</assignment>
+        <assignment type="assignment" name="assignment1-faq" duedate="2015.01.31 23:59" pdf="assignment1-ass1-faq.pdf">FAQ for assignment 1</assignment>
     </week>
     <week num="5">
         <topic>Views &amp; Templating</topic>
-        <lesson type="lesson" name="lesson05">Views</lesson>
+        <lesson type="lesson" name="lesson05" pdf="lesson05-views.pdf">Views</lesson>
         <github type="github" name="forms" link="https://github.com/comp4711/example-forms">Example webapp - forms</github>
-        <tutorial type="tutorial" name="tutorial04">Working With CodeIgniter Models</tutorial>
-        <lab type="lab" name="lab04" duedate="2015.02.11 17:30">Models</lab>
+        <tutorial type="tutorial" name="tutorial04" pdf="tutorial04-working-with-codeigniter-models.pdf">Working With CodeIgniter Models</tutorial>
+        <lab type="lab" name="lab04" duedate="2015.02.11 17:30" pdf="lab04-models.pdf">Models</lab>
     </week>
     <week num="6">
         <topic>Helpers &amp; CSS / Javascript Integration</topic>
-        <lesson type="lesson" name="lesson06">Helpers and Addons</lesson>
-        <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59">Functional Webapp writeup</assignment>
+        <lesson type="lesson" name="lesson06" pdf="lesson06-helpers-and-addons.pdf">Helpers and Addons</lesson>
+        <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59" pdf="assignment2-functional-webapp.pdf">Functional Webapp writeup</assignment>
     </week>
     <week num="7">
         <topic>Midterm Exam Review</topic>
-        <lesson type="lesson" name="midterm">Midterm Review</lesson>
-        <tutorial type="tutorial" name="tutorial05">Working With Libraries and Helpers</tutorial>
+        <lesson type="lesson" name="midterm" pdf="lessons1-6-midterm-review.pdf">Midterm Review</lesson>
+        <tutorial type="tutorial" name="tutorial05" pdf="tutorial05-working-with-libraries-and-helpers.pdf">Working With Libraries and Helpers</tutorial>
         <tutorial type="tutorial" name="tutorial05b">Libraries and Helpers, Part (b)</tutorial>
         <tutorial type="tutorial" name="tutorial05c">Libraries and Helpers, Part (c)</tutorial>
-        <lab type="lab" name="lab05" duedate="2015.02.22 17:30">Views</lab>
+        <lab type="lab" name="lab05" duedate="2015.02.22 17:30" pdf="lab05-views.pdf">Views</lab>
     </week>
     <week num="8">
         <topic>Midterm exam</topic>

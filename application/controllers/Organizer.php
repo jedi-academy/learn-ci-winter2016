@@ -81,7 +81,7 @@ class Organizer extends Application {
 
 	// Recognized activity types
 	$valid = array('lesson', 'video', 'tutorial', 'lab',
-	    'assignment', 'example', 'github');
+	    'assignment', 'example', 'github', 'download', 'pdf');
 
 	$result = '';
 	foreach ($stuff as $week)
@@ -99,12 +99,18 @@ class Organizer extends Application {
 		{
 		    $item = (string) $activity;
 		    $name = (string) $activity['name'];
+		    $pdf =  (string) $activity['pdf'];
 		    $duedate = (string) isset($activity['duedate']) ?
 			    ' (due ' . $activity['duedate'] . ')' : '';
 		    $parms = array('type' => $type, 'item' => $item,
 			'name' => $name, 'typed' => ucfirst($type),
-			'duedate' => $duedate);
-		    $partial .= $this->parser->parse('theme/_activity', $parms, true);
+			'duedate' => $duedate, 'pdf'=>$pdf);
+		    $download = (string) isset($activity['pdf']) ?
+			    $this->parser->parse('theme/_download',$parms,true) : '';
+		    $parms['download'] = $download;
+//		    $target = ($type == 'pdf') ? 'theme/_simple_activity' : 'theme/_activity';
+		    $target = 'theme/_activity';
+		    $partial .= $this->parser->parse($target, $parms, true);
 		}
 	    }
 
