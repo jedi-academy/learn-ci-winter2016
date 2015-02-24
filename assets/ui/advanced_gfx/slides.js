@@ -933,6 +933,7 @@ function noteLabel() { // Gives notes id's to match parent slides
 }
 
 function createNotesWindow() { // creates a window for our notes
+	return; // prevent popup windows
 	if (!s5NotesWindow || s5NotesWindow.closed) { // Create the window if it doesn't exist
 		s5NotesWindowLoaded = false;
 		// Note: Safari has a tendency to ignore window options preferring to default to the settings of the parent window, grr.
