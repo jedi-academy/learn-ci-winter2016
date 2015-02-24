@@ -86,7 +86,74 @@ signs = {
 	'.': {sx: 528, sy: 0, sw: 24, sh: 64}
 };
 var colorNames= new Array(); 
-colorNames["black"]="#000000"; colorNames["maroon"]="#800000";colorNames["green"]="#008000"; colorNames["olive"]="#808000";colorNames["navy"]="#000080"; colorNames["purple"]="#800080";colorNames["teal"]="#008080"; colorNames["gray"]="#808080";colorNames["silver"]="#C0C0C0"; colorNames["red"]="#FF0000";colorNames["lime"]="#00FF00"; colorNames["yellow"]="#FFFF00";colorNames["blue"]="#0000FF"; colorNames["fuchsia"]="#FF00FF";colorNames["aqua"]="#00FFFF"; colorNames["white"]="#FFFFFF";colorNames["aliceblue"]="#F0F8FF"; colorNames["antiquewhite"]="#FAEBD7";colorNames["aquamarine"]="#7FFFD4"; colorNames["azure"]="#F0FFFF";colorNames["beige"]="#F5F5DC"; colorNames["blueviolet"]="#8A2BE2";colorNames["brown"]="#A52A2A"; colorNames["burlywood"]="#DEB887";colorNames["cadetblue"]="#5F9EA0"; colorNames["chartreuse"]="#7FFF00";colorNames["chocolate"]="#D2691E"; colorNames["coral"]="#FF7F50";colorNames["cornflowerblue"]="#6495ED"; colorNames["cornsilk"]="#FFF8DC";colorNames["crimson"]="#DC143C"; colorNames["darkblue"]="#00008B";colorNames["darkcyan"]="#008B8B"; colorNames["darkgoldenrod"]="#B8860B";colorNames["darkgray"]="#A9A9A9"; colorNames["darkgreen"]="#006400";colorNames["darkkhaki"]="#BDB76B"; colorNames["darkmagenta"]="#8B008B";colorNames["darkolivegreen"]="#556B2F"; colorNames["darkorange"]="#FF8C00";colorNames["darkorchid"]="#9932CC"; colorNames["darkred"]="#8B0000";colorNames["darksalmon"]="#E9967A"; colorNames["darkseagreen"]="#8FBC8F";colorNames["darkslateblue"]="#483D8B"; colorNames["darkslategray"]="#2F4F4F";colorNames["darkturquoise"]="#00CED1"; colorNames["darkviolet"]="#9400D3";colorNames["deeppink"]="#FF1493"; colorNames["deepskyblue"]="#00BFFF";colorNames["dimgray"]="#696969"; colorNames["dodgerblue"]="#1E90FF";colorNames["firebrick"]="#B22222"; colorNames["floralwhite"]="#FFFAF0";colorNames["forestgreen"]="#228B22"; colorNames["gainsboro"]="#DCDCDC";colorNames["ghostwhite"]="#F8F8FF"; colorNames["gold"]="#FFD700";colorNames["goldenrod"]="#DAA520"; colorNames["greenyellow"]="#ADFF2F";colorNames["honeydew"]="#F0FFF0"; colorNames["hotpink"]="#FF69B4";colorNames["indianred"]="#CD5C5C"; colorNames["indigo"]="#4B0082";colorNames["ivory"]="#FFFFF0"; colorNames["khaki"]="#F0E68C";colorNames["lavender"]="#E6E6FA"; colorNames["lavenderblush"]="#FFF0F5";colorNames["lawngreen"]="#7CFC00"; colorNames["lemonchiffon"]="#FFFACD";colorNames["lightblue"]="#ADD8E6"; colorNames["lightcoral"]="#F08080";colorNames["lightcyan"]="#E0FFFF"; colorNames["lightgoldenrodyellow"]="#FAFAD2";colorNames["lightgreen"]="#90EE90"; colorNames["lightgrey"]="#D3D3D3";colorNames["lightpink"]="#FFB6C1"; colorNames["lightsalmon"]="#FFA07A";colorNames["lightseagreen"]="#20B2AA"; colorNames["lightskyblue"]="#87CEFA";colorNames["lightslategray"]="#778899"; colorNames["lightsteelblue"]="#B0C4DE";colorNames["lightyellow"]="#FFFFE0"; colorNames["limegreen"]="#32CD32";colorNames["linen"]="#FAF0E6"; colorNames["mediumaquamarine"]="#66CDAA";colorNames["mediumblue"]="#0000CD"; colorNames["mediumorchid"]="#BA55D3";colorNames["ediumpurple"]="#9370D"; colorNames["mediumseagreen"]="#3CB371";colorNames["mediumslateblue"]="#7B68EE"; colorNames["mediumspringgreen"]="#00FA9A";colorNames["mediumturquoise"]="#48D1CC"; colorNames["mediumvioletred"]="#C71585";colorNames["midnightblue"]="#191970"; colorNames["mintcream"]="#F5FFFA";colorNames["mistyrose"]="#FFE4E1"; colorNames["moccasin"]="#FFE4B5";colorNames["navajowhite"]="#FFDEAD"; colorNames["oldlace"]="#FDF5E6";colorNames["olivedrab"]="#6B8E23"; colorNames["orange"]="#FFA500";colorNames["orangered"]="#FF4500"; colorNames["orchid"]="#DA70D6";colorNames["palegoldenrod"]="#EEE8AA"; colorNames["palegreen"]="#98FB98";colorNames["paleturquoise"]="#AFEEEE"; colorNames["palevioletred"]="#DB7093";colorNames["papayawhip"]="#FFEFD5"; colorNames["peachpuff"]="#FFDAB9";colorNames["peru"]="#CD853F"; colorNames["pink"]="#FFC0CB";colorNames["plum"]="#DDA0DD"; colorNames["powderblue"]="#B0E0E6";colorNames["rosybrown"]="#BC8F8F"; colorNames["royalblue"]="#4169E1";colorNames["saddlebrown"]="#8B4513"; colorNames["salmon"]="#FA8072";colorNames["sandybrown"]="#F4A460"; colorNames["seagreen"]="#2E8B57";colorNames["seashell"]="#FFF5EE"; colorNames["sienna"]="#A0522D";colorNames["skyblue"]="#87CEEB"; colorNames["slateblue"]="#6A5ACD";colorNames["slategray"]="#708090"; colorNames["snow"]="#FFFAFA";colorNames["springgreen"]="#00FF7F"; colorNames["steelblue"]="#4682B4";colorNames["tan"]="#D2B48C"; colorNames["thistle"]="#D8BFD8";colorNames["tomato"]="#FF6347"; colorNames["turquoise"]="#40E0D0";colorNames["violet"]="#EE82EE"; colorNames["wheat"]="#F5DEB3";colorNames["whitesmoke"]="#F5F5F5"; colorNames["yellowgreen"]="#9ACD32";
+colorNames["black"]="#000000"; colorNames["maroon"]="#800000";
+colorNames["green"]="#008000"; colorNames["olive"]="#808000";
+colorNames["navy"]="#000080"; colorNames["purple"]="#800080";
+colorNames["teal"]="#008080"; colorNames["gray"]="#808080";
+colorNames["silver"]="#C0C0C0"; colorNames["red"]="#FF0000";
+colorNames["lime"]="#00FF00"; colorNames["yellow"]="#FFFF00";
+colorNames["blue"]="#0000FF"; colorNames["fuchsia"]="#FF00FF";
+colorNames["aqua"]="#00FFFF"; colorNames["white"]="#FFFFFF";
+colorNames["aliceblue"]="#F0F8FF"; colorNames["antiquewhite"]="#FAEBD7";
+colorNames["aquamarine"]="#7FFFD4"; colorNames["azure"]="#F0FFFF";
+colorNames["beige"]="#F5F5DC"; colorNames["blueviolet"]="#8A2BE2";
+colorNames["brown"]="#A52A2A"; colorNames["burlywood"]="#DEB887";
+colorNames["cadetblue"]="#5F9EA0"; colorNames["chartreuse"]="#7FFF00";
+colorNames["chocolate"]="#D2691E"; colorNames["coral"]="#FF7F50";
+colorNames["cornflowerblue"]="#6495ED"; colorNames["cornsilk"]="#FFF8DC";
+colorNames["crimson"]="#DC143C"; colorNames["darkblue"]="#00008B";
+colorNames["darkcyan"]="#008B8B"; colorNames["darkgoldenrod"]="#B8860B";
+colorNames["darkgray"]="#A9A9A9"; colorNames["darkgreen"]="#006400";
+colorNames["darkkhaki"]="#BDB76B"; colorNames["darkmagenta"]="#8B008B";
+colorNames["darkolivegreen"]="#556B2F"; colorNames["darkorange"]="#FF8C00";
+colorNames["darkorchid"]="#9932CC"; colorNames["darkred"]="#8B0000";
+colorNames["darksalmon"]="#E9967A"; colorNames["darkseagreen"]="#8FBC8F";
+colorNames["darkslateblue"]="#483D8B"; colorNames["darkslategray"]="#2F4F4F";
+colorNames["darkturquoise"]="#00CED1"; colorNames["darkviolet"]="#9400D3";
+colorNames["deeppink"]="#FF1493"; colorNames["deepskyblue"]="#00BFFF";
+colorNames["dimgray"]="#696969"; colorNames["dodgerblue"]="#1E90FF";
+colorNames["firebrick"]="#B22222"; colorNames["floralwhite"]="#FFFAF0";
+colorNames["forestgreen"]="#228B22"; colorNames["gainsboro"]="#DCDCDC";
+colorNames["ghostwhite"]="#F8F8FF"; colorNames["gold"]="#FFD700";
+colorNames["goldenrod"]="#DAA520"; colorNames["greenyellow"]="#ADFF2F";
+colorNames["honeydew"]="#F0FFF0"; colorNames["hotpink"]="#FF69B4";
+colorNames["indianred"]="#CD5C5C"; colorNames["indigo"]="#4B0082";
+colorNames["ivory"]="#FFFFF0"; colorNames["khaki"]="#F0E68C";
+colorNames["lavender"]="#E6E6FA"; colorNames["lavenderblush"]="#FFF0F5";
+colorNames["lawngreen"]="#7CFC00"; colorNames["lemonchiffon"]="#FFFACD";
+colorNames["lightblue"]="#ADD8E6"; colorNames["lightcoral"]="#F08080";
+colorNames["lightcyan"]="#E0FFFF"; colorNames["lightgoldenrodyellow"]="#FAFAD2";
+colorNames["lightgreen"]="#90EE90"; colorNames["lightgrey"]="#D3D3D3";
+colorNames["lightpink"]="#FFB6C1"; colorNames["lightsalmon"]="#FFA07A";
+colorNames["lightseagreen"]="#20B2AA"; colorNames["lightskyblue"]="#87CEFA";
+colorNames["lightslategray"]="#778899"; colorNames["lightsteelblue"]="#B0C4DE";
+colorNames["lightyellow"]="#FFFFE0"; colorNames["limegreen"]="#32CD32";
+colorNames["linen"]="#FAF0E6"; colorNames["mediumaquamarine"]="#66CDAA";
+colorNames["mediumblue"]="#0000CD"; colorNames["mediumorchid"]="#BA55D3";
+colorNames["ediumpurple"]="#9370D"; colorNames["mediumseagreen"]="#3CB371";
+colorNames["mediumslateblue"]="#7B68EE"; colorNames["mediumspringgreen"]="#00FA9A";
+colorNames["mediumturquoise"]="#48D1CC"; colorNames["mediumvioletred"]="#C71585";
+colorNames["midnightblue"]="#191970"; colorNames["mintcream"]="#F5FFFA";
+colorNames["mistyrose"]="#FFE4E1"; colorNames["moccasin"]="#FFE4B5";
+colorNames["navajowhite"]="#FFDEAD"; colorNames["oldlace"]="#FDF5E6";
+colorNames["olivedrab"]="#6B8E23"; colorNames["orange"]="#FFA500";
+colorNames["orangered"]="#FF4500"; colorNames["orchid"]="#DA70D6";
+colorNames["palegoldenrod"]="#EEE8AA"; colorNames["palegreen"]="#98FB98";
+colorNames["paleturquoise"]="#AFEEEE"; colorNames["palevioletred"]="#DB7093";
+colorNames["papayawhip"]="#FFEFD5"; colorNames["peachpuff"]="#FFDAB9";
+colorNames["peru"]="#CD853F"; colorNames["pink"]="#FFC0CB";
+colorNames["plum"]="#DDA0DD"; colorNames["powderblue"]="#B0E0E6";
+colorNames["rosybrown"]="#BC8F8F"; colorNames["royalblue"]="#4169E1";
+colorNames["saddlebrown"]="#8B4513"; colorNames["salmon"]="#FA8072";
+colorNames["sandybrown"]="#F4A460"; colorNames["seagreen"]="#2E8B57";
+colorNames["seashell"]="#FFF5EE"; colorNames["sienna"]="#A0522D";
+colorNames["skyblue"]="#87CEEB"; colorNames["slateblue"]="#6A5ACD";
+colorNames["slategray"]="#708090"; colorNames["snow"]="#FFFAFA";
+colorNames["springgreen"]="#00FF7F"; colorNames["steelblue"]="#4682B4";
+colorNames["tan"]="#D2B48C"; colorNames["thistle"]="#D8BFD8";
+colorNames["tomato"]="#FF6347"; colorNames["turquoise"]="#40E0D0";
+colorNames["violet"]="#EE82EE"; colorNames["wheat"]="#F5DEB3";
+colorNames["whitesmoke"]="#F5F5F5"; colorNames["yellowgreen"]="#9ACD32";
 var canvas_bgcolor = "";
 var canvas_width = 200;
 var canvas_height = 200;
@@ -512,7 +579,7 @@ function keys(key) {
 				showHide('k');
 				break;
 			case 78: // n
-				createNotesWindow();
+				//createNotesWindow();
 				break;
 			}
 			if (key.which < 48 || key.which > 57) {
@@ -652,7 +719,7 @@ function createControls() {
 		controlsDiv.innerHTML = str +
 		'<form action="#" id="controlForm"' + hideDiv + '>' +
 		'<div id="navLinks" title="press [backspace] for keyboard help!"><ul>' +
-		'<li id="show-notes"><a href="javascript:createNotesWindow();" accesskey="n" title="show Notes"><\/a><\/li>' +
+//		'<li id="show-notes"><a href="javascript:createNotesWindow();" accesskey="n" title="show Notes"><\/a><\/li>' +
 		'<li id="toggle"><a href="javascript:toggle();" accesskey="t" title="toggle CSS"><\/a><\/li>' +
 		'<li id="zero"><a href="javascript:goTo(0);" accesskey="h" title="goto Start Slide"><\/a><\/li>' +
 		'<li id="prev"><a href="javascript:go(-1);" accesskey="y" title="previous Slide"><\/a><\/li>' +
@@ -669,7 +736,7 @@ function createControls() {
 		'<form action="#" id="controlForm"' + hideDiv + '>' +
 		'<div id="navLinks" title="press [backspace] or double click this area for keyboard help!" ondblclick="createHelpReq();"><ul>' +
 		'<li id="exit"><a href="javascript:byby();" accesskey="q" title="exit Show"><\/a><\/li>' +
-		'<li id="show-notes"><a href="javascript:createNotesWindow();" accesskey="n" title="show Notes"><\/a><\/li>' +
+//		'<li id="show-notes"><a href="javascript:createNotesWindow();" accesskey="n" title="show Notes"><\/a><\/li>' +
 		'<li id="toggle"><a href="javascript:toggle();" accesskey="t" title="toggle CSS"><\/a><\/li>' +
 		'<li class="vr"><\/li>' +
 		'<li id="zero"><a href="javascript:goTo(0);" accesskey="h" title="goto Start Slide"><\/a><\/li>' +
@@ -879,6 +946,7 @@ function createNotesWindow() { // creates a window for our notes
 }
 
 function loadNote() {
+    return; // avoid for now, to prevent bazillions of popup windows
 // Loads a note into the note window
 	var notes = nextNotes = '<em class="disclaimer">There are no notes for this slide.</em>';
 	if (document.getElementById('note' + snum)) {
@@ -1111,9 +1179,11 @@ function createProgress() {
 		pg.style.filter = "alpha(opacity=100)";	
 	}else {
 		pg.style.opacity = 1.0;
-	}	pg.style.zIndex = 9999;
+	}
+	pg.style.zIndex = 9999;
 	pg.style.backgroundColor="rgb(255, 255, 255)";
-	pg.style.textAlign = "center";	pg.style.verticalAlign = "middle";
+	pg.style.textAlign = "center";
+	pg.style.verticalAlign = "middle";
 	pg.style.backgroundPosition="center center";
 	pg.style.backgroundRepeat="no-repeat";
 	pg.style.backgroundImage="url(/assets/ui/graphic_support/progress.gif)";
@@ -1195,7 +1265,8 @@ function dumpProgress() {
 	showAll();
 	createSoundManagerScript();
 	shiftOpacity('StartupProgress',1000);
-	window.setTimeout("removeProgress()",1000);}
+	window.setTimeout("removeProgress()",1000);
+}
 
 function removeProgress() {
 	document.body.removeChild(document.getElementById('StartupProgress'));
@@ -1272,15 +1343,18 @@ function byby() {
 			pg.style.filter = "alpha(opacity=0)";	
 		}else {
 			pg.style.opacity = 0.0;
-		}		pg.style.zIndex = 9999;
+		}
+		pg.style.zIndex = 9999;
 		pg.style.backgroundColor="rgb(255, 255, 255)";
-		pg.style.textAlign = "center";		pg.style.verticalAlign = "middle";
+		pg.style.textAlign = "center";
+		pg.style.verticalAlign = "middle";
 		pg.style.backgroundPosition="center center";
 		pg.style.backgroundRepeat="no-repeat";
 		pg.style.backgroundImage="url(/assets/ui/graphic_support/finish.gif)";		
 		document.getElementsByTagName("body")[0].appendChild(pg);
 		shiftOpacity('GoodBy',1000);
-		window.setTimeout("history.back()",1000);	}else {
+		window.setTimeout("history.back()",1000);
+	}else {
 		stopSound(curSoundID); 
 		history.back();
 	}
@@ -1395,7 +1469,8 @@ function extendImgSizes(f) {
 			w=images[i].getAttribute("width",0); 
 			h=images[i].getAttribute("height",0);
 			if(w>0&&h>0) {
-				images[i].style.width=Math.floor(w*q)+"px";				images[i].style.height=Math.floor(h*q)+"px";
+				images[i].style.width=Math.floor(w*q)+"px";
+				images[i].style.height=Math.floor(h*q)+"px";
 			}
 		}
 	}
@@ -1416,7 +1491,8 @@ function extendCanSizes(f) {
 					obj = cnt[0] + "_canvas";					
 					canvas[obj].setAttribute("width",Math.floor(w*q)); 
 					canvas[obj].setAttribute("height",Math.floor(h*q));
-					canvas[obj].style.width=Math.floor(w*q)+"px";					canvas[obj].style.height=Math.floor(h*q)+"px";
+					canvas[obj].style.width=Math.floor(w*q)+"px";
+					canvas[obj].style.height=Math.floor(h*q)+"px";
 				}
 			}
 		}
@@ -1432,7 +1508,8 @@ function extendCanSizes(f) {
 					obj = cnt[0] + "_canvas";					
 					canvas[obj].setAttribute("width",Math.floor(w*q)); 
 					canvas[obj].setAttribute("height",Math.floor(h*q));
-					canvas[obj].style.width=Math.floor(w*q)+"px";					canvas[obj].style.height=Math.floor(h*q)+"px";
+					canvas[obj].style.width=Math.floor(w*q)+"px";
+					canvas[obj].style.height=Math.floor(h*q)+"px";
 				}
 			}
 		}
@@ -1448,7 +1525,8 @@ function extendCanSizes(f) {
 					obj = cnt[0] + "_canvas";					
 					canvas[obj].setAttribute("width",Math.floor(w*q)); 
 					canvas[obj].setAttribute("height",Math.floor(h*q));
-					canvas[obj].style.width=Math.floor(w*q)+"px";					canvas[obj].style.height=Math.floor(h*q)+"px";
+					canvas[obj].style.width=Math.floor(w*q)+"px";
+					canvas[obj].style.height=Math.floor(h*q)+"px";
 				}
 			}
 		}
@@ -1461,7 +1539,8 @@ function extendObjSizes(f) {
 			w=medias[i].getAttribute("width",0); 
 			h=medias[i].getAttribute("height",0);
 			if(w>0&&h>0) {
-				medias[i].style.width=Math.floor(w*q)+"px";				medias[i].style.height=Math.floor(h*q)+"px";
+				medias[i].style.width=Math.floor(w*q)+"px";
+				medias[i].style.height=Math.floor(h*q)+"px";
 			}
 		}
 	}
@@ -2325,16 +2404,41 @@ function switchFade() {
 	}
 	currentSlide();
 }
-function opacity(ids, opacStart, opacEnd, millisec) {	var speed = Math.round(millisec / 100);	var timer = 0;	if(opacStart > opacEnd) {		for(var i = opacStart; i >= opacEnd; i--) {			window.setTimeout("changeOpac(" + i + ",'" + ids + "')",(timer * speed));			timer++;		}	} else if(opacStart < opacEnd) {		for(var i = opacStart; i <= opacEnd; i++) {			window.setTimeout("changeOpac(" + i + ",'" + ids + "')",(timer * speed));			timer++;		}	}
-}function changeOpac(opacity, ids) {	var obj = document.getElementById(ids); 
+function opacity(ids, opacStart, opacEnd, millisec) {
+	var speed = Math.round(millisec / 100);
+	var timer = 0;
+	if(opacStart > opacEnd) {
+		for(var i = opacStart; i >= opacEnd; i--) {
+			window.setTimeout("changeOpac(" + i + ",'" + ids + "')",(timer * speed));
+			timer++;
+		}
+	} else if(opacStart < opacEnd) {
+		for(var i = opacStart; i <= opacEnd; i++) {
+			window.setTimeout("changeOpac(" + i + ",'" + ids + "')",(timer * speed));
+			timer++;
+		}
+	}
+}
+function changeOpac(opacity, ids) {
+	var obj = document.getElementById(ids); 
 	if (isIE) {
-		obj.style.filter = "alpha(opacity=" + opacity + ")";	} else {		obj.style.opacity = (opacity / 100);	}}function shiftOpacity(ids, millisec) {	if(document.getElementById(ids).style.opacity != '') {		var currentOpac = document.getElementById(ids).style.opacity * 100;
+		obj.style.filter = "alpha(opacity=" + opacity + ")";
+	} else {
+		obj.style.opacity = (opacity / 100);
+	}
+}
+function shiftOpacity(ids, millisec) {
+	if(document.getElementById(ids).style.opacity != '') {
+		var currentOpac = document.getElementById(ids).style.opacity * 100;
 	} else {
 		var currentOpac = 0;
 	}
 	if(currentOpac == 0) {
-		opacity(ids, currentOpac, 100, millisec);	} else if(currentOpac > 0) {
-		opacity(ids, currentOpac, 0, millisec);	}}
+		opacity(ids, currentOpac, 100, millisec);
+	} else if(currentOpac > 0) {
+		opacity(ids, currentOpac, 0, millisec);
+	}
+}
 // transition extension
 
 // autoplay extension
@@ -2462,7 +2566,8 @@ function onerrorSM2() {
 	audioSupport = false; swfUnloaded = true;
 	if(audioError && !isIE && !isOp) {
 		var dv = document.createElement('div'); dv.id = "guru";
-		var d2=document.createElement('div'); dv.appendChild(d2);		var tx=document.createTextNode('Guru Meditation - SoundManager failed to load/initialize!');
+		var d2=document.createElement('div'); dv.appendChild(d2);
+		var tx=document.createTextNode('Guru Meditation - SoundManager failed to load/initialize!');
 		d2.appendChild(tx);	document.getElementById('slide0').appendChild(dv);
 	}
 }
@@ -2492,11 +2597,18 @@ function fadeoutSound(ids, option) {
 		}	
 		var vol = getMaxVolume(sound[cnum]["volume"]);
 		var millisec = fadeDuration;
-		var speed = Math.round(millisec / vol);		var timer = 0;		for(var i = vol; i > 0; i--) {			setTimeout("fadeout(" + i + ",'" + ids + "')",(timer * speed));			timer++;		}
+		var speed = Math.round(millisec / vol);
+		var timer = 0;
+		for(var i = vol; i > 0; i--) {
+			setTimeout("fadeout(" + i + ",'" + ids + "')",(timer * speed));
+			timer++;
+		}
 		if(option) setTimeout("stopSound('"+ids+"')",millisec);
 	}
 }
-function fadeout(volume, id) {	soundManager.setVolume(id,volume);}
+function fadeout(volume, id) {
+	soundManager.setVolume(id,volume);
+}
 function stopSound(ids) {
 	var sid;
 	if(isNaN(ids)) {
@@ -2579,7 +2691,8 @@ function setVolume() {
 				var vid = getMaxVolume(sound[curSoundID]["volume"]);
 				soundManager.setVolume(sid,vid);
 			}
-		}	}	
+		}
+	}	
 }
 function getMaxVolume(value) {
 	if(audioVolume>0) {var factor = audioVolume/100;}else {var factor = 0;}
@@ -2647,9 +2760,11 @@ function createHelpReq() {
 			pg.style.filter = "alpha(opacity=90)";	
 		}else {
 			pg.style.opacity = 0.9;
-		}		pg.style.zIndex = 9999;
+		}
+		pg.style.zIndex = 9999;
 		pg.style.backgroundColor="rgb(64,64,64)";
-		pg.style.textAlign = "center";		pg.style.verticalAlign = "middle";
+		pg.style.textAlign = "center";
+		pg.style.verticalAlign = "middle";
 		pg.style.backgroundPosition="center center";
 		pg.style.backgroundRepeat="no-repeat";
 		pg.style.backgroundImage="url(/assets/ui/graphic_support/help.jpg)";
