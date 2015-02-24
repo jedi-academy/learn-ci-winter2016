@@ -942,7 +942,7 @@ function createNotesWindow() { // creates a window for our notes
 	if (s5NotesWindowLoaded) { // Load the current note if the Note HTML has loaded
 		loadNote();
 	} else { // Keep trying...
-		window.setTimeout('createNotesWindow()', 50);
+		//window.setTimeout('createNotesWindow()', 50);
 	}
 }
 
