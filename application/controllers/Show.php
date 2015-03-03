@@ -94,7 +94,7 @@ class Show extends Application {
 		redirect($activity->link);
 		break;
 	    case 'example':
-		$this->serve($activity->link);
+		$this->_serve($activity->link);
 		break;
 	    case 'quiz':
 		// hmm - what should we do for this?
@@ -116,7 +116,8 @@ class Show extends Application {
      */
     public function example($which = "#")
     {
-	$this->work('example', $which);
+		$this->_serve('download/'.$which);
+//	$this->work('example', $which);
     }
 
     /**
