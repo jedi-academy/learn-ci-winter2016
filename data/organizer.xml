@@ -63,17 +63,19 @@ Course organizer for Comp4711
     <week num="9">
         <topic>XML Introduction &amp; Structure</topic>
         <lesson type="lesson" name="lesson07">XML Basics</lesson>
-        <lab type="lab" name="lab06" duedate="2015.02.22 17:30">Best Practices</lab>
+        <example type="example" name="examples-xml.zip">Sample XML documents</example>
+        <lab type="lab" name="" duedate="">Work on or complete assignment 2</lab>
+        <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59" pdf="assignment2-functional-webapp.pdf">Functional Webapp writeup, revised</assignment>
     </week>
     <week num="10">
         <topic>XML Constraints &amp; Processing</topic>
         <lesson type="lesson" name="lesson08">XML Processing</lesson>
+        <lab type="lab" name="lab07" duedate="2015.03.22 17:30">XML</lab>
         <assignment type="assignment" name="assignment3" duedate="2015.04.11 23:59">Completed Webapp</assignment>
     </week>
     <week num="11">
         <topic>XML-RPC</topic>
         <lesson type="lesson" name="lesson09">XML-RPC</lesson>
-        <lab type="lab" name="lab07" duedate="2015.03.22 17:30">XML</lab>
         <lab type="lab" name="lab08" duedate="2015.03.29 17:30">XML-RPC &amp; REST</lab>
     </week>
     <week num="12">

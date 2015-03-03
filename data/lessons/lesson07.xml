@@ -184,12 +184,14 @@ Lesson 07 - XML Basics
             <li>May have child nodes</li>
         </ul>
         <p>There is a Javascript API for this.</p>
-        <p>The W3C prescribes language-neutral APU for interfaces</p>
+        <p>The W3C prescribes language-neutral API for interfaces</p>
     </slide>
 
     <slide title="DOM Visualization" layout="normal" >
-            <br/>
-            <img class="scale" width="640" height="400" src="/data/lessons/pix/7-1.png"/>
+        <p>A "3-d" visualization, <br/>where dots represent elements,
+        blue shows text values, and red shows sets of attributes.</p>
+        <br/>
+        <img class="scale" width="640" height="400" src="/data/lessons/pix/7-1.png"/>
     </slide>
 
 
@@ -207,10 +209,10 @@ Lesson 07 - XML Basics
             <li>Directives define them</li>
             <li>Abbreviation is entity name</li>
             <li>Long form is entity content<br/>
-            <code>&lt;!ENTITY dtd "document type definition"&gt;</code>
+                <code>&lt;!ENTITY dtd "document type definition"&gt;</code>
             </li>
             <li>Can build symbolic constants using entity references<br/>
-            <code>&lt;!ENTITY inverted-exclamation "&#161;"&gt;</code>
+                <code>&lt;!ENTITY inverted-exclamation "&amp;#161;"&gt;</code>
             </li>
         </ul>
     </slide>
@@ -220,8 +222,9 @@ Lesson 07 - XML Basics
             <li>If an entity contains XML that should be parsed by the 
                 XML processor, it is called a parsed entity</li>
             <li>Simple example of parsed entity with markup:<br/>
-            <code>&lt;!ENTITY dtd "&lt;term&gt;
-        document type definition&lt;/term&gt;"&gt;</code></li>
+                <code>&lt;!ENTITY dtd "&lt;term&gt;
+                    document type definition&lt;/term&gt;"&gt;</code>
+            </li>
             <li>This is also an example of an internal entity</li>
         </ul>
     </slide>
@@ -229,8 +232,9 @@ Lesson 07 - XML Basics
     <slide title="External Entities" layout="normal" >
         <ul>
             <li>Content of entity can come from another file...<br/>
-            <code>&lt;!ENTITY intro-chapter SYSTEM 
-     "http://www.megacorp.com/intro.xml"&gt;</code></li>
+                <code>&lt;!ENTITY intro-chapter SYSTEM 
+                    "http://www.megacorp.com/intro.xml"&gt;</code>
+            </li>
             <li>Keyword "SYSTEM" lets processor know that the next thing 
                 in the declaration is a URI</li>
             <li>Content of the entity comes from URI </li>
@@ -239,22 +243,22 @@ Lesson 07 - XML Basics
 
     <slide title="Entity Reference" layout="normal" >
         <div class="left">
-        <ul>
-            <li>A document will use an entity through an entity reference</li>
-            <li>&amp; and ; combination is used, around the name of the entity
-            to substitute</li>
-            <li>The reference will be replaced by the entity contents</li>
-        </ul>
+            <ul>
+                <li>A document will use an entity through an entity reference</li>
+                <li>&amp; and ; combination is used, around the name of the entity
+                    to substitute</li>
+                <li>The reference will be replaced by the entity contents</li>
+            </ul>
         </div>
         <div class="right">
             <code>
                 &lt;!DOCTYPE MAGAZINE[<br/>
 &lt;!ENTITY title "Painters Quarterly"&gt;<br/>
-]&gt;<br/>
+                ]&gt;<br/>
 &lt;MAGAZINE&gt;<br/>
-&lt;TITLE&gt;&title;&lt;/TITLE&gt;<br/>
-&lt;p&gt;Welcome to the first issue of &title;. <br/>
-&title; is targeted at the amateur painter.&lt;/p&gt;<br/>
+&lt;TITLE&gt;&amp;title;&lt;/TITLE&gt;<br/>
+&lt;p&gt;Welcome to the first issue of &amp;title;. <br/>
+&amp;title; is targeted at the amateur painter.&lt;/p&gt;<br/>
 &lt;/MAGAZINE&gt;
             </code>
         </div>
@@ -262,12 +266,12 @@ Lesson 07 - XML Basics
 
     <slide title="Unparsed External Entities" layout="normal" >
         <div class="left">
-        <ul>
-            <li>Used for data such as images </li>
-            <li>Application does not expect the XML processor to parse this data</li>
-            <li>NDATA indicates that this is an unparsed entity</li>
-            <li>GIF Indicates type of data</li>
-        </ul>
+            <ul>
+                <li>Used for data such as images </li>
+                <li>Application does not expect the XML processor to parse this data</li>
+                <li>NDATA indicates that this is an unparsed entity</li>
+                <li>GIF Indicates type of data</li>
+            </ul>
         </div>
         <div class="right">
             <code>
@@ -280,55 +284,74 @@ Lesson 07 - XML Basics
 
     <slide title="ATTRIBUTES" layout="normal" tag="tag4">
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>An attribute is a name followed by an equal sign then an attribute value</li>
+            <li>Allows an author to attach extra information to the elements in a document</li>
+            <li>An attribute value can be any characters except the ones that start markup</li>
+            <li>Used to store information about a tag</li>
+            <li>Used for values that are unique to element as a whole and unlikely to change (see example)</li>
         </ul>
     </slide>
 
     <slide title="Attributes vs Elements" layout="normal" >
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>Attributes cannot contain elements or sub-attributes</li>
+            <li>Specified once and in any order</li>
+            <li>Elements must occur in order specified and may be specified more than once</li>
+            <li>Attributes are properties, elements are parts</li>
         </ul>
     </slide>
 
     <slide title="Structure and Use" layout="normal" >
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>Text strings with no explicit structure</li>
+            <li>Or simple lists of strings</li>
+            <li>Different elements can have attributes with the same name;
+                you should have same semantics</li>
+            <li>Attributes are considered immutable … second or subsequent attribute settings are ignored</li>
         </ul>
     </slide>
 
     <slide title="Attribute Types" layout="normal" >
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>Attribute types enforce lexical and semantic constraints</li>
+            <li>Simplest type is the <code>StringType</code> which is made up 
+            of character data, <code>CDATA</code> </li>
+            <li>Any string of characters</li>
+            <li>Tokenized types:<ul>
+                    <li>Name token or tokens</li>
+                    <li>ID and IDREF - used for cross referencing</li>
+                    <li>Entity - can refer to external unparsed entities like graphics file</li>
+                </ul>
+            </li>
         </ul>
     </slide>
 
     <slide title="Attribute Example" layout="normal" >
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+        <code>
+&lt;customer cust_id="12345"&gt;<br/>
+&#160;&#160;&lt;name salute="Mr" nickname="Bobby"&gt;Smith, Robert&lt;/name&gt;<br/>
+&#160;&#160;&lt;title&gt;Manager&lt;/title&gt;<br/>
+&#160;&#160;&lt;company&gt;My Company Inc.&lt;/company&gt;<br/>
+&lt;/customer&gt;            
+        </code>    
     </slide>
 
     <slide title="XML STRATEGIES" layout="normal" tag="tag5">
         <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            <li>Goals to shoot for:<ul>
+                    <li>Logical or intuitive</li>
+                    <li>Constrainable</li>
+                    <li>Easy to process</li>
+                </ul>
+            </li>
+            <li>Bad things?<br/>
+                Nothing is right for all uses</li>
+            <li>Strategies<ul>
+                    <li>Element centric</li>
+                    <li>Attribute centric</li>
+                    <li>Combination</li>
+                </ul>
+            </li>
         </ul>
     </slide>
 
