@@ -68,33 +68,29 @@ Course organizer for Comp4711
         <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59" pdf="assignment2-functional-webapp.pdf">Functional Webapp writeup, revised</assignment>
     </week>
     <week num="10">
-        <topic>XML Constraints &amp; Processing</topic>
-        <lesson type="lesson" name="lesson08">XML Processing</lesson>
-        <lab type="lab" name="lab07" duedate="2015.03.22 17:30">XML</lab>
-        <assignment type="assignment" name="assignment3" duedate="2015.04.11 23:59">Completed Webapp</assignment>
+        <topic>XML Constraints</topic>
+        <lesson type="lesson" name="lesson08">Constraining XML</lesson>
+        <tutorial type="tutorial" name="tutorial06" pdf="tutorial06-xml-basics.pdf">Working With XML and DTDs</tutorial>
+        <lab type="lab" name="lab06" duedate="2015.03.22 17:30">XML</lab>
     </week>
     <week num="11">
-        <topic>XML-RPC</topic>
-        <lesson type="lesson" name="lesson09">XML-RPC</lesson>
-        <lab type="lab" name="lab08" duedate="2015.03.29 17:30">XML-RPC &amp; REST</lab>
+        <topic>XML Processing</topic>
+        <lesson type="lesson" name="lesson09">XML Processing</lesson>
+        <lab type="lab" name="lab07" duedate="2015.03.29 17:30">XML</lab>
+        <assignment type="assignment" name="assignment3" duedate="2015.04.11 23:59">Completed Webapp</assignment>
     </week>
     <week num="12">
-        <topic>REST &amp; JSON</topic>
-        <lesson type="lesson" name="lesson10a">JSON and AJAX</lesson>
-        <lesson type="lesson" name="lesson10b">REST</lesson>
+        <topic>Authentication</topic>
+        <lesson type="lesson" name="lesson10">Authentication</lesson>
+        <lab type="lab" name="lab08" duedate="2015.04.06 17:30">Authentication</lab>
     </week>
     <week num="13">
-        <topic>Authentication</topic>
-        <lesson type="lesson" name="lesson11">Authentication</lesson>
-        <lab type="lab" name="lab09" duedate="2015.04.05 17:30">Authentication</lab>
-        <topic>Social Networking Integration</topic>
-        <lesson type="lesson" name="lesson12a">Social Networking</lesson>
-        <lesson type="lesson" name="lesson12b">Social Integration</lesson>
+        <topic>Wrapup</topic>
+        <lesson type="lesson" name="lesson11a">Exam Review</lesson>
+        <lesson type="lesson" name="lesson11b">Crystal Ball</lesson>
     </week>
     <week num="14">
         <topic>Final Exam Week</topic>
-        <lesson type="lesson" name="lesson13a">Exam Review</lesson>
-        <lesson type="lesson" name="lesson13b">Crystal Ball</lesson>
     </week>
     <week>
         <topic>Other Useful Material</topic>

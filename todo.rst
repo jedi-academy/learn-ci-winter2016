@@ -422,6 +422,80 @@ though the tutorials and lessons to remind myself I can't find it described
 anywhere! Can you remind me where we convered the MY_Controller we are copying 
 here and all its functions?
 
+I would welcome some more explanation about what is going on here.
+Some questions: 
+a) we are initialising the $data and $choices members on declaration but then 
+reassiging an array in the constructor - why not simply assign them in the constructor?
+b) Assigning the reference to the data array to the data element of the data 
+array looks a bit weird  but I assume all will become clear later - 
+maybe some explanation of what is going on here?
+c) I don't think we have described the parser->parse class method yet have we?
+d) where was the parser class loaded?
+e) having read the user guide about the parser class
+ it says that the parameters to the parse method are the view name and the 
+data containing the data that will be used to substitute the pseudo variables 
+in the view files. However	 as it is the template.php that contains the 
+pseudo-variables	 and not the view file e.g. about.php	 how does 
+render() know about the template.php?
+
+
+Slide 17
+
+1. It would be good to explicitly tell the user to copy the common_helper 
+file to the application/helper folder of the application
+2. Whilst you say we should load the parser library
+ it would be good to show this line in the listing as well as the helper autoload 
+and also to state where to put this code i.e. application/config/autoload.php
+
+3. When I tried running it I got an error because it couldn't find _template.php. 
+Is there a typo on slide 12 as it specifies template.php instead of _template.php?
+4. My screenshot does not look like the slide because I hadn't copied the 
+/public/css folder up a couple of levels to the same level in the folder hierarchy as /application
+
+Slide 18
+
+Quite a bit of stuff here I am not familiar with as I am new to netbeans so I 
+would take it a bit slower: 
+1. The first step is to estabvlish a connection to 
+the MySQL instance you installed with xampp. Bring up the xampp Control Panel 
+and click on Start next to the MySQL to start the database then cick on Config 
+to confirm the database connection details
+2. Click on the Services tab in netbbeans
+ right click on "Databases" in the tree and select "New Connection"
+3. Follow the steps to create the connection to the local MySQL database using 
+the Config setting obtained from XAMPP
+4. Right-click on the newly created MySQL connection and choose "Create Database..." 
+entering the details opposite
+5. Once created  connect to this database and ...
+** at this point you say "import the sql script" but I am not sure what you mean
+ by this as I was just expecting to execute the sql from the database menu. 
+You might want to reword this and simply say "Right click on the picassos database
+ select "Execute Command" and paste in the contents of the  images.sql file"
+
+
+Slide 22:
+I think an explanation of the parser class is overdue!
+Also  having just gone ahead to slide 25	 I have just realised 
+there was no explanation of how to edit the gallery.php file	 
+which still contains the hard-coded html for the table and its images. 
+Going through the code	 I figured out that you are generating the table 
+html in the controller and assigning this to a placeholder {thetable}
+
+
+Slide 23: 
+Is there meant to be a difference as they look identical to me?!
+
+Slide 25:
+See note for slide 22 as this is the first time you show that you rpelaced 
+the html for the table with a placeholder  {thetable}.
+
+
+In sumamry
+ I struggled with this exercise and towards the end found myself copying the
+ code without having an understanding of what it was doing as these aspects had
+ not been explained e.g. parser	 how substitution of placeholders work etc"
+
+
 ------
 Week 3
 ------
