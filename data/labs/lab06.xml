@@ -29,14 +29,13 @@ Lab 06 - XML with constraints
     </slide>
 
     <slide title="Lab Marking Guideline" layout="normal">
-        <p>There are ten tasks to complete for the lab.</p>
-        <p>Keeping things simple, I will award one mark each,
-        even though some are more involved than others.</p>
+        <p>Simple ... 4 marks for building your DTD correctly,
+        2 marks for each of the order files prescribed in the tutorial :)</p>
     </slide>
 
     <slide title="Your Job" layout="normal">
         <p>Complete tutorial 6</p>
-        <p>This will result in a DTD and a valid XML document.</p>
+        <p>This will result in a DTD and three valid XML documents.</p>
     </slide>
 
 </lab>
