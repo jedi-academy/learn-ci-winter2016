@@ -131,7 +131,8 @@ Tutorial 06 - Working With XML and DTDs
 
     <slide title="Our Starter DTD" layout="normal">
         <div class="left">
-            <p>The starter DTD isn't too impressive...</p>
+            <p>The starter DTD isn't too impressive... we will have to replace 
+                a bunch of pieces, sigh.</p>
         </div>
         <div class="right">
             <br/>
@@ -154,7 +155,7 @@ Tutorial 06 - Working With XML and DTDs
 
     <slide title="Order Structure" layout="normal" >
         <div class="left">
-            <p></p>
+            <p>Here is the basic "order" plan, as it might make sense at this point.</p>
         </div>
         <div class="right">
             <br/>
@@ -164,7 +165,8 @@ Tutorial 06 - Working With XML and DTDs
 
     <slide title="Customer Info" layout="normal" >
         <div class="left">
-            <p></p>
+            <p>We need to flesh out the pieces that make up an order, starting 
+                with the customer,</p>
         </div>
         <div class="right">
             <br/>
@@ -174,7 +176,9 @@ Tutorial 06 - Working With XML and DTDs
 
     <slide title="Order Type" layout="normal" >
         <div class="left">
-            <p>Order type made an attribute, and an optional "delivery" element added.</p>
+            <p>Order type makes more sense as an attribute, so we can add that and remove
+                the "order_type" element we had planned.
+                I have added an optional "delivery" element, planning ahead.</p>
         </div>
         <div class="right">
             <br/>
@@ -197,7 +201,9 @@ Tutorial 06 - Working With XML and DTDs
 
     <slide title="Order Instructions" layout="normal" >
         <div class="left">
-            <p></p>
+            <p>This shows all of the metadata in place.</p>
+            <p>The "burgers" element is not there yet, but the DTD curiously 
+                "checks" without an error message :-/</p>
         </div>
         <div class="right">
             <br/>
@@ -221,6 +227,9 @@ Tutorial 06 - Working With XML and DTDs
     <slide title="Burger Structure" layout="normal" >
         <div class="left">
             <p>How do you make one of Barker Bob's burgers?</p>
+            <p>This makes sense at the moment.</p>
+            <p>Oops - I see an extra parenthesis and greater than sign at the
+            end of the "burger" element directive. That will need to be removed!</p>                
         </div>
         <div class="right">
             <br/>
@@ -232,7 +241,8 @@ Tutorial 06 - Working With XML and DTDs
         <div class="left">
             <p>Each burger has a unique patty type, and we can use
                 an attribute with an enumeration to ensure validity.</p>
-            <p>The default patty type is "beef".</p>
+            <p>The default patty type is "beef", which would be the value "1"
+                the way we have prescribed it.</p>
         </div>
         <div class="right">
             <br/>
@@ -253,7 +263,11 @@ Tutorial 06 - Working With XML and DTDs
     <slide title="Cheese Toppings" layout="normal" >
         <div class="left">
             <p>Let's make a couple of assumptions to make our DTD more enforceable.</p>
-            <p>Too bad we have to repeat the cheese options.</p>
+            <p>Too bad we have to repeat the cheese options, but this means that
+                we just need the one "cheeses" element, with two attributes.</p>
+                <p>Oops - I see that the cheeses "content" is "(#EMPTY)" ...
+                that will need to be changed to "EMPTY" at some point, before
+                we can validate.</p>
         </div>
         <div class="right">
             <br/>
@@ -265,20 +279,23 @@ Tutorial 06 - Working With XML and DTDs
         <div class="left">
             <p>Change the burger-level multiplicity.</p>
             <p>Provide a long and perhaps silly list of toppings, er topping codes.</p>
+            <p>Note that we changed "toppings" to "topping*" in the "burger" 
+                element directive. A worthy simplification!</p>
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="972" height="401" src="/data/tutorials/pix/6-14.png"/>       
+            <img class="scale" width="800" height="330" src="/data/tutorials/pix/6-14.png"/>       
         </div>
     </slide>
 
     <slide title="Burger Sauces" layout="normal" >
         <div class="left">
-            <p>Do the same for sauces.</p>
+            <p>Do the same for sauces, adding an appropriate directive for one.</p>
+            <p>We changed "sauces" to "sauce*" in the "burger" directive.</p>
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="968" height="490" src="/data/tutorials/pix/6-15.png"/>       
+            <img class="scale" width="800" height="405" src="/data/tutorials/pix/6-15.png"/>       
         </div>
     </slide>
 
@@ -288,17 +305,18 @@ Tutorial 06 - Working With XML and DTDs
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="928" height="528" src="/data/tutorials/pix/6-17.png"/>       
+            <img class="scale" width="800" height="455" src="/data/tutorials/pix/6-17.png"/>       
         </div>
     </slide>
 
     <slide title="Burger Name" layout="normal" >
         <div class="left">
             <p>Marketing idea: let the customer name their creation</p>
+            <p>We're not doing anything with this right now, but we will next week :)</p>                
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="929" height="574" src="/data/tutorials/pix/6-19.png"/>       
+            <img class="scale" width="800" height="494" src="/data/tutorials/pix/6-19.png"/>       
         </div>
     </slide>
 
@@ -308,13 +326,13 @@ Tutorial 06 - Working With XML and DTDs
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="934" height="578" src="/data/tutorials/pix/6-20.png"/>       
+            <img class="scale" width="800" height="495" src="/data/tutorials/pix/6-20.png"/>       
         </div>
     </slide>
 
     <slide title="4. TEST YOUR ORDER" layout="normal" tag="tag4">
         <div class="left">
-        <p>Let's build an order for a #8.</p>
+        <p>Let's build an order for a #8 burger.</p>
             <p>Right-click on the data folder and choose new&gt;XML Document...</p>
         </div>
         <div class="right">
@@ -339,7 +357,7 @@ Tutorial 06 - Working With XML and DTDs
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="926" height="489" src="/data/tutorials/pix/6-33.png"/>       
+            <img class="scale" width="800" height="422" src="/data/tutorials/pix/6-33.png"/>       
         </div>
     </slide>
 
@@ -365,7 +383,8 @@ Tutorial 06 - Working With XML and DTDs
 
     <slide title="Order 1" layout="normal" >
         <div class="left">
-            <p>It doesn't validate yet</p>
+            <p>It doesn't validate yet ... the order needs a "tyoe" attribute, 
+                though this might not be apparent from the error message :-/</p>
         </div>
         <div class="right">
             <br/>
@@ -399,7 +418,7 @@ Tutorial 06 - Working With XML and DTDs
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="910" height="178" src="/data/tutorials/pix/6-38.png"/>       
+            <img class="scale" width="800" height="156" src="/data/tutorials/pix/6-38.png"/>       
         </div>
     </slide>
 
@@ -419,7 +438,7 @@ Tutorial 06 - Working With XML and DTDs
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="724" height="486" src="/data/tutorials/pix/6-40.png"/>       
+            <img class="scale" width="800" height="159" src="/data/tutorials/pix/6-40.png"/>       
         </div>
     </slide>
 
@@ -446,7 +465,7 @@ Tutorial 06 - Working With XML and DTDs
     <slide title="Order 1" layout="normal" >
         <div class="left">
             <p>Add a couple of sauces.</p>
-            <p>This won't validate, but you know how to fix that!</p>
+            <p>This may not validate, but you know how to fix that!</p>
         </div>
         <div class="right">
             <br/>
