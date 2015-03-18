@@ -182,7 +182,7 @@ Lesson 08 - Constraining XML
     <slide title="Content Constraints" layout="normal" >
         <ul>
             <li>An element without children or text value is denoted EMPTY:<br/>
-                <code>&lt;!ELEMENT brain (EMPTY)&gt;</code>
+                <code>&lt;!ELEMENT brain EMPTY&gt;</code>
             </li>
             <li>An element containg a value but no children is designated 
                 #PCDATA (for parsed character data):<br/>
