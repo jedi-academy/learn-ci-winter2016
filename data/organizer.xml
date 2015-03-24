@@ -76,7 +76,7 @@ Course organizer for Comp4711
     <week num="11">
         <topic>XML Processing</topic>
         <lesson type="lesson" name="lesson09">XML Processing</lesson>
-        <lab type="lab" name="lab07" duedate="2015.03.29 17:30">XML</lab>
+        <lab type="lab" name="lab07" duedate="2015.03.29 17:30">XML Processing</lab>
         <assignment type="assignment" name="assignment3" duedate="2015.04.11 23:59">Completed Webapp</assignment>
     </week>
     <week num="12">
