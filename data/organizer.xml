@@ -70,14 +70,15 @@ Course organizer for Comp4711
     <week num="10">
         <topic>XML Constraints</topic>
         <lesson type="lesson" name="lesson08">Constraining XML</lesson>
-        <tutorial type="tutorial" name="tutorial06" pdf="tutorial06-xml-basics.pdf">Working With XML and DTDs</tutorial>
+        <tutorial type="tutorial" name="tutorial06">Working With XML and DTDs</tutorial>
         <lab type="lab" name="lab06" duedate="2015.03.22 17:30">XML</lab>
     </week>
     <week num="11">
         <topic>XML Processing</topic>
         <lesson type="lesson" name="lesson09">XML Processing</lesson>
+        <tutorial type="tutorial" name="tutorial07" >Processing XML</tutorial>
         <lab type="lab" name="lab07" duedate="2015.03.29 17:30">XML Processing</lab>
-        <assignment type="assignment" name="assignment3" duedate="2015.04.11 23:59">Completed Webapp</assignment>
+ <!--       <assignment type="assignment" name="assignment3" duedate="2015.04.11 23:59">Completed Webapp</assignment> -->
     </week>
     <week num="12">
         <topic>Authentication</topic>
