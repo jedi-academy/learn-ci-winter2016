@@ -23,6 +23,8 @@ Tutorial 07 - Processing XML
 substr_compare($str, $test, strlen($str)-strlen($test), strlen($test)) === 0;
                 </code>
             </li>
+            <li>Cleaned up the .htaccess and tested that the starter project 
+                works as intended.</li>
         </ul>            
     </slide>
     
@@ -43,6 +45,8 @@ substr_compare($str, $test, strlen($str)-strlen($test), strlen($test)) === 0;
             the menu.xml file inside the data folder.</p>
         <p>Fork the github project, and clone it locally to
             work with, the same as you have done with the previous tutorials.</p>
+            <p>Don't forget to add the special order you made last week, 
+                to the data folder!</p>
     </slide>
 
     <slide title="The End Result" layout="normal">
