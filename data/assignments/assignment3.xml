@@ -3,9 +3,16 @@
 Assignment 3 - Finished Webapp
 -->
 <lab status="beta">
-    <!-- Activity metadata ... override anything from the course or organizer -->
-    
-    <!-- The meat of the presentation -->
+ 
+    <slide title="Assignment 3 NOT" layout="normal">
+        <p>You have more than enough work to do with your option courses,
+        and we have not been able to address a number of topics
+        that I had originally planned.</p>
+        <p>Accordingly, I am cancelling the third assignment.</p> 
+    </slide>
+
+        
+    <!-- The meat of the presentation
     <slide title="Overall Assignment Goals" layout="normal">
         <p>The purpose of assignment 3 is to complete your webapp project,
             per the specifications in this document.</p>
@@ -210,5 +217,5 @@ Assignment 3 - Finished Webapp
         <p>Your views should have no PHP in them, apart from possibly comments.</p>
         <p>Remember the golden rules!!!</p>
     </slide>
-
+ -->
 </lab>

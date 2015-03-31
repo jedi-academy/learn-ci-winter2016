@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 07b - Creating XML
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial is meant to give you some practice working with
+            SimpleXML to create an XML document, as described in lesson 9.</p>
+        <p>I have prepared a starter project for you to build on.
+            It is a webapp, meant  to process
+            the XML data you built last week.</p>
+    </slide>
+
+    <slide>
+        <h1>Revisions &amp; Notes</h1>    
+        <ul>
+            <li>This tutorial is in progress, and not ready yet.</li>
+        </ul>            
+    </slide>
+    
+</tutorial>
