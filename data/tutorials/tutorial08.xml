@@ -127,6 +127,14 @@ Tutorial 08 - Authentication
         <div class="right">
             <p>When run, your webapp should still look no different than before.
                 How do you know if your sessions are working?</p>
+                <p>
+                    <strong>Note:</strong> If you encounter an error to the effect
+                    that the CI_Session_Driver class cannot be found, that is likely
+                    due to a mismatch between the starter's configuration file
+                    and your system folder. The config assumes a new version ...
+                    download the official CodeIgniter3.0.0 and use its <code>system</code>
+                    folder to replace your <code>system3</code> one!
+                </p>
         </div>
     </slide>
 
@@ -156,6 +164,27 @@ Tutorial 08 - Authentication
         </div>
     </slide>
 
+    <slide title="Add a Users Table" layout="normal" >
+        <div class="left">
+            <p>We also need a users table, to validate against.</p>
+            <p>Let's keep it simple, per the lesson. I have provided a <code>data/users.sql</code>
+                script that you can use.</p>
+            <p>Using phpMyadmin, import that to your database and insert two records:
+                <ul>
+                    <li>id: dd, username: donald, password: duck, role: user</li>
+                    <li>id: mm, username: mickey, password: mouse, role: admin</li>
+                </ul>
+            </p>
+            <p>The picture right shows using the "password" function.
+                Don't! It is not the same as the password_hash() function
+                we need to use later. Check the next slide before proceeding!</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="681" height="266" src="/data/tutorials/pix/8-3.png"/>
+        </div>
+    </slide>
+
     <slide title="Fix The Users Table" layout="normal" >
         <p>Oops - there is a bit of a disconnect between phpMyadmin
             and the password hashing. I am not sure what the "password"
@@ -172,25 +201,6 @@ Tutorial 08 - Authentication
             be done through user maintenance by an admin.</p>
     </slide>
 
-    <slide title="Add a Users Table" layout="normal" >
-        <div class="left">
-            <p>We also need a users table, to validate against.</p>
-            <p>Let's keep it simple, per the lesson. I have provided a <code>data/users.sql</code>
-                script that you can use.</p>
-            <p>Using phpMyadmin, import that to your database and insert two records:
-                <ul>
-                    <li>id: dd, username: donald, password: duck, role: user</li>
-                    <li>id: mm, username: mickey, password: mouse, role: admin</li>
-                </ul>
-            </p>
-            <p>Don't forget to use the "password" function beside that field's value.</p>
-        </div>
-        <div class="right">
-            <br/>
-            <img class="scale" width="681" height="266" src="/data/tutorials/pix/8-3.png"/>
-        </div>
-    </slide>
-
     <slide title="Don't Forget a Model for the Users Table" layout="normal" >
         <p>
             <code>models/Users</code>:</p>
@@ -202,13 +212,16 @@ Tutorial 08 - Authentication
             }                
         </code>
         <p>Note: You may have to copy <code>core/MY_Model</code> from another of your projects.</p>
+        <p>This model can be loaded in the constructor of any controller that
+        needs it, but it might be a good idea to autoload it.</p>
     </slide>
 
     <slide title="LOGIN FORM" layout="normal" tag="tag2">
         <p>We will need a login form as part of our authentication.</p>
-        <p>It doesn't have to be anything fancy, for instance something like:</p>
+        <p>It doesn't have to be anything fancy, <code>views/login.php</code>, 
+        for instance something like:</p>
         <code>
-&lt;form name="login" method="post" action="/auth/login"&gt;<br/>
+&lt;form name="login" method="post" action="/auth/submit"&gt;<br/>
 &#160;&#160;UserID: &lt;input type="text" name="userid"&gt;&lt;/input&gt;&lt;br/&gt;<br/>
 &#160;&#160;Password: &lt;input type="password" name="password"&gt;&lt;/input&gt;&lt;br/&gt;<br/>
 &#160;&#160;&lt;input type="submit"&gt;Submit&lt;/input&gt;<br/>
