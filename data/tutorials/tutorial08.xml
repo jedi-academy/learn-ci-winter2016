@@ -266,9 +266,8 @@ Tutorial 08 - Authentication
         <code>
 &#160;&#160;function submit() {<br/>
 &#160;&#160;&#160;&#160;$key = $_POST['userid'];<br/>
-&#160;&#160;&#160;&#160;&#160;&#160;$password = password_hash($_POST['password'],PASSWORD_DEFAULT);<br/>
 &#160;&#160;&#160;&#160;$user = $this-&gt;users-&gt;get($key);<br/>
-&#160;&#160;&#160;&#160;if ($password == (string) $user-&gt;password) {<br/>
+&#160;&#160;&#160;&#160;if (password_verify($this-&gt;input-&gt;post('password'),$user-&gt;password)) {<br/>
 &#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userID',$key);<br/>
 &#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userName',$user-&gt;name);<br/>
 &#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userRole',$user-&gt;role);<br/>
