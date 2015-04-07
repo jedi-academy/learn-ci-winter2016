@@ -89,8 +89,8 @@ Course organizer for Comp4711
     </week>
     <week num="13">
         <topic>Wrapup</topic>
-        <lesson type="lesson" name="lesson11a">Exam Review</lesson>
-        <lesson type="lesson" name="lesson11b">Crystal Ball</lesson>
+        <lesson type="lesson" name="final">Exam Review</lesson>
+        <lesson type="lesson" name="lesson11">Crystal Ball</lesson>
     </week>
     <week num="14">
         <topic>Final Exam Week</topic>

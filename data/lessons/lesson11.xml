@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 11 - Crystal Ball
+-->
+<lesson status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <slide title="Jim's Crystal Ball" layout="normal" >
+        <p>These are my predictions for the "hot" topics
+            and issues over the next five years :-/</p>
+    </slide>
+
+    <slide title="What's Hot?" layout="normal" tag="tag1">
+        <p>XML just "is" ... everywhere, together with JSON</p>
+        <div class="left">
+            <ul>
+                <li>Frameworks – client &amp; server +3</li>
+                <li>"Mobile" +3</li>
+                <li>Social ... network, APU, business +3</li>
+                <li>Devops +3</li>
+                <li>Analytics +3 :(</li>
+                <li>CodeIgniter +3 (framework vs kitchen sink)</li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul>
+                <li>Geo-aware +2</li>
+                <li>Cloud +2</li>
+                <li>Federated authentication +2</li>
+                <li>Internet of things +1</li>
+                <li>Gesture APIs +1</li>
+            </ul>
+        </div>    
+    </slide>
+
+    <slide title="What Should Be Hot? (2010)" layout="normal" tag="tag1">
+        <div class="left">
+            <ul>
+                <li>XML for intra-app data transfer +3 <br/>yup</li>
+                <li>XML for inter-app integration +3 <br/>yup + JSON</li>
+                <li>XML for data storage (files) +2 <br/>yup (.docx)</li>
+                <li>XML for data storage (DB) +1 <br/>yup? (CMS)</li>
+                <li>Markup languages galore +2 <br/>nope -> -1 (JSON)</li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul>
+                <li>Semantic web +1 <br/>nope -> +3 (Google SEO)</li>
+                <li>XUL for UI markup +1 <br/>nope (CSS frameworks, widgets)</li>
+                <li>HTML 5??? +1 <br/>nope -> +3 (finally)</li>
+                <li>XQL +1 <br/>nope -1</li>
+                <li>OSGI architecture +3<br/>nope +3 (devops!)</li>
+            </ul>
+        </div>    
+    </slide>
+
+
+</lesson>
