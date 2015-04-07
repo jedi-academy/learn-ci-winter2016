@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 11a - Exam Review
+-->
+<lesson status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <!-- Agenda -->
+    <slide title="Agenda" layout="normal">
+        <p>The final exam from last term was previously posted in the "content" 
+            area on D2L, as an example for you.</p>
+        <ol>
+            <li>
+                <a href="#{tag1}">Final Exam Essentials</a>
+            </li>
+            <li>
+                <a href="#{tag2}">Material Review</a>
+            </li>
+        </ol>
+    </slide>
+
+
+    <!-- Normal slides -->
+
+    <slide title="FINAL EXAM ESSENTIALS" layout="normal" tag="tag1">
+        <ul>
+            <li>Date? Thurs Apr 16</li>
+            <li>When? 13:00 - 15:00</li>
+            <li>Where? NE1-239/242</li>
+            <li>How Long? Two hours</li>
+            <li>How long minimum? 60 minutes</li>
+            <li>Aids: None</li>
+        </ul>
+    </slide>
+
+    <slide title="Stress Points" layout="normal">
+        <ul>
+            <li>You do not have to pass the final exam to pass the course.</li>
+            <li>You do not have to pass the aggregate of the midterm and the final
+                exam to pass the course.</li>
+            <li>There are no makeup provisions should you have a bad or 
+                failing grade in the course.</li>
+        </ul>
+    </slide>
+
+    <slide title="What Will the Exam Cover?" layout="normal">
+        <div class="left">
+            <li>MVC frameworks ... 20%</li>
+            <li>CodeIgniter … 10%</li>
+            <li>Controllers ... 10%</li>
+            <li>Models ... 10%</li>
+            <li>Views ... 10%</li>
+        </div>
+        <div class="right">
+            <li>XML ... 20%</li>
+            <li>DTDs … 10%</li>
+            <li>SimpleXML ... 10%</li>
+            <li>RBAC ... 10%</li>
+        </div>
+    </slide>
+
+    <slide title="What Format Will the Exam Have?" layout="normal">
+        <ul>
+            <li>Multiple choice @1 ... 40-60</li>
+            <li>Completion @2 ... 5-10</li>
+            <li>Short answer @ 3 ... 5-10</li>
+            <li>100 marks in total</li>
+        </ul>
+    </slide>
+
+    <slide title="MATERIAL REVIEW" layout="normal" tag="tag2">
+        <p>This exam review uses the same format as that for the midterm:
+            a mental organizer for the important
+            material.</p>
+        <p>For any given topic, the organizer consists of a
+            practical explanation/definition of the topic, 
+            followed by the key concepts and then the key
+            techniques relevant to that topic.</p>
+        <p>The final exam is comprehensive, i..e addressing
+            all of the material covered in the course. 
+            In the case of topics addressed on the midtem,
+            the areas that will be emphasized on the final exam
+            are shown italicized.</p>
+    </slide>
+
+    <slide title="MVC Frameworks" layout="normal">
+        <p>
+            <em>Structured webapps</em>
+        </p>
+        <div class="left">
+            <p>
+                <b>Concepts:</b>
+                <ul>
+                    <li>MVC separation</li>
+                    <li>Design patterns</li>
+                    <li>
+                        <em>Loading classes</em>
+                    </li>
+                    <li>
+                        <em>Routing requests</em>
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <b>Techniques:</b>
+                <ul>
+                    <li>Classes</li>
+                    <li>Helpers</li>
+                    <li>Htaccess, virtual hosting</li>
+                    <li>
+                        <em>Cross-platform!</em>
+                    </li>
+                    <li>
+                        <em>Github</em>
+                    </li>
+                </ul>
+            </p>   
+        </div>
+    </slide>
+
+    <slide title="CodeIgniter Framework" layout="normal">
+        <p>
+            <em>One PHP MVC framework</em>
+        </p>
+        <div class="left">
+            <p>
+                <b>Concepts:</b>
+                <ul>
+                    <li>Lightweight</li>
+                    <li>
+                        <em>Controllers, models, views</em>
+                    </li>
+                    <li>
+                        <em>Libraries, helpers</em>
+                    </li>
+                    <li>Core, hooks, routes</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <b>Techniques:</b>
+                <ul>
+                    <li>Discipline</li>
+                    <li>
+                        <em>Sessions, Authentication</em>
+                    </li>
+                    <li>View templates</li>
+                </ul>
+            </p>   
+        </div>
+    </slide>
+
+    <slide title="CodeIgniter Controllers" layout="normal">
+        <p>
+            <em>HTTP Request handlers</em>
+        </p>
+        <div class="left">
+            <p>
+                <b>Concepts:</b>
+                <ul>
+                    <li>
+                        <em>Usecase handler</em>
+                    </li>
+                    <li>Utility</li>
+                    <li>Service</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <b>Techniques:</b>
+                <ul>
+                    <li>Routing</li>
+                    <li>Base controller</li>
+                    <li>Use other CI components</li>
+                </ul>
+            </p>   
+        </div>
+    </slide>
+
+    <slide title="CodeIgniter Models" layout="normal">
+        <p>
+            <em>Data resource wrappers</em>
+        </p>
+        <div class="left">
+            <p>
+                <b>Concepts:</b>
+                <ul>
+                    <li>
+                        <em>Data resource encapsulation</em>
+                    </li>
+                    <li>Patterned after Active Record?</li>
+                    <li>Assumes RDB</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <b>Techniques:</b>
+                <ul>
+                    <li>Base model with CRUD</li>
+                    <li>
+                        <em>Usecase-specific methods to retrieve data</em>
+                    </li>
+                    <li>Entity models??</li>
+                </ul>
+            </p>   
+        </div>
+    </slide>
+
+    <slide title="XML" layout="normal">
+        <p>
+            <em>Rich data structure/model</em>
+        </p>
+        <div class="left">
+            <p>
+                <b>Concepts:</b>
+                <ul>
+                    <li>Value, attributes &amp; child elements</li>
+                    <li>Structured as a tree</li>
+                    <li>Marked up text</li>
+                    <li>Cross platform</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <b>Techniques:</b>
+                <ul>
+                    <li>Syntax</li>
+                    <li>Checking &amp; validation</li>
+                    <li>Design: elements vs attributes</li>
+                    <li>State representation</li>
+                </ul>
+            </p>   
+        </div>
+    </slide>
+
+    <slide title="DTDs" layout="normal">
+        <p>
+            <em>XML document constraints</em>
+        </p>
+        <div class="left">
+            <p>
+                <b>Concepts:</b>
+                <ul>
+                    <li>XML structure</li>
+                    <li>XML element &amp; attribute constraints</li>
+                    <li>Templates</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <b>Techniques:</b>
+                <ul>
+                    <li>DTD files</li>
+                    <li>Binding XML to one</li>
+                    <li>Validation</li>
+                </ul>
+            </p>   
+        </div>
+    </slide>
+
+    <slide title="SimpleXML" layout="normal">
+        <p>
+            <em>XML DOM Processing</em>
+        </p>
+        <div class="left">
+            <p>
+                <b>Concepts:</b>
+                <ul>
+                    <li>Elements vs nodes</li>
+                    <li>Traversal</li>
+                    <li>Terminology</li>
+                    <li>W3C DOM</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <b>Techniques:</b>
+                <ul>
+                    <li>DOM processing</li>
+                    <li>SimpleXML resource wrapper</li>
+                    <li>PHPDOM</li>
+                    <li>Treating as an object</li>
+                    <li>Treating as an array</li>
+                    <li>Iterable</li>
+                </ul>
+            </p>   
+        </div>
+    </slide>
+
+    <slide title="RBAC" layout="normal">
+        <p>
+            <em>Role-based access control</em>
+        </p>
+        <div class="left">
+            <p>
+                <b>Concepts:</b>
+                <ul>
+                    <li>Authentication</li>
+                    <li>Authorization</li>
+                    <li>Trust &amp; syndicate</li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>
+                <b>Techniques:</b>
+                <ul>
+                    <li>Programmatic vs declarative</li>
+                    <li>Users, roles - stored in session</li>
+                    <li>Base controller vs hook</li>
+                    <li>3rd party – Oauth, OpenID</li>
+                </ul>
+            </p>   
+        </div>
+    </slide>
+
+</lesson>
