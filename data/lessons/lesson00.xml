@@ -19,7 +19,7 @@ Lesson 00 - In-class Only Introduction
     </slide>
 
     <slide title="You ..." layout="normal">
-        <p>Per the dayschool <a href="http://www.bcit.ca/study/outlines/20151047992" target="_blank">course outline</a>:</p>
+        <p>Per the dayschool <a href="http://www.bcit.ca/study/outlines/20153035498" target="_blank">course outline</a>:</p>
         <ul>            
             <li>Required proficiency: programming, Java (COMP2526) or C (COMP2510)</li>
         </ul>
@@ -39,23 +39,19 @@ Lesson 00 - In-class Only Introduction
                 <strong>Construct an MVC web application using a suitable framework</strong> (CodeIgniter)</li>
             <li>Construct a valid and well-formed XML document, and constrain it with a DTD</li>
             <li>Process XML data using DOM</li>
-            <li>Integrate distributed system components using XML-RPC and REST</li>
-            <li>Integrate a webapp with social networking services</li>
+            <li>Integrate distributed system components using XML-RPC and REST?</li>
         </ul>
     </slide>
 
     <slide title="Course Context" layout="normal">
         <ul>
             <li>
-                <a href="http://www.bcit.ca/study/outlines/20151047992" target="_blank">Course outline</a> on BCIT site</li>
+                <a href="http://www.bcit.ca/study/outlines/20153035498" target="_blank">Course outline</a> on BCIT site</li>
             <li>Organizer, lectures, tutorials, examples, labs &amp; assignments all on this site</li>
             <li>Labs done individually, on github; readme (with link) to D2L dropbox</li>
             <li>Assignments done in teams, on github; readme (with links) to D2L dropbox</li>
             <li>Labs start: this week</li>
         </ul>
-        <p>
-            <i>Distance learners: lab and assignment readme submissions by email.</i>
-        </p>
     </slide>
 
     <slide title="Grading" layout="normal">
