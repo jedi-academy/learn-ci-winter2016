@@ -11,9 +11,9 @@ Course organizer for Comp4711
         <tutorial type="tutorial" name="tutorial01a" pdf="tutorial01a-xampp-installation.pdf">XAMPP Installation</tutorial>
         <tutorial type="tutorial" name="tutorial01b" pdf="tutorial01b-virtual-hosting-setup.pdf">Virtual Hosting Setup</tutorial>
         <tutorial type="tutorial" name="tutorial01c" pdf="tutorial01c-php-crash-course.pdf">PHP Crash Course</tutorial>
-        <lab type="lab" name="lab01" duedate="2015.01.11 17:30" pdf="lab01-development-setup.pdf">Development Setup</lab>
+        <lab type="lab" name="lab01" duedate="2015.09.13 17:30" pdf="lab01-development-setup.pdf">Development Setup</lab>
     </week>
-    <week num="2">
+<!--    <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
         <lesson type="lesson" name="lesson02" pdf="lesson02-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
         <github type="github" name="contacts" link="https://github.com/comp4711/example-contacts">Example webapp - contacts</github>
@@ -92,6 +92,7 @@ Course organizer for Comp4711
         <lesson type="lesson" name="final">Exam Review</lesson>
         <lesson type="lesson" name="lesson11">Crystal Ball</lesson>
     </week>
+    -->
     <week num="14">
         <topic>Final Exam Week</topic>
     </week>
