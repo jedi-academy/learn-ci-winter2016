@@ -8,7 +8,7 @@ Lesson 01a - Introduction
     <slide title="Introduction" layout="normal">
         <p>This course will help you learn how to develop webapps
             using CodeIgniter.</p>
-        <p>It presents a course of skills, but not all of CI!</p>
+        <p>It presents a comprehensive set of skills, but not all of CI!</p>
         <p>It shows "best practices", but not the only way to
             use the framework.</p>
         <p>The course assumes you know O-O programming and PHP,
@@ -148,7 +148,7 @@ Lesson 01a - Introduction
             <p> The controller then uses other components, like helpers, 
                 models, libraries, etc, to build what is passed to a view.</p>
             <p>Many such components are built into CI, and the webapp
-                developer would normally build their own on top of these.</p>
+                developer would normally build their own by using or extending these.</p>
         </div>
         <div class="right">
             <img class="scale" width="697" height="205" src="/data/lessons/pix/1-6.png"/>
