@@ -32,38 +32,13 @@ Course Suggestions
 General: 
 - it could be useful for most slide to have a summary piece of text 
     under the slide title that tells you what this slide is about
+- add "Want to know more?" button & links as appropriate, specifically in lessons
 
 ------
 Week 1
 ------
 
-Lesson 1a:
-- provide a screencast to expand on ideas
 
-Lesson 1b: 
-- link to deeper content
-- this lesson would greatly benefit from being presented with 
-    additional notes and insight (as the first presentation was given). 
-    Only reading the points in these slides gives too brief an overview of 
-    the Model-View-Controller relationship. Code examples would be great.	
-- Provide examples of sites using CI
-
-Tutorial 1a: 
-- You covered Windows and LInux setup screenshots but not Mac.
-- What about a mac tutorial installation guide??
-- The directory that windows installs httpd.conf to is 
-    C:\xampp\apache\conf, as far as i could see you didn't have a slide 
-    that explicitly listed this (I only saw a slide for linux: /etc/httpd/conf)
-- maybe instead of alternating the slides for the windoes setup and 
-    linux setup, do all the windows (or linux) setup turorial first, 
-    then the other operating system after. 
-    i got confused a little because the slides alternated.
-- Don't forget to mention that port "443" of the SSL Conf 
-    for XAMPP needs to be changed as well if you're using a program such as skype.
-- You should keep the Linux slides consecutive (e.g. slides 6 
-    through 13) and the Windows slides consecutive (e.g. slides 14 through 21) 
-    so we're not jumping back and forth between two different OS as we're 
-    proceeding through the slides.
 
 Lab 1: 
 - more detail about git with NetBeans
@@ -93,16 +68,7 @@ Lab 1:
         $value variable
     7) PHP functions definitions do not specify the return type
 
-Tutorial 1b:
-- Slide 3 regarding the modification with the hosts file should have the warning 
-    on the same slide instead of 3 slides later. Although the warning did not 
-    help me, I thought I might add a suggestion to add to help others in the 
-    future. If even running notepad as an admin and changing permissions 
-    doesn't work (an error of read-only file), right click the file, 
-    select properties, and uncheck "read-only" has solved my problem
-- The VirtualHost port number in httpd-vhosts.conf needs to match the port 
-    number specified for Apache if you've changed it for XAMPP 
-    (e.g. "Listen 4711"), you should probably mention that in your slides.
+
 
 ------
 Week 2

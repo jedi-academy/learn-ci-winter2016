@@ -32,7 +32,7 @@ Tutorial 01a - XAMPP installation
     <slide title="Download XAMPP" layout="normal">
         <div class="left">
             <p>Get AMP from the <a href="http://www.apachefriends.org/en/xampp.html" target="_blank">
-                Apache Friends</a> website.</p>
+                    Apache Friends</a> website.</p>
             <p>I strongly recommend using XAMPP instead of other apparently suitable
                 packages, such as WAMPP or MAMPP. The other packages (and even some of
                 the AMP stacks built into Linux) often have less than intuitive folder and
@@ -56,15 +56,36 @@ Tutorial 01a - XAMPP installation
         </div>
     </slide>
 
-    <slide title="Run the Installer" layout="normal">
+    <slide title="Platform Specific Guides" layout="normal">
+        <p>At this point, you will switch to the tutorial part
+            most appropriate to your platform:</p>
+        <ol>
+            <li>
+                <a href="#{tag1}">Windows</a> ... <img src="/data/tutorials/pix/1a-40.png"/>
+            </li>
+            <li>
+                <a href="#{tag2}">Linux</a> ... <img src="/data/tutorials/pix/1a-30.png"/>
+            </li>
+            <li>
+                <a href="#{tag3}">Mac OSX</a> ... <img src="/data/tutorials/pix/1a-20.png"/>
+            </li>
+            <li>
+                <a href="#{tag4}">Jump to the post installation part if XAMPP has already been installed</a>
+            </li>
+        </ol>
+    </slide>
+
+    <!--
+        W I N D O W S
+    -->
+
+   <slide title="Run the Installer - Windows" layout="normal"  tag="tag1">
         <div class="left">
             <p>When you run the Windows installer, you will be prompted for
                 permission to execute it. This is normal and expected.</p>
             <p>You might get an additional anti-virus prompt, shown right.
                 We have not experienced difficulties proceeding.</p>
-            <p>On Linux, you need to change the installer's file
-                permissions to allow execution, before you can run it.</p>
-        </div>
+         </div>
         <div class="right">
             <img src="/data/tutorials/pix/1a-3w.png"/>
         </div>
@@ -81,18 +102,6 @@ Tutorial 01a - XAMPP installation
         </div>
     </slide>
 
-    <slide title="Component Selection - Linux" layout="normal">
-        <div class="left">
-            <p>The Linux installation has only two choices - the core XAMPP files
-                and the developer files, shown right.</p>
-            <p>You need the core files, but it is up to you whether to install
-                the developer files too.</p>
-        </div>
-        <div class="right">
-            <img src="/data/tutorials/pix/1a-7.png"/>
-        </div>
-    </slide>
-
     <slide title="Component Selection - Windows" layout="normal">
         <div class="left">
             <p>The Windows installation has more choices.</p>
@@ -102,16 +111,6 @@ Tutorial 01a - XAMPP installation
         </div>
         <div class="right">
             <img src="/data/tutorials/pix/1a-5w.png"/>
-        </div>
-    </slide>
-
-    <slide title="Installation Directory - Linux" layout="normal">
-        <div class="left">
-            <p>The Linux installer will put XAMPP into the /opt/lampp
-                folder. You have no choice.</p>
-        </div>
-        <div class="right">
-            <img src="/data/tutorials/pix/1a-8.png"/>
         </div>
     </slide>
 
@@ -143,14 +142,7 @@ Tutorial 01a - XAMPP installation
             privileges to save changes!</p>            
         </div>
         <div class="right">
-            <p>On Linux, Apache configuration settings files
-            are found in the "etc" folder inside your
-            XAMPP installation directory.</p>
-            <p>These can be edited through the XAMPP
-            control panel, or directly from your file
-            manager. You may need root
-            privileges to save changes!</p>            
-        </div>
+         </div>
     </slide>
 
     <slide title="Optional Components" layout="normal">
@@ -174,6 +166,107 @@ Tutorial 01a - XAMPP installation
                 We want to do that.</p>
             <p>On Windows, the XAMPP control panel can be accessed
                 later from the Start menu.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-12.png"/>
+        </div>
+    </slide>
+
+    <slide title="XAMPP Control Panel - Windows" layout="normal">
+        <div class="left">
+            <p>The Windows XAMPP Control Panel looks different than
+                the Linux one.</p>
+            <p>There is a "Service" column down the left.
+                Checking the box beside a module will have that
+                server run as a memory-resident service whenever
+                you login, consuming resources.</p>           
+                <p>You may now proceed to the <a href="#{tag4}">post-installation</a> part of this tutorial.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-11w.png"/>
+        </div>
+    </slide>
+
+    <!--
+        L I N U X
+    -->
+
+   <slide title="Run the Installer - Linux" layout="normal" tag="tag2">
+        <div class="left">
+            <p>On Linux, you need to change the installer's file
+                permissions to allow execution, before you can run it.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-3w.png"/>
+        </div>
+    </slide>
+
+    <slide title="Installer Initialization" layout="normal">
+        <div class="left">
+            <p>Once the installer has initialized, you should see a setup screen,
+                shown right. There are no options to select - it is safe to proceed.
+            </p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-5.png"/>
+        </div>
+    </slide>
+
+    <slide title="Component Selection - Linux" layout="normal">
+        <div class="left">
+            <p>The Linux installation has only two choices - the core XAMPP files
+                and the developer files, shown right.</p>
+            <p>You need the core files, but it is up to you whether to install
+                the developer files too.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-7.png"/>
+        </div>
+    </slide>
+
+   <slide title="Installation Directory - Linux" layout="normal">
+        <div class="left">
+            <p>The Linux installer will put XAMPP into the /opt/lampp
+                folder. You have no choice.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-8.png"/>
+        </div>
+    </slide>
+
+    <slide title="XAMPP Configuration..." layout="normal">
+        <div class="left">
+            <p>On Linux, Apache configuration settings files
+            are found in the "etc" folder inside your
+            XAMPP installation directory.</p>
+            <p>These can be edited through the XAMPP
+            control panel, or directly from your file
+            manager. You may need root
+            privileges to save changes!</p>            
+        </div>
+        <div class="right">
+        </div>
+    </slide>
+
+    <slide title="Optional Components" layout="normal">
+        <div class="left">
+            <p>Bitnami, the sponsor of the XAMPP installer, then
+                asks you to visit their site to download
+                optional packages to use with your XAMPP
+                installation.</p>
+            <p>These are not needed, and you can uncheck the 
+                checkbox in the center of the window.</p>            
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-9.png"/>
+        </div>
+    </slide>
+
+    <slide title="Starting the Control Panel" layout="normal">
+        <div class="left">
+            <p>If your installation is successful,
+                you will be prompted to start the XAMPP control panel.
+                We want to do that.</p>
             <p>On Linux, start the XAMPP control panel later
                 by running "manager-linux-x64.run" in the
                 /opt/lampp folder.</p>            
@@ -212,27 +305,36 @@ Tutorial 01a - XAMPP installation
             <p>Issues starting one of your hosts might require you
                 to examine host-specific log files in the
                 /opt/lampp/logs folder.</p>
+                <p>You may now proceed to the <a href="#{tag4}">post-installation</a> part of this tutorial.</p>
         </div>
         <div class="right">
             <img src="/data/tutorials/pix/1a-15.png"/>
         </div>
     </slide>
 
-    <slide title="XAMPP Control Panel - Windows" layout="normal">
+    <!--
+        M A C   O S X
+    -->
+
+   <slide title="Run the Installer - Mac OSX" layout="normal" tag="tag3">
         <div class="left">
-            <p>The Windows XAMPP Control Panel looks different than
-                the Linux one.</p>
-            <p>There is a "Service" column down the left.
-                Checking the box beside a module will have that
-                server run as a memory-resident service whenever
-                you login, consuming resources.</p>           
+            <p>I do not have step-by-step directions or screenshots for installing XAMPP on
+            MacOSX :(</p>
+            <p>One of the course trial users (thank you, Don Myers) suggested 
+                using <a href="https://www.mamp.info/en/">MAMP</a>
+            as an alternative to XAMPP, and he provided some screenshots for that.
+            Unfortunately, the free version of MAMP does not support virtual hosting,
+                so I have not included those screenshots here until I can
+                figure out a work-around.</p>
         </div>
         <div class="right">
-            <img src="/data/tutorials/pix/1a-11w.png"/>
-        </div>
+         </div>
     </slide>
 
-    <slide title="XAMPP Start Success" layout="normal">
+    <!--
+        POST INSTALLATION
+    -->
+   <slide title="XAMPP Start Success" layout="normal" tag="tag4">
         <div class="left">
             <p>Click the "Start" button beside a server to start it.
                 If the servers start successfully, they will
@@ -271,6 +373,8 @@ Tutorial 01a - XAMPP installation
                 If Apache still doesn't start, you have bigger problems and
                 will need to see me for help.
             </p>           
+            <p>Note: port 443 may have to be changed as well, if it is in use
+            by another program (such as Skype).</p>
         </div>
         <div class="right">
             About line 43:
@@ -316,6 +420,5 @@ Listen 80
             <img src="/data/tutorials/pix/1a-17.png"/>
         </div>
     </slide>
-
 
 </tutorial>
