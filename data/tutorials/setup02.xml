@@ -42,6 +42,8 @@ Tutorial 01b - Virtual Hosting Setup
                 On Windows, this will be found in 
                 "%SystemRoot%\system32\drivers\etc\hosts", shown right.
             </p>
+            <p>You may have to right click the file, 
+                select properties, and uncheck "read-only".</p>
         </div>
         <div class="right">
             <img src="/data/tutorials/pix/1b-1.png"/>
@@ -132,17 +134,22 @@ Tutorial 01b - Virtual Hosting Setup
                 in the configuration file, and it should use the ServerName
                 "localhost".
             </p>
+            <p>The VirtualHost port number in httpd-vhosts.conf needs to match the port 
+                number specified for Apache if you've changed it for XAMPP 
+                (e.g. "Listen 4711")</p>
         </div>
         <div class="right">
-            <pre><code>
+            <pre>
+                <code>
 &lt;VirtualHost *:80&gt;
-    ServerAdmin webmaster@dummy-host.example.com
-    DocumentRoot "c:/xampp/htdocs"
-    ServerName localhost
-    ErrorLog "logs/localhost-error_log"
-    CustomLog "logs/localhost-access_log" common
+                    ServerAdmin webmaster@dummy-host.example.com
+                    DocumentRoot "c:/xampp/htdocs"
+                    ServerName localhost
+                    ErrorLog "logs/localhost-error_log"
+                    CustomLog "logs/localhost-access_log" common
 &lt;/VirtualHost&gt;
-            </code></pre>
+                </code>
+            </pre>
         </div>
     </slide>
 
@@ -157,15 +164,17 @@ Tutorial 01b - Virtual Hosting Setup
                 error and access messages for each webapp.</p>
         </div>
         <div class="right">
-            <pre><code>
+            <pre>
+                <code>
 &lt;VirtualHost *:80&gt;
-    ServerAdmin webmaster@dummy-host.example.com
-    DocumentRoot "c:/xampp/htdocs"
-    ServerName localhost
-    ErrorLog "logs/localhost-error_log"
-    CustomLog "logs/localhost-access_log" common
+                    ServerAdmin webmaster@dummy-host.example.com
+                    DocumentRoot "c:/xampp/htdocs"
+                    ServerName localhost
+                    ErrorLog "logs/localhost-error_log"
+                    CustomLog "logs/localhost-access_log" common
 &lt;/VirtualHost&gt;
-            </code></pre>
+                </code>
+            </pre>
         </div>
     </slide>
 

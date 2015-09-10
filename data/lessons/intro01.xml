@@ -155,4 +155,16 @@ Lesson 01a - Introduction
         </div>
     </slide>
 
+    <slide title="CodeIgniter Examples" layout="normal">
+        <div class="left">
+            <p>The <a href="http://www.codeigniter.com/">CodeIgniter website</a> itself is (not surprisingly) implemented using CodeIgniter,
+            and it is <a href="https://github.com/bcit-ci/codeigniter-website">open-sourced</a>:)</p>
+            <img class="scale" width="600" height="458" src="/data/lessons/pix/1-8.png"/>
+        </div>
+        <div class="right">
+            <p>Another site implemented using CodeIgniter is the <a href="http://www.galianoisland.com/">Galiano Island tourism site</a>.</p>
+            <img class="scale" width="600" height="464" src="/data/lessons/pix/1-7.png"/>
+        </div>
+    </slide>
+
 </lesson>
