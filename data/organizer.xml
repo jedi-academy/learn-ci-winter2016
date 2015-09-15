@@ -15,10 +15,10 @@ Course organizer for Comp4711
     </week>
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
-<!--        <lesson type="lesson" name="lesson02" pdf="lesson02-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
+        <lesson type="lesson" name="basic01" pdf="basic01-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
         <github type="github" name="contacts" link="https://github.com/comp4711/example-contacts">Example webapp - contacts</github>
-        <lesson type="lesson" name="lesson02b" pdf="lesson02b-devops-workflow.pdf">Devops Workflow</lesson>
-        <tutorial type="tutorial" name="tutorial02a" pdf="tutorial02a-working-with-shared-repository.pdf">Working With a Shared Repository</tutorial>
+        <lesson type="lesson" name="dev01" pdf="dev01-devops-workflow.pdf">Devops Workflow</lesson>
+<!--        <tutorial type="tutorial" name="tutorial02a" pdf="tutorial02a-working-with-shared-repository.pdf">Working With a Shared Repository</tutorial>
         <tutorial type="tutorial" name="tutorial02b" pdf="tutorial02b-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
         <tutorial type="tutorial" name="tutorial02c" pdf="tutorial02c-convert-static-site-to-codeigniter.pdf">Convert Static Site to CodeIgniter</tutorial>
         <lab type="lab" name="lab02" duedate="2015.01.18 17:30" pdf="lab02-codeigniter-intro.pdf">CodeIgniter Intro</lab>
@@ -27,31 +27,31 @@ Course organizer for Comp4711
     </week>
     <week num="3">
         <topic>Controllers &amp; Routing</topic>
-<!--        <lesson type="lesson" name="lesson03" pdf="lesson03-controller-concepts.pdf">Controller Concepts</lesson>
-        <tutorial type="tutorial" name="tutorial03" pdf="tutorial03-codeigniter-controllers.pdf">CodeIgniter Controllers</tutorial>
+        <lesson type="lesson" name="basic02" pdf="basic02-controller-concepts.pdf">Controller Concepts</lesson>
+<!--        <tutorial type="tutorial" name="tutorial03" pdf="tutorial03-codeigniter-controllers.pdf">CodeIgniter Controllers</tutorial>
         <lab type="lab" name="lab03" duedate="2015.01.25 17:30" pdf="lab03-working-with-controllers.pdf">Working With Controllers</lab>
     -->
     </week>
     <week num="4">
         <topic>Models &amp; ORM</topic>
-<!--        <lesson type="lesson" name="lesson04" pdf="lesson04-models.pdf">Models</lesson>
-        <tutorial type="tutorial" name="">CodeIgniter Models - next week!</tutorial>
+        <lesson type="lesson" name="basic03" pdf="basic03-models.pdf">Models</lesson>
+<!--        <tutorial type="tutorial" name="">CodeIgniter Models - next week!</tutorial>
         <lab type="lab" name="" duedate="">Work on or complete assignment 1</lab>
         <assignment type="assignment" name="assignment1-faq" duedate="2015.01.31 23:59" pdf="assignment1-ass1-faq.pdf">FAQ for assignment 1</assignment>
     -->
     </week>
     <week num="5">
         <topic>Views &amp; Templating</topic>
-<!--        <lesson type="lesson" name="lesson05" pdf="lesson05-views.pdf">Views</lesson>
-        <github type="github" name="forms" link="https://github.com/comp4711/example-forms">Example webapp - forms</github>
+        <lesson type="lesson" name="basic04" pdf="basic04-views.pdf">Views</lesson>
+<!--        <github type="github" name="forms" link="https://github.com/comp4711/example-forms">Example webapp - forms</github>
         <tutorial type="tutorial" name="tutorial04" pdf="tutorial04-working-with-codeigniter-models.pdf">Working With CodeIgniter Models</tutorial>
         <lab type="lab" name="lab04" duedate="2015.02.11 17:30" pdf="lab04-models.pdf">Models</lab>
     -->
     </week>
     <week num="6">
         <topic>Helpers &amp; CSS / Javascript Integration</topic>
-<!--        <lesson type="lesson" name="lesson06" pdf="lesson06-helpers-and-addons.pdf">Helpers and Addons</lesson>
-        <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59" pdf="assignment2-functional-webapp.pdf">Functional Webapp writeup</assignment>
+        <lesson type="lesson" name="basic05" pdf="basic05-helpers-and-addons.pdf">Helpers and Addons</lesson>
+<!--        <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59" pdf="assignment2-functional-webapp.pdf">Functional Webapp writeup</assignment>
     -->
     </week>
     <week num="7">

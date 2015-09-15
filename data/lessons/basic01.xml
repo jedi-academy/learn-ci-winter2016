@@ -666,7 +666,7 @@ Kohana::modules(array(
         <p>NOTE: the starter project differs from the official CI download 
             in several ways: 
             base controller with templating,
-            simple "ORM: model,
+            simple "ORM" model,
             standard config for Apache</p>
     </slide>
 
