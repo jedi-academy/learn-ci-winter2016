@@ -48,6 +48,7 @@ Lesson 02 - MVC Framework Introduction
             and pre-built components that encourage or enforce
             good programming practices.</p>
         <p>CodeIgniter is one such framework.</p>
+        <p>Others include CakePHP, Fat-Free, FuelPHP, Kohana, Laravel, Symfony2, Yii and Zend</p>
     </slide>
 
     <slide title="Design Pattern Driven!" layout="normal">
@@ -155,8 +156,8 @@ Lesson 02 - MVC Framework Introduction
         <p>It uses the folder structure to locate classes (per MVC)</p>
         <pre>
             <code>
-$this->load->model('customers');
-$this->customers->get(...);
+                $this->load->model('customers');
+                $this->customers->get(...);
             </code>
         </pre>
         <p>It enforces naming conventions too.</p>
@@ -167,29 +168,30 @@ $this->customers->get(...);
             convention, i.e. using the URI segment and looking in the controllers
             folder.Other frameworks often handle routing a bit differently.</p>
         <div class="left">
-                <i>Kohana</i>
+            <i>Kohana</i>
             <pre>
                 <code>
-Route::set(‘default’, 
-    ‘(&lt;controller&gt;(/&lt;action&gt;(/&lt;id&gt;)))’)
-    ->defaults(array(
-        ‘controller’ =&gt; ‘welcome’, 
-        ‘action’=&gt;‘index’, ))
+                    Route::set(‘default’, 
+                    ‘(&lt;controller&gt;(/&lt;action&gt;(/&lt;id&gt;)))’)
+                        ->defaults(array(
+                    ‘controller’ =&gt; ‘welcome’, 
+                    ‘action’=&gt;‘index’, ))
                 </code>
             </pre>
         </div>
         <div class="right">
-                <i>Laravel</i>
+            <i>Laravel</i>
             <pre>
                 <code>
-//Basic POST Route
-Route::post(‘/’, function()
-{
-     	return ‘example content’;
-});
+                    //Basic POST Route
+                    Route::post(‘/’, function()
+                    {
+                         	return ‘example content’;
+                    });
                 </code>
             </pre>
         </div>
+        <p>The double-colon above denotes referencing a (static) method inside a class.</p>
     </slide>
 
     <slide title="Models" layout="normal" tag="tag2">
@@ -222,17 +224,17 @@ Route::post(‘/’, function()
         <div class="right">
             <pre>
                 <code>
-$this-&gt;db-&gt;select('*')-&gt;from('my_table')
-    -&gt;group_start()
-    -&gt;where('a', 'a')
-    -&gt;or_group_start()
-    -&gt;where('b', 'b')
-    -&gt;where('c', 'c')
-    -&gt;group_end()
-    -&gt;group_end()
-    -&gt;where('d', 'd')
-    -&gt;get();                
-</code>
+                    $this-&gt;db-&gt;select('*')-&gt;from('my_table')
+                    -&gt;group_start()
+                    -&gt;where('a', 'a')
+                    -&gt;or_group_start()
+                    -&gt;where('b', 'b')
+                    -&gt;where('c', 'c')
+                    -&gt;group_end()
+                    -&gt;group_end()
+                    -&gt;where('d', 'd')
+                    -&gt;get();                
+                </code>
             </pre>
         </div>
     </slide>
@@ -245,10 +247,10 @@ $this-&gt;db-&gt;select('*')-&gt;from('my_table')
         <div class="right">
             <pre>
                 <code>
-public class Orders extends CI_Model {
-    public function add_item($code, $quantity) {...}
-    public function calc_total() {...}
-}
+                    public class Orders extends CI_Model {
+                    public function add_item($code, $quantity) {...}
+                    public function calc_total() {...}
+                    }
                 </code>
             </pre>
         </div>
@@ -266,7 +268,10 @@ public class Orders extends CI_Model {
 
     <slide title="Base Model" layout="normal">
         <p>You can provide your own base model, MY_Model, with
-            common methods. See core/MY_Model in the example webapp.</p>
+            common methods. See core/MY_Model in the example webapp.
+            The application/core folder holds any classes you make that
+            build on those built into the framework, and you can configure the prefix (MY_)
+            that you use.</p>
         <p>This could be used to provide a simple object-relational map.</p>
         <p>Sample properties: $_tableName, $_keyField</p>
         <p>Sample methods: create() get($key), add($record), 
@@ -276,27 +281,27 @@ public class Orders extends CI_Model {
     <slide title="Other Model Examples" layout="normal">
         <p>Other frameworks have similar functionality.</p>
         <div class="left">
-                <i>Fat-Free</i>
+            <i>Fat-Free</i>
             <pre>
                 <code>
-$db = new DB\SQL('mysql:host=localhost';
-    port=3306;dbname=mystuff',
-    'myuserid','mypassword');
-$user = new DB\SQL\Mapper($db,'users');
-$user-&gt;load('id=1');
-$user-&gt;name='Pointy haired boss';
-$user-&gt;save();                 
+                    $db = new DB\SQL('mysql:host=localhost';
+                    port=3306;dbname=mystuff',
+                    'myuserid','mypassword');
+                    $user = new DB\SQL\Mapper($db,'users');
+                    $user-&gt;load('id=1');
+                    $user-&gt;name='Pointy haired boss';
+                    $user-&gt;save();                 
                 </code>
             </pre>
         </div>
         <div class="right">
-                <i>CakePHP</i>
+            <i>CakePHP</i>
             <pre>
                 <code>
-App::uses(’AppModel’, ’Model’);
-class Ingredient extends AppModel {
-    public $name = ’Ingredient’;
-}                
+                    App::uses(’AppModel’, ’Model’);
+                    class Ingredient extends AppModel {
+                    public $name = ’Ingredient’;
+                    }                
                 </code>
             </pre>
         </div>
@@ -336,62 +341,66 @@ class Ingredient extends AppModel {
     </slide>
 
     <slide title="Controller Methods" layout="normal">
-        <p>URLs are segment based</p>
-        <p>example.com/class/function/parm1/parm2</p>
-        <p>index() is the default handler function</p>
-        <p>Other functions are treated as sub-controllers</p>
-        <p>Parameters are passed positionally</p>
+        <p>URLs are segment based, with the pattern "example.com/class/function/parm1/parm2"</p>
+        <p>The index() method is the default handler function, while other public
+            methods are treated as sub-controllers</p>
+        <p>Parameters are passed positionally.</p>
+        <p>An example: given the URI "/products/shoes/sandals/123", the segments could
+        be interpreted as the controller (Products), method inside it (shoes), and
+        then two parameters passed to that method (sandals and 123).</p>
         <p>Confusion is possible ...
-            application/controllers/business/work</p>
+            application/controllers/business/work
+        refers to the Work controller inside the business subfolder
+        with the controllers!</p>
     </slide>
 
     <slide title="Example Base Controller" layout="normal">
         <p>core/MY_Controller.php</p>
         <pre>
             <code>
-class Application extends CI_Controller {
-// fields
+                class Application extends CI_Controller {
+                // fields
 
-function __construct() {
-    parent::__construct();
-    // make sure we play the game nicely
-    $this-&gt;load-&gt;helper('common');
-    $this-&gt;load-&gt;helper('url');
-}
+                function __construct() {
+                parent::__construct();
+                // make sure we play the game nicely
+                $this-&gt;load-&gt;helper('common');
+                $this-&gt;load-&gt;helper('url');
+                }
 
-function render() {...}
-}            
+                function render() {...}
+                }            
             </code>
         </pre>
     </slide>
 
     <slide title="Other Framework Examples" layout="normal">
         <div class="left">
-                <i>FuelPHP</i>
+            <i>FuelPHP</i>
             <pre>
                 <code>
-class Controller_Example extends Controller {
+                    class Controller_Example extends Controller {
 
-    public function action_index() {
-        $data['css'] = Asset::css(array
-            ('reset.css','960.css','main.css'));
-        return Response::forge(View::forge('welcome/index'));
-    }
-}
+                    public function action_index() {
+                    $data['css'] = Asset::css(array
+                    ('reset.css','960.css','main.css'));
+                    return Response::forge(View::forge('welcome/index'));
+                    }
+                    }
                 </code>
             </pre>
         </div>
         <div class="right">
-                <i>Laravel</i>
+            <i>Laravel</i>
             <pre>
                 <code>
-class Controller extends BaseController {
-    public function home() {
-        return View::make(‘home’);
-    }
-}                
-...                
-Route::get(‘/’, ‘Controller@home’)                
+                    class Controller extends BaseController {
+                    public function home() {
+                            return View::make(‘home’);
+                    }
+                    }                
+                    ...                
+                    Route::get(‘/’, ‘Controller@home’)                
                 </code>
             </pre>
         </div>
@@ -415,6 +424,9 @@ Route::get(‘/’, ‘Controller@home’)
         <p>A normal practice is to build a view template, 
             which wraps the "real" webpage body, whose name is 
             passed as a parameter; this is managed by the base controller</p>
+        <p>Such a template is meant to provide a consistent layout across
+            a number (perhaps all) of pages in your webapp, with
+            placeholders for the pieces appropriate to a given page.</p>
         <p>CI has a template parser built-in, which lets us 
             eliminate most PHP script from a view.</p>
         <p>See application/views/_template.php</p>
@@ -423,6 +435,9 @@ Route::get(‘/’, ‘Controller@home’)
     <slide title="View Fragments" layout="normal">
         <p>Each of your view fragments is stored in its own file, 
             using the substitution fields for passed parameters.</p>
+        <p>A view fragment provides a portion or piece of a complete
+            page. It is typically well-formed - a complete &lt;div&gt;
+            with any nested content.</p>
         <p>Substitution fields are enclosed in braces inside your view file.</p>
         <p>See application/views/homepage.php</p>
     </slide>
@@ -439,25 +454,25 @@ Route::get(‘/’, ‘Controller@home’)
     <slide title="View Examples From Other Frameworks" layout="normal">
         <p>Other frameworks have similar functionality.</p>
         <div class="left">
-                <i>Fat-Free</i>
+            <i>Fat-Free</i>
             <pre>
                 <code>
-$f3-&gt;set('name','Jim');
-$f3-&gt;set('title','Sir');
-...
-$view = new Template;
-echo $view-&gt;render('template.html');
+                    $f3-&gt;set('name','Jim');
+                    $f3-&gt;set('title','Sir');
+                    ...
+                    $view = new Template;
+                    echo $view-&gt;render('template.html');
 
-where the HTML fragment includes
-... &lt;p&gt;Hello {{ @title }} {{ @name }}&lt;/p&gt;
+                    where the HTML fragment includes
+                    ... &lt;p&gt;Hello {{ @title }} {{ @name }}&lt;/p&gt;
                 </code>
             </pre>
         </div>
         <div class="right">
-                <i>FuelPHP</i>
+            <i>FuelPHP</i>
             <pre>
                 <code>
-fuel/app/views/layout.php ...
+                    fuel/app/views/layout.php ...
 &lt;html&gt;
     &lt;head&gt;
         &lt;?php echo $head; ?&gt;
@@ -518,7 +533,7 @@ fuel/app/views/layout.php ...
             </ul>
         </div>
         <div class="right">
-            <p>Symfony</p>
+            <p>Symfony2</p>
             <ul>
                 <li>Browserkit</li>
                 <li>Config</li>
@@ -568,25 +583,25 @@ fuel/app/views/layout.php ...
     <slide title="Utilities Examples" layout="normal" >
         <p>Many frameworks come with bundled utilities.</p>
         <div class="left">
-                <i>Yii</i>
+            <i>Yii</i>
             <br/>
             <img class="scale" width="337" height="268" src="/data/lessons/pix/2-15.png"/>
         </div>
         <div class="right">
-                <i>FuelPHP</i>
+            <i>FuelPHP</i>
             <p>
                 <pre>
                     <code>
-$ php oil g scaffold monkey name:string description:text
+                        $ php oil g scaffold monkey name:string description:text
 
-Created model: APPPATH/classes/model/monkey.php
-Created migration: APPPATH/migrations/003_create_monkeys.php
-Created controller: APPPATH/classes/controller/monkeys.php
-Created view: APPPATH/views/monkeys/index.php
-Created view: APPPATH/views/monkeys/view.php
-Created view: APPPATH/views/monkeys/create.php
-Created view: APPPATH/views/monkeys/edit.php
-Created view: APPPATH/views/monkeys/_form.php                    
+                        Created model: APPPATH/classes/model/monkey.php
+                        Created migration: APPPATH/migrations/003_create_monkeys.php
+                        Created controller: APPPATH/classes/controller/monkeys.php
+                        Created view: APPPATH/views/monkeys/index.php
+                        Created view: APPPATH/views/monkeys/view.php
+                        Created view: APPPATH/views/monkeys/create.php
+                        Created view: APPPATH/views/monkeys/edit.php
+                        Created view: APPPATH/views/monkeys/_form.php                    
                     </code>
                 </pre>
             </p>
@@ -617,38 +632,38 @@ Created view: APPPATH/views/monkeys/_form.php
 
     <slide title="Configuration Examples From Other Frameworks" layout="normal" >
         <div class="left">
-                <i>Laravel</i>
-                <pre>
-                    <code>
-composer create-project laravel/laravel project_name --prefer-dist
-Composer.json:
-"require": {
-    "laravel/framework": "4.1.*",
-    "intervention/image": "1.*"
-}
+            <i>Laravel</i>
+            <pre>
+                <code>
+                    composer create-project laravel/laravel project_name --prefer-dist
+                    Composer.json:
+                    "require": {
+                    "laravel/framework": "4.1.*",
+                    "intervention/image": "1.*"
+                    }
 
-Composer update
-                    </code>
-                </pre>
+                    Composer update
+                </code>
+            </pre>
         </div>
         <div class="right">
-                <i>Kohana</i>
-                <pre>
-                    <code>
-Kohana::modules(array(
-   'auth'   	=&gt; MODPATH.'auth',   	// Basic authentication
-   'cache'  	=&gt; MODPATH.'cache',  	// Caching with multiple backends
-   'codebench'  =&gt; MODPATH.'codebench',  // Benchmarking tool
-   'database'   =&gt; MODPATH.'database',   // Database access
-   'image'  	=&gt; MODPATH.'image',  	// Image manipulation
-   'orm'    	=&gt; MODPATH.'orm',    	// Object Relationship Mapping
-   'oauth'  	=&gt; MODPATH.'oauth',  	// OAuth authentication
-   'pagination' =&gt; MODPATH.'pagination', // Paging of results
-   'unittest'   =&gt; MODPATH.'unittest',   // Unit testing
-   'userguide'  =&gt; MODPATH.'userguide',  // User guide and API documentation
-   ));
-                    </code>
-                </pre>
+            <i>Kohana</i>
+            <pre>
+                <code>
+                    Kohana::modules(array(
+                       'auth'   	=&gt; MODPATH.'auth',   	// Basic authentication
+                       'cache'  	=&gt; MODPATH.'cache',  	// Caching with multiple backends
+                       'codebench'  =&gt; MODPATH.'codebench',  // Benchmarking tool
+                       'database'   =&gt; MODPATH.'database',   // Database access
+                       'image'  	=&gt; MODPATH.'image',  	// Image manipulation
+                       'orm'    	=&gt; MODPATH.'orm',    	// Object Relationship Mapping
+                       'oauth'  	=&gt; MODPATH.'oauth',  	// OAuth authentication
+                       'pagination' =&gt; MODPATH.'pagination', // Paging of results
+                       'unittest'   =&gt; MODPATH.'unittest',   // Unit testing
+                       'userguide'  =&gt; MODPATH.'userguide',  // User guide and API documentation
+                       ));
+                </code>
+            </pre>
         </div>
     </slide>
 
@@ -657,6 +672,10 @@ Kohana::modules(array(
         <p>This is a simplified look at where stuff goes inside
             your webapp, and the general steps you would follow
             to build a simple CodeIgniter webapp.</p>
+            <p>The six slides that follow are *not* the tutorial,
+            but a summary of the tutorial set that you will
+            follow to convert a static website into a
+            CodeIgniter webapp!</p>
     </slide>
 
     <slide title="Your Folder Structure" layout="normal">
@@ -684,7 +703,7 @@ Kohana::modules(array(
     </slide>
 
     <slide title="Setup Your View Template" layout="normal">
-        <p>Make a wireframe model for the website.</p>
+        <p>Make or visualize a wireframe model for the website.</p>
         <p>Tailor views/_template.php to match it</p>
         <p>This template contains only the common page elements for the site, 
             with substitutable fields for the menu and content.</p>
