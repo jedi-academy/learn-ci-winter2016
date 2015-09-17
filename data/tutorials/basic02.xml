@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 02c - Convert static site into CI webapp
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial will walk you through converting a trivial webapp
+(the result of completing tutorial "basic01" into a basic CodeIgniter webapp.</p>
+        <p>The approach taken is not the only one possible, or even the best one,
+            but it suits "baby steps".</p>
+              
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
+    </slide>
+
+   <slide title="What Do You Have?" layout="normal">
+       <div class="left">
+            <p>The trivial website looks the same as the original,
+            but it has been partially transformed.</p>
+            <p>In this tutorial, we will take the website to the next level.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="287" src="/data/tutorials/pix/2-55.png"/>
+        </div>
+    </slide>
+
+    <slide title="Build a Master View Template" layout="normal">
+        <div class="left">
+            <p>Eliminate duplicate code in our views by extracting
+                the common opening and closing HTML into views/template.php.</p>
+            <p>Let's do that, and add a placeholder, "{content}", which will
+                get substituted appropriately in our next tutorial step.
+                Add another placeholder, "{pagetitle}", for the page title.</p>
+            <p>I would do this by copying the about view, renaming it
+                to "template.php", and then zapping its middle.</p>            
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="432" src="/data/tutorials/pix/2-40.png"/>
+        </div>
+    </slide>
+
+    <slide title="Simplify Our Views" layout="normal">
+        <div class="left">
+            <p>We can now eliminate the common opening and closing HTML
+                from our three original views, leaving just the "meat".</p>
+            <p>Our revised views/welcome.php is shown to the right.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="285" src="/data/tutorials/pix/2-41.png"/>
+        </div>
+    </slide>
+
+    <slide title="Is This Better?" layout="normal">
+        <div class="left">
+            <p>The site still "works", but looks funny without the 
+                proper styling :-/</p>
+            <p>We will fix that next!</p>                
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="295" src="/data/tutorials/pix/2-42.png"/>
+        </div>
+    </slide>
+
+    <slide title="Build a base controller" layout="normal">
+        <div class="left">
+            <p>We will make a base controller to pull the view pieces
+                together consistently, using our template.</p>
+            <p>This will be similar to the one referenced in lesson 2,
+                from the contacts sample webapp.
+                Copy yours from the contacts project to core/MY_Controller.php
+                inside your lab 2 project.</p>
+            <p>Fix the menu to suit our app, and change the ['title']
+                reference to ['pagetitle'], to match what we already setup in 
+                our template.</p>
+                <p>Note: in the render() method, the parse() method should pass
+                the name you used for your template, either "template" or"_template".</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="556" src="/data/tutorials/pix/2-43.png"/>
+        </div>
+    </slide>
+ 
+    <slide title="Apply our base controller" layout="normal">
+        <div class="left">
+            <p>Modify our three controllers to extend our base controller,
+                Application, instead of CI_Controller. </p>
+            <p>In these controllers, instead of $this-&gt;load->view('x')
+                we should set a view parameter instead, and invoke the
+                render method of the base controller.</p>
+            <p>$this-&gt;data['pagebody'] = 'x'; $this-&gt;render();</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="389" height="240" src="/data/tutorials/pix/2-44.png"/>
+        </div>
+    </slide>
+ 
+    <slide title="What Do You Think Now?" layout="normal">
+        <div class="left">
+            <p>We also need to copy the common_helper
+                from the contacts starter, so we can use its build_menu function.
+            Copy application/helpers/common_helper.php from the example-contacts
+            folder (last week) into the same place inside your current project.</p>
+            <p>We should autoload the common and url helpers, and the parser library,
+                since they are used in Application.
+            </p>
+            <p>Looking better, although the
+                image references are still hard-coded.
+                We'll fix that next.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="285" src="/data/tutorials/pix/2-45.png"/>
+            <br/>
+            <img class="scale" width="416" height="46" src="/data/tutorials/pix/2-45b.png"/>
+        </div>
+    </slide>
+ 
+    <slide title="Are We There Yet?" layout="normal">
+        <div class="left">
+            <p>The site is looking the same as when we started, but it is
+                constructed very differently internally.</p>
+                <p>The next tutorial will add a database-driven model to make
+                the content dynamic.</p>
+            <p>This would be an appropriate point to push your local changes
+            to your github repo.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="287" src="/data/tutorials/pix/2-55.png"/>
+        </div>
+    </slide>
+
+   
+</tutorial>

@@ -9,6 +9,9 @@ Tutorial 02b - Setting up CodeIgniter
     <slide title="Tutorial Goals" layout="normal">
         <p>This tutorial will walk you through setting up CodeIgniter
             for use with multiple webapps on your computer.</p>
+            <p>Instead of bundling the CodeIgniter framework with
+            each webapp, we will split the downloaded CodeIgniter
+            into 2 or even 3 folders</p>
         <p>Suggestion: you may want to skim the slideshow first,
             before working your way through it.</p>
     </slide>
@@ -18,10 +21,12 @@ Tutorial 02b - Setting up CodeIgniter
             <p>Download CodeIgniter 3 from the project's 
                 <a href="http://www.codeigniter.com/download" target="_blank">download page</a>
             </p>
-            <p>There may be two versions of CodeIgniter 3: the "stable" one and the 
+            <p>There may be two versions of CodeIgniter3: the "stable" one and the 
                 "develop" branch. If so, the stable one will have the user guide
                 pre-built, while the develop one will have the source for the user
                 guide (build it yourself) and unit tests.</p>
+                <p>The "develop" branch is the latest and greatest, though parts of
+                it might be experimental.</p>
         </div>
         <div class="right">
             <br/>
@@ -57,6 +62,8 @@ Tutorial 02b - Setting up CodeIgniter
             <p>If you downloaded the "release" version of CodeIgniter 3,
                 I suggest moving the user guide subfolder into a convenient
                 location on your system, for instance your desktop.</p>
+                <p>If you downloaded the "develop" version, you might find
+                it easier to acccess the user guide online.</p>
         </div>
         <div class="right">
             <br/>

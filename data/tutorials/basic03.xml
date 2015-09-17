@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 02c - Convert static site into CI webapp
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial will walk you through converting a basic CodeIgniter 
+            into a "good" one.</p>
+        <p>The approach taken is not the only one possible, or even the best one,
+            but it suits "baby steps".</p>
+              
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
+    </slide>
+
+    <slide title="Add a Model?" layout="normal">
+        <div class="left">
+            <p>We already have a SQL script in the data/setup folder of our starter.
+                How convenient! It's like someone planned to use a database eventually :-/</p>
+            <p>The first step is to create a database, and import the data/setup/images.sql
+                script to create a table we can then use. This can be done using phpMyAdmin,
+            or by using the database browser inside NetBeans.</p>
+            <p>In config/autoload.php, we should add the database library, 
+                and in config/database.php you should adjust your settings for your
+                system.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="365" height="432" src="/data/tutorials/pix/2-46.png"/>
+            <br/>
+            <img class="scale" width="471" height="44" src="/data/tutorials/pix/2-46b.png"/>
+        </div>
+    </slide>
+
+    <slide title="Now We Can Add a Model" layout="normal">
+        <div class="left">
+            <p>The contacts example had a base model, but that feels like
+                overkill for this simple app. We only need two methods in
+                our model: get all images, ordered properly, and get
+                the three newest images.</p>
+            <p>Of course, if you want a complete MY_Model in your starter
+                app, for convenience, feel free to use that here.</p>
+            <p>We just need a simple model, which I suggest calling "Images".
+                It is used on most of our pages, hence is safe to autoload in
+                our configuration.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="398" height="242" src="/data/tutorials/pix/2-47.png"/>
+            <br/> 
+            <img class="scale" width="343" height="50" src="/data/tutorials/pix/2-47b.png"/>
+        </div>
+    </slide>
+
+    <slide title="Revisit the gallery page" layout="normal">
+        <div class="left">
+            <p>Instead of hard-coding image names like the original static site,
+                we can generate the HTML for those programmatically, in our
+                Gallery controller.</p>
+            <p>We will need to add a suitable method to our Images model to
+                provide all of the image data. Let's call it *all()*, and have 
+                it return an array of images, in reverse posting order
+                (newest ones first).</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="488" height="336" src="/data/tutorials/pix/2-48.png"/>
+        </div>
+    </slide>
+
+    <slide title="Let's Handle a Single Image" layout="normal">
+        <div class="left">
+            <p>We can make a view fragment to handle the HTML
+                for a single image.</p>
+            <p>Copy the code for one image table cell,
+                and tailor it to use the appropriate field names
+                from our database as substitution fields.</p>
+            <p>Save this as views/_cell.php. The underscore at the
+                front of the name reinforces that this is for internal
+                use.</p>
+            <p>Notice that there is no PHP in the view fragment.</p>
+        </div>
+        <div class="right">
+            <br/> 
+            <img class="scale" width="600" height="174" src="/data/tutorials/pix/2-49.png"/>
+        </div>
+    </slide>
+
+    <slide title="Let's Generate Our Gallery" layout="normal">
+        <div class="left">
+            <p>We can use the HTML table class to generate the HTML
+                for our table now. This logic would go inside our Gallery controller.</p>
+        </div>
+        <div class="right">
+            <br/> 
+            <img class="scale" width="600" height="563" src="/data/tutorials/pix/2-50.png"/>
+        </div>
+    </slide>
+
+    <slide title="What Does It Look Like?" layout="normal">
+        <div class="left">
+            <p>Can you see a difference?</p>
+        </div>
+        <div class="right">
+            <br/> 
+            <img class="scale" width="600" height="164" src="/data/tutorials/pix/2-51.png"/>
+        </div>
+    </slide>
+
+    <slide title="Revisit the Homepage" layout="normal">
+        <div class="left">
+            <p>The homepage shows the 3 most recent images posted. 
+                This is very similar to the gallery, and we can
+                leverage what we did for it.</p>
+            <p>Add a newest() method to our model, which just returns
+                the 3 newest images.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="474" height="467" src="/data/tutorials/pix/2-52.png"/>
+        </div>
+    </slide>
+
+    <slide title="Fix the Homepage View" layout="normal">
+        <div class="left">
+            <p>Adjust the "welcome" view, the same way
+                we changed the "gallery" view.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="595" height="103" src="/data/tutorials/pix/2-53.png"/>
+        </div>
+    </slide>
+
+    <slide title="Fix the Homepage Controller" layout="normal">
+        <div class="left">
+            <p>Finally, update the "Welcome" controller, similarly
+                to the Gallery one.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="538" src="/data/tutorials/pix/2-54.png"/>
+        </div>
+    </slide>
+
+    <slide title="Are We There Yet?" layout="normal">
+        <div class="left">
+            <p>We are indeed there:)</p>
+            <p>We have successfully converted a static website into a
+                CodeIgniter webapp.</p>
+            <p>There are many efficiencies that could be achieved
+                with re-factoring, but the idea and the process should be clear.</p>
+            <p>This would be an appropriate point to push your local changes
+            to your github repo.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="287" src="/data/tutorials/pix/2-55.png"/>
+        </div>
+    </slide>
+
+   
+</tutorial>
