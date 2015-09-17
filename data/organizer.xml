@@ -18,18 +18,19 @@ Course organizer for Comp4711
         <lesson type="lesson" name="basic01" pdf="basic01-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
         <github type="github" name="contacts" link="https://github.com/comp4711/example-contacts">Example webapp - contacts</github>
         <lesson type="lesson" name="dev01" pdf="dev01-devops-workflow.pdf">Devops Workflow</lesson>
-<!--        <tutorial type="tutorial" name="tutorial02a" pdf="tutorial02a-working-with-shared-repository.pdf">Working With a Shared Repository</tutorial>
-        <tutorial type="tutorial" name="tutorial02b" pdf="tutorial02b-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
-        <tutorial type="tutorial" name="tutorial02c" pdf="tutorial02c-convert-static-site-to-codeigniter.pdf">Convert Static Site to CodeIgniter</tutorial>
-        <lab type="lab" name="lab02" duedate="2015.01.18 17:30" pdf="lab02-codeigniter-intro.pdf">CodeIgniter Intro</lab>
-        <assignment type="assignment" name="assignment1" duedate="2015.01.31 23:59" pdf="assignment1-basic-webapp.pdf">Basic Webapp</assignment>
-    -->
+        <tutorial type="tutorial" name="setup04" pdf="setup04-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
+        <tutorial type="tutorial" name="basic01" pdf="basic01-convert-static-site-to-trivial-codeigniter.pdf">Convert Static Site to Trivial CodeIgniter</tutorial>
+        <tutorial type="tutorial" name="basic02" pdf="basic02-convert-trivial-site-to-basic-codeigniter.pdf">Convert Trivial Site to Basic CodeIgniter</tutorial>
+        <tutorial type="tutorial" name="basic03" pdf="basic03-convert-basic-site-to-good-codeigniter.pdf">Convert Basic Site to Good CodeIgniter</tutorial>
+        <lab type="lab" name="lab02" duedate="2015.09.20 17:30" pdf="lab02-codeigniter-intro.pdf">CodeIgniter Intro</lab>
+<!--    -->
     </week>
     <week num="3">
         <topic>Controllers &amp; Routing</topic>
         <lesson type="lesson" name="basic02" pdf="basic02-controller-concepts.pdf">Controller Concepts</lesson>
 <!--        <tutorial type="tutorial" name="tutorial03" pdf="tutorial03-codeigniter-controllers.pdf">CodeIgniter Controllers</tutorial>
         <lab type="lab" name="lab03" duedate="2015.01.25 17:30" pdf="lab03-working-with-controllers.pdf">Working With Controllers</lab>
+        <assignment type="assignment" name="assignment1" duedate="2015.01.31 23:59" pdf="assignment1-basic-webapp.pdf">Basic Webapp</assignment>
     -->
     </week>
     <week num="4">
