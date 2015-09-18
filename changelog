@@ -13,46 +13,4 @@ Webapp Changes
 Course Changes
 **************
 
-2015.02.25
-- prepped bunches more
-- incorporated feedback thru week 7
-- remembered to update the changelog :-/
-- added PDFs for downloading
-- disabled "notes" key, which was triggering bunches of popup windows
-
-2015.01.24
-- incorporate week 3 feedback
-- added an FAQ
-
-2015.01.18-19
-- incorporate week 3 feedback
-- first cut at week 3 material
-
-2015.01.12-13
-- add & update week 2 materials
-
-2015.01.10
-- added status attribute to slide decks
-- lesson 2: basic conversion done
-
-2015.01.09
-- more corrections
-- added links to end of activity "congrats" page
-- determined next activity in sequence, and added link to it on the congrats page
-- removed lolcats references in lesson 1a
-- split lesson 1a into in-class only (00) and online lessons (01a)
-- revamped the CI slide in lesson 1a, to make the intent clearer
-- added better explanation in tutorial 1a for configuration folders
-- added linking ability between slides (eg for agenda)
-- started lesson 2 for testing this
-
-2015.01.08
-- corrections to lab 1
-
-2015.01.07
-- Lab 1: added Git cloning help, first Git commit help (JLP)
-- Lab 1: cleaned up pages at end of presentation (JLP)
-- corrected typos & incorporated feedback suggestions
-- turned off the slide transitions
-- modified external hrefs so they open in new tab/window
-- renamed the XML documents, for readability
+2015.09 Data being restructured.
