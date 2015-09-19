@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 01a - XAMPP installation
+//TODO Mention changing ports in virtual hosts too
+//TODO config vs services option in XAMPP CP
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial will walk you through setting up XAMPP, 
+            for testing your webapps.</p>
+        <p>The first time through may take a bit, especially resolving 
+            port conflicts. Once you have done this a few times, it will
+            be no big deal to setup a fresh installation of XAMPP
+            on whatever computer you have available to work on!</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
+    </slide>
+
+    <slide title="Do you Need XAMPP?" layout="normal">
+        <p>AMP = Apache + MYSQL + PHP (&amp; perl)</p>
+        <p>IF you are already familiar with AMP,<br/>
+            AND you have a working AMP stack on your machine,<br/>
+            AND you know how to configure and manage it, specifically virtual hosts,<br/>
+            AND you plan to have with you in lab a machine with this or access to it,<br/>
+            THEN skip to the next tutorial.
+        </p>
+    </slide>
+
+    <slide title="Download XAMPP" layout="normal">
+        <div class="left">
+            <p>Get AMP from the <a href="http://www.apachefriends.org/en/xampp.html" target="_blank">
+                Apache Friends</a> website.</p>
+            <p>I strongly recommend using XAMPP instead of other apparently suitable
+                packages, such as WAMPP or MAMPP. The other packages (and even some of
+                the AMP stacks built into Linux) often have less than intuitive folder and
+                configuration conventions, and I may not be able to help you with them.
+            </p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Heed the FAQ" layout="normal">
+        <div class="left">
+            <p>Do read the appropriate FAQ page on
+                apachefriends.org. It can help you overcome some of the more
+                common obstacles.
+            </p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-4.png"/>
+        </div>
+    </slide>
+
+    <slide title="Run the Installer" layout="normal">
+        <div class="left">
+            <p>When you run the Windows installer, you will be prompted for
+                permission to execute it. This is normal and expected.</p>
+            <p>You might get an additional anti-virus prompt, shown right.
+                We have not experienced difficulties proceeding.</p>
+            <p>On Linux, you need to change the installer's file
+                permissions to allow execution, before you can run it.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-3w.png"/>
+        </div>
+    </slide>
+
+    <slide title="Installer Initialization" layout="normal">
+        <div class="left">
+            <p>Once the installer has initialized, you should see a setup screen,
+                shown right. There are no options to select - it is safe to proceed.
+            </p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-5.png"/>
+        </div>
+    </slide>
+
+    <slide title="Component Selection - Linux" layout="normal">
+        <div class="left">
+            <p>The Linux installation has only two choices - the core XAMPP files
+                and the developer files, shown right.</p>
+            <p>You need the core files, but it is up to you whether to install
+                the developer files too.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-7.png"/>
+        </div>
+    </slide>
+
+    <slide title="Component Selection - Windows" layout="normal">
+        <div class="left">
+            <p>The Windows installation has more choices.</p>
+            <p>You only need to select MySQL and phpMyAdmin,
+                as shown to the right. Uncheck the others
+                unless you want to play with them.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-5w.png"/>
+        </div>
+    </slide>
+
+    <slide title="Installation Directory - Linux" layout="normal">
+        <div class="left">
+            <p>The Linux installer will put XAMPP into the /opt/lampp
+                folder. You have no choice.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-8.png"/>
+        </div>
+    </slide>
+
+    <slide title="Installation Directory - Windows" layout="normal">
+        <div class="left">
+            <p>The Windows installer lets you choose the folder to
+                install XAMPP into.</p>
+            <p>I suggest using the default installation folder.
+                If you want to install it somewhere else, make sure you do 
+                not end up with it installed somewhere where the fully
+                qualified pathname would include spaces 
+                (eg "~/My Documents/..."), as that will
+                cause issues with some of the tools later.
+            </p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-6w.png"/>
+        </div>
+    </slide>
+
+    <slide title="XAMPP Configuration..." layout="normal">
+        <div class="left">
+            <p>On Windows, Apache configuration settings files
+            are found in the "apache/conf" folder inside your
+            XAMPP installation directory.</p>
+            <p>These can be edited through the XAMPP
+            control panel, or directly from your file
+            manager. You may need administrator
+            privileges to save changes!</p>            
+        </div>
+        <div class="right">
+            <p>On Linux, Apache configuration settings files
+            are found in the "etc" folder inside your
+            XAMPP installation directory.</p>
+            <p>These can be edited through the XAMPP
+            control panel, or directly from your file
+            manager. You may need root
+            privileges to save changes!</p>            
+        </div>
+    </slide>
+
+    <slide title="Optional Components" layout="normal">
+        <div class="left">
+            <p>Bitnami, the sponsor of the XAMPP installer, then
+                asks you to visit their site to download
+                optional packages to use with your XAMPP
+                installation.</p>
+            <p>These are not needed, and you can uncheck the 
+                checkbox in the center of the window.</p>            
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-9.png"/>
+        </div>
+    </slide>
+
+    <slide title="Starting the Control Panel" layout="normal">
+        <div class="left">
+            <p>If your installation is successful,
+                you will be prompted to start the XAMPP control panel.
+                We want to do that.</p>
+            <p>On Windows, the XAMPP control panel can be accessed
+                later from the Start menu.</p>
+            <p>On Linux, start the XAMPP control panel later
+                by running "manager-linux-x64.run" in the
+                /opt/lampp folder.</p>            
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-12.png"/>
+        </div>
+    </slide>
+
+    <slide title="XAMPP CP Start - Linux" layout="normal">
+        <div class="left">
+            <p>The Linux XAMPP Control Panel has a start screen, shown
+                right.</p>           
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-13.png"/>
+        </div>
+    </slide>
+
+
+    <slide title="XAMPP CP Manager - Linux" layout="normal">
+        <div class="left">
+            <p>You will need to select the "Manage Servers" tab to actually
+                get to the manager controls. Their use should
+                be intuitive.</p>           
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-14.png"/>
+        </div>
+    </slide>
+
+    <slide title="XAMPP CP Logs - Linux" layout="normal">
+        <div class="left">
+            <p>If your XAMPP does not start, you can check the Apache log file
+                using the "Application Log" tab of the CP.</p>           
+            <p>Issues starting one of your hosts might require you
+                to examine host-specific log files in the
+                /opt/lampp/logs folder.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-15.png"/>
+        </div>
+    </slide>
+
+    <slide title="XAMPP Control Panel - Windows" layout="normal">
+        <div class="left">
+            <p>The Windows XAMPP Control Panel looks different than
+                the Linux one.</p>
+            <p>There is a "Service" column down the left.
+                Checking the box beside a module will have that
+                server run as a memory-resident service whenever
+                you login, consuming resources.</p>           
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-11w.png"/>
+        </div>
+    </slide>
+
+    <slide title="XAMPP Start Success" layout="normal">
+        <div class="left">
+            <p>Click the "Start" button beside a server to start it.
+                If the servers start successfully, they will
+                be highlighted in green, and the ports used shown.</p>           
+            <p>The Linux CP is a bit different, using
+                colored buttons, but the intent is the same.</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-12w.png"/>
+        </div>
+    </slide>
+
+    <slide title="XAMPP Start Failure" layout="normal">
+        <div class="left">
+            <p>If the servers cannot start, it is almost always
+                because of a port conflict - some other program is using 
+                port 80, the default.
+                Such programs include IIS, Oracle and
+                Skype.
+            </p>
+            <p>You have two choices – kill the other program(s) or use 
+                a different port for Apache.
+            </p>           
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-20w.png"/>
+        </div>
+    </slide>
+
+    <slide title="Apache Server Port" layout="normal">
+        <div class="left">
+            <p>
+                If you want to use a different port, tailor xampp/etc/httpd.conf. 
+                There is a “Listen 80” directive, around line 52.
+                Replace “80” with an unused port, for instance “4711”.
+                If Apache still doesn't start, you have bigger problems and
+                will need to see me for help.
+            </p>           
+        </div>
+        <div class="right">
+            About line 43:
+            <pre>
+                <code>
+#
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, instead of the default. See also the &lt;VirtualHost&gt;
+# directive.
+#
+# Change this to Listen on specific IP addresses as shown below to 
+# prevent Apache from glomming onto all bound IP addresses.
+#
+#Listen 12.34.56.78:80
+Listen 80
+                </code>
+            </pre>
+        </div>
+    </slide>
+
+    <slide title="Are We There Yet?" layout="normal">
+        <div class="left">
+            <p>In your browser, open the location "localhost". You should
+                see the XAMPP splash screen, right.</p>           
+            <p>If you changed the port in order to get Apache to start,
+                remember to specify that in the URL too, eg. "localhost:4711"</p>
+            <p>Some browsers may still require that you specify the protocol
+                in your URL, eg. "http://localhost".</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-16.png"/>
+        </div>
+    </slide>
+
+    <slide title="Now We're There" layout="normal">
+        <div class="left">
+            <p>Selecting the language of your choice on the XAMPP
+                splash screen will take you to the XAMPP homepage,
+                shown right. </p>
+            <p>You should not see the splash page again :)</p>
+        </div>
+        <div class="right">
+            <img src="/data/tutorials/pix/1a-17.png"/>
+        </div>
+    </slide>
+
+
+</tutorial>

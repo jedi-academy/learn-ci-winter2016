@@ -24,7 +24,9 @@ Tutorial 02c - Convert static site into CI webapp
             </p>
             <p>You can clone it to any folder inside your htdocs, as long as
                 you have a virtual host mapping to it for testing.
-                I will assume "comp4711.local" for this writeup.</p>
+                I will assume "comp4711.local" for this writeup.
+            If you want to change the destination folder name, that will be the "project name"
+            on the third dialog in the git clone wizard of NetBeans.</p>
         </div>
         <div class="right">
             <br/>
@@ -155,7 +157,8 @@ Tutorial 02c - Convert static site into CI webapp
         <div class="left">
             <p>Yay, our site *looks* better, but what about the menu? It still
                 refers to the original HTML files. Fix this by changing the menu links to refer to our CI controllers
-                instead. Apply this change to each of our three views.</p>
+                instead. Apply this change to each of our three views.
+            These menu links will be found inside the views/template.php</p>
             <p>Notice that the homepage is referred to as just "/", and that
                 each of the other references start with a slash.</p>
         </div>
