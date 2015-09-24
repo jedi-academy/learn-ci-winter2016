@@ -75,8 +75,7 @@ Tutorial 02c - Convert static site into CI webapp
             <p>Fix the menu to suit our app, and change the ['title']
                 reference to ['pagetitle'], to match what we already setup in 
                 our template.</p>
-                <p>Note: in the render() method, the parse() method should pass
-                the name you used for your template, either "template" or"_template".</p>
+                <p>Note: Your webapp will not run yet - more to fix!</p>
         </div>
         <div class="right">
             <img class="scale" width="600" height="556" src="/data/tutorials/pix/2-43.png"/>
