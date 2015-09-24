@@ -20,50 +20,50 @@ Lab 03 - Controllers and Routing
 
     <slide title="Lab Submission" layout="normal">
         <p>Your lab will be completed in a github repository.
-            This will be your (forked) winter2015-lab03 repo. 
-            If you are doing the optional
-            part of the lab, your repo will include the Part B
-            changes, and you should indicate that you
-            are shooting for the optional marks in your readme.</p>
-        <p>Dayschool students: submit a readme to the lab dropbox. 
+            This will be your (forked) starter-lab03 repo. </p>
+        <p>Submit a readme to the lab dropbox. 
             This readme should have a link to your github repository.</p>
-        <p>Distance students: send me an email with a link to your github repository.</p>
-        <p>Due: Sunday, Jan 25, 17:30 PST</p>
+        <p>The link is the URL for your github repo page, <strong>not</strong> the cloning one
+            (which has a <code>.git</code> extension). Further, it should not mention
+            any branch ... see the last slide :-/</p>
+        <p>Due: Sunday, Sept 27, 17:30 PST</p>
     </slide>
 
     <slide title="Lab Marking Guideline" layout="normal">
         <p>This lab will be marked out of 10, as follows:</p>
         <ul>
-            <li>Part A addresses eight controllers/mappings.<br/>
+            <li>Part A addresses eight controllers/mappings, as specified
+                in the tutorial.<br/>
                 These are worth one mark each.</li>
-            <li>(Optional) Part B is worth 2+ marks, depending on the 
+            <li>Part B is worth 2 marks, depending on the 
                 elegance of your solution. 
                 Simply taking a stab at part B, 
                 without solving the challenge, 
                 won't get you any marks!</li>
+            <li>You may incur a marks penalty if your workflow
+                is improper (wrong branch, not merged, inappropriate commits, etc)</li>
         </ul>
-        <p>The "+" for the optional part? I will award a bonus
-            mark to the most elegant solution in a set!</p>
         <p>
             <emphasis>Commenting:</emphasis> 
             add comments sufficient to convince the reader that you 
             know what you are doing. Inappropriate/inadequate comments 
-            will cost you up to two marks off.</p>
+            could cost you a mark or two off.</p>
     </slide>
 
     <slide title="Part A: The Basics" layout="normal">
-        <p>Complete tutorial 3.</p>
+        <p>Complete the "normal01" tutorial, merging your develop branch 
+            into your master branch when done.</p>
     </slide>
 
-    <slide title="Part B: Hooks (Optional)" layout="normal">
+    <slide title="Part B: Hooks" layout="normal">
         <p>Build a class to massage the final output before sending 
             it to the browser.</p>
-        <p>Configure a display_override hook to inject your class 
+        <p>Configure a "display_override" hook to inject your class 
             into the processing stream for all single quote 
-            presentations. 
+            presentations, where a saying from a famous figure is shown. 
             Don't forget to enable "hooks".</p>
-        <p>The massaging your hook should perform: 
-            inside any &lt;p&gt; element in the output, 
+        <p>The massaging that your hook should perform: 
+            inside any &lt;p&gt; elements in the output, 
             which have a class attribute of "lead", 
             bold any capitalized words (yes, that includes "I"). </p>
         <p>Bolding is done by enclosing a word in a "strong" element.</p>                    
@@ -77,5 +77,26 @@ Lab 03 - Controllers and Routing
         <p>Part B will not earn part marks for a partial solution, 
             so be sure you want to risk/invest the time to tackle it!</p>                    
     </slide>
+    
+    <slide title="Part B Completion" layout="normal">
+        <p>I presume you will have used the same strategy for Part B
+            as you did for part A, i.e. committing to your develop
+            branch directly, or else using a feature branch for the
+            hooks, and then merging it into your develop branch.</p>
+        <p>Once done Part B, make sure that your develop branch is
+            merged into your master branch.</p>                    
+        <p>
+            <strong>Your master branch is what will be "run"
+                for testing.</strong>
+        </p>
+        <p>
+            <strong>Your repository and commit history will be
+                examined to make sure you have a
+                reasonable workflow, with a marks deduction
+                if not.</strong>
+        </p>
+    </slide>
+    
+
 
 </lab>

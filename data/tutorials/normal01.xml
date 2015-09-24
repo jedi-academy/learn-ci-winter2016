@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Normal 01 - Working With Controllers & Routing
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial will walk you through some common controller and
+            routing challenges.</p>
+        <p>The goal is to fix the broken starter webapp, as directed.</p>
+        <p>That can't be so hard, can it? &lt;-- said with a straight face.</p>
+        <p>Suggestion: you may want to skim the slideshow first,
+            before working your way through it.</p>
+    </slide>
+
+    <slide title="Preparation" layout="normal">
+        <div class="left">
+            <p>I have prepared a 
+                <a href="https://github.com/comp4711/starter-lab03">
+                    starter webapp</a> – a mini 
+                "content management system". 
+                It is incomplete and the pieces are not properly connected, 
+                and you need to fix these, as described following.</p>
+            <p>Fork the github project, and clone it locally to
+                work with, the same as you have done with the previous tutorial.</p>
+            <p>
+                <strong>DO NOT start working with the repository until directed to do so in the tutorial.</strong>
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="312" src="/data/tutorials/pix/3-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="The Starter Webapp" layout="normal">
+        <p>The "Quotes" starter webapp
+            uses bootstrap and jquery, 
+            simply because they make it so easy to have a 
+            not-ugly-though-the-same-as-everyones looking site.</p>
+        <p>The  Quotes webapp looks beautiful, I have to admit, but none 
+            of the links work, apart from the logo taking you back 
+            to the homepage :(</p>
+        <p>Your job is to fix these broken links, per the directions that follow :)</p>
+    </slide>
+
+    <slide title="Where Do I Start?" layout="normal">
+        <p>There is a view template in <code>application/views/justone.php</code>. 
+            This is meant to display just a single quote. 
+            Each of the broken links needs to resolve to the appropriate 
+            controller, or method in a controller, which extracts the 
+            relevant quote from the model, 
+            and builds the view parameters for <code>justone</code> to present it.</p>
+        <p>Solve the logic for the first broken link that you fix, 
+            and you can re-use the technique for all the others.</p>
+        <p>The logic? Inside the appropriate method of the appropriate controller,
+            the handling of a request should be to retrieve the appropriate
+            record from the <code>quotes</code> model, add its fields to the appropriate
+            elements of the <code>$this-&gt;data</code> parameter array, and then call
+            your inherited <code>render</code> method.</p>
+    </slide>
+
+    <slide title="What Needs Fixing?" layout="normal">
+        <p>You might use the table below as a checklist.
+            The next few slides provide helpful details.
+        </p>
+        <table style="font-size:80%; padding: 10px; text-align:left">
+            <tr>
+                <th>Link</th>
+                <th>Location</th>
+                <th>How to Fix It</th>
+            </tr>
+            <tr>
+                <td>first</td>
+                <td>Navbar</td>
+                <td>A suitable <b>new controller</b> in controllers/</td>
+            </tr>
+            <tr>
+                <td>last</td>
+                <td>Navbar</td>
+                <td>A suitable <b>new controller</b> in controllers/last/</td>
+            </tr>
+            <tr>
+                <td>sleep</td>
+                <td>Homepage</td>
+                <td>Remapped to first::zzz, i.e. the "zzz" method inside the "First" controller</td>
+            </tr>
+            <tr>
+                <td>lock/em/up</td>
+                <td>Homepage</td>
+                <td>Remapped to welcome::shucks, using wildcard (lock / *), i.e. the "shucks"
+                    method inside the "Welcome" controller</td>
+            </tr>
+            <tr>
+                <td>show/3</td>
+                <td>Homepage</td>
+                <td>Remapped to first::gimme/3, using wildcard (show / digit),
+                    i.e. the "gimme" method inside the "First" controller,
+                    with that method defined to take a parameter</td>
+            </tr>
+            <tr>
+                <td>dunno</td>
+                <td>Homepage</td>
+                <td>Remapped to guess (<b>new controller</b>)</td>
+            </tr>
+            <tr>
+                <td>wise/bingo</td>
+                <td>Homepage</td>
+                <td>Remapped to bingo, using regular expression 
+                    (4 letters / bingo) (<b>new controller</b>)</td>
+            </tr>
+            <tr>
+                <td>comp4711/wisdom</td>
+                <td>Homepage</td>
+                <td>Remapped to bingo::wisdom, using regular expression (comp + digits / *)</td>
+            </tr>
+        </table>
+    </slide>
+
+    <slide title="Suggested Process" layout="normal">
+        <p>Fix the problems in sequence, working your way down the table.</p>
+        <p>For each of these, I suggest you determine the controller 
+            responsible for handling the request, the method inside 
+            that controller, and then the necessary routing.</p>   
+        <p>Note that the table row for "last" suggests a controller 
+            in <code>controllers/last/</code> ... 
+            this explicitly means that "last" is a subfolder 
+            inside <code>application/controllers</code>. Hmmm.</p>         
+    </slide>
+
+    <slide title="Helpful Hint" layout="normal">
+        <p>A helpful hint... if you retrieve a record from your model, 
+            and you want to add its key/value pairs to the view 
+            parameters array, you could have a bunch of assignments 
+            (<code>$this-&gt;data['who']= ...</code>), 
+            but there is an easier way:</p>
+        <p>
+            <code>$record = $this-&gt;quotes-&gt;whatever(...);<br/>
+                $this-&gt;data = array_merge($this-&gt;data, $record);</code>
+        </p>
+        <p>The above references a "whatever" method inside your "quotes"
+            object, which comes from autoloading <code>application/models/Quote.php</code>.</p>
+        <p>
+            <code>array_merge</code> is a function built-in to PHP, which merges
+            an associative array (the second parameter) into another (the first parameter),
+            and returns the merged resulting associative array.
+        </p>
+    </slide>
+
+    <slide title="Let's Get Started" layout="normal">
+        <p>Inside your IDE, create a new branch, "develop",
+            based on "master". </p>
+        <p>This protects you if there are any
+            updates to the starter repository, which you would then merge
+            into your "master" branch. If this happens,
+            you might have to resolve any resulting conflicts in your "develop" and
+            derivative branches, but it will be loads easier if
+            you have separated the master and develop branches this way.</p>
+    </slide>
+
+    <slide title="Fix the Broken Links Now" layout="normal">
+        <p>Fix each of the broken links, one at a time.</p>
+        <p>You can choose to create a feature branch for each of these,
+            merging them into your "develop" branch once working, or you could
+            group the changes needed to fix a link into a single commit,
+            to your "develop" branch.</p>
+        <p>The first way, you will end up with eight branches: master, develop,
+            and then one for each fixed link. The second way, you will end up with two branches,
+            master and develop.</p>
+        <p>After fixing each broken link, commit your changes and push them to your 
+            "origin". If you are using feature branches for each fix, merge
+            your working branch into "develop", so that subsequent fix/feature
+            branches can be based on the most recent "develop" branch.</p>
+    </slide>
+
+    <slide title="Are We Done Yet?" layout="normal">
+        <p>When you are done, nothing will look different on the homepage, but
+            the links will work properly :)</p>
+        <p>Merge your "develop" branch" into your "master" now.</p>
+    </slide>
+
+</tutorial>
