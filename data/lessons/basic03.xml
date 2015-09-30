@@ -129,7 +129,7 @@ Lesson 03 - Models
 
     <slide title="Domain Models" layout="normal">
         <p>Domain models are awkward to enforce in PHP, without
-            strong typing. They are normal in Java &amp; C##.</p>
+            strong typing. They are normal in Java &amp; C#.</p>
         <p>For instance, Java supports JavaBeans (serializable,
             standard accessor and mutator methods) for generic
             domain models.</p>
@@ -357,7 +357,7 @@ Lesson 03 - Models
                 <li>
                     <code>update($record)</code> sends a PUT(x) to the service</li>
                 <li>
-                    <code>delete($key)</code> sends a DELETE(x to the service</li>
+                    <code>delete($key)</code> sends a DELETE(x) to the service</li>
             </ul>
         </div>
     </slide>
@@ -448,7 +448,7 @@ Lesson 03 - Models
             <code>Application</code>.
         </p>
         <p>CodeIgniter instantiates a singleton when a model
-            or other core class is loaded, which males it
+            or other core class is loaded, which makes it
             awkward to deal with interfaces or abstract classes. 
             However,  we can exploit
             the general treatment of included source files by
@@ -552,7 +552,7 @@ Lesson 03 - Models
                 persistence.</p>
             <p>Without getting too carried away, the EJB inheritance hierarchy
                 is shown to the right.</p>
-            <p>Why do you care? Many enterprise systems assume a similar
+            <p>Why do you care? Because many enterprise systems assume a similar
                 infrastructure in webapps they work with or interact with.</p>
         </div>
         <div class="right">
@@ -632,13 +632,13 @@ Lesson 03 - Models
         </p>
     </slide>
 
-    <slide title="MODEL CONVENTIONS" layout="normal" tag="tag7">
+    <slide title="SUGGESTED MODEL CONVENTIONS" layout="normal" tag="tag7">
         <p>Use entity-related naming!</p>
-        <p>use the plural of an entity name for a table &amp; model name.
+        <p>Use the plural of an entity name for a table &amp; model name.
             An example would be the <code>Posts</code> model for
             the <code>posts</code> table.
         </p>
-        <p>Use the singular of the entity name for a CRUD controller, for instance...            
+        <p>Use the singular of the entity name for a CRUD controller, for instance a RESTful one...            
             <ul>
                 <li>
                     <code>Post</code>
@@ -688,7 +688,7 @@ Lesson 03 - Models
     </slide>
 
     <slide title="Database Conventions" layout="normal">
-        <p>For our purposes, I will expect your database configuraiton 
+        <p>For our purposes, I will expect your database configuration 
             to work seemlessly when I pull your labs or
             assignments for marking. What this means:</p>
         <ul>
@@ -707,7 +707,7 @@ Lesson 03 - Models
         <p>If you use a database in a project, clearly
             indicate so in your repo readme, and provide a SQL
             dump (gzipped) of your database, including dropping
-            and tables you use before creating them, and
+            any tables you use before creating them, and
             including the insert statements to populate
             your database, as the file <code>setup.sql.gz</code>
             in either the root of your project or directly
