@@ -30,12 +30,11 @@ Course organizer for Comp4711
         <lesson type="lesson" name="basic02" pdf="basic02-controller-concepts.pdf">Controller Concepts</lesson>
         <tutorial type="tutorial" name="normal01" pdf="normal01-codeigniter-controllers.pdf">CodeIgniter Controllers</tutorial>
         <lab type="lab" name="lab03" duedate="2015.09.27 17:30" pdf="lab03-working-with-controllers.pdf">Working With Controllers</lab>
-        <!--        <assignment type="assignment" name="assignment1" duedate="2015.01.31 23:59" pdf="assignment1-basic-webapp.pdf">Basic Webapp</assignment>
-        -->
     </week>
     <week num="4">
         <topic>Models &amp; ORM</topic>
         <lesson type="lesson" name="basic03" pdf="basic03-models.pdf">Models</lesson>
+        <assignment type="assignment" name="assignment1" duedate="2015.10.02 23:59" pdf="assignment1-basic-webapp.pdf">Basic Webapp</assignment>
         <!--        <tutorial type="tutorial" name="">CodeIgniter Models - next week!</tutorial>
             <lab type="lab" name="" duedate="">Work on or complete assignment 1</lab>
             <assignment type="assignment" name="assignment1-faq" duedate="2015.01.31 23:59" pdf="assignment1-ass1-faq.pdf">FAQ for assignment 1</assignment>

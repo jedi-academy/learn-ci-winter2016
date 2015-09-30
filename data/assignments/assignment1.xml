@@ -11,7 +11,9 @@ Assignment 1 - Basic Webapp
             apply the techniques from the lessons,
             tutorials and labs.</p>
         <p>In teams of up to four, you will be building a small but complete 
-            webapp, in three stages, with specific expectations for
+            webapp, in our case to predict 
+            <a href="http://www.nfl.com/" target="_blank">NFL</a> game outcomes.
+            This will be done in three stages, with specific expectations for
             each stage. Each stage will be a separate assignment.</p> 
         <p>The framework and a number of supporting technologies 
             have been pre-decided. The techniques for applying these 
@@ -39,87 +41,44 @@ Assignment 1 - Basic Webapp
     </slide>
 
     <slide title="Goals for This Assignment" layout="normal" tag="tag1">
-        <p>The purpose of this assignment 1 is to get your webapp proposal 
-            together and approved, and then to get the basic pieces in the 
+        <p>The purpose of this assignment 1 is to get the basic pieces 
+            of your webapp in the 
             correct places expected for a CodeIgniter webapp.</p>
         <p>This may sound suspiciously similar to lab #2! Hmmmmm.</p> 
     </slide>
 
     <slide title="Your Webapp" layout="normal">
-        <p>Each team will propose a webapp to build for their assignments.</p>
         <p>Your webapp doesn't have to be "world-class" or even necessarily "real",
             but it needs sufficient complexity to be dynamic, personalized
             and scaleable/integrated.</p>
-        <p>Practically speaking, this means that your data will come
+        <p>Practically speaking, this means that your data will eventually come
             partly from a database with at least two tables, and partly
             from a rich XML data structure, which might be stored as separate
             XML documents, or which might be stored as a column in one of your
             RDB tables.</p>
     </slide>
 
-    <slide title="What Could I Possibly Build?" layout="normal">
-        <p>Four typical webapps come to mind, as suggestions:
-            <ul>
-                <li>A Mini-CMS (content management system)</li>
-                <li>A simple order entry system</li>
-                <li>A destination tourist guide</li>
-                <li>A sports team fansite</li>
-            </ul>
-        </p>
-        <p>You are welcome to propose your own ideas, too.</p>
-    </slide>
-
-    <slide title="Possiblity #1: Mini-CMS" layout="normal">
-        <p>A mini-CMS would be a webapp where the primary role of
-            your code/logic would be to make it easy for a content creator 
-            to create and edit rich content on a variety of topics,
-            with the content posts presented and searchable in some structured
-            fashion.</p>
-        <p>Examples of such a mini-CMS could be a blog, an informational
-            site, or even a small forum.</p>
-        <p>The rich XML content could be the actual post contents.</p>
-    </slide>
-
-    <slide title="Possiblity #2: Order Entry" layout="normal">
-        <p>An order entry webapp would present a simple menu,
-            and capture/validate customer order details.</p>
-        <p>Such a webapp could be built for a real/hypothetical coffee
-            shop, fast food oultet, or even a Ferrari dealership
-            (collect all the colors, hehe).</p>
-        <p>The rich XML content could be the order details themselves.</p>
-    </slide>
-
-    <slide title="Possiblity #3: Destination Guide" layout="normal">
-        <p>A destination guide is another suitable webapp.
-            This might present attraction details for a chosen destination
-            (country, planet or neighborhood), broken down into suitable
-            categories (eat, sleep, play).</p>
-        <p>We pursued this theme in the fall of 2014, with some of
-            teh destinations being Mykonos, Coruscant, and Ucleuelet.</p>
-        <p>The rich XML content would be the attraction
-            descriptons, with different data for each category.</p>
-    </slide>
-
-    <slide title="Possiblity #4: Sports Team Fansite" layout="normal">
-        <p>Such a site might present the team (roster), information
-            about the league they play in, and then their schedule for
-            upcoming games. The webapp would provide for updating
-            the schedule with results, as games are played.</p>
-        <p>This would only work for a "real" team, and one whose season
-            overlaps the course.</p>
-        <p>The rich XML content would likely be the schedule/results
-            data.</p>
+    <slide title="Webapp Sitemap" layout="normal">
+        <p>Your homepage will be a kind of dashboard, purely
+            informational for now (a bit about the team, perhaps). 
+            Prompting for parameters to use in game
+            prediction will come in the next assignment. </p>
+        <p>You will need three pages in the site now: one showing
+            your team roster, one showing the league and its teams,
+            and an "about" page.</p>
+        <p>Your "about" page should clearly indicate that this is
+            an academic or learning project, and that any use
+            of names and/or media falls under the fair use guidelines.</p>
     </slide>
 
     <slide title="Your Data" layout="normal" tag="tag2">
-        <p>Whatever you choose to build for a webapp, you want to make sure that
-            the data you plan is reasonable for the webapp, and reasonable
-            for your team.</p>
-        <p>A handy rule of thumb would be to plan a database with at least
-            as many tables as you have team members. This count would exclude any
-            tables for sessions or user management.</p>
-        <p>Your XML data would be in addition to this (or in some cases inside
-            one of your tables).</p>
+        <p>You need two models at this point - one for your team roster
+            and one for the league composition. Metadata about your team
+            would be more properly stored as configuration parameters.</p>
+        <p>On the NFL standings page, you will notice 2 or 3 letter codes
+        as you mouse over the team names in the left column, eg MIA for the Miami
+        Dolphins. I suggest using those codes as the key for each team,
+        as the scores will be provided using them.</p>
         <p>Keep your data plan/design simple!</p>            
     </slide>
 
@@ -132,78 +91,38 @@ Assignment 1 - Basic Webapp
             That doesn't mean your site's appearance should be ugly or
             cringe-worthy - there are many freely available website
             templates online.</p>
+            <p>Feel free to use any CSS/javascript frameworks you
+            are familiar or comfortable with, subject to the constraints
+            described next.</p>
     </slide>
 
-    <slide title="Your Usecases" layout="normal">
-        <p>Your webapp should have four broad usecases: three that
-            each provide a different perspective or manipulation of your
-            data, and a maintenance/admin one to add/update
-            your data. This first assignment only need worry about the
-            first three - the maintenance will be added in assignment 2,
-            and it will be role-restricted in assignment 3.</p>
-        <p>In the case of a mini-CMS, your usecases might present
-            two different perspectives on your data and a search
-            function. In the case of a destination guide, they might
-            present three kinds of attractions, with different kinds
-            of information for each.</p>
-        <p>Each of your usecases would present a suitably ordered
-            list of some sort, with the ability to select an item
-            in the list to drill down for details on that item.</p>
+    <slide title="Webapp Constraints" layout="normal">
+        <p>There shall be no PHP in your view source files.</p>
+        <p>You are welcome to use an third party templating engine,
+        but without PHP in your view.</p>
+        <p>Remember the golden rules, especially case sensitivity!</p>
     </slide>
     
-    <slide title="Your Sitemap" layout="normal">
-        <p>Your homepage should should provide some useful
-            summary information (eg. most recent post, or current
-            season statistics), as well as an elegant and obvious
-            way to reach the three "main" pages.</p>
-        <p>If you are planning to use your webapp as part
-            of a portfolio, I suggest adding an "about" page,
-            where you can describe your design or your process.</p>
-    </slide>
 
-    <slide title="A Sample Webapp" layout="normal">
-        <p>Here are the first two "napkin" sketches for a sample destination guide
-            to Arrakis...</p>
-        <div class="left">
-            <img class="scale" width="600" height="411" src="/data/assignments/pix/a1-1.png"/>
-        </div>
-        <div class="right">
-            <img class="scale" width="600" height="432" src="/data/assignments/pix/a1-2.png"/>
-        </div>
+    <slide title="Your Usecases" layout="normal">
+        <p>Your webapp should have two usecases at this point.</p>
+        <p>First, show your team's roster, with mugshots and a bit
+        of data for each player (name, number, position, ...).</p>
+        <p>Second, display the league data in a sensible format,
+        organized by group within conference. </p>
     </slide>
-
-    <slide title="A Sample Webapp (Part 2)" layout="normal">
-        <p>And here are the last two sketches...</p>
-        <div class="left">
-            <img class="scale" width="600" height="466" src="/data/assignments/pix/a1-3.png"/>
-        </div>
-        <div class="right">
-            <img class="scale" width="600" height="426" src="/data/assignments/pix/a1-4.png"/>
-        </div>
-    </slide>
-
-    <slide title="Webapp Stages" layout="normal" tag="tag3">
+    
+   <slide title="Webapp Stages" layout="normal" tag="tag3">
         <p>Your webapp will be built in three stages, each corresponding
             to an assignment.</p>
         <p>Stage 1: basic webapp. The pieces will be there, in the right place,
-            but the data and interaction are largely bogus. You might find it
+            but the data and interaction are largely bogus. You will find it
             easier to mock the data in this stage, rather than providing a "real"
             database.</p>
-        <p>Stage 2: make the data "real", the usecases functional, and add 
+        <p>Stage 2: make the data "real", the prediction usecases functional, and add 
             maintenance.</p>            
-        <p>Stage 3: Add the rich data and its maintenance, as well as 
+        <p>Stage 3: Add the rich data and its handling, as well as 
             role-based access control.</p>
-    </slide>
-
-    <slide title="Your Design" layout="normal">
-        <p>Run your webapp proposal and design by your instructor,
-            before embarking on its implementation. You want to make sure
-            that the scope and usecases are appropriate, and that you
-            haven't over-simplified or gotten carried away.</p>
-        <p>Typical design components include simple usecase
-            writeups and wireframe layout(s) depicting how you
-            see the site coming together.</p>
-        <p>This is *not* a formal design!</p>
     </slide>
 
     <slide title="Process" layout="normal">
@@ -221,10 +140,9 @@ Assignment 1 - Basic Webapp
     </slide>
 
     <slide title="Submission" layout="normal">
-        <p>Dayschool students: submit a readme to the D2L assignment dropbox. 
+        <p>Submit a readme to the D2L assignment dropbox for your team. 
             This readme should have a link to your github repository.</p>
-        <p>Distance students: send me an email with a link to your github repository.</p>
-        <p>Due: Saturday, Jan 31, 23:59 PST</p>
+        <p>Due: Sunday, Oct 4, 23:59 PST</p>
     </slide>
 
     <slide title="Evaluation" layout="normal">
@@ -232,18 +150,17 @@ Assignment 1 - Basic Webapp
             breakdown:        </p>
         <div class="left">
             <ul>
-                <li>Design proposal/writeup (3)</li>
-                <li>Controllers, home plus three (2)</li>
+                <li>Controllers, home plus three (3)</li>
                 <li>Models, with mock data (3)</li>
-                <li>Views, template plus 4 layouts (3)</li>
+                <li>Views, template plus 3 layouts (3)</li>
             </ul>
         </div>
         <div class="right">
             <ul>
                 <li>Appropriate &amp; consistent UI (2)</li>
                 <li>Works properly? (3)</li>
-                <li>Workflow process (2)</li>
-                <li>Comments &amp; programming style (2)</li>
+                <li>Workflow process (3)</li>
+                <li>Comments &amp; programming style (3)</li>
             </ul>
         </div>
     </slide>
