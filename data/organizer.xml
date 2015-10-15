@@ -35,6 +35,7 @@ Course organizer for Comp4711
         <topic>Models &amp; ORM</topic>
         <lesson type="lesson" name="basic03" pdf="basic03-models.pdf">Models</lesson>
         <lab type="lab" name="" duedate="2015.10.08">Work on or complete assignment 1</lab>
+        <assignment type="assignment" name="assignment1" duedate="2015.10.02 23:59" pdf="assignment1-basic-webapp.pdf">Basic Webapp</assignment>
     </week>
     <week num="5">
         <topic>Models (continued)</topic>
