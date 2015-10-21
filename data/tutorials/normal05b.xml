@@ -26,13 +26,13 @@ Tutorial 05 - Working With Libraries and Helpers
         <div class="left">
             <ol>
                 <li>
-                    <a href="/show/tutorial/tutorial05">Enable the supplied bolding hook</a> (#5)
+                    <a href="/show/tutorial/normal05">Enable the supplied bolding hook</a> (#5)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05">Add a viewer rating widget</a> (#5)
+                    <a href="/show/tutorial/normal05">Add a viewer rating widget</a> (#5)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05">Randomize the quote presented on the homepage</a> (#5)
+                    <a href="/show/tutorial/normal05">Randomize the quote presented on the homepage</a> (#5)
                 </li>
                 <li>
                     <a href="#{tag4}">Add a maintenance controller, presenting an ordered
@@ -46,19 +46,19 @@ Tutorial 05 - Working With Libraries and Helpers
         <div class="right">
             <ol start="6">
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Add the ability to edit a quote</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Add the ability to edit a quote</a> (#5c)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Add the ability to delete a quote</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Add the ability to delete a quote</a> (#5c)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Add the ability to fake admin rights</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Add the ability to fake admin rights</a> (#5c)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Add an on-page editing for an admin</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Add an on-page editing for an admin</a> (#5c)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Return to the page we were on after editing a quote</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Return to the page we were on after editing a quote</a> (#5c)
                 </li>
             </ol>
         </div>

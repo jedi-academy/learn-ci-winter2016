@@ -29,20 +29,20 @@ Tutorial 05 - Working With Libraries and Helpers
         <div class="left">
             <ol>
                <li>
-                    <a href="/show/tutorial/tutorial05">Enable the supplied bolding hook</a> (#5)
+                    <a href="/show/tutorial/normal05">Enable the supplied bolding hook</a> (#5)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05">Add a viewer rating widget</a> (#5)
+                    <a href="/show/tutorial/normal05">Add a viewer rating widget</a> (#5)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05">Randomize the quote presented on the homepage</a> (#5)
+                    <a href="/show/tutorial/normal05">Randomize the quote presented on the homepage</a> (#5)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05b">Add a maintenance controller, presenting an ordered
+                    <a href="/show/tutorial/normal05b">Add a maintenance controller, presenting an ordered
                         list of the quotes</a> (#5b)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05b">Add the ability to add a new quote</a> (#5b)
+                    <a href="/show/tutorial/normal05b">Add the ability to add a new quote</a> (#5b)
                 </li>
             </ol>
         </div>
