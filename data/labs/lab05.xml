@@ -10,7 +10,6 @@ Lab 05 - Views, libraries & helpers
         <p>The purpose of this lab is to help you explore and practice
             some of the view techniques, incorporating libraries and helpers,
             from lessons 5 and 6.</p>
-        <p>There is no optional part for this lab. </p>
         <p>Suggestion: you may want to skim the slideshow first,
             before working your way through it.</p>
     </slide>
@@ -25,7 +24,7 @@ Lab 05 - Views, libraries & helpers
 
     <slide title="Lab Submission" layout="normal">
         <p>Your lab will be completed in a github repository.
-            This will be your (forked) winter2015-lab05 repo. 
+            This will be your (forked) starter-lab05 repo. 
 </p>
         <p>Please make sure that your work is in the "master" branch
             or your repository, and that any other branches have
@@ -33,7 +32,7 @@ Lab 05 - Views, libraries & helpers
         <p>Dayschool students: submit a readme to the lab dropbox. 
             This readme should have a link to your github repository.</p>
         <p>Distance students: send me an email with a link to your github repository.</p>
-        <p>Due: Sun, Feb 22, 17:30 PST</p>
+        <p>Due: Sun, Nov 1, 17:30 PST</p>
     </slide>
 
     <slide title="Lab Marking Guideline" layout="normal">
@@ -43,16 +42,8 @@ Lab 05 - Views, libraries & helpers
     </slide>
 
     <slide title="Your Job" layout="normal">
-        <p>Complete tutorial 5, being aware that it has been split into three 
+        <p>Complete tutorial "normal05", being aware that it has been split into three 
             parts: #5, #5b and #5c!</p>
-            <p>
-                <i>Update ... Weds Feb 18th, 08:00 ... out of time and
-                out of energy. I will complete #5b tonight, which
-                will see the first 5 tasks through, and will base
-                the lab grade on just those. I will complete #5c
-                when I can Thurs Feb 19th, but will not expect it as part of
-                your lab 5.</i>
-            </p>
     </slide>
 
 

@@ -92,30 +92,30 @@ Tutorial 05 - Working With Libraries and Helpers
                     <a href="#{tag3}">Randomize the quote presented on the homepage</a>
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05b">Add a maintenance controller, presenting an ordered
+                    <a href="/show/tutorial/normal05b">Add a maintenance controller, presenting an ordered
                         list of the quotes</a> (#5b)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05b">Add the ability to add a new quote</a> (#5b)
+                    <a href="/show/tutorial/normal05b">Add the ability to add a new quote</a> (#5b)
                 </li>
             </ol>
         </div>
         <div class="right">
             <ol start="6">
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Add the ability to edit a quote</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Add the ability to edit a quote</a> (#5c)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Add the ability to delete a quote</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Add the ability to delete a quote</a> (#5c)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Add the ability to fake admin rights</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Add the ability to fake admin rights</a> (#5c)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Add an on-page editing for an admin</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Add an on-page editing for an admin</a> (#5c)
                 </li>
                 <li>
-                    <a href="/show/tutorial/tutorial05c">Return to the page we were on after editing a quote</a> (#5c)
+                    <a href="/show/tutorial/normal05c">Return to the page we were on after editing a quote</a> (#5c)
                 </li>
             </ol>
         </div>
