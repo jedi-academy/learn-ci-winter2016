@@ -49,7 +49,7 @@ Tutorial 05 - Working With Libraries and Helpers
         <div class="right">
             <ol start="6">
                 <li>
-                    <a href="#{tag6}">Add the ability to edit a quote</a>
+                    <a href="#{tag6}">Add the ability to edit a quote, with image uploading</a>
                 </li>
                 <li>
                     <a href="#{tag7}">Add the ability to delete a quote</a>
@@ -68,7 +68,11 @@ Tutorial 05 - Working With Libraries and Helpers
     </slide>
 
     <slide title="The Starting Point" layout="normal">
-            <p></p>            
+            <p>Time has gotten the better of me, and tutorial 5C will have to wait until
+            a later offering :(</p>            
+            <p>The essentials, of working with a library and helper, have been
+            accomplished. We are missing the image uploading, using CodeIgniter's
+            helper, and the conversion of the Caboose library into a package :(</p>
     </slide>
 <!--
     <slide title="6. ADD QUOTE EDITING" layout="normal" tag="tag6">

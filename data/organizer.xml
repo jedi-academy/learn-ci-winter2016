@@ -53,10 +53,10 @@ Course organizer for Comp4711
         <topic>Helpers &amp; CSS / Javascript Integration</topic>
         <lesson type="lesson" name="basic05" pdf="basic05-helpers-and-addons.pdf">Helpers and Addons</lesson>
               <lesson type="lesson" name="midterm" pdf="lessons1-6-midterm-review.pdf">Midterm Review</lesson>
-            <tutorial type="tutorial" name="normal05" pdf="tutorial05-working-with-libraries-and-helpers.pdf">Working With Libraries and Helpers (IN PROGRESS)</tutorial>
-            <tutorial type="tutorial" name="normal05b">Libraries and Helpers, Part (b) (IN PROGRESS)</tutorial>
-            <tutorial type="tutorial" name="normal05c">Libraries and Helpers, Part (c) (IN PROGRESS)</tutorial>
-            <lab type="lab" name="lab05" duedate="2015.11.01 17:30" pdf="lab05-views.pdf">Views</lab>
+            <tutorial type="tutorial" name="normal05" pdf="normal05-working-with-libraries-and-helpers.pdf">Working With Libraries and Helpers</tutorial>
+            <tutorial type="tutorial" name="normal05b" pdf="normal05b-working-with-libraries-and-helpers-part2.pdf">Libraries and Helpers, Part (b)</tutorial>
+            <tutorial type="tutorial" name="normal05c">Libraries and Helpers, Part (c)</tutorial>
+            <lab type="lab" name="lab05" duedate="2015.10.25 17:30" pdf="lab05-views.pdf">Views</lab>
         
     </week>
     <week num="8">
