@@ -9,8 +9,8 @@ If anyone feels strongly enough, they can be raised as github issues.
 Webapp Issues
 *************
 
-- Feedback logging needs rework ... pseudo-csv format spills across lines of text :(
-- timestamps for feedback have messed up timezone coding (all Z-05.00?)
+- [ ] Feedback logging needs rework ... pseudo-csv format spills across lines of text :(
+- [ ] timestamps for feedback have messed up timezone coding (all Z-05.00?)
 
 ******************
 Webapp Suggestions
