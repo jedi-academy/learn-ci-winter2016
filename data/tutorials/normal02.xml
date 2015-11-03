@@ -2,7 +2,7 @@
 <!--
 Tutorial 04 - Working With Models
 -->
-<tutorial status="beta">
+<tutorial status="1.1">
     <!-- Activity metadata ... override anything from the course or organizer -->
     
     <!-- The meat of the presentation -->
@@ -15,7 +15,7 @@ Tutorial 04 - Working With Models
             which you are to provide.</p>
     </slide>
 
-    <slide title="Tutorial Revisions" layout="normal">
+<!--    <slide title="Tutorial Revisions" layout="normal">
         <p>Two main revisions for this tutorial: I have added a bunch of
             screenshots showing how the webapp remains broken while
             you are fixing pieces of it, and I have updated the codebase,
@@ -28,10 +28,10 @@ Tutorial 04 - Working With Models
             "...application/errors/...", as the starter I provided
             back then was out of date.</p>
     </slide>
-
+-->
     <slide title="Preparation" layout="normal">
         <p>I have prepared a 
-            <a href="https://github.com/comp4711/winter2015-lab04" target="_blank">
+            <a href="https://github.com/comp4711/starter-lab04" target="_blank">
                 starter webapp</a>. The lab 4 starter, Jim's Joint, 
             is meant to handle ordering in a small restaurant. 
             I have build some database tables for this 
@@ -142,7 +142,7 @@ Tutorial 04 - Working With Models
         </table>
     </slide>
 
-    <slide title="Data Structure - Orderitemss Table" layout="normal">
+    <slide title="Data Structure - Orderitems Table" layout="normal">
         <table>
             <tr>
                 <th>Field</th>
@@ -272,7 +272,7 @@ Tutorial 04 - Working With Models
     <slide title="Pre Step 3" layout="normal">
         <p>If you try the next logical thing, "Start a new order", you will 
             be presented with a nasty browser error page. This happens becuase
-            we need to create a new order object before we can start wirking with it.
+            we need to create a new order object before we can start working with it.
         </p>
         <br/>
         <img class="scale" width="600" height="293" src="/data/tutorials/pix/4-step3a.png"/>

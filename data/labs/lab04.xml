@@ -2,36 +2,28 @@
 <!--
 Lab 04 - Models
 -->
-<lab status="beta">
+<lab status="1.1">
     <!-- Activity metadata ... override anything from the course or organizer -->
     
     <!-- The meat of the presentation -->
     <slide title="Lab Goals" layout="normal">
         <p>The purpose of this lab is to help you explore and practice
             some of the model techniques
-            from lesson 4.</p>
-        <p>There are two parts to this lab: A) the basics and B) an installer.</p>
-        <p>You only need complete part A to get a good mark. 
-            Part B is specifically for those looking for more of a challenge, 
-            and I suggest you only tackle it after successfully completing part A.</p>
+            from the models lesson.</p>
         <p>Suggestion: you may want to skim the slideshow first,
             before working your way through it.</p>
     </slide>
 
     <slide title="Lab Submission" layout="normal">
         <p>Your lab will be completed in a github repository.
-            This will be your (forked) winter2015-lab04 repo. 
-            If you are doing the optional
-            part of the lab, your repo will include the Part B
-            changes, and you should indicate that you
-            are shooting for the optional marks in your readme.</p>
+            This will be your (forked) starter-lab04 repo. 
+        </p>
         <p>Please make sure that your work is in the "master" branch
             or your repository, and that any other branches have
             been merged into it.</p>
-        <p>Dayschool students: submit a readme to the lab dropbox. 
+        <p>Submit a readme to the lab dropbox. 
             This readme should have a link to your github repository.</p>
-        <p>Distance students: send me an email with a link to your github repository.</p>
-        <p>Due: Weds, Feb 11, 17:30 PST</p>
+        <p>Due: Fri, Oct 16, 17:30 PST</p>
     </slide>
 
     <slide title="Lab Marking Guideline" layout="normal">
@@ -42,50 +34,11 @@ Lab 04 - Models
             The orders model has five methods needed, for 1 mark each.</p>
         <p>Making the welcome and order controllers work properly will get you 
             1 and 2 marks, respectively.</p>
-        <p>That adds up to 8 marks. Part B is worth 2-3 marks, 
-            depending on the elegance of your solution, and how
-            easy it would be to use as an example. 
-            Simply taking a stab at part B, without solving the challenge, 
-            won't get you any marks!</p>
-        <p>
-            <i>Commenting:</i> add comments sufficient to convince 
-            the reader that you know what you are doing. 
-            Inappropriate/inadequate comments will cost you up to two marks off.</p>
+        <p>Proper repository branching and workflow make up the last 2 marks.</p>
     </slide>
 
-    <slide title="Part A: The Basics" layout="normal">
-        <p>Complete tutorial 4.</p>
-    </slide>
-
-    <slide title="Part B: Installer" layout="normal">
-        <p>Build an installer "system" to include in a webapp.</p>
-        <p>The purpose of the installer is to configure a freshly
-            "installed" application properly for the local database
-            settings.</p>
-        <p>It should prompt for a username and password that have appropriate 
-            permissions to use with MySQL, and for the name of the database 
-            to use for local deployment.</p>
-        <p>It will then need to modify the application/config/database.php
-            to reflect the settings, and then, using the database forge &amp;
-            utilities for CodeIgniter, setup the database properly. 
-            This should create and populate the tables needed for the webapp.</p>                    
-    </slide>
-
-    <slide title="Part B Notes" layout="normal">
-        <p>Part B is a challenge, on purpose. 
-            Don't even try this until you have completed part A, 
-            and then only if you are willing to dive a bit deeper 
-            into CodeIgniter and hooks.</p>
-        <p>The app should start out with innocuous config files autoload.php 
-            and database.php. Once you have the above data, and have setup 
-            the database, then tailor the two "real" config files appropriately, 
-            so that the "real" webapp runs properly once the installer is exited. 
-            An easy way to do this would be with some "views", 
-            with substitution fields for the prompted for data.</p>    
-        <p>How do you know if the app has been installed? 
-            You will need a marker file of some sort, perhaps the "views"
-            just alluded to. If present, the webapp has not been "installed"; 
-            if absent, there is nothing for you to do.</p>                
+    <slide title="What Do We Do?" layout="normal">
+        <p>Complete tutorial "normal02 - working with models".</p>
     </slide>
 
 </lab>

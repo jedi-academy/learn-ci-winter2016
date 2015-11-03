@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson dev02 - working with github
+-->
+<lesson status="alpha">
+    <!-- Agenda -->
+
+    <!-- Normal slides -->
+    <slide title="Lesson Goals" layout="normal">
+        <p>This short lesson explains how a project team would use Github for a shared repository.</p>
+        <p>Don't forget the 
+            <a href="https://www.atlassian.com/git/tutorials/comparing-workflows" target="_blank">
+                Atlassian</a> and 
+            <a href="https://guides.github.com/introduction/flow/index.htm" target="_blank">
+                GitHub</a> 
+            <a href="https://guides.github.com/activities/forking/" target="_blank">
+                tutorials</a>.
+        </p>
+        <p>The scenario: Mick, Keith and Charlie are going to collaborate on
+            a project to build a webapp showcasing quotes from famous rock stars.</p>
+    </slide>
+
+    <slide title="Agenda" layout="normal">
+        <ol>
+            <li>
+                <a href="#{tag1}">Organize</a>
+            </li>
+            <li>
+                <a href="#{tag2}">Play</a>
+            </li>
+            <li>
+                <a href="#{tag3}">Contribute</a>
+            </li>
+            <li>
+                <a href="#{tag4}">Collaborate</a>
+            </li>
+            <li>
+                <a href="#{tag5}">Accommodate</a>
+            </li>
+        </ol>
+    </slide>
+    
+    <slide title="Organize" layout="normal" tag="tag1">
+        <div class="left">
+            <p>Each team member has their own github account.
+                These are <code>mick</code>, <code>keith</code> and <code>charlie</code>.
+            </p>
+            <p>Each team member has installed the <code>git</code> client on their
+                machine, or else they are using an O/S platform that has this built-in.</p>
+            <p>Each team member has configured their user name and email address
+                for git signing purposes</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="648" height="54" src="/data/tutorials/pix/2-1.png"/>
+            <br/>
+            <br/>
+            <img class="scale" width="630" height="170" src="/data/tutorials/pix/2-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Check Your IDE" layout="normal">
+        <div class="left">
+            <p>Each team member is using an IDE or editor that supports git.</p>
+            <p>Each member has installed any useful plugins, for instance the Git toolbar and
+                the script to show the current branch, in NetBeans.</p>
+            <p>Each team member has configured their IDE to automatically
+                sign their work.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="407" src="/data/tutorials/pix/2-3.png"/>
+        </div>
+    </slide>
+
+    <slide title="Create Your Organization" layout="normal">
+        <div class="left">
+            <p>Mick is the team leader. He needs to create an "organization" to
+                use as a container for any projects the team wishes to collaborate on.</p>
+            <p>The organization name is usually derived from the team name.
+                Mick will use <code>rolling-stones</code> as their organization name.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="1008" height="461" src="/data/lessons/pix/d2-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Join the Party" layout="normal">
+        <div class="left">
+            <p>Mick will then invite each of the team members to join the organization.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="1008" height="461" src="/data/lessons/pix/d2-2.png"/>
+        </div>
+    </slide>
+
+    <slide title="Create Your Project" layout="normal">
+        <div class="left">
+            <p>Mick needs to create a repository inside the <code>rolling-stones</code>
+                organization, to share with the team members.</p>
+            <p>For this project, he will use the repository name <code>rock-quotes</code>.
+                It will be public, so we don't have to pay, and he will have an initial README,
+                .gitignore, and license.</p>
+            <p>Only the maintainer of the official repository, Mick, can update it.
+                That may include updates that break team member's repos, but that is "their"
+                problem.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="800" height="444" src="/data/lessons/pix/d2-3.png"/>
+        </div>
+    </slide>
+
+    <slide title="Initial State" layout="normal">
+        <div class="left">
+            <p>The <code>rock-quotes</code> repository will start out pretty empty,
+                and with a <code>master</code> branch.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="537" height="400" src="/data/lessons/pix/d2-4.png"/>
+        </div>
+    </slide>
+
+    <slide title="Initial Setup" layout="normal">
+        <div class="left">
+            <p>Before anyone forks the project, Mick should get its initial state
+                corrected. He should create a <code>develop</code> branch, and
+                set the new branch as the default.
+            </p>
+            <p>The intent is that all work be done on the <code>develop</code>
+                branch, with that being merged into the <code>master</code> branch
+                only when the resulting codebase is in a stable state, for
+                instance with a new release.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="537" height="400" src="/data/lessons/pix/d2-5.png"/>
+            <br/>
+            <img class="scale" width="537" height="400" src="/data/lessons/pix/d2-6.png"/>
+        </div>
+
+    </slide>
+
+    <slide title="Fork the Shared Repository" layout="normal">
+        <div class="left">
+            <p>Each team member should now fork the shared repository,
+                from <code>https://github.com/rolling-stones/rock-quotes</code>,
+                inside their personal repository.
+            </p>
+            <p>Each team member will have their own project repository,
+                derived from the shared one.
+            </p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="537" height="400" src="/data/lessons/pix/d2-7.png"/>
+            <br/>
+            <img class="scale" width="537" height="400" src="/data/lessons/pix/d2-8.png"/>
+        </div>
+    </slide>
+
+    <slide title="Some Useful Labels" layout="normal">
+        <div class="left">
+            <p>Anything produced by a team member will end up in their
+                repository until it is merged into the shared one.
+                Until then, the member's repository is considered "ahead" of
+                the shared one.</p>
+            <p>If the shared repository contains other members' work that has not been merged
+                into a team member's repository, their repository is considered
+                "behind" the shared one.</p>
+            <p>
+                If the two repositoties match, then the member's is said to be "even" with the shared one.</p>
+            <p>A member's repository can be both ahead of and behind the shared one,
+                for different pieces of code.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="537" height="400" src="/data/lessons/pix/d2-7.png"/>
+            <br/>
+            <img class="scale" width="537" height="400" src="/data/lessons/pix/d2-8.png"/>
+        </div>
+    </slide>
+
+    <slide title="Play" layout="normal" tag="tag2">
+        <div class="left">
+            <p>On the Github website, fork the  repository you want
+                to work with or contribute to.</p>
+            <p></p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="475" src="/data/tutorials/pix/2-4.png"/>
+        </div>
+    </slide>
+
+    <slide title="Clone your fork locally" layout="normal">
+        <div class="left">
+            <p>You should remember this from last week :)</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="481" src="/data/tutorials/pix/2-5.png"/>
+        </div>
+    </slide>
+
+    <slide title="Repository aliases" layout="normal">
+        <div class="left">
+            <p>You work locally with your repository clone.</p>
+            <p>Your (forked) repository is given the alias "origin".</p>
+            <p>The original repository should be given the alias
+                "upstream", in case you need to sync with it.
+                This might be easier to do from the command line.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="570" height="449" src="/data/lessons/pix/2-31.png"/>
+        </div>
+    </slide>
+
+    <slide title="Create a topic branch" layout="normal">
+        <div class="left">
+            <p>Create a new branch, based on "master" or "develop", as appropriate, and check it out.</p>
+            <p>If you forget the checkout, things will likely get messed up :(</p>            
+        </div>
+        <div class="right">
+            <img class="scale" width="531" height="397" src="/data/tutorials/pix/2-6.png"/>
+        </div>
+    </slide>
+
+    <slide title="Make and then commit changes to your branch" layout="normal">
+        <div class="left">
+            <p>Make whatever project changes you are responsible for.</p>
+            <p>Commit your changes to your staging area after each group of
+                related changes.</p>
+            <p>Remember to make sure your commit is signed,
+                and that it has an appropriate message.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="516" src="/data/tutorials/pix/2-9.png"/>
+        </div>
+    </slide>
+
+    <slide title="Synchronize Your Fork With the Main Repo" layout="normal">
+        <div class="left">
+            <p>If any changes are made to the shared repository (for instance
+                by a fellow team member), you will need to synchronize
+                your repository with it. If you haven't done so already, you will need to add the remote
+                repository, and you should call it "upstream".</p>
+            <p>You can then synchronize your repo by
+                <ol>
+                    <li>Checkout the "master" branch</li>
+                    <li>git pull upstream master</li>
+                    <li>git push origin master</li>
+                    <li>Checkout your topic branch again.</li>
+                </ol>
+            </p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="377" src="/data/tutorials/pix/2-14.png"/>
+        </div>
+    </slide>
+
+    <slide title="Push your changes to your fork" layout="normal">
+        <div class="left">
+            <p>From your IDE, or the command line, push your changes to your 
+                server-side repository, "origin".</p>
+            <p>You should make sure you are in sync with the shared repository
+                before doing this, or you run the risk of ending up with
+                horrible conflicts.</p>
+            <p>If you get a nasty message when synchronizinging, you will need to resolve
+                any merge conflicts before continuing.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="436" src="/data/tutorials/pix/2-10.png"/>
+        </div>
+    </slide>
+
+    <slide title="Send a pull request to the original project" layout="normal">
+        <div class="left">
+            <p>If you switch to your github repository in your browser, you
+                will see that github is offering to "compare &amp; pull request".</p>            
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="330" src="/data/tutorials/pix/2-11.png"/>
+        </div>
+    </slide>
+
+    <slide title="Initiate the Compare &amp; Pull Request" layout="normal">
+        <div class="left">
+            <p>Select the "Compare &amp; pull request" link.</p>
+            <p>Near the top of the page, it should say that the pull
+                request can be automaticaly merged. If it doesn't,
+                you did something wrong, most likely forgetting
+                to synhronize with the shared repository before pushing
+                to your fork.</p>
+            <p>Scroll down to the bottom of the page displayed, and make 
+                sure that the changes are what you expect.</p>
+            <p>If all looks ok, click "Create pull request".</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="412" src="/data/tutorials/pix/2-12.png"/>
+        </div>
+    </slide>
+
+    <slide title="Wait For It..." layout="normal">
+        <div class="left">
+            <p>At this point, you should see the main repository,
+                with your pull request center screen.</p>
+            <p>You can comment on it, but you will have to wait for the repo
+                maintainer to merge or reject your pull request.</p>
+        </div>
+        <div class="right">
+            <img class="scale" width="600" height="403" src="/data/tutorials/pix/2-13.png"/>
+        </div>
+    </slide>
+
+    <slide title="Are We Done Yet?" layout="normal">
+        <p>Your pull request might get rejected for any number of reasons.
+            You will get an email explaining the decision.</p>
+        <p>Once your pull request has been merged, resynchronize
+            with the "upstream" repo,
+            and you can delete the topic branch on your github repo as well as
+            locally.</p>
+        <p>This probably sounds like a lot of work, but it will
+            start to come naturally to you, and you will appreciate
+            the wisdom of shared code management, and some of the steps
+            here, once you have two or more developers sharing a repository!</p>
+    </slide>
+
+ 
+</lesson>

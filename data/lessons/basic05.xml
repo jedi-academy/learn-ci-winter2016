@@ -563,7 +563,7 @@ Lesson 06 - Helpers & Addons
     <slide title="A CODEIGNITER PACKAGE" layout="normal" tag="tag4">
         <p>To make one of the helpers or libraries into a package, 
             set it up in its own folder, inside application/third_party, 
-            and autoload its config file.</p>
+            and autoload it.</p>
     </slide>
 
     <slide title="Caboose as a Package" layout="normal">
@@ -584,7 +584,7 @@ Lesson 06 - Helpers & Addons
             </code>
         </div>
         <div class="right">
-            <code>$autoload['config'] = array('third_party/caboose/config/caboose',...);</code>
+            <code>$autoload['packages'] = array('third_party/caboose',...);</code>
         </div>
     </slide>
 
@@ -599,28 +599,40 @@ Lesson 06 - Helpers & Addons
             </code>
         </div>
         <div class="right">
-            <code>$autoload['config'] = array('third_party/formfields/config/formfields',...);</code>
+            <code>$autoload['packages'] = array('third_party/formfields',...);</code>
         </div>
     </slide>
 
 
     <slide title="PACKAGE MANAGEMENT" layout="normal" tag="tag5">
+        <div class="left">
         <p>
             <a href="https://getcomposer.org/" target="_blank">Composer</a>
             is the de facto standard for managing package dependencies.</p>
-        <p>CodeIgniter supports Composer and its autoloading. This
-            is new for version 3, and I am not up to speed on it yet.</p>
-        <p>Things are further complicated, because Composer requires PHP 5.3.2 or better,
-            and its integration into CI is a bit awkward as a result.</p>
-    </slide>
-
-    <slide title="PLUGIN MANAGEMENT" layout="normal">
-        <p>A <a href="https://github.com/bcit-ci/netbeans-plugin" target="_blank">Netbeans Plugin</a>
-            is under development, to make it easier to manage
-            the packages in a webapp, including those that
-            come from external sources.</p>
-        <p>I am the mentor for that project, and trying to get up to speed
-            as quickly as possible, on Composer and related goodies.</p>
+        <p>CodeIgniter supports Composer and its autoloading. Describe your webapp dependencies
+            in a <code>composer.json</code> file in your document root, like that shown to the
+            right.</p>
+        <p>Incorporate third party plugins by running composer from the command line
+        or through your IDE</p>
+        </div>
+        <div class="right">
+            <code>
+{<br/>
+&#160;&#160;"description": "The CodeIgniter Website",<br/>
+&#160;&#160;"homepage": "http://codeigniter.com",<br/>
+&#160;&#160;"name": "bcit-ci/codeigniter-website",<br/>
+&#160;&#160;"license": "MIT",<br/>
+&#160;&#160;"config": {<br/>
+&#160;&#160;&#160;&#160;"vendor-dir": "application/vendor"<br/>
+&#160;&#160;},<br/>
+&#160;&#160;"require": {<br/>
+&#160;&#160;&#160;&#160;"php": ">=5.3.2",<br/>
+&#160;&#160;&#160;&#160;"knplabs/github-api": "~1.5"<br/>
+&#160;&#160;}<br/>
+}
+</code>
+        </div>
+ 
     </slide>
 
     <slide title="Gimme More!" layout="normal">
