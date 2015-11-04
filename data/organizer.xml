@@ -52,11 +52,11 @@ Course organizer for Comp4711
     <week num="7">
         <topic>Helpers &amp; CSS / Javascript Integration</topic>
         <lesson type="lesson" name="basic05" pdf="basic05-helpers-and-addons.pdf">Helpers and Addons</lesson>
-              <lesson type="lesson" name="midterm" pdf="lessons1-6-midterm-review.pdf">Midterm Review</lesson>
-            <tutorial type="tutorial" name="normal05" pdf="normal05-working-with-libraries-and-helpers.pdf">Working With Libraries and Helpers</tutorial>
-            <tutorial type="tutorial" name="normal05b" pdf="normal05b-working-with-libraries-and-helpers-part2.pdf">Libraries and Helpers, Part (b)</tutorial>
-            <tutorial type="tutorial" name="normal05c">Libraries and Helpers, Part (c)</tutorial>
-            <lab type="lab" name="lab05" duedate="2015.10.25 17:30" pdf="lab05-views.pdf">Views</lab>
+        <lesson type="lesson" name="midterm" pdf="lessons1-6-midterm-review.pdf">Midterm Review</lesson>
+        <tutorial type="tutorial" name="normal05" pdf="normal05-working-with-libraries-and-helpers.pdf">Working With Libraries and Helpers</tutorial>
+        <tutorial type="tutorial" name="normal05b" pdf="normal05b-working-with-libraries-and-helpers-part2.pdf">Libraries and Helpers, Part (b)</tutorial>
+        <tutorial type="tutorial" name="normal05c">Libraries and Helpers, Part (c)</tutorial>
+        <lab type="lab" name="lab05" duedate="2015.10.25 17:30" pdf="lab05-views.pdf">Views</lab>
         
     </week>
     <week num="8">
@@ -64,31 +64,27 @@ Course organizer for Comp4711
     </week>
     <week num="9">
         <topic>XML Introduction &amp; Structure</topic>
-        <!--        <lesson type="lesson" name="lesson07">XML Basics</lesson>
-            <example type="example" name="examples-xml.zip">Sample XML documents</example>
-            <lab type="lab" name="" duedate="">Work on or complete assignment 2</lab>
-            <assignment type="assignment" name="assignment2" duedate="2015.03.07 23:59" pdf="assignment2-functional-webapp.pdf">Functional Webapp writeup, revised</assignment>
-        -->
+        <lesson type="lesson" name="xml01">XML Basics</lesson>
+        <github type="github" name="examples-xml.zip">Sample XML documents</github>
+        <tutorial type="tutorial" name="xml01" >XML - Basics &amp; Constraints</tutorial>
+        <lab type="lab" name="lab06" duedate="2015.11.06 17:30">XML Basics</lab>
+        <assignment type="assignment" name="assignment2" duedate="2015.11.15 23:59" pdf="assignment2-functional-webapp.pdf">Functional Webapp, introduced</assignment>
     </week>
     <week num="10">
-        <topic>n/a</topic>
-        <!--        <lesson type="lesson" name="lesson10">Role-Based Access Control</lesson>
-            <tutorial type="tutorial" name="tutorial08" >Authentication</tutorial>
-            <lab type="lab" name="lab08" duedate="2015.04.10 17:30">Authentication</lab>
-            <assignment type="assignment" name="assignment3" duedate="">Completed Webapp</assignment> 
-        -->
+        <topic>n/a (Stat)</topic>
+        <lab type="lab" name="" duedate="">Work on or complete assignment 2</lab>
+        <assignment type="assignment" name="assignment2" duedate="2015.11.15 23:59" pdf="assignment2-functional-webapp.pdf">Functional Webapp</assignment>
     </week>
     <week num="11">
-        <topic>XML Constraints &amp; Processing</topic>
-        <!--        <lesson type="lesson" name="lesson09">XML Processing</lesson>
-            <tutorial type="tutorial" name="tutorial07" >Processing XML</tutorial>
-            <tutorial type="tutorial" name="tutorial07b" >Creating XML</tutorial>
-            <lab type="lab" name="lab07" duedate="2015.03.29 17:30">XML Processing</lab>
-        -->
+        <topic>XML Processing</topic>
+        <lesson type="lesson" name="lesson09">XML Processing</lesson>
+        <tutorial type="tutorial" name="xml03" >XML Processing</tutorial>
+        <tutorial type="tutorial" name="xml03" >Creating XML</tutorial>
+        <lab type="lab" name="lab07" duedate="2015.03.29 17:30">XML Processing</lab>
     </week>
     <week num="12">
         <topic>XML-RPC</topic>
-        <!--        <lesson type="lesson" name="lesson10">Role-Based Access Control</lesson>
+        <!--        <lesson type="lesson" name="advanced01">XML-RPC</lesson>
             <tutorial type="tutorial" name="tutorial08" >Authentication</tutorial>
             <lab type="lab" name="lab08" duedate="2015.04.10 17:30">Authentication</lab>
             <assignment type="assignment" name="assignment3" duedate="">Completed Webapp</assignment> 
@@ -96,7 +92,7 @@ Course organizer for Comp4711
     </week>
     <week num="13">
         <topic>REST &amp; JSON</topic>
-        <!--        <lesson type="lesson" name="lesson10">Role-Based Access Control</lesson>
+        <!--        <lesson type="lesson" name="advanced02">REST &amp; JSON</lesson>
             <tutorial type="tutorial" name="tutorial08" >Authentication</tutorial>
             <lab type="lab" name="lab08" duedate="2015.04.10 17:30">Authentication</lab>
             <assignment type="assignment" name="assignment3" duedate="">Completed Webapp</assignment> 

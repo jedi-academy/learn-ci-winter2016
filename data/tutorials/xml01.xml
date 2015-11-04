@@ -8,7 +8,7 @@ Tutorial 06 - Working With XML and DTDs
     <!-- The meat of the presentation -->
     <slide title="Tutorial Goals" layout="normal">
         <p>This tutorial is meant to give you some practice constraining and
-            building an XML document, as described in lessons 7 and 8.</p>
+            building an XML document, as described in the XML basics lesson(s).</p>
         <p>I have prepared a starter project for you to build on.
             It is not a webapp, but provides a standard folder to put stuff in.
             Next week, we can make it into a webapp, when you have to process
@@ -36,7 +36,7 @@ Tutorial 06 - Working With XML and DTDs
     </slide>
 
     <slide title="Preparation" layout="normal">
-        <p>I have prepared a 
+        <p>I have prepared a //FIXME
             <a href="https://github.com/comp4711/winter2015-lab06" target="_blank">
                 starter project</a>. The lab 6 starter will just
             hold data for now, and functionality will be added next week. 
@@ -111,14 +111,14 @@ Tutorial 06 - Working With XML and DTDs
 
     <slide title="What About Payment Details?" layout="normal">
         <p>So far, all we are planning is the data needed to place an order.</p>
-        <p>Next week, we will enhance the data structure to provide for a unique
+        <p>Next week, we might enhance the data structure to provide for a unique
             order #, date/time stamp, total amount, and so on.</p>
         <p>Pricing data, even though on the menu, can be added then too.</p>
     </slide>
 
     <slide title="How Do We Start?" layout="normal">
         <div class="left">
-            <p>We need to add two fields to our quotes table:</p>
+            <p>We need to add two fields to our quotes table: //FIXME</p>
             <p>Right-click on the data folder in your project tree, and choose
                 new&gt;DTD Entity...</p>
             <p>Let's use the name "bonanza" for it.</p>
@@ -312,7 +312,7 @@ Tutorial 06 - Working With XML and DTDs
     <slide title="Burger Name" layout="normal" >
         <div class="left">
             <p>Marketing idea: let the customer name their creation</p>
-            <p>We're not doing anything with this right now, but we will next week :)</p>                
+            <p>We're not doing anything with this right now, but we will soon :)</p>                
         </div>
         <div class="right">
             <br/>
