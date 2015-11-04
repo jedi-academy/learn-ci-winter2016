@@ -18,7 +18,9 @@ Tutorial 06 - Working With XML and DTDs
     <slide>
         <h1>Revisions &amp; Notes</h1>    
         <ul>
-            <li></li>
+            <li>Some of the errors depicted in the tutorial may have been inadvertently corrected,
+            sorry. I left them in the original to show typical things
+            that go wrong, and to show you how to work around those.</li>
         </ul>            
     </slide>
     
@@ -36,8 +38,8 @@ Tutorial 06 - Working With XML and DTDs
     </slide>
 
     <slide title="Preparation" layout="normal">
-        <p>I have prepared a //FIXME
-            <a href="https://github.com/comp4711/winter2015-lab06" target="_blank">
+        <p>I have prepared a 
+            <a href="https://github.com/comp4711/starter-lab06" target="_blank">
                 starter project</a>. The lab 6 starter will just
             hold data for now, and functionality will be added next week. 
         </p>
@@ -118,7 +120,6 @@ Tutorial 06 - Working With XML and DTDs
 
     <slide title="How Do We Start?" layout="normal">
         <div class="left">
-            <p>We need to add two fields to our quotes table: //FIXME</p>
             <p>Right-click on the data folder in your project tree, and choose
                 new&gt;DTD Entity...</p>
             <p>Let's use the name "bonanza" for it.</p>
