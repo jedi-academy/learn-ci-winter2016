@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 10 - Role-Based Access Control
+-->
+<lesson status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <slide title="REST &amp; JSON" layout="normal" >
+        <p>Authentication usually refers to the strategies and
+            techniques used to ensure that only authorized
+            users access sensitive functionality in a webapp.</p>
+        <p>CodeIgniter purposefully does not include provision
+            for authentication, relying instead on third-party
+            packages.</p>
+        <p>Role-Based Access Control is the most common technique 
+            to secure access to different parts of a webapp.
+        </p>
+    </slide>
+
+    <!-- Agenda -->
+    <slide title="Agenda" layout="normal">
+        <ol>
+            <li>
+                <a href="#{tag1}">The Theory</a>
+            </li>
+            <li>
+                <a href="#{tag2}">The Practice</a>
+            </li>
+            <li>
+                <a href="#{tag3}">CodeIgniter Choices</a>
+            </li>
+            <li>
+                <a href="#{tag4}">CI Authentication</a>
+            </li>
+            <li>
+                <a href="#{tag5}">CI Authorization</a>
+            </li>
+            <li>
+                <a href="#{tag6}">CI Access Control</a>
+            </li>
+            <li>
+                <a href="#{tag7}">CI Alternatives</a>
+            </li>
+        </ol>
+    </slide>
+
+
+    <!-- Normal slides -->
+
+    <slide title="THE THEORY" layout="normal" tag="tag1">
+        <div class="left">
+            <p>Security normally involves four facets:</p>
+            <ul>
+                <li>Authentication - who is this?</li>
+                <li>Authorization - what can they do?</li>
+                <li>Access - enforcing the above</li>
+                <li>Audit - what did they do?</li>
+            </ul>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="426" height="407" src="/data/lessons/pix/10-1.png"/>
+        </div>    
+    </slide>
+
+    <slide title="Two Security Models" layout="normal" >
+        <div class="left">
+            <p>Identity authorities</p>
+            <ul>
+                <li>Operating system</li>
+                <li>Active Directory</li>
+                <li>Certificate authority</li>
+                <li>OpenID</li>
+            </ul>
+            <br/>
+            <img class="scale" width="284" height="175" src="/data/lessons/pix/10-16.png"/>
+        </div>
+        <div class="right">
+            <p>Federations of trust</p>
+            <ul>
+                <li>Kerberos</li>
+                <li>OAuth (Facebook, Google)</li>
+                <li>OpenID ...</li>
+            </ul>
+            <br/>
+            <img class="scale" width="287" height="160" src="/data/lessons/pix/10-17.png"/>
+        </div>    
+    </slide>
+
+    <slide title="Typical Framework" layout="normal" >
+        <br/>
+        <img class="scale" width="500" height="329" src="/data/lessons/pix/10-2.png"/>
+    </slide>
+
+
+
+    <slide title="THE PRACTICE" layout="normal" tag="tag2">
+        <ul>
+            <li>Authenticate somehow</li>
+            <li>Extract authorization from the user object or policy configuration</li>
+            <li>Enforce roles on access</li>
+            <li>Log as needed</li>
+        </ul>
+    </slide>
+
+    <slide title="Authentication Choices" layout="normal" >
+        <div class="left">
+            <p>Knowledge-based</p>
+            <img class="scale" width="443" height="190" src="/data/lessons/pix/10-3.png"/>
+            <p>Client-generated OTP</p>
+            <img class="scale" width="442" height="189" src="/data/lessons/pix/10-5.png"/>
+        </div>
+        <div class="right">
+            <p>Server-Generated OTP</p>
+            <img class="scale" width="443" height="190" src="/data/lessons/pix/10-4.png"/>
+            <p>Out-of-band</p>
+            <img class="scale" width="443" height="188" src="/data/lessons/pix/10-6.png"/>
+        </div>    
+    </slide>
+
+    <slide title="Authorization Choices" layout="normal" >
+        <div class="left">
+            <img class="scale" width="400" height="244" src="/data/lessons/pix/10-8.png"/>
+            <p></p>
+            <img class="scale" width="400" height="240" src="/data/lessons/pix/10-10.png"/>
+        </div>
+        <div class="right">
+            <img class="scale" width="400" height="364" src="/data/lessons/pix/10-9.png"/>
+            <p>Boils down to access control list (ACL) or user capability list (UCL)</p>
+        </div>    
+    </slide>
+
+    <slide title="Access Control Choices" layout="normal" >
+        <ul>
+            <li>Declarative (stored as policy or configuration data) vs 
+                Programmatic (rules coded into access control points in
+                components)</li>
+            <li>Hook (intercept request and redirect if inappropriate) vs 
+                Explicit (make decision as part of request handler)</li>
+            <li>User &amp; authorization data in session - so you don't
+                have to revalidate continuously</li>
+        </ul>
+    </slide>
+
+    <slide title="CODEIGNITER CHOICES" layout="normal" tag="tag3">
+        <ul>
+            <li>Hooks - pre-controller, as part of routing</li>
+            <li>3rd party libraries or packages</li>
+            <li>Roll your own - as part of base controller</li>
+        </ul>
+        <br/>
+        <img class="scale" width="697" height="205" src="/data/lessons/pix/10-11.png"/>
+    </slide>
+
+    <slide title="Popular Technology Choices" layout="normal">
+        <p>Third party tool which does one or both of...</p>
+        <p></p>
+        <img class="scale" width="512" height="447" src="/data/lessons/pix/10-12.png"/>
+    </slide>
+
+    <slide title="CODEIGNITER AUTHENTICATION" layout="normal" tag="tag4">
+        <p>"Roll your own"...</p>
+        <div class="left">
+            <p>We'll start with:</p>
+            <ul>
+                <li>Users table</li>
+                <li>Login form, with controller or subcontroller</li>
+                <li>Logout controller</li>
+            </ul>
+        </div>
+        <div class="right">
+            <p>Things to keep in mind:</p>
+            <ul>
+                <li>Don't store password in plaintext! (You will be fired)</li>
+                <li>Add users model to config/autoload?</li>
+            </ul>
+        </div>    
+    </slide>
+
+    <slide title="Users Table" layout="normal">
+        <div class="left">
+            <p>SQL to create your table</p>
+            <code>CREATE TABLE IF NOT EXISTS `users` (<br/>
+                `id` varchar(10) NOT NULL,<br/>
+                `name` varchar(20) NOT NULL,<br/>
+                `password` varchar(64) NOT NULL,<br/>
+                `role` varchar(20) NOT NULL,<br/>
+                PRIMARY KEY (`id`)<br/>
+                ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+            </code>
+        </div>
+        <div class="right">
+            <p>Your model:</p>
+            <code>
+                class Users extends MY_Model
+            </code>
+            <p>You can add more fields to the table,
+                and you might want validation logic in your model.</p>
+            <p>Passwords are stored hashed (you might need to increase the 
+                length of the password field) using...
+                <a href="http://php.net/manual/en/function.hash.php" target="_blank">hash(ALGO,$plaintext)</a>,
+                <a href="http://php.net/manual/en/function.password-hash.php" target="_blank">password_hash($plaintext,ALGO)</a> (for PHP 5.5+), or
+                <a href="http://php.net/manual/en/function.crypt.php" target="_blank">crypt($plaintext)</a>.
+                See the <a href="http://php.net/manual/en/faq.passwords.php" target="_blank">password hashing</a> FAQ.
+            </p>
+        </div>    
+    </slide>
+
+    <slide title="Login controller" layout="normal">
+        <p>Shown below is the gist of login, validating a supplied password.
+            If valid, some user data is stored in the session.
+            The controller is not complete ... it needs error checking, redirection, login form display, and so on.</p> 
+        <code>
+            class Login extends Application {<br/>
+&#160;&#160;function submit() {<br/>
+&#160;&#160;&#160;&#160;$key = $_POST['userid'];<br/>
+&#160;&#160;&#160;&#160;$password = password_hash($_POST['password'],PASSWORD_DEFAULT);<br/>
+&#160;&#160;&#160;&#160;$user = $this-&gt;users-&gt;get($key);<br/>
+&#160;&#160;&#160;&#160;if ($password == (string) $user-&gt;password) {<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userID',$key);<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userName',$user-&gt;name);<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userRole',$user-&gt;role);<br/>
+&#160;&#160;&#160;&#160;}<br/>
+&#160;&#160;}<br/>
+            }                
+        </code>
+    </slide>
+
+    <slide title="Logout Controller" layout="normal">
+        <p>Shown below is the gist of your logout handling.</p> 
+        <code>
+            class Logout extends Application {<br/>
+&#160;&#160;function index() {<br/>
+&#160;&#160;&#160;&#160;$this->session->sess_destroy();<br/>
+&#160;&#160;&#160;&#160;$this->load-&gt;helper('url');<br/>
+&#160;&#160;&#160;&#160;redirect('/');<br/>
+&#160;&#160;}<br/>
+            }        </code>
+    </slide>
+
+    <slide title="Registration Notes" layout="normal">
+        <div class="left">
+            <p>Good practices:</p>
+            <ul>
+                <li>Form based</li>
+                <li>Avoid barriers to entry</li>
+                <li>Defeating bots... see right</li>
+                <li>Email verification</li>
+                <li>Token field(s) in users table?</li>
+            </ul>
+        </div>
+        <div class="right">
+            <p>Bot detection:</p>
+            <ul>
+                <li>Use the CI User Agent …<br/>
+                    <code>$this-&gt;load-&gt;library('user_agent');<br/>
+                        if ($this-&gt;agent-&gt;is_robot()) ...</code>
+                </li>
+                <li>Use a “comment” field in your HTML form, styled with display:none<br/>
+                    <code>if (isset($_POST['comment']) &amp;&amp; strlen($_POST['comment']) &gt; 0) ...</code>
+                </li>
+                <li>Captcha?</li>
+            </ul>
+            
+        </div>    
+    </slide>
+
+    <slide title="CODEIGNITER AUTHORIZATION" layout="normal" tag="tag5">
+        <div class="left">
+            <p>Use user roles for authorization.</p>
+            <p>Extract the role from the User object, or determine it
+                using other rules.</p>
+            <p>Store the user role in the session.</p>
+            <p>Some suggested roles are shown to the right</p>
+        </div>
+        <div class="right">
+            <ul>
+                <li>Guest - not logged in</li>
+                <li>Visitor - logged in using social login (you know they
+                    are human, you just don't know who); maybe they can post comments</li>
+                <li>User - someone registered on your site, and
+                    who logged in conventionally (you know who they are);
+                    maybe they can post or update their own entries and comments</li>
+                <li>Admin - "user" that you trust more than others;
+                    maybe they can post, update or delete anyone's entries
+                    or comments</li>
+            </ul>
+            
+        </div>    
+    </slide>
+
+    <slide title="CI ACCESS CONTROL" layout="normal" tag="tag6">
+        <p>Restrict access based on role</p>
+        <p>Do this per controller</p>
+        <br/>
+        <img class="scale" width="550" height="202" src="/data/lessons/pix/10-13.png"/>
+    </slide>
+
+    <slide title="Access Control Pseudocode" layout="normal">
+        <p>Shown below is the gist of your access control enforcement.</p> 
+        <code>
+            if role needed<br/>
+&#160;&#160;if not logged in<br/>
+&#160;&#160;&#160;&#160;redirect to login page<br/>
+            if user has that role<br/>
+&#160;&#160;allow request to proceed<br/>
+&#160;&#160;else redirect to landing page, maybe with error message(s)        
+        </code>
+    </slide>
+
+    <slide title="Enforcement in Base Controller" layout="normal">
+        <code>
+            class Application extends CI_Controller {<br/>
+&#160;&#160;...<br/>
+&#160;&#160;function restrict($roleNeeded=null) {<br/>
+&#160;&#160;&#160;&#160;$userRole = $this-&gt;session->userdata('userRole');<br/>
+&#160;&#160;&#160;&#160;if ($roleNeeded != null) {<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;if (is_array($roleNeeded)) {<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;if (!in_array($userRole, $roleNeeded)) {<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;redirect("/"); return;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;} else<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;if ($userRole != $roleNeeded) {<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;redirect("/"); return;<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;}<br/>
+&#160;&#160;&#160;&#160;}<br/>
+&#160;&#160;}<br/>
+            }
+        </code>
+    </slide>
+
+    <slide title="Applying This" layout="normal">
+        <code>
+            class Whatever extends Application {<br/>
+&#160;&#160;function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct();<br/>
+&#160;&#160;&#160;&#160;$this-&gt;restrict(ROLE_USER);<br/>
+&#160;&#160;}<br/>
+            ...<br/>
+            }        </code>
+        <p></p>
+        <code>
+            class Admin extends Application {<br/>
+&#160;&#160;function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct();<br/>
+&#160;&#160;&#160;&#160;$this-&gt;restrict(array(ROLE_ADMIN,ROLE_WEBMASTER));<br/>
+&#160;&#160;}<br/>
+            ...<br/>
+            }        </code>
+    </slide>
+
+    <slide title="ALTERNATIVES FOR CI" layout="normal" tag="tag7">
+        <p>Food for thought... in increasing order of difficulty</p>
+        <ul>
+            <li>Social media integration - make it easy for your users
+                to share, like or tweet about specific content or pages,
+                whether they use social login or not</li>
+            <li>Social Login - allow users to login with their Facebook or Google+
+                account</li>
+            <li>Social media management? - an example: if you or a user post
+                an image to Instagram, repost that on "your" Facebook wall, with
+                caption or comments, and then tweet it to your faithful
+                followers</li>
+        </ul>
+    </slide>
+
+
+</lesson>
