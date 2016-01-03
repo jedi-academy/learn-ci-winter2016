@@ -8,9 +8,12 @@ Assignment 2 - Functional Webapp
     <!-- The meat of the presentation -->
     <slide title="Overall Assignment Goals" layout="normal">
         <p>The purpose of assignment 2 is to make your project functional,
-            and to add admin maintenance to it.</p>
+            and to add admin maintenance to it.
+            In a nutshell, you will be adding view flexibility, CRUD, and
+            setting the stage for the game predictions.</p>
+        <p>User authentication is not expected.</p>
         <p>Your assignment 1 project will need to have its database
-            realized (not just mock data) and its usecases implemented
+            realized (not just mock data) and some of its usecases implemented
             (not just mock views).</p> 
         <p>This may sound suspiciously similar to labs #3-5! Hmmmmm.</p> 
     </slide>
@@ -19,8 +22,7 @@ Assignment 2 - Functional Webapp
         <p>If assignment details need clarifying, such changes will
             be made in this slide deck, and a note added to this page.</p>  
         <ul>
-            <li>I have added explanation of my process, and of each of
-                the gradable components.</li>
+            <li></li>
         </ul>
 
     </slide>
@@ -43,10 +45,9 @@ Assignment 2 - Functional Webapp
     </slide>
 
     <slide title="Submission" layout="normal">
-        <p>Dayschool students: submit a readme to the D2L assignment dropbox. 
-            This readme should have a link to your github repository.</p>
-        <p>Distance students: send me an email with a link to your github repository.</p>
-        <p>Due: Saturday, Mar 7, 23:59 PST</p>
+        <p>When you are done, submit a readme or a comment to the D2L assignment dropbox, 
+            with a link to your github repository.</p>
+        <p>Due: Sunday Nov 15, 23:59 PST</p>
     </slide>
 
     <slide title="My Process" layout="normal">
@@ -56,32 +57,45 @@ Assignment 2 - Functional Webapp
             to your github repository, and a last browser tab opened to your
             webapp running on my system.</p>
         <p>Your repo does not have to be a NetBeans project. I can create
-            a new one for it, using existing sorces, as we
+            a new one for it, using existing sources, as we
             have done in lab before.</p>
     </slide>
     <slide title="Your Database" layout="normal">
         <p>I expect your webapps to run as is, with the expectation that
-            I may have to create a database named per your config/database.php
-            and populated with the *one* SQL script I find in the root of your project,
+            I may have to populate your database with the *one* SQL script I find in the root of your project,
             or in such place as you might notify me of in the readme that is part of your
             repo.</p>
         <p>An easy way to get this script is to export your database using PHPMyAdmin,
             checking the "gzipped" format to avoid potential hiccups with
-            special characters in any of your table rows.</p>
-        <p>You can tailor *your* database config by having your own application/config/development
+            special characters in any of your table rows.
+            In your SQL script, drop all tables you need before recreating them.
+            Do not attempt to create a database, or to tie your script to a specific database.</p>
+        <p>My testing assumes a "COMP4711" database, with default user "root" and no password.
+            
+            You can tailor *your* database config by having your own application/config/development
             subfolder on your local system, with over-riding database configuration
             settings. You would
             then "git ignore" that folder, so that it is not part of your repo, 
             and you aren't sharing
             your database username and password with me or the world.</p>
     </slide>
+    <slide title="Sessions..." layout="normal">
+        <p>Your webapp will need to use sessions, to store some mode toggles
+            relevant to your app: the current roster order, the current roster layout,
+            and whether editing is enabled.</p>
+            <p>Session data can be stored using files, but using your database 
+                might be safer, not having to worry about proper folder permssion settings.</p>
+                <p>Read the Session library writeup, for details on your configuration 
+                    and database needs.</p>
+    </slide>
     <slide title="Your Repository" layout="normal">
-        <p>Your repo should not include the CI3RCx pieces used for framework and 
+        <p>Your repo should not include the CI3 pieces used for framework and 
             development, namely the tests and user_guide_src folders and the
             build/test scripts (composer.json, phpdoc.dist.xml, .travis.yml).
             You don't need the developer contribution files either (contributing.md and
             DCO.txt).</p>
-        <p>Your repo should not include the system folder. Instead, your index.php 
+        <p>Your repo should not include the system or user_guide folders eitherfolder. 
+            Instead, your index.php 
             should set the SYSPATH to '../system3', which refers to a "system3" 
             folder at the same level as your repo.</p>
         <p>Hard-coding your SYSPATH, or using Windows-style separators, will
@@ -95,42 +109,34 @@ Assignment 2 - Functional Webapp
             of the gradable items:        </p>
         <div class="left">
             <ul>
-                <li>Controllers (2)</li>
-                <li>Models, bound to DB tables (2)</li>
-                <li>Usecases, home and 3x two levels deep ? (4)</li>
-                <li>Aesthetics &amp; consistency (2)</li>
+                <li>Models, bound to DB tables (3)</li>
+                <li>Homepage enhancements (-)</li>
+                <li>Roster presentation (5)</li>
+                <li>Player CRUD (5)</li>
+                <li>League presentation (-)</li>
             </ul>
         </div>
         <div class="right">
             <ul>
-                <li>Admin page - add/edit/delete (4)</li>
-                <li>Rich text and image uploading (2)</li>
                 <li>Works properly? (3)</li>
+                <li>Aesthetics &amp; consistency (2)</li>
                 <li>Comments &amp; programming style (2)</li>
             </ul>
         </div>
     </slide>
 
-    <slide title="Controllers" layout="normal">
-        <p>Your webapp will have at least 3-4 controllers: one for each usecase
-            and one (or more) for admin/maintenance.</p>
-        <p>I expect a controller to have methods (subcontrollers) appropriate
-            to the usecase. In other words a usecase controller encapsulates all of
-            the control logic needed for that usecase and its subusecases.</p>
-        <p>You do not need authentication in this assignment. If you
-            are more comfortable with something like it, I suggest faking it ...
-            add link(s) to set/unset a session variable for an admin role.
-            This only needs to be takne into account for the admin/maintenance controller(s).
-            We will be tackling this topic in the last part of the course,
-            and you are welcome to defer authnetication until assignment 3.</p>
-    </slide>
-
     <slide title="Models" layout="normal">
-        <p>Your webapp will have at least 2-4 tables in its database, for application
-            data. This does not count a session table, or any user/login table(s),
+        <p>Your webapp will have at least 2 tables in its database, for application
+            data - one for players and one for league teams. 
+            This does not count a session table, or any user/login table(s),
             if you are using those.</p>
         <p>I expect each table to have its own model, and you are welcome
-            to use the base models provided in earlier labs as a starting point.</p>
+            to use the base models provided in earlier labs as a starting point.
+            Some of you have provided appropriate mock data, which can just be implemented
+            as a table/model. Others will need to step up their game.</p>
+    </slide>
+
+    <slide title="Model Methods" layout="normal">
         <p>Each model should have additional methods, beyond CRUD, to
             support data extraction or manipulation for your usecases.
             This means that data filtering should be done in the models,
@@ -142,67 +148,257 @@ Assignment 2 - Functional Webapp
             model method for data extraction.</p>
     </slide>
 
-    <slide title="Usecases" layout="normal">
-        <p>Your webapp will have 3 or so usecases, per assignment 1.
-            Each usecase will usually have two aspects: a summary presentation
-            of data, eg the places to visit on Mars, and then a detailed
-            presentation of one record, eg the scoop on a specific place
-            on Mars.</p>
-        <p>I am treating your homepage as "level 1", the summary aspect
-            of a usecase as "level 2", and the detail aspect of a usecase
-            as "level 3". Three usecases, each with summary and detail,
-            gives "3x two levels deep".
-            If your usecases do not suit this, you may have over-simplified
-            them or chosen a too simple webapp to build</p>
-        <p>I expect your usecases to be functional, i.e. to work as
-            planned or described, and mocked up, in assignment 1.</p>
+    <slide title="Model Specifics" layout="normal">
+        <p>
+            <strong>Players</strong> - Your players table/model will need to track player
+            data to support the presentation requirements. This means name (probably
+            surname and first name, comma-separated), position, jersey number,
+            filename of their mugshot, and any other data you have provided for already.</p>
+        <p>
+            <strong>League</strong> - Your league model needs to include *all* teams
+            in the league, including their team name, city, conference, division,
+            and filename of their logo image. 
+            You are welcome to include other data you have provided for so far.
+        </p>
+        <p>
+            <strong>History</strong> - You will need to model games history, so that you can
+            predict the outcome of a game between your team and another.
+            Don't worry about this until assignment 3, however.</p>
+    </slide>
+    <!--
+        <slide title="Useful Prediction Data" layout="normal">
+            <p>
+                If you look at nhl.com, you will notice that each game has an
+                identifier, yyyymmddnn, where "nn" is one of the games on a given day.</p>
+            <p>If you look at the standings page there, you will notive a "net points"
+                column, the difference between the points a team scored and the points scored
+                against them; this is the basis for standings calculations.</p>
+            <p>There are also some other columns, that you are welcome to include in
+                your model but not required to (home vs away performance, performance
+                inside a team's conference, current streak, and last 5 games summary).
+            </p>
+        </slide>
+        <slide title="Final Model Thoughts" layout="normal">
+            <p>
+                You may want to provide for a configuration table of sorts,
+                or perhaps for configuration settings...</p>
+            <ul>
+                <li>the last game # you retrieved</li>
+                <li>the URL of the game scores service</li>
+            </ul>
+            <p>If you have nothing but time on your hands, you might even
+                store predictions and compare them to actual games once
+                played, with the intent of somehow profiting from
+                this information to improve your predictions.
+                On the other hand, this is only for fun, and not for profit,
+                and I suspect you will have better uses for your time!</p>
+        </slide>
+
+
+    <slide title="Homepage Enhancements" layout="normal">
+        <p>Provide a <strong>mock predictor</strong> on your homepage.</p>
+        <p>Distinguish it from the rest of the hoimepage content by putting
+            it inside a well or a fieldset.</p>
+    <p>It should have a combo box to select your opponent, chosen
+        from all of the *other* teams in the league.</p>
+        <p>This can be a regular form, with a conventional "submit" button,
+        to trigger redrawing the page, or you can use an A</p>
+        <p>The predicted outcome (points for &amp; agaonst, can be randomly
+            calculated chosen.</p>
                 
     </slide>
-
-    <slide title="Aesthetics &amp; Consistency" layout="normal">
-        <p>Your webapp pieces should look and behave seamlessly.</p>
-        <p>The different pages should have similar or compatible
-            styles. Nothing should look like a random note!</p>
+    -->
+    <slide title="ROSTER PRESENTATION" layout="normal">
+        <p>This assignment involves three changes to the previous roster presentation:
+            groups with pagination, flexible ordering, and flexible layout.</p>
+        <p>Present your team's roster in <strong>groups with pagination</strong>.
+            The roster should be presented twelve players at a time, starting with the
+            first appropriate to the ordering currently in effect.
+            Your team roster doesn't *have* to be complete, but I want you to have 
+            at least 25 players in your roster.</p>
+        <p>Provide for user-selectable <strong>roster order</strong>: name, 
+            jersey, position. If you did not provide for these fields in assignment 1,
+            it is definitely time to add them!</p>
+        <p>Provide for user-selectable <strong>layout</strong> as a table or a gallery.</p>
     </slide>
 
-    <slide title="Admin page" layout="normal">
-        <p>Your admin page(s) should provide maintenance
-            for the "control" or "master file" data in your webapp.</p>
-        <p>If presenting places to visit on Mars, for instance,
-            your maintenance would provide for CRUD related to those
-            places, i.e. adding, editing and deleting them.</p>
-        <p>The easiest way to do this is with a summary presentation,
-            for instance using HTML tables with some of the fields
-            shown, and providing buttons on each row to edit or delete
-            that component.</p>
-        <p>The record editing in your admin usecase should
-            provide a reasonably easy way to edit content.
-            This includes using appropriate HTML form elements,
-            for instance a combobox if there are only a few
-            choices to select from for a datum.
+    <slide title="Pagination Group Calculations" layout="normal">
+        <p>You might use the pagination library from CodeIgniter for this, 
+            or you can easily calculate 
+            the page numbers yourself. 
+            The number of players divided by 12 gives you the total number of  
+            pages (don't forget to round up if not evenly divisible by 12).</p>     
+        <p>Pagination implies a
+            new method inside your roster controller, for instance <code>page</code>,
+            whose purpose is to isolate the players that belong on the given
+            page and pass that data to the approproate view components.</p>
+        <p>The URL to display the second group of players might then look like 
+            <code>myapp/roster/page/2</code>
         </p>
     </slide>
+    
+    <slide title="Pagination Controls" layout="normal">
+        
+        <p> The view will need pagination controls...</p>
+        <ul>
+            <li>"first" linked to page 1</li>
+            <li>"previous" linked to the page # one lower than the current one</li>
+            <li>"next" linked to the page # one higher than the current one</li>
+            <li>"last" linked to the page # which would hold the last group</li>
+        </ul>
+        <p>These controls would normally be implemented by appropriate buttons.
+            Bootstrap provides for pagination controls, hmmm.</p>
 
-    <slide title="Rich text and image uploading" layout="normal">
-        <p>The larger "description" text area that is in your
-            tables should be able to contain "rich text".
-            This could literally be HTML tags (bolding, etc),
-            or it could be templating tags or directives,
-            depending on the design decisions you made for
-            implementing your views.</p>
-        <p>Your admin editing should provide an elegant way
-            to edit such a description. That could be done with a rich text editor 
-            (such as ckeditor or tinymce).</p>
-        <p>Your data should also include multiple images per record
-            or related records. Your admin function needs to
-            handle image uploading to support this.</p>
     </slide>
 
+    <slide title="Roster Ordering" layout="normal">        
+        <p> Your roster needs to be presented in any of several orders:
+            name (surname then first name), jersey number, or position.</p>
+        <p>Provide an <code>order</code> method in your roster controller, which
+            takes a single parameter to denote the requested order.
+            The roster data will need to be sorted in the correct order
+            before extracting the players that belong on the current page,
+            according to that order. The sorting could be done inside the controller
+            (the <code>page</code>
+            method), or inside the model.</p>
+        <p>Store the current order as a session property, so it
+            doesn't have to be passed as part of the URL, and make it obvious
+            in the view which ordering is in effect.</p>
+        <p>You could provide button icons to link to your ordering method,
+            or you could provide a combobox to select the desired method. With
+            the latter approach, a bit of javascript could trigger the
+            request on any change, or you could have a "go" button to apply
+            the effect.</p>
+    </slide>
+    
+    <slide title="Roster Layout" layout="normal">        
+        <p> Your roster needs to be presented in either table or gallery layout mode.</p>
+        <p>Provide a <code>layout</code> method in your roster controller, which
+            takes a single parameter to denote the requested layout.
+        </p>
+        <p>Store the current layout as a session property, so it
+            doesn't have to be passed as part of the URL, and make it obvious
+            in the view which layout is in effect.</p>
+        <p>You could provide button icons to link to your layout selection method,
+            or you could provide a combobox to select the desired layout. With
+            the latter approach, a bit of javascript could trigger the
+            request on any change, or you could have a "go" button to apply
+            the effect.</p>
+
+    </slide>
+    
+    <slide title="Roster Drilldown" layout="normal">        
+        <p>
+            <strong>Table</strong>
+            layout presents the current roster page as an HTML table,
+            without any imagery. <strong>Gallery</strong>
+            layout should present the current roster page as rows of players.
+            Show the player's mugshot (or thumbnail), name and jersey number.</p>
+        <p>In both layouts, the player's name should be a link to a single
+            player view (which you now need to provide), showing all the data you
+            have for that player.</p>
+    </slide>
+    
+    <slide title="PLAYER CRUD" layout="normal">
+        <p>We want to provide for roster maintenance, but without being too
+            obtrusive. </p>
+        <p>Provide a button somewhere (navbar?) to toggle
+            the current editing mode, which you should store as a session
+            property. If editing is enabled, then you should provide an
+            "Add player" button somewhere in the roster view, and when
+            a single player view is presented, it should be ready for editing.
+        </p>
+        <p>If a player edit view is presented, you should have "Save", "Delete"
+            and "Cancel" choices at the bottom of the form.</p>
+    </slide>
+
+    <slide title="CRUD Data Transfer Buffer" layout="normal">
+        <p>You should use the data transfer buffer strategy. 
+            If commencing the edit of a player, store their original record
+            as a session property; if adding, create an empty player record
+            and store it as a session property. </p>
+        <p>The form would present the "current" state of the record, and
+            submit changes. The updated record will need to be validated
+            server-side ... if ok, add/update the model; if not ok, redisplay the
+            record with error messages. if the user selects cancel, you should
+            discard the session property for the record, and then display the roster
+            again.</p>
+            
+    </slide>
+    
+    <slide title="CRUD Controller" layout="normal">
+        <p>If you haven't gathered by now, it might be easier to implement
+            this functionality with a separate controller, rather then trying to
+            add to one of the existing ones.</p>
+        <p>I suggest a controller named <code>Player</code>, with methods <code>add</code> (create an empty
+            record and display it), <code>edit</code> (retrieve an existing record and display it),
+            <code>post</code> (validate submitted data and update the database), and <code>delete</code> (remove
+            a record from the table).</p>
+            
+    </slide>
+
+    <slide title="Data Validation" layout="normal">
+        <p>Some data validation is appropriate, both generally and specifically.</p>
+        <p>Specific validation:</p>
+        <ul>
+            <li>if adding a new player, make sure that they will have a non-conflicting
+                primary key</li>
+            <li>don't allow two players to have the same jersey number</li>
+            <li>make sure they have a name</li>
+            <li>make sure that the chosen player position is valid</li>
+            <li>... and what might be appropriate for any other fields you have provided</li>
+        </ul>
+        <p>The next slide addresses some general validation processes.</p>
+    </slide>
+    
+    <slide title="Security" layout="normal">
+        <p>General validation can get complicated, because of potential
+            security exploits. CodeIgniter has a number of mechanisms built-in
+            to help prevent exploits, but I suggest that you read the Input and Security
+            library writeups in the CodeIgniter user guide.</p>
+        <p>One common exploit is to attempt to embed javascript in input data,
+            in the hope that it will be presented and executed when that data
+            is displayed. PHP provides some functions to convert dangerous
+            characters into their HTML entity, to prevent this. See htmlentities
+            and tml_entity_decode.</p>
+    </slide>
+
+    <slide title="Image uploading" layout="normal">
+        <p>CodeIgniter provides a file uploading library, to make it easier
+            to upload images or other files.</p>
+        <p>You will need to set the form type properly, and you will need
+            to add some logic to move any uploaded file to the proper place,
+            and to save its name in the appropriate record field.</p>
+    </slide>
+
+    <slide title="League Presentation" layout="normal">
+        <p>You do not need to make changes to your league presentation
+            as part of this assignment. I expect that your
+            earlier work will show all the league teams.</p>
+    </slide>
+    <!--
+        <slide title="League Presentation" layout="normal">
+            <p>Layout by league, conference or division.</p>
+            <p>Ordered by city, name, or standing</p>
+        </slide>
+    -->
     <slide title="Works properly?" layout="normal">
         <p>This basically refers to your webapp working as a webapp should.</p>
         <p>Things that would cost marks here include broken hyperlinks,
             broken images, CSS not loading properly,
             and of course BOOMs.</p>
+    </slide>
+
+    <slide title="Aesthetics &amp; Consistency" layout="normal">
+        <p>Your webapp pieces should look and behave seamlessly.</p>
+        <p>The different pages should have similar or compatible
+            styles. Nothing should look like a ransom note!</p>
+        <p>A note about style - some of the first assignments
+            looked like repurposed image galleries, or repurposed
+            quotation presenters. If this applies to your project,
+            you really need to step up your game and make your
+            webapp like like a fansite, rather than just give lip service
+            to the task at hand!</p>
     </slide>
 
     <slide title="Comments &amp; programming style" layout="normal">
