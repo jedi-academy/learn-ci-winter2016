@@ -4,22 +4,11 @@ Assignment 3 - Finished Webapp
 -->
 <lab status="beta">
  
-    <slide title="Assignment 3 NOT" layout="normal">
-        <p>You have more than enough work to do with your option courses,
-        and we have not been able to address a number of topics
-        that I had originally planned.</p>
-        <p>Accordingly, I am cancelling the third assignment.</p> 
-    </slide>
-
-        
-    <!-- The meat of the presentation
     <slide title="Overall Assignment Goals" layout="normal">
         <p>The purpose of assignment 3 is to complete your webapp project,
             per the specifications in this document.</p>
-        <p>We will be adding some <a href="#{tag1}">process</a> to the assignment,
-            incorporating some <a href="#{tag2}">XML data</a> and 
-            adding <a href="#{tag3}">authentication</a>.
-            This may sound suspiciously similar to labs #6-8! Hmmmmm.</p> 
+        <p>We will be adding some league process and presentation,
+            and incorporating your game outcome prediction on the homepage.</p> 
     </slide>
 
     <slide title="FAQ? Revisions?" layout="normal">
@@ -31,68 +20,17 @@ Assignment 3 - Finished Webapp
 
     </slide>
 
-    <slide title="PROCESS" layout="normal" tag="tag1">
-        <p>Make sure that you create a "develop" branch in your shared
-            repository, based on "master". Make this "develop" branch the default.
-            This will let you continue work on assignment 2 without impacting
-            your assignment 1 work, which has been preserved in the master branch.</p>
-        <p>If there turn out to be issues with your assignment 1, those
-            can be addressed in a "fix" branch, with a PR to the master branch.
-            It will then need to be remerged into the develop branch.</p>
-        <p>From this point on, all work is done on the develop branch, and it 
-            will only get merged into the master branch when you have completed
-            assignment 2.
-            You are welcome to "tag" the master branch, perhaps "1.0",
-            once you have isolated it. When you have completed the assignment,
-            you would then merge your "develop" branch into the "master" branch,
-            and tag the "master" branch "2.0".</p>
-    </slide>
-
     <slide title="Submission" layout="normal">
-        <p>Dayschool students: submit a readme to the D2L assignment dropbox. 
+        <p>Submit a readme to the D2L assignment dropbox. 
             This readme should have a link to your github repository.</p>
-        <p>Distance students: send me an email with a link to your github repository.</p>
-        <p>Due: Saturday, Mar 7, 23:59 PST</p>
-    </slide>
-
-    <slide title="My Process" layout="normal">
-        <p>To evaluate each project, I run a shell script using your repository name
-            (so not including any .git extension), to pull your *master* branch
-            into a marking folder I have setup, to launch a browser tab opened
-            to your github repository, and a last browser tab opened to your
-            webapp running on my system.</p>
-        <p>Your repo does not have to be a NetBeans project. I can create
-            a new one for it, using existing sorces, as we
-            have done in lab before.</p>
-    </slide>
-    <slide title="X M L" layout="normal">
-        <p>I expect your webapps to run as is, with the expectation that
-            I may have to create a database named per your config/database.php
-            and populated with the *one* SQL script I find in the root of your project,
-            or in such place as you might notify me of in the readme that is part of your
-            repo.</p>
-        <p>An easy way to get this script is to export your database using PHPMyAdmin,
-            checking the "gzipped" format to avoid potential hiccups with
-            special characters in any of your table rows.</p>
-        <p>You can tailor *your* database config by having your own application/config/development
-            subfolder on your local system, with over-riding database configuration
-            settings. You would
-            then "git ignore" that folder, so that it is not part of your repo, 
-            and you aren't sharing
-            your database username and password with me or the world.</p>
-    </slide>
-    <slide title="Your Repository" layout="normal">
-        <p>Your repo should not include the CI3RCx pieces used for framework and 
-            development, namely the tests and user_guide_src folders and the
-            build/test scripts (composer.json, phpdoc.dist.xml, .travis.yml).
-            You don't need the developer contribution files either (contributing.md and
-            DCO.txt).</p>
-        <p>Your repo should not include the system folder. Instead, your index.php 
-            should set the SYSPATH to '../system3', which refers to a "system3" 
-            folder at the same level as your repo.</p>
-        <p>Hard-coding your SYSPATH, or using Windows-style separators, will
-            break when I run your webapp locally. This results in a BOOM, and you
-            know what that means!</p>
+        <p>I will be following the same process as for assignment 2, namely marking
+            the "master" branch of your repository, and expecting that your
+            database settings will work "out of the box" on my system - your
+            local settings would be in application/config/development, which you
+            remembered to "gitignore" so that I would not see them.</p>
+        <p>I should not have to remind you about case senitivity issues
+            or hard-coded filepaths.</p>
+        <p>Due: Sunday, Dec 6, 23:59 PST</p>
     </slide>
 
     <slide title="Evaluation" layout="normal">
@@ -101,121 +39,101 @@ Assignment 3 - Finished Webapp
             of the gradable items:        </p>
         <div class="left">
             <ul>
-                <li>Controllers (2)</li>
-                <li>Models, bound to DB tables (2)</li>
-                <li>Usecases, home and 3x two levels deep ? (4)</li>
-                <li>Aesthetics &amp; consistency (2)</li>
+                <li>Predictions (5)</li>
+                <li>League data &amp; presentation (5)</li>
+                <li>League history &amp; update (5)</li>
             </ul>
         </div>
         <div class="right">
             <ul>
-                <li>Admin page - add/edit/delete (4)</li>
-                <li>Rich text and image uploading (2)</li>
                 <li>Works properly? (3)</li>
-                <li>Comments &amp; programming style (2)</li>
+                <li>Aesthetics &amp; consistency (1)</li>
+                <li>Comments &amp; programming style (1)</li>
             </ul>
         </div>
     </slide>
 
-    <slide title="AUTHENTICATION" layout="normal">
-        <p>Your webapp will have at least 3-4 controllers: one for each usecase
-            and one (or more) for admin/maintenance.</p>
-        <p>I expect a controller to have methods (subcontrollers) appropriate
-            to the usecase. In other words a usecase controller encapsulates all of
-            the control logic needed for that usecase and its subusecases.</p>
-        <p>You do not need authentication in this assignment. If you
-            are more comfortable with something like it, I suggest faking it ...
-            add link(s) to set/unset a session variable for an admin role.
-            This only needs to be takne into account for the admin/maintenance controller(s).
-            We will be tackling this topic in the last part of the course,
-            and you are welcome to defer authnetication until assignment 3.</p>
+    <slide title="PREDICTIONS" layout="normal">
+        <p>To your homepage, add a prediction "box", with a "form" to select
+            an oppopent, and an empty div to present the results of your
+            prediction.</p>
+        <p>The "form" should contain a dropdown with the names of all league teams 
+            except yours, alphabetically. The value of each selection should be 
+            the 3-letter code for that team. The submit button should be
+            implemented using AJAX, sending a request to an appropriate handler
+            method, and setting the content of the empty div you provided,
+            from the result.</p>
+        <p>Your handler will need to validate the requested opponent code,
+            and return either an error message or the prediction, nicely
+            formatted as an HTML view fragment.</p>
     </slide>
 
-    <slide title="Models" layout="normal">
-        <p>Your webapp will have at least 2-4 tables in its database, for application
-            data. This does not count a session table, or any user/login table(s),
-            if you are using those.</p>
-        <p>I expect each table to have its own model, and you are welcome
-            to use the base models provided in earlier labs as a starting point.</p>
-        <p>Each model should have additional methods, beyond CRUD, to
-            support data extraction or manipulation for your usecases.
-            This means that data filtering should be done in the models,
-            and most of your "business logic" will probably
-            end up inside them as well.</p>
-        <p>A controller using one or more of your models might
-            have to filter or validate parameters,
-            but those would then be passed on to the appropriate
-            model method for data extraction.</p>
-    </slide>
-
-    <slide title="Usecases" layout="normal">
-        <p>Your webapp will have 3 or so usecases, per assignment 1.
-            Each usecase will usually have two aspects: a summary presentation
-            of data, eg the places to visit on Mars, and then a detailed
-            presentation of one record, eg the scoop on a specific place
-            on Mars.</p>
-        <p>I am treating your homepage as "level 1", the summary aspect
-            of a usecase as "level 2", and the detail aspect of a usecase
-            as "level 3". Three usecases, each with summary and detail,
-            gives "3x two levels deep".
-            If your usecases do not suit this, you may have over-simplified
-            them or chosen a too simple webapp to build</p>
-        <p>I expect your usecases to be functional, i.e. to work as
-            planned or described, and mocked up, in assignment 1.</p>
-                
-    </slide>
-
-    <slide title="Aesthetics &amp; Consistency" layout="normal">
-        <p>Your webapp pieces should look and behave seamlessly.</p>
-        <p>The different pages should have similar or compatible
-            styles. Nothing should look like a random note!</p>
-    </slide>
-
-    <slide title="Admin page" layout="normal">
-        <p>Your admin page(s) should provide maintenance
-            for the "control" or "master file" data in your webapp.</p>
-        <p>If presenting places to visit on Mars, for instance,
-            your maintenance would provide for CRUD related to those
-            places, i.e. adding, editing and deleting them.</p>
-        <p>The easiest way to do this is with a summary presentation,
-            for instance using HTML tables with some of the fields
-            shown, and providing buttons on each row to edit or delete
-            that component.</p>
-        <p>The record editing in your admin usecase should
-            provide a reasonably easy way to edit content.
-            This includes using appropriate HTML form elements,
-            for instance a combobox if there are only a few
-            choices to select from for a datum.
+    <slide title="PREDICTION FORMULA" layout="normal">
+        <p>The prediction formula: each team should score their average
+            so far, with adjustments for the trends indicated over their
+            last five games in general and against the selected opponent.</p>
+        <p>This could be simply implemented as <r/>
+            <code>70% * (overall average) +
+                20% * (last 5 games average) + 10% * (average of last 5 games against 
+                this opponent).</code>
         </p>
+        <p>A more defensible formula, if you wanted to use this for fantasy
+            football, would be more like<br/>
+            <code>(overall average) +
+                20% * (trend over the last 5 games) + 10% * (trend over last 5 games against 
+                this opponent).</code>
+        </p>
+        <p>The HTML fragment that displays the prediction should include
+            an explanation, i.e. the data going into the predicted outcome.</p>
     </slide>
 
-    <slide title="Rich text and image uploading" layout="normal">
-        <p>The larger "description" text area that is in your
-            tables should be able to contain "rich text".
-            This could literally be HTML tags (bolding, etc),
-            or it could be templating tags or directives,
-            depending on the design decisions you made for
-            implementing your views.</p>
-        <p>Your admin editing should provide an elegant way
-            to edit such a description. That could be done with a rich text editor 
-            (such as ckeditor or tinymce).</p>
-        <p>Your data should also include multiple images per record
-            or related records. Your admin function needs to
-            handle image uploading to support this.</p>
+    <slide title="LEAGUE DATA" layout="normal">
+        <p>Your league presentation page should provide for 3 layouts: league
+            (single table), conference (teams within each league), and division
+            (teams in divisions by conference). Use the NFL standings page as an example.</p>
+        <p>The presentation order within a group should be flexible too: by city,
+            by team, or by standing (net points)</p>
+        <p>Finally, you should provide for calculating this from the data you
+            have stored in your RDB table(s), *or* from the XML document
+            you can retrieve from <code>nfl.jlparry.com/standings</code> (which is not live
+            yet).</p>
+        <p>So, three selections, then proceed to presentation.</p>
     </slide>
 
-    <slide title="Works properly?" layout="normal">
-        <p>This basically refers to your webapp working as a webapp should.</p>
-        <p>Things that would cost marks here include broken hyperlinks,
+    <slide title="LEAGUE HISTORY" layout="normal">
+        <p>Your webapp will need to pull historical scores from 
+            <code>nfl.jlparry.com/scores/yyyymmdd</code>,
+            using XML-RPC.</p>
+        <p>You should provide a link or button, probably in your navbar, to
+            trigger this.</p>
+        <p>The data will need to be interpreted and converted into a format
+            usable by your webapp. I suggest a scores history table, with
+            team code, date, score, and opponent team code as columns. The first two 
+            would comprise a composite primary key.</p>
+        <p>You will need to keep track of the date your history is current until, as
+            the scores server needs to be told the starting date for data to extract for you.</p>
+    </slide>
+
+    <slide title="OTHER CONSIDERATIONS" layout="normal">
+
+        <p> 
+            <strong>Works properly.</strong>
+            This basically refers to your webapp working as a webapp should.
+            Things that would cost marks here include broken hyperlinks,
             broken images, CSS not loading properly,
             and of course BOOMs.</p>
-    </slide>
+    
+        <p> 
+            <strong>Aesthetics &amp; Consistency.</strong>
+            Your webapp pieces should look and behave seamlessly.
+            The different pages should have similar or compatible
+            styles. Nothing should look like a rAnSom note!</p>
 
-    <slide title="Comments &amp; programming style" layout="normal">
-        <p>You are programmers, and you want to be professional. Code like it.</p>
-        <p>That means clearly written and formatted code, properly commented.</p>
-        <p>Your views should have no PHP in them, apart from possibly comments.</p>
+        <p> 
+            <strong>Comments &amp; programming style.</strong>
+            You are programmers, and you want to be professional. Code like it.
+            That means clearly written and formatted code, properly commented.
+            Your views should have no PHP in them, apart from possibly comments.</p>
         <p>Remember the golden rules!!!</p>
     </slide>
- -->
 </lab>

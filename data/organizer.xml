@@ -78,15 +78,16 @@ Course organizer for Comp4711
     </week>
     <week num="11">
         <topic>XML Processing</topic>
-        <lesson type="lesson" name="lesson09">XML Processing</lesson>
-        <tutorial type="tutorial" name="xml03" >XML Processing</tutorial>
-        <tutorial type="tutorial" name="xml03" >Creating XML</tutorial>
-        <lab type="lab" name="lab07" duedate="2015.03.29 17:30">XML Processing</lab>
+        <lesson type="lesson" name="xml03">XML Processing</lesson>
+        <tutorial type="tutorial" name="xml02" >XML Processing</tutorial>
+        <assignment type="assignment" name="assignment3" duedate="2015.12.06 23:59" pdf="assignment3-completed-webapp.pdf">Completed Webapp, introduced</assignment>
+<!--        <tutorial type="tutorial" name="xml03" >Creating XML</tutorial>
+        <lab type="lab" name="lab07" duedate="2015.03.29 17:30">XML Processing</lab>-->
     </week>
     <week num="12">
         <topic>XML-RPC</topic>
-        <!--        <lesson type="lesson" name="advanced01">XML-RPC</lesson>
-            <tutorial type="tutorial" name="tutorial08" >Authentication</tutorial>
+                <lesson type="lesson" name="advanced01">XML-RPC</lesson>
+ <!--           <tutorial type="tutorial" name="tutorial08" >Authentication</tutorial>
             <lab type="lab" name="lab08" duedate="2015.04.10 17:30">Authentication</lab>
             <assignment type="assignment" name="assignment3" duedate="">Completed Webapp</assignment> 
         -->
