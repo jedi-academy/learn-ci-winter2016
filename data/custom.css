@@ -1,0 +1,27 @@
+.header { background: #8ba8af; border-bottom: 1px solid #E3E3E3;}
+.header h1 {color: #fff;}
+.features { background: #FFFFFF; color: #808080;}
+.features .feature h5 { color: #404040;}
+.stats { color: #808080; }
+.footer { border-top: 1px solid #ccc;}
+.footer-copyright p { color: #c0c0c0;}
+.footer-copyright a { color: #ffffff;}
+.footer .footer-menu { background-color: #dedede;}
+.footer .footer-copyright { background-color: #3e3e3e;}
+.bcit50 {background: url('/assets/images/bcit-50.png') right top no-repeat;}
+.footer .nav-pills > li > a { color: #5B5B5D;}
+.footer .nav-pills > li > a:hover { color: #dd4814;}
+.footer .nav-pills > li.active > a { background-color: #aaa;}
+.title { color: #5B5B5D;}
+.well { background-color: #F5F5F5;}
+.well hr { border-top: 1px solid #E3E3E3;}
+.list-group-item:hover, list-group-item:focus {color: #555555;background-color: #FCF8E3;}
+.jumbotron { background-color: #8ba8af;}
+.jumbotron p {color: #333;}
+.jumbotron h1,jumbotron .h1 { color: #fff;}
+.newsitem { border-bottom: 1px solid #efefef;}
+.newsitem .date {color: #8ba8af;}
+.navbar-brand { background: url('/testdata/logo.png') left top no-repeat;}
+.navbar-default { background-color: #DD4814; border-color: #BF3E11; }
+ .navbar-default .navbar-nav li a { color: white; }
+ .navbar-default .navbar-nav .active  a { color: white; background-color: #AE3910; }

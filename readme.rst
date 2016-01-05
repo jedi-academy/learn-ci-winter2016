@@ -10,6 +10,12 @@ This webapp is an experiment.
 If it works well, it will be proposed for integration into the
 main CodeIgniter site.
 
+*****
+Setup
+*****
+
+
+
 *****************
 Programming Style
 *****************
@@ -42,8 +48,6 @@ Some of the programming design decisions reflected:
 Project Folders
 ***************
 
-/application    the obvious
-/assets         CSS, javascript & media
 /data           XML & figures for learning activities
 /download       reserved
 /feedback       reserved
