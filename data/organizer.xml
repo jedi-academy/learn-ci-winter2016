@@ -8,15 +8,16 @@ Course organizer for learn-ci: Webapp Development Using CodeIgniter
         <lesson type="lesson" name="intro01" pdf="intro01-introduction.pdf">Introduction</lesson>
         <lesson type="lesson" name="intro02" pdf="intro02-golden-rules.pdf">Golden Rules</lesson>
         <tutorial type="tutorial" domain="devops.jlparry.com" name="setup01" pdf="setup01-xampp-installation.pdf">XAMPP Installation</tutorial>
+        <lesson type="lesson" name="setup02" domain="devops.jlparry.com" pdf="setup02-devops-webapp-naming.pdf">Webapp Naming</lesson>
         <tutorial type="tutorial" domain="devops.jlparry.com" name="setup02" pdf="setup02-virtual-hosting-setup.pdf">Virtual Hosting Setup</tutorial>
         <lesson type="lesson" domain="devops.jlparry.com" name="php01" pdf="php01-php-vs-java.pdf">PHP Crash Course</lesson>
     </week>
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
         <lesson type="lesson" name="basic01" pdf="basic01-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
-        <lesson type="lesson" name="basic01-other" pdf="basic01-other-framework-examples.pdf">MVC Framework Introduction</lesson>
+        <lesson type="lesson" name="basic01-other" pdf="basic01-other-framework-examples.pdf">Other MVC Framework Examples</lesson>
         <github type="github" name="contacts" link="https://github.com/jedi-academy/example-contacts">Example webapp - contacts</github>
-        <lesson type="lesson" name="dev01" domain="devops.jlparry.com" pdf="dev01-devops-workflow.pdf">Devops Workflow</lesson>
+        <lesson type="lesson" name="dev03" domain="devops.jlparry.com" pdf="dev03-devops-example.pdf">Workflow Example</lesson>
         <tutorial type="tutorial" name="setup04" domain="devops.jlparry.com" pdf="setup04-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
         <!--        <tutorial type="tutorial" name="basic01" pdf="basic01-convert-static-site-to-trivial-codeigniter.pdf">Convert Static Site to Trivial CodeIgniter</tutorial>
                <tutorial type="tutorial" name="basic02" pdf="basic02-convert-trivial-site-to-basic-codeigniter.pdf">Convert Trivial Site to Basic CodeIgniter</tutorial>
