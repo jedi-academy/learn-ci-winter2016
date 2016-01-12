@@ -14,14 +14,15 @@ Course organizer for learn-ci: Webapp Development Using CodeIgniter
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
         <lesson type="lesson" name="basic01" pdf="basic01-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
-       <lesson type="lesson" name="basic01-other" pdf="basic01-other-framework-examples.pdf">MVC Framework Introduction</lesson>
+        <lesson type="lesson" name="basic01-other" pdf="basic01-other-framework-examples.pdf">MVC Framework Introduction</lesson>
         <github type="github" name="contacts" link="https://github.com/jedi-academy/example-contacts">Example webapp - contacts</github>
         <lesson type="lesson" name="dev01" domain="devops.jlparry.com" pdf="dev01-devops-workflow.pdf">Devops Workflow</lesson>
         <tutorial type="tutorial" name="setup04" domain="devops.jlparry.com" pdf="setup04-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
-<!--        <tutorial type="tutorial" name="basic01" pdf="basic01-convert-static-site-to-trivial-codeigniter.pdf">Convert Static Site to Trivial CodeIgniter</tutorial>
-        <tutorial type="tutorial" name="basic02" pdf="basic02-convert-trivial-site-to-basic-codeigniter.pdf">Convert Trivial Site to Basic CodeIgniter</tutorial>
-        <tutorial type="tutorial" name="basic03" pdf="basic03-convert-basic-site-to-good-codeigniter.pdf">Convert Basic Site to Good CodeIgniter</tutorial>
- -->    </week>
+        <!--        <tutorial type="tutorial" name="basic01" pdf="basic01-convert-static-site-to-trivial-codeigniter.pdf">Convert Static Site to Trivial CodeIgniter</tutorial>
+               <tutorial type="tutorial" name="basic02" pdf="basic02-convert-trivial-site-to-basic-codeigniter.pdf">Convert Trivial Site to Basic CodeIgniter</tutorial>
+               <tutorial type="tutorial" name="basic03" pdf="basic03-convert-basic-site-to-good-codeigniter.pdf">Convert Basic Site to Good CodeIgniter</tutorial>
+        -->    
+    </week>
     <week num="3">
         <topic>Controllers &amp; Routing</topic>
         <lesson type="lesson" name="basic02" pdf="basic02-controller-concepts.pdf">Controller Concepts</lesson>

@@ -13,13 +13,13 @@ Lesson 02 - MVC Framework Introduction - Examples from other frameworks
             <p>
                 <i>Fat-Free</i>
             </p>
-            <img class="scale" width="358" height="315" src="/data/lessons/pix/2-4.png"/>
+            <img class="scale" width="358" height="315" src="/data/lessons/pix/2/2-4.png"/>
         </div>
         <div class="right">
             <p>
                 <i>FuelPHP</i>
             </p>
-            <img class="scale" width="256" height="576" src="/data/lessons/pix/2-5.jpg"/>
+            <img class="scale" width="256" height="576" src="/data/lessons/pix/2/2-5.jpg"/>
         </div>
     </slide>
 
@@ -153,7 +153,7 @@ fuel/app/views/layout.php ...
         <div class="left">
             <i>Yii</i>
             <br/>
-            <img class="scale" width="337" height="268" src="/data/lessons/pix/2-15.png"/>
+            <img class="scale" width="337" height="268" src="/data/lessons/pix/2/2-15.png"/>
         </div>
         <div class="right">
             <i>FuelPHP</i>
