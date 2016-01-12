@@ -52,7 +52,7 @@ Lesson 05 - Views & Input Handling
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="760" height="220" src="/data/lessons/pix/5-1.png"/>
+            <img class="scale" width="760" height="220" src="/data/lessons/pix/5/5-1.png"/>
         </div>
     </slide>
 
@@ -198,7 +198,7 @@ Lesson 05 - Views & Input Handling
         <div class="right">
             <p>The result of the form:</p>
             <br/>
-            <img class="scale" width="462" height="176" src="/data/lessons/pix/5-2.png"/>
+            <img class="scale" width="462" height="176" src="/data/lessons/pix/5/5-2.png"/>
         </div>
     </slide>
 
@@ -257,11 +257,11 @@ Lesson 05 - Views & Input Handling
         <p>An input form can be pretty simple, but ugly ... see below.</p>
         <div class="left">
             <br/>
-            <img class="scale" width="373" height="288" src="/data/lessons/pix/5-4.png"/>
+            <img class="scale" width="373" height="288" src="/data/lessons/pix/5/5-4.png"/>
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="815" height="139" src="/data/lessons/pix/5-3.png"/>
+            <img class="scale" width="815" height="139" src="/data/lessons/pix/5/5-3.png"/>
         </div>
     </slide>
 
@@ -451,7 +451,7 @@ Lesson 05 - Views & Input Handling
 &lt;/form&gt;            
         </code>
         <p>This will result in something like</p>
-        <img class="scale" width="505" height="52" src="/data/lessons/pix/5-6.png"/>
+        <img class="scale" width="505" height="52" src="/data/lessons/pix/5/5-6.png"/>
     </slide>
 
     <slide title="Traditional File Uploading" layout="normal">
@@ -518,7 +518,7 @@ Lesson 05 - Views & Input Handling
             HTML, eg. the Jasny file 
             uploader (shown below), for Bootstrap.</p>
         <br/>
-        <img class="scale" width="897" height="323" src="/data/lessons/pix/5-7.png"/>
+        <img class="scale" width="897" height="323" src="/data/lessons/pix/5/5-7.png"/>
 
     </slide>
 

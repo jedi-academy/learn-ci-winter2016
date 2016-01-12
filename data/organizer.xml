@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Course organizer for Comp4711
+Course organizer for learn-ci: Webapp Development Using CodeIgniter
 -->
 <organizer>
     <week num="1">
         <topic>Introduction to MVC Webapps</topic>
         <lesson type="lesson" name="intro01" pdf="intro01-introduction.pdf">Introduction</lesson>
         <lesson type="lesson" name="intro02" pdf="intro02-golden-rules.pdf">Golden Rules</lesson>
-        <tutorial type="tutorial" name="setup01" pdf="setup01-xampp-installation.pdf">XAMPP Installation</tutorial>
-        <tutorial type="tutorial" name="setup02" pdf="setup02-virtual-hosting-setup.pdf">Virtual Hosting Setup</tutorial>
-        <tutorial type="tutorial" name="setup03" pdf="setup03-php-crash-course.pdf">PHP Crash Course</tutorial>
+        <tutorial type="tutorial" domain="devops.jlparry.com" name="setup01" pdf="setup01-xampp-installation.pdf">XAMPP Installation</tutorial>
+        <tutorial type="tutorial" domain="devops.jlparry.com" name="setup02" pdf="setup02-virtual-hosting-setup.pdf">Virtual Hosting Setup</tutorial>
+        <lesson type="lesson" domain="devops.jlparry.com" name="php01" pdf="php01-php-vs-java.pdf">PHP Crash Course</lesson>
     </week>
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
         <lesson type="lesson" name="basic01" pdf="basic01-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
-        <github type="github" name="contacts" link="https://github.com/comp4711/example-contacts">Example webapp - contacts</github>
+        <lesson type="lesson" name="basic01-other" pdf="basic01-other-framework-examples.pdf">MVC Framework Introduction</lesson>
+        <github type="github" name="contacts" link="https://github.com/jedi-academy/example-contacts">Example webapp - contacts</github>
         <lesson type="lesson" name="dev01" domain="devops.jlparry.com" pdf="dev01-devops-workflow.pdf">Devops Workflow</lesson>
-        <tutorial type="tutorial" name="setup04" pdf="setup04-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
-        <tutorial type="tutorial" name="basic01" pdf="basic01-convert-static-site-to-trivial-codeigniter.pdf">Convert Static Site to Trivial CodeIgniter</tutorial>
-        <tutorial type="tutorial" name="basic02" pdf="basic02-convert-trivial-site-to-basic-codeigniter.pdf">Convert Trivial Site to Basic CodeIgniter</tutorial>
-        <tutorial type="tutorial" name="basic03" pdf="basic03-convert-basic-site-to-good-codeigniter.pdf">Convert Basic Site to Good CodeIgniter</tutorial>
+        <tutorial type="tutorial" name="setup04" domain="devops.jlparry.com" pdf="setup04-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
+        <!--        <tutorial type="tutorial" name="basic01" pdf="basic01-convert-static-site-to-trivial-codeigniter.pdf">Convert Static Site to Trivial CodeIgniter</tutorial>
+               <tutorial type="tutorial" name="basic02" pdf="basic02-convert-trivial-site-to-basic-codeigniter.pdf">Convert Trivial Site to Basic CodeIgniter</tutorial>
+               <tutorial type="tutorial" name="basic03" pdf="basic03-convert-basic-site-to-good-codeigniter.pdf">Convert Basic Site to Good CodeIgniter</tutorial>
+        -->    
     </week>
     <week num="3">
         <topic>Controllers &amp; Routing</topic>
@@ -31,16 +33,12 @@ Course organizer for Comp4711
         <lesson type="lesson" name="basic03" pdf="basic03-models.pdf">Models</lesson>
     </week>
     <week num="5">
-        <topic>Models (continued)</topic>
-        <lesson type="lesson" name="basic03" pdf="basic03-models.pdf">Models</lesson>
-    </week>
-    <week num="6">
         <topic>Views &amp; Templating</topic>
         <lesson type="lesson" name="basic04" pdf="basic04-views.pdf">Views</lesson>
         <github type="github" name="forms" link="https://github.com/comp4711/example-forms">Example webapp - forms</github>
         <tutorial type="tutorial" name="normal02" pdf="normal02-working-with-codeigniter-models.pdf">Working With CodeIgniter Models</tutorial>
     </week>
-    <week num="7">
+    <week num="6">
         <topic>Helpers &amp; CSS / Javascript Integration</topic>
         <lesson type="lesson" name="basic05" pdf="basic05-helpers-and-addons.pdf">Helpers and Addons</lesson>
         <tutorial type="tutorial" name="normal05" pdf="normal05-working-with-libraries-and-helpers.pdf">Working With Libraries and Helpers</tutorial>
