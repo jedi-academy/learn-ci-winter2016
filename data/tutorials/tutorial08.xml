@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Tutorial 08 - Authentication
+-->
+<tutorial status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+    
+    <!-- The meat of the presentation -->
+    <slide title="Tutorial Goals" layout="normal">
+        <p>This tutorial is meant to give you some practice working with
+            simple programmatic authentication, as described in lesson 10.</p>
+        <p>I have prepared a starter project for you to build on.
+            It is a webapp, which doesn't do much useful other
+            than provide a base for the tutorial.</p>
+    </slide>
+
+    <slide>
+        <h1>Revisions &amp; Notes</h1>    
+        <ul>
+            <li>Fixed some typos and slides out of order; added end result screenshot</li>
+        </ul>            
+    </slide>
+    
+    <slide title="Background" layout="normal">
+        <p>This webapp, for the "Top Secret Government Site", has
+            three controllers and content pages, each intended to be accessible
+            to a different audience.</p>
+        <p>As it comes, all three pages are visible to anyone.</p>
+        <p>We will add simple authentication, authorization and access
+            control, to enforce the intended security.</p>
+    </slide>
+
+    <slide title="Preparation" layout="normal">
+        <div class="left">
+            <p>I have prepared a 
+                <a href="https://github.com/comp4711/winter2015-lab08" target="_blank">
+                    starter project</a>. </p>
+            <p>Fork the github project, and clone it locally to
+                work with, the same as you have done with the previous tutorials.</p>
+            <p>When you run it, you should see the homepage to the right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="261" src="/data/tutorials/pix/8-1.png"/>
+        </div>    
+    </slide>
+
+    <slide title="The End Result" layout="normal">
+        <div class="left">
+            <p>Once we are done, the webapp will have authentication,
+                and it will only show those menu items that the logged in
+                user is allowed to see, shown right.</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="600" height="271" src="/data/tutorials/pix/8-0.png"/>
+        </div>    
+    </slide>
+
+    <slide title="What Needs Doing?" layout="normal">
+        <ol>
+            <li>
+                <a href="#{tag1}">Setup our database</a>
+            </li>
+            <li>
+                <a href="#{tag2}">Add a login form</a>
+            </li>
+            <li>
+                <a href="#{tag3}">Add an authentication controller</a>
+            </li>
+            <li>
+                <a href="#{tag4}">Add authorization constraints</a>
+            </li>
+            <li>
+                <a href="#{tag5}">Add access control constraints</a>
+            </li>
+            <li>
+                <a href="#{tag6}">Tailor the output per the user's role</a>
+            </li>
+        </ol>
+    </slide>
+
+    <slide title="SETUP OUR DATABASE" layout="normal" tag="tag1">
+        <div class="left">
+            <p>Perform these tasks.</p>
+            <ul>
+                <li>Using PHPmyadmin, create a database for this project, called "secrets".</li>
+                <li>Configure your webapp to autoload the 'database' library.<br/>
+                    <code>$autoload['libraries'] = array('parser','database');</code>
+                </li>
+                <li>Configure your database to reference the "secrets" database.<br/>
+                    <code>$db['default']['database'] = 'secrets';</code>
+                </li>
+            </ul>
+        </div>
+        <div class="right">
+            <p>When run, your webapp should look no different than before.
+                Most importantly, it should not break!</p>
+            <br/>
+            <img class="scale" width="600" height="261" src="/data/tutorials/pix/8-1.png"/>
+        </div>
+    </slide>
+
+    <slide title="Configure Sessions" layout="normal" >
+        <p>Create a <code>ci_sessions</code> table, using the <code>data/sessions.sql</code> script.</p>
+        <p>Configure the sessions by modifying <code>config/config</code>:<ul>
+                <li>enable database usage for your sessions<br/>
+                    <code>$config['sess_driver'] = 'database';<br/>
+                        $config['sess_save_path'] = 'ci_sessions';</code>
+                </li>
+            </ul>
+        </p>
+
+    </slide>
+
+    <slide title="Enable Sessions" layout="normal" >
+        <div class="left">
+            <p>Enable the sessions by modifying <code>config/autoload</code>:<ul>
+                    <li>add 'session' to the libraries autoload,
+                        so the facility is always available<br/>
+                        <code>$autoload['libraries'] = array('parser','database','session');
+                        </code>
+                    </li>
+                </ul>
+            </p>
+        </div>
+        <div class="right">
+            <p>When run, your webapp should still look no different than before.
+                How do you know if your sessions are working?</p>
+                <p>
+                    <strong>Note:</strong> If you encounter an error to the effect
+                    that the CI_Session_Driver class cannot be found, that is likely
+                    due to a mismatch between the starter's configuration file
+                    and your system folder. The config assumes a new version ...
+                    download the official CodeIgniter3.0.0 and use its <code>system</code>
+                    folder to replace your <code>system3</code> one!
+                </p>
+        </div>
+    </slide>
+
+    <slide title="Test Your Sessions" layout="normal" >
+        <div class="left">
+            <p>Verify that the sessions are working properly:
+                <ul>
+                    <li>add a view parameter in <code>core/MY_Controller</code>, 
+                        in the <code>render()</code> method just before
+                        calling the parser<br/>
+                        <code>$this-&gt;data['sessionid'] = session_id();</code>                        
+                    </li>
+                    <li>add a substitution variable to the footer in your
+                        views/_template<br/>
+                        <code>Copyright &amp;copy; 2015,  <a href="mailto:someone@somewhere.com">Me</a>. {sessionid}</code>
+                    </li>
+                </ul>                
+            </p>
+        </div>
+        <div class="right">
+            <p>When run, your webapp should now show a session ID in the right
+                of the footer. Reload the page to make sure it doesn't change.</p>
+            <br/>
+            <img class="scale" width="600" height="191" src="/data/tutorials/pix/8-2.png"/>
+            <p>Once you have confirmed that your sessions are loading, you can
+                remove this testing code.</p>
+        </div>
+    </slide>
+
+    <slide title="Add a Users Table" layout="normal" >
+        <div class="left">
+            <p>We also need a users table, to validate against.</p>
+            <p>Let's keep it simple, per the lesson. I have provided a <code>data/users.sql</code>
+                script that you can use.</p>
+            <p>Using phpMyadmin, import that to your database and insert two records:
+                <ul>
+                    <li>id: dd, username: donald, password: duck, role: user</li>
+                    <li>id: mm, username: mickey, password: mouse, role: admin</li>
+                </ul>
+            </p>
+            <p>The picture right shows using the "password" function.
+                Don't! It is not the same as the password_hash() function
+                we need to use later. Check the next slide before proceeding!</p>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="681" height="266" src="/data/tutorials/pix/8-3.png"/>
+        </div>
+    </slide>
+
+    <slide title="Fix The Users Table" layout="normal" >
+        <p>Oops - there is a bit of a disconnect between phpMyadmin
+            and the password hashing. I am not sure what the "password"
+            function there does, but it is not the same as that
+            referred to in the PHP password hashing documentation.</p>
+        <p>I wrote a super simple script to echo the intended passwords
+            hashed, "duck" and "mouse". Here is the output:<br/>
+            <code>$2y$10$Rga7t2AYnyhJs5kQIWcDEu5V/x12jOeB5fp1ZivYu5fGQIjODDdVK<br/>
+                $2y$10$MDR86Btj9Iwzc9rQ.HxP1O3SSrcS1G1kEwBqh67QwMVgS8/NmH7y.</code>
+        </p>
+        <p>Using phpMyadmin, change the password field values for dd and mm to the
+            ones above, respectively :(</p>
+        <p>This is a one-time thing, and would normally
+            be done through user maintenance by an admin.</p>
+    </slide>
+
+    <slide title="Don't Forget a Model for the Users Table" layout="normal" >
+        <p>
+            <code>models/Users</code>:</p>
+        <code>
+            class Users extends MY_Model {<br/>
+&#160;&#160;public function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct('users', 'id');<br/>
+&#160;&#160;}<br/>
+            }                
+        </code>
+        <p>Note: You may have to copy <code>core/MY_Model</code> from another of your projects.</p>
+        <p>This model can be loaded in the constructor of any controller that
+        needs it, but it might be a good idea to autoload it.</p>
+    </slide>
+
+    <slide title="LOGIN FORM" layout="normal" tag="tag2">
+        <p>We will need a login form as part of our authentication.</p>
+        <p>It doesn't have to be anything fancy, <code>views/login.php</code>, 
+        for instance something like:</p>
+        <code>
+&lt;form name="login" method="post" action="/auth/submit"&gt;<br/>
+&#160;&#160;UserID: &lt;input type="text" name="userid"&gt;&lt;/input&gt;&lt;br/&gt;<br/>
+&#160;&#160;Password: &lt;input type="password" name="password"&gt;&lt;/input&gt;&lt;br/&gt;<br/>
+&#160;&#160;&lt;input type="submit"&gt;Submit&lt;/input&gt;<br/>
+&lt;/form&gt;            
+        </code>
+        <p>You are welcome to style it any way you like, just keep
+            the field names and the action attribute.</p>
+    </slide>
+
+    <slide title="AUTHENTICATION" layout="normal" tag="tag3">
+        <p>Let's create a controller, <code>Auth</code>, to handle login and logout.</p>
+        <p>It can be similar to our other controllers, except that the page
+            body it presents by default will be the login page from the previous step.</p>
+        <code>
+            class Auth extends Application {<br/>
+&#160;&#160;function __construct() {<br/>
+&#160;&#160;&#160;&#160;parent::__construct();<br/>
+&#160;&#160;&#160;&#160;$this-&gt;load-&gt;helper('url');<br/>
+&#160;&#160;}<br/>
+&#160;&#160;function index() {<br/>
+&#160;&#160;&#160;&#160;$this-&gt;data['pagebody'] = 'login';<br/>
+&#160;&#160;&#160;&#160;$this-&gt;render();<br/>
+&#160;&#160;}<br/>
+            }            
+        </code>
+    </slide>
+
+    <slide title="Test the Login Form" layout="normal">
+        <p>We can test our login form by typing the URL directly in
+            the location field: "lab08.local/auth", where "lab08.local" is
+            the virtual host domain name you have used.</p>
+        <p>You should get something like:</p>
+        <br/>
+        <img class="scale" width="600" height="229" src="/data/tutorials/pix/8-4.png"/>
+    </slide>
+
+    <slide title="Handle the Login Form" layout="normal">
+        <p>Our controller needs to handle the login form submission,
+            with a submit() method.</p>
+        <p>Without much in the way of error handling, our submit method can be 
+            pretty much what was presetned in the lesson:</p>
+        <code>
+&#160;&#160;function submit() {<br/>
+&#160;&#160;&#160;&#160;$key = $_POST['userid'];<br/>
+&#160;&#160;&#160;&#160;$user = $this-&gt;users-&gt;get($key);<br/>
+&#160;&#160;&#160;&#160;if (password_verify($this-&gt;input-&gt;post('password'),$user-&gt;password)) {<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userID',$key);<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userName',$user-&gt;name);<br/>
+&#160;&#160;&#160;&#160;&#160;&#160;$this-&gt;session-&gt;set_userdata('userRole',$user-&gt;role);<br/>
+&#160;&#160;&#160;&#160;}<br/>
+&#160;&#160;&#160;&#160;redirect('/');<br/>
+            }           
+        </code>
+    </slide>
+
+    <slide title="Complete the Auth Controller" layout="normal">
+        <p>Add the logout() method to your Auth controller.</p>
+        <code>
+            function logout() {<br/>
+&#160;&#160;&#160;&#160;$this-&gt;session-&gt;sess_destroy();<br/>
+&#160;&#160;&#160;&#160;redirect('/');<br/>
+            }
+        </code>
+    </slide>
+
+    <slide title="Make It Easy to Login" layout="normal">
+        <div class="left">
+            <p>We had better add a link or two to the menu navbar to help
+                with this.</p>
+            <p>It might be a bit cheesy for now, but we can simply add
+                an additional two entries to our menu choices in config/config:</p>
+            <code>
+&#160;&#160;&#160;&#160;...<br/>
+&#160;&#160;&#160;&#160;array('name' =&gt; "Login", 'link' =&gt; '/auth'),<br/>
+&#160;&#160;&#160;&#160;array('name' =&gt; "Logout", 'link' =&gt; '/auth/logout'),
+            </code>
+        </div>
+        <div class="right">
+            <br/>
+            <img class="scale" width="648" height="231" src="/data/tutorials/pix/8-6.png"/>
+        </div>
+    </slide>
+
+    <slide title="AUTHORIZATION" layout="normal" tag="tag4">
+        <p>We have two logged in user roles: "user" to see the alpha and beta pages,
+            and "admin" to see all three content pages beyong the homepage.</p>
+        <p>For convenience, let's define those in config/constants...</p>
+        <code>
+            define('ROLE_USER','user');<br/>
+            define('ROLE_ADMIN','admin');<br/> 
+        </code>
+    </slide>
+
+    <slide title="ACCESS CONTROL" layout="normal" tag="tag5">
+        <p>Access control will be enforced programmatically, in our
+            base controller, just like in the lesson. 
+            We can add a restrict method to core/MY_Controller,
+            pretty much as shown in the lesson...</p>
+        <code>
+&#160;&#160;function restrict($roleNeeded = null) {<br/> 
+&#160;&#160;&#160;&#160;$userRole = $this-&gt;session-&gt;userdata('userRole');<br/> 
+&#160;&#160;&#160;&#160;if ($roleNeeded != null) {<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;if (is_array($roleNeeded)) {<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;if (!in_array($userRole, $roleNeeded)) {<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;redirect("/");<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;return;<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;} else if ($userRole != $roleNeeded) {<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;redirect("/");<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;return;<br/> 
+&#160;&#160;&#160;&#160;&#160;&#160;}<br/> 
+&#160;&#160;}<br/> 
+            }            
+        </code>
+    </slide>
+
+    <slide title="Restrict Access to the Gamma Page" layout="normal" tag="tag5">
+        <p>We can now add a rule to block the Gamma page from all but
+            admins, by adding a line to the Gamma constructor:</p>
+        <code>
+            class Gamma extends Application {<br/> 
+&#160;&#160;function __construct() {<br/> 
+&#160;&#160;&#160;&#160;parent::__construct();<br/> 
+&#160;&#160;&#160;&#160;$this-&gt;restrict(ROLE_ADMIN);<br/> 
+&#160;&#160;}<br/> 
+            ...
+        </code>
+        <p>Try it! Login as "mm" with the password "mouse", and
+            you should see the gamma page. Logged out, or logged
+            in as "dd", you should not.</p>
+    </slide>
+
+    <slide title="Repeat For the Beta Page" layout="normal" tag="tag5">
+        <p>We can now add a rule to block the Beta page from all but
+            registered users, by adding a line to the its constructor:</p>
+        <code>
+            class Beta extends Application {<br/> 
+&#160;&#160;function __construct() {<br/> 
+&#160;&#160;&#160;&#160;parent::__construct();<br/> 
+&#160;&#160;&#160;&#160;$this-&gt;restrict(array(ROLE_USER,ROLE_ADMIN));<br/> 
+&#160;&#160;}
+            ...
+        </code>
+        <p>Note that the restriction allows either a user or an admin.</p>
+    </slide>
+
+    <slide title="TAILORED MENU" layout="normal" tag="tag6">
+        <p>Rather than have the same menu presented, whether logged in or not,
+            it makes sense to present a menu with only those pages that the
+            current user has access to. I suggest doing this in the 
+            base controller, perhaps as a "makemenu" method to build
+            the array of menu choices. It would also make sense to show the name of the 
+            currently logged in user, if appropriate.</p>
+        <p>The gist is as follows, but I will leave the implementation
+            to the reader.</p>
+        <code>
+            $this-&gt;data['menubar'] = $this-&gt;makemenu();<br/> 
+            ...<br/> 
+            function makemenu() {<br/> 
+            //get role &amp; name from session<br/> 
+            // make array, with menu choice for alpha<br/> 
+            // if not logged in, add menu choice to login<br/> 
+            // if user, add menu choice for beta and logout<br/> 
+            // if admin, add menu choices for beta, gamma and logout<br/> 
+            // return the choices array<br/> 
+            }                    
+        </code>
+    </slide>
+
+
+</tutorial>

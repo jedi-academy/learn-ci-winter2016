@@ -15,7 +15,7 @@ Course organizer for learn-ci: Webapp Development Using CodeIgniter
     <week num="2">
         <topic>CodeIgniter MVC Framework</topic>
         <lesson type="lesson" name="basic01" pdf="basic01-mvc-framework-introduction.pdf">MVC Framework Introduction</lesson>
-        <lesson type="lesson" name="basic01-other" pdf="basic01-other-framework-examples.pdf">MVC Framework Introduction</lesson>
+        <lesson type="lesson" name="basic01-other" pdf="basic01-other-framework-examples.pdf">Other MVC Framework Examples</lesson>
         <github type="github" name="contacts" link="https://github.com/jedi-academy/example-contacts">Example webapp - contacts</github>
         <lesson type="lesson" name="dev03" domain="devops.jlparry.com" pdf="dev03-devops-example.pdf">Workflow Example</lesson>
         <tutorial type="tutorial" name="setup04" domain="devops.jlparry.com" pdf="setup04-setup-codeigniter.pdf">Setup CodeIgniter</tutorial>
