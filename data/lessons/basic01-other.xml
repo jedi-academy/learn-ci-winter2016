@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Lesson 02 - MVC Framework Introduction - Examples from other frameworks
+-->
+<lesson status="beta">
+    <!-- Activity metadata ... override anything from the course or organizer -->
+
+    <!-- Normal slides -->
+
+   <slide title="Folder Structures" layout="normal">
+        <p>Other frameworks follow similar conventions.</p>
+        <div class="left">
+            <p>
+                <i>Fat-Free</i>
+            </p>
+            <img class="scale" width="358" height="315" src="/data/lessons/pix/2/2-4.png"/>
+        </div>
+        <div class="right">
+            <p>
+                <i>FuelPHP</i>
+            </p>
+            <img class="scale" width="256" height="576" src="/data/lessons/pix/2/2-5.jpg"/>
+        </div>
+    </slide>
+
+    <slide title="Other Model Examples" layout="normal">
+        <p>Other frameworks have similar functionality.</p>
+        <div class="left">
+            <i>Fat-Free</i>
+            <pre>
+                <code>
+$db = new DB\SQL('mysql:host=localhost';
+$port=3306;dbname=mystuff',
+    'myuserid','mypassword');
+$user = new DB\SQL\Mapper($db,'users');
+$user-&gt;load('id=1');
+$user-&gt;name='Pointy haired boss';
+$user-&gt;save();                 
+                </code>
+            </pre>
+        </div>
+        <div class="right">
+            <i>CakePHP</i>
+            <pre>
+                <code>
+App::uses(’AppModel’, ’Model’);
+class Ingredient extends AppModel {
+    public $name = ’Ingredient’;
+}                
+                </code>
+            </pre>
+        </div>
+    
+    </slide>
+
+    <slide title="Other Framework Examples" layout="normal">
+        <div class="left">
+            <i>FuelPHP</i>
+            <pre>
+                <code>
+class Controller_Example extends Controller {
+
+    public function action_index() {
+        $data['css'] = Asset::css(array
+            ('reset.css','960.css','main.css'));
+            return Response::forge(View::forge('welcome/index'));
+        }
+    }
+}
+                </code>
+            </pre>
+        </div>
+        <div class="right">
+            <i>Laravel</i>
+            <pre>
+                <code>
+class Controller extends BaseController {
+    public function home() {
+            return View::make(‘home’);
+    }
+}                
+...                
+Route::get(‘/’, ‘Controller@home’)                
+                </code>
+            </pre>
+        </div>
+    
+    </slide>
+    
+   <slide title="View Examples From Other Frameworks" layout="normal">
+        <p>Other frameworks have similar functionality.</p>
+        <div class="left">
+            <i>Fat-Free</i>
+            <pre>
+                <code>
+                    $f3-&gt;set('name','Jim');
+                    $f3-&gt;set('title','Sir');
+                    ...
+                    $view = new Template;
+                    echo $view-&gt;render('template.html');
+
+                    where the HTML fragment includes
+                    ... &lt;p&gt;Hello {{ @title }} {{ @name }}&lt;/p&gt;
+                </code>
+            </pre>
+        </div>
+        <div class="right">
+            <i>FuelPHP</i>
+            <pre>
+                <code>
+fuel/app/views/layout.php ...
+                    
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;?php echo $head; ?&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;?php echo $header; ?&gt;
+        &lt;?php echo $content; ?&gt;
+        &lt;?php echo $footer; ?&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                </code>
+            </pre>
+        </div>
+    </slide>
+    
+    <slide title="Libraries in Other Frameworks" layout="normal" >
+        <div class="left">
+            <p>Laravel</p>
+            <ul>
+                <li>Auth</li>
+                <li>Validation</li>
+                <li>Pagination</li>
+                <li>Database</li>
+            </ul>
+        </div>
+        <div class="right">
+            <p>Symfony2</p>
+            <ul>
+                <li>Browserkit</li>
+                <li>Config</li>
+                <li>DomCrawler</li>
+                <li>Finder</li>
+                <li>OptionsResolver</li>
+                <li>...</li>
+            </ul>
+        </div>
+    </slide>
+
+    <slide title="Utilities Examples" layout="normal" >
+        <p>Many frameworks come with bundled utilities.</p>
+        <div class="left">
+            <i>Yii</i>
+            <br/>
+            <img class="scale" width="337" height="268" src="/data/lessons/pix/2/2-15.png"/>
+        </div>
+        <div class="right">
+            <i>FuelPHP</i>
+            <p>
+                <pre>
+                    <code>
+$ php oil g scaffold monkey name:string description:text
+
+Created model: APPPATH/classes/model/monkey.php
+Created migration: APPPATH/migrations/003_create_monkeys.php
+Created controller: APPPATH/classes/controller/monkeys.php
+Created view: APPPATH/views/monkeys/index.php
+Created view: APPPATH/views/monkeys/view.php
+Created view: APPPATH/views/monkeys/create.php
+Created view: APPPATH/views/monkeys/edit.php
+Created view: APPPATH/views/monkeys/_form.php                    
+                    </code>
+                </pre>
+            </p>
+        </div>
+    </slide>
+
+    <slide title="Configuration Examples From Other Frameworks" layout="normal" >
+        <div class="left">
+            <i>Laravel</i>
+            <pre>
+                <code>
+composer create-project laravel/laravel project_name --prefer-dist
+Composer.json:
+"require": {
+    "laravel/framework": "4.1.*",
+    "intervention/image": "1.*"
+}
+
+Composer update
+                </code>
+            </pre>
+        </div>
+        <div class="right">
+            <i>Kohana</i>
+            <pre>
+                <code>
+Kohana::modules(array(
+   'auth'   	=&gt; MODPATH.'auth',   	// Basic authentication
+   'cache'  	=&gt; MODPATH.'cache',  	// Caching with multiple backends
+   'codebench'  =&gt; MODPATH.'codebench',  // Benchmarking tool
+   'database'   =&gt; MODPATH.'database',   // Database access
+   'image'  	=&gt; MODPATH.'image',  	// Image manipulation
+   'orm'    	=&gt; MODPATH.'orm',    	// Object Relationship Mapping
+   'oauth'  	=&gt; MODPATH.'oauth',  	// OAuth authentication
+   'pagination' =&gt; MODPATH.'pagination', // Paging of results
+   'unittest'   =&gt; MODPATH.'unittest',   // Unit testing
+   'userguide'  =&gt; MODPATH.'userguide',  // User guide and API documentation
+   ));
+                </code>
+            </pre>
+        </div>
+    </slide>
+
+ </lesson>

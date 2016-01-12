@@ -4,13 +4,13 @@ Course metadata for Comp4711
 -->
 <course>
     <!-- Course metadata -->
-    <code>comp4711</code>
+    <code>codeigniter</code>
     <title>Webapp Development Using CodeIgniter</title>
-    <subtitle>COMP4711</subtitle>
+    <subtitle>CodeIgniter3</subtitle>
     <author>James L. Parry</author>
     <email>jim_parry@bcit.ca</email>
-    <outline>http://www.bcit.ca/study/outlines/20153035498</outline>
-    <session>Fall 2015</session>
+    <outline>https://github.com/bcit-ci/CodeIgniter</outline>
+    <session>N/A</session>
     <school>B.C. Institute of Technology</school>
     <site>http://www.bcit.ca/cas/computing/</site>
     <license>MIT License</license>
@@ -21,12 +21,6 @@ Course metadata for Comp4711
         COMP4711 at BCIT, making them easier for my dayschool students to
         access, and making them more broadly accessible, for instance
         to the CodeIgniter community.<br/>
-        Concurrently with my dayschool course this Fall 2015 term,
-        there may be remote learners from
-        around the world. The remote students will have access to the same 
-        resources as the dayschool ones, and will be expected to complete
-        labs and assignments. I will give them feedback and grades for their 
-        work, but they will not receive academic credit for participating.<br/>
         Something I will be asking all of the students to do is, to provide
         brief feedback for each component of the course!!
     </intro>

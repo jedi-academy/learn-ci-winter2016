@@ -70,7 +70,7 @@ Lesson 06 - Helpers & Addons
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="575" height="136" src="/data/lessons/pix/6-1.png"/>
+            <img class="scale" width="575" height="136" src="/data/lessons/pix/6/6-1.png"/>
         </div>
     </slide>
 
@@ -145,7 +145,7 @@ Lesson 06 - Helpers & Addons
         </div>
         <div class="right">
             <br/>
-            <img class="scale" width="580" height="154" src="/data/lessons/pix/6-2.png"/>
+            <img class="scale" width="580" height="154" src="/data/lessons/pix/6/6-2.png"/>
         </div>
     </slide>
 
@@ -438,7 +438,7 @@ Lesson 06 - Helpers & Addons
                 such as standard help text.</p>
             <p>The end result looks something like...</p>
             <br/>
-            <img class="scale" width="530" height="75" src="/data/lessons/pix/6-5.png"/>
+            <img class="scale" width="530" height="75" src="/data/lessons/pix/6/6-5.png"/>
         </div>
         <div class="right">
             <code>

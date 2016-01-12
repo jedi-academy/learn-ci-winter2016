@@ -6,3 +6,8 @@
 */cache/!.htaccess
 /nbproject/private/
 /nbproject/
+/index.php
+/application/
+/assets/
+/public/
+/.htaccess
